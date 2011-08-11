@@ -53,6 +53,13 @@ public class ReflectionOnInherentedMethodsTest {
 	}
 
 	@Test
+	public void subsubclassMethodsIncludeSuperclassMethods() {
+		assertThat(
+				type(ExampleSubsubclass.class).methods(contains("Superclass")),
+				hasItem(named("getSuperclassProperty")));
+	}
+
+	@Test
 	public void declaredSubclassMethodsAreFound() {
 		final List<ReflectedMethod> methodsDeclaredByExampleSubclass =
 				type(ExampleSubclass.class).methods(declaredBy(ExampleSubclass.class));
