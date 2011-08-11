@@ -1,5 +1,5 @@
 package com.lexicalscope.javabeanhelpers.reflection;
 
-public interface ExampleSubinterface extends ExampleSuperInterface {
-	String getSubclassProperty();
+interface ExampleSubinterface extends ExampleSuperinterface {
+	String getSubinterfaceProperty();
 }

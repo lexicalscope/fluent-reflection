@@ -103,4 +103,18 @@ public class MethodMatchers {
 			}
 		};
 	}
+
+	public static ReflectionMatcher<ReflectedMethod> declaredBy(final Class<?> declaringKlass) {
+		return new ReflectionMatcher<ReflectedMethod>() {
+			@Override
+			public boolean matchesSafely(final ReflectedMethod arg) {
+				return arg.getDeclaringClass().getClassUnderReflection().equals(declaringKlass);
+			}
+
+			@Override
+			public void describeTo(final Description description) {
+				description.appendText("method declared by ").appendValue(declaringKlass);
+			}
+		};
+	}
 }

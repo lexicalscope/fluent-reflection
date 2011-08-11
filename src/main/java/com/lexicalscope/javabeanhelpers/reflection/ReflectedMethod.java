@@ -6,4 +6,6 @@ public interface ReflectedMethod {
 	String getName();
 
 	List<ReflectedType<?>> getArgumentTypes();
+
+	ReflectedType<?> getDeclaringClass();
 }

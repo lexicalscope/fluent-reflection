@@ -23,6 +23,11 @@ class ReflectedMethodImpl implements ReflectedMethod {
 	}
 
 	@Override
+	public ReflectedType<?> getDeclaringClass() {
+		return ReflectedTypeImpl.create(method.getDeclaringClass());
+	}
+
+	@Override
 	public String toString() {
 		return method.toString();
 	}
