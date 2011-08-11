@@ -1,8 +1,7 @@
 package com.lexicalscope.javabeanhelpers.reflection;
 
 /**
- * Hello world!
- * 
+ * Main entry point for the reflection library
  */
 public class Reflect {
 	public static <T> ReflectedType<T> type(final Class<T> klass) {

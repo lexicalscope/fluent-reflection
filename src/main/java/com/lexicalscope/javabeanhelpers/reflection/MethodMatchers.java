@@ -4,6 +4,7 @@ import static ch.lambdaj.Lambda.convert;
 import static org.hamcrest.Matchers.arrayContaining;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.hamcrest.Description;
 
@@ -18,6 +19,49 @@ public class MethodMatchers {
 			@Override
 			public void describeTo(final Description description) {
 				description.appendText("method starting with ").appendValue(prefix);
+			}
+		};
+	}
+
+	public static ReflectionMatcher<ReflectedMethod> endingWith(final String suffix) {
+		return new ReflectionMatcher<ReflectedMethod>() {
+			@Override
+			public boolean matchesSafely(final ReflectedMethod arg) {
+				return arg.getName().endsWith(suffix);
+			}
+
+			@Override
+			public void describeTo(final Description description) {
+				description.appendText("method ending with ").appendValue(suffix);
+			}
+		};
+	}
+
+	public static ReflectionMatcher<ReflectedMethod> matching(final String regex) {
+		final Pattern pattern = Pattern.compile(regex);
+		return new ReflectionMatcher<ReflectedMethod>() {
+			@Override
+			public boolean matchesSafely(final ReflectedMethod arg) {
+				return pattern.matcher(arg.getName()).matches();
+			}
+
+			@Override
+			public void describeTo(final Description description) {
+				description.appendText("method matching ").appendValue(regex);
+			}
+		};
+	}
+
+	public static ReflectionMatcher<ReflectedMethod> contains(final CharSequence substring) {
+		return new ReflectionMatcher<ReflectedMethod>() {
+			@Override
+			public boolean matchesSafely(final ReflectedMethod arg) {
+				return arg.getName().contains(substring);
+			}
+
+			@Override
+			public void describeTo(final Description description) {
+				description.appendText("method containing ").appendValue(substring);
 			}
 		};
 	}
