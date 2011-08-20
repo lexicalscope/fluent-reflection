@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 
-public class MethodMatchers {
+public class ReflectionMatchers {
 	public static ReflectionMatcher<ReflectedMethod> startingWith(final String prefix) {
 		return new ReflectionMatcher<ReflectedMethod>() {
 			@Override
@@ -114,6 +115,34 @@ public class MethodMatchers {
 			@Override
 			public void describeTo(final Description description) {
 				description.appendText("method declared by ").appendValue(declaringKlass);
+			}
+		};
+	}
+
+	public static Matcher<ReflectedType<?>> hasNoInterfaces() {
+		return new ReflectionMatcher<ReflectedType<?>>() {
+			@Override
+			public boolean matchesSafely(final ReflectedType<?> arg) {
+				return arg.getInterfaces().isEmpty();
+			}
+
+			@Override
+			public void describeTo(final Description description) {
+				description.appendText("type that implements no interfaces");
+			}
+		};
+	}
+
+	public static Matcher<ReflectedType<?>> isInterface() {
+		return new ReflectionMatcher<ReflectedType<?>>() {
+			@Override
+			public boolean matchesSafely(final ReflectedType<?> arg) {
+				return arg.isInterface();
+			}
+
+			@Override
+			public void describeTo(final Description description) {
+				description.appendText("type that is an interface");
 			}
 		};
 	}

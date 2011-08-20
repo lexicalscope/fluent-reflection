@@ -5,7 +5,6 @@ import static org.hamcrest.Matchers.anything;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.hamcrest.Matcher;
@@ -19,52 +18,32 @@ import org.hamcrest.Matcher;
  */
 class ReflectedTypeImpl<T> implements ReflectedType<T> {
 	private final Class<T> klass;
+
 	private List<ReflectedMethod> reflectedMethods;
+	private List<ReflectedType<?>> interfacesAndSuperClass;
 
 	public ReflectedTypeImpl(final Class<T> klass) {
 		this.klass = klass;
-	}
-
-	private static class HierarchyCalculation {
-		private final List<Class<?>> result = new ArrayList<Class<?>>();
-		private final List<Class<?>> pending = new LinkedList<Class<?>>();
-
-		private List<Class<?>> interfacesAndSuperClass(final Class<?> klassToReflect) {
-			pending.add(klassToReflect);
-			while (!pending.isEmpty()) {
-				processClass(pending.remove(0));
-			}
-			return result;
-		}
-
-		private void processClass(final Class<?> klassToReflect) {
-			if (result.contains(klassToReflect)) {
-				return;
-			}
-
-			if (klassToReflect.getSuperclass() != null && !klassToReflect.getSuperclass().equals(Object.class)) {
-				pending.add(klassToReflect.getSuperclass());
-			}
-			final Class<?>[] interfaces = klassToReflect.getInterfaces();
-			for (final Class<?> interfac3 : interfaces) {
-				pending.add(interfac3);
-			}
-			result.add(klassToReflect);
-		}
 	}
 
 	private List<ReflectedMethod> reflectedMethods() {
 		if (reflectedMethods == null) {
 			final List<ReflectedMethod> result = new ArrayList<ReflectedMethod>();
 
-			final List<Class<?>> interfacesAndSuperClass = new HierarchyCalculation().interfacesAndSuperClass(klass);
-			for (final Class<?> klassToReflect : interfacesAndSuperClass) {
-				result.addAll(getDeclaredMethodsOfClass(klassToReflect));
+			for (final ReflectedType<?> klassToReflect : interfacesAndSuperClasses()) {
+				result.addAll(getDeclaredMethodsOfClass(klassToReflect.getClassUnderReflection()));
 			}
 
 			reflectedMethods = result;
 		}
 		return reflectedMethods;
+	}
+
+	private List<ReflectedType<?>> interfacesAndSuperClasses() {
+		if (interfacesAndSuperClass == null) {
+			interfacesAndSuperClass = new TypeHierarchyCalculation().interfacesAndSuperClass(klass);
+		}
+		return interfacesAndSuperClass;
 	}
 
 	private List<ReflectedMethod> getDeclaredMethodsOfClass(final Class<?> klassToReflect) {
@@ -91,7 +70,17 @@ class ReflectedTypeImpl<T> implements ReflectedType<T> {
 		return methods(anything());
 	}
 
-	static <T> ReflectedType<?> create(final Class<T> from) {
+	static <T> ReflectedTypeImpl<?> create(final Class<T> from) {
 		return new ReflectedTypeImpl<T>(from);
+	}
+
+	@Override
+	public List<ReflectedType<?>> getInterfaces() {
+		return select(interfacesAndSuperClasses(), ReflectionMatchers.isInterface());
+	}
+
+	@Override
+	public boolean isInterface() {
+		return false;
 	}
 }

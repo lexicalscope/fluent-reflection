@@ -27,4 +27,18 @@ public interface ReflectedType<T> {
 	 * @return all the methods
 	 */
 	List<ReflectedMethod> methods();
+
+	/**
+	 * All interfaces implemented by this type
+	 * 
+	 * @return all the interfaces
+	 */
+	List<ReflectedType<?>> getInterfaces();
+
+	/**
+	 * True iff the type is an interface
+	 * 
+	 * @return True iff the type is an interface
+	 */
+	boolean isInterface();
 }

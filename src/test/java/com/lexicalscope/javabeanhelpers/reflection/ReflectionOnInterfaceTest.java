@@ -1,6 +1,6 @@
 package com.lexicalscope.javabeanhelpers.reflection;
 
-import static com.lexicalscope.javabeanhelpers.reflection.MethodMatchers.*;
+import static com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers.*;
 import static com.lexicalscope.javabeanhelpers.reflection.Reflect.type;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
