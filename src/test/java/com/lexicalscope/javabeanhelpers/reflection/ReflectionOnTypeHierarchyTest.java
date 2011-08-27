@@ -18,12 +18,11 @@ package com.lexicalscope.javabeanhelpers.reflection;
 
 import static com.lexicalscope.javabeanhelpers.reflection.Reflect.type;
 import static com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
-public class ReflectionOnTypeHierarchy {
+public class ReflectionOnTypeHierarchyTest {
 	@Test
 	public void topLevelInterface() {
 		MatcherAssert.assertThat(type(ExampleInterface.class), hasNoInterfaces());
@@ -31,6 +30,6 @@ public class ReflectionOnTypeHierarchy {
 
 	@Test
 	public void ancestorInterfacesAreFound() {
-		assertThat(type(ExampleSuperclass.class), hasInterface(ExampleSuperinterface.class));
+		MatcherAssert.assertThat(type(ExampleSuperclass.class), hasInterface(ExampleSuperinterface.class));
 	}
 }
