@@ -16,7 +16,7 @@ package com.lexicalscope.javabeanhelpers.reflection;
  * limitations under the License. 
  */
 
-import static ch.lambdaj.Lambda.convert;
+import static ch.lambdaj.Lambda.*;
 import static org.hamcrest.Matchers.arrayContaining;
 
 import java.util.List;
@@ -149,6 +149,22 @@ public class ReflectionMatchers {
 		};
 	}
 
+	public static Matcher<ReflectedType<?>> hasInterface(final Class<?> interfac3) {
+		return new ReflectionMatcher<ReflectedType<?>>() {
+			@Override
+			public boolean matchesSafely(final ReflectedType<?> arg) {
+				return select(
+						arg.getInterfaces(),
+						reflectingOn(interfac3)).isEmpty();
+			}
+
+			@Override
+			public void describeTo(final Description description) {
+				description.appendText("type that implements no interfaces");
+			}
+		};
+	}
+
 	public static Matcher<ReflectedType<?>> isInterface() {
 		return new ReflectionMatcher<ReflectedType<?>>() {
 			@Override
@@ -159,6 +175,20 @@ public class ReflectionMatchers {
 			@Override
 			public void describeTo(final Description description) {
 				description.appendText("type that is an interface");
+			}
+		};
+	}
+
+	public static Matcher<ReflectedType<?>> reflectingOn(final Class<?> klass) {
+		return new ReflectionMatcher<ReflectedType<?>>() {
+			@Override
+			public boolean matchesSafely(final ReflectedType<?> arg) {
+				return arg.getClassUnderReflection().equals(klass);
+			}
+
+			@Override
+			public void describeTo(final Description description) {
+				description.appendText("reflecting on type ").appendValue(klass);
 			}
 		};
 	}
