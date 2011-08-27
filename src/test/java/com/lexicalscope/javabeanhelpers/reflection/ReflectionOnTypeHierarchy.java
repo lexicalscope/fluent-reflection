@@ -20,12 +20,13 @@ import static com.lexicalscope.javabeanhelpers.reflection.Reflect.type;
 import static com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
 public class ReflectionOnTypeHierarchy {
 	@Test
 	public void topLevelInterface() {
-		assertThat(type(ExampleInterface.class), hasNoInterfaces());
+		MatcherAssert.assertThat(type(ExampleInterface.class), hasNoInterfaces());
 	}
 
 	@Test
