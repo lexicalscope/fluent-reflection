@@ -18,9 +18,10 @@ package com.lexicalscope.javabeanhelpers.reflection;
 
 import static com.lexicalscope.javabeanhelpers.reflection.Reflect.type;
 import static com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
-import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 /**
@@ -29,43 +30,43 @@ import org.junit.Test;
 public class ReflectionOnInterfaceTest {
 	@Test
 	public void classUnderReflectionReturnsClassUnderReflection() {
-		MatcherAssert.assertThat(
+		assertThat(
 				type(ExampleInterface.class).getClassUnderReflection(),
 				equalTo(ExampleInterface.class));
 	}
 
 	@Test
 	public void methodsCanBeSelectedByPrefix() {
-		MatcherAssert.assertThat(
+		assertThat(
 				type(ExampleInterface.class).methods(startingWith("get")),
-				hasItem(named("getPropertyOne")));
+				Matchers.<ReflectedMethod>hasItem(named("getPropertyOne")));
 	}
 
 	@Test
 	public void methodsCanBeSelectedBySuffix() {
-		MatcherAssert.assertThat(
+		assertThat(
 				type(ExampleInterface.class).methods(endingWith("One")),
-				hasItem(named("getPropertyOne")));
+				Matchers.<ReflectedMethod>hasItem(named("getPropertyOne")));
 	}
 
 	@Test
 	public void methodsCanBeSelectedByRegularExpression() {
-		MatcherAssert.assertThat(
+		assertThat(
 				type(ExampleInterface.class).methods(matching(".*Property.*")),
-				hasItem(named("getPropertyOne")));
+				Matchers.<ReflectedMethod>hasItem(named("getPropertyOne")));
 	}
 
 	@Test
 	public void methodsWithNoArgumentsCanBeSelected() {
-		MatcherAssert.assertThat(
+		assertThat(
 				type(ExampleInterface.class).methods(withArguments()),
-				hasItem(named("getPropertyOne")));
+				Matchers.<ReflectedMethod>hasItem(named("getPropertyOne")));
 	}
 
 	@Test
 	public void methodCanBeSelectedByArgument() {
-		MatcherAssert.assertThat(
+		assertThat(
 				type(ExampleInterface.class).methods(withArguments(String.class)),
-				hasItem(named("setPropertyOne")));
+				Matchers.<ReflectedMethod>hasItem(named("setPropertyOne")));
 	}
 }

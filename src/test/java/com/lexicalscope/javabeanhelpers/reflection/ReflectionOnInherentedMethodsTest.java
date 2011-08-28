@@ -18,61 +18,62 @@ package com.lexicalscope.javabeanhelpers.reflection;
 
 import static com.lexicalscope.javabeanhelpers.reflection.Reflect.type;
 import static com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 import java.util.List;
 
-import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 public class ReflectionOnInherentedMethodsTest {
 	@Test
 	public void subinterfaceMethodsIncludeSuperinterfaceMethods() {
-		MatcherAssert.assertThat(
+		assertThat(
 				type(ExampleSubinterface.class).methods(contains("Superinterface")),
-				hasItem(named("getSuperinterfaceProperty")));
+				Matchers.<ReflectedMethod>hasItem(named("getSuperinterfaceProperty")));
 	}
 
 	@Test
 	public void subinterfaceMethodsIncludeSubinterfaceMethods() {
-		MatcherAssert.assertThat(
+		assertThat(
 				type(ExampleSubinterface.class).methods(contains("Subinterface")),
-				hasItem(named("getSubinterfaceProperty")));
+				Matchers.<ReflectedMethod>hasItem(named("getSubinterfaceProperty")));
 	}
 
 	@Test
 	public void subclassMethodsIncludeSuperinterfaceMethods() {
-		MatcherAssert.assertThat(
+		assertThat(
 				type(ExampleSubclass.class).methods(contains("Superinterface")),
-				hasItem(named("getSuperinterfaceProperty")));
+				Matchers.<ReflectedMethod>hasItem(named("getSuperinterfaceProperty")));
 	}
 
 	@Test
 	public void subclassMethodsIncludeSubinterfaceMethods() {
-		MatcherAssert.assertThat(
+		assertThat(
 				type(ExampleSubclass.class).methods(contains("Subinterface")),
-				hasItem(named("getSubinterfaceProperty")));
+				Matchers.<ReflectedMethod>hasItem(named("getSubinterfaceProperty")));
 	}
 
 	@Test
 	public void subclassMethodsIncludeSuperclassMethods() {
-		MatcherAssert.assertThat(
+		assertThat(
 				type(ExampleSubclass.class).methods(contains("Superclass")),
-				hasItem(named("getSuperclassProperty")));
+				Matchers.<ReflectedMethod>hasItem(named("getSuperclassProperty")));
 	}
 
 	@Test
 	public void subclassMethodsIncludeSubclassMethods() {
-		MatcherAssert.assertThat(
+		assertThat(
 				type(ExampleSubclass.class).methods(contains("Subclass")),
-				hasItem(named("getSubclassProperty")));
+				Matchers.<ReflectedMethod>hasItem(named("getSubclassProperty")));
 	}
 
 	@Test
 	public void subsubclassMethodsIncludeSuperclassMethods() {
-		MatcherAssert.assertThat(
+		assertThat(
 				type(ExampleSubsubclass.class).methods(contains("Superclass")),
-				hasItem(named("getSuperclassProperty")));
+				Matchers.<ReflectedMethod>hasItem(named("getSuperclassProperty")));
 	}
 
 	@Test
@@ -80,11 +81,11 @@ public class ReflectionOnInherentedMethodsTest {
 		final List<ReflectedMethod> methodsDeclaredByExampleSubclass =
 				type(ExampleSubclass.class).methods(declaredBy(ExampleSubclass.class));
 
-		MatcherAssert.assertThat(
+		assertThat(
 				methodsDeclaredByExampleSubclass,
-				hasItem(named("getSubclassProperty")));
+				Matchers.<ReflectedMethod>hasItem(named("getSubclassProperty")));
 
-		MatcherAssert.assertThat(
+		assertThat(
 				methodsDeclaredByExampleSubclass.size(),
 				equalTo(1));
 	}
@@ -94,19 +95,19 @@ public class ReflectionOnInherentedMethodsTest {
 		final List<ReflectedMethod> methodsDeclaredByExampleSuperclass =
 				type(ExampleSubclass.class).methods(declaredBy(ExampleSuperclass.class));
 
-		MatcherAssert.assertThat(
+		assertThat(
 				methodsDeclaredByExampleSuperclass,
-				hasItem(named("getSuperclassProperty")));
+				Matchers.<ReflectedMethod>hasItem(named("getSuperclassProperty")));
 
-		MatcherAssert.assertThat(
+		assertThat(
 				methodsDeclaredByExampleSuperclass,
-				hasItem(named("getSubinterfaceProperty")));
+				Matchers.<ReflectedMethod>hasItem(named("getSubinterfaceProperty")));
 
-		MatcherAssert.assertThat(
+		assertThat(
 				methodsDeclaredByExampleSuperclass,
-				hasItem(named("getSuperinterfaceProperty")));
+				Matchers.<ReflectedMethod>hasItem(named("getSuperinterfaceProperty")));
 
-		MatcherAssert.assertThat(
+		assertThat(
 				methodsDeclaredByExampleSuperclass.size(),
 				equalTo(3));
 	}
