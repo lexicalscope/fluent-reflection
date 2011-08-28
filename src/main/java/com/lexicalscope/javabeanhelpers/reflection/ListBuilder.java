@@ -17,7 +17,7 @@ final class ListBuilder<T> {
 		return this;
 	}
 
-	List<T> build() {
+	List<T> $() {
 		return list;
 	}
 }

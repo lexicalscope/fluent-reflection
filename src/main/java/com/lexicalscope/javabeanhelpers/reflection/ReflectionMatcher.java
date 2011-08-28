@@ -16,6 +16,9 @@ package com.lexicalscope.javabeanhelpers.reflection;
  * limitations under the License. 
  */
 
+import static com.lexicalscope.javabeanhelpers.reflection.AndMatcher.andOf;
+import static com.lexicalscope.javabeanhelpers.reflection.ListBuilder.list;
+
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
@@ -28,9 +31,8 @@ public abstract class ReflectionMatcher<T> extends TypeSafeMatcher<T> {
 	 * @return A matcher that return true if this matcher and the passed one
 	 *         return true
 	 */
-	@SuppressWarnings("unchecked")
 	public ReflectionMatcher<T> and(final Matcher<T> matcher) {
-		return AndMatcher.and(this, matcher);
+		return andOf(list((Matcher<T>) this).add(matcher).$());
 	}
 
 	/**
@@ -41,8 +43,7 @@ public abstract class ReflectionMatcher<T> extends TypeSafeMatcher<T> {
 	 * @return A matcher that return true if this matcher or the passed one
 	 *         return true
 	 */
-	@SuppressWarnings("unchecked")
 	public ReflectionMatcher<T> or(final Matcher<T> matcher) {
-		return OrMatcher.or(this, matcher);
+		return OrMatcher.orOf(list((Matcher<T>) this).add(matcher).$());
 	}
 }

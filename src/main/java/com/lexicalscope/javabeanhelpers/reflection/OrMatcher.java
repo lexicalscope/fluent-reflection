@@ -16,6 +16,8 @@ package com.lexicalscope.javabeanhelpers.reflection;
  * limitations under the License. 
  */
 
+import java.util.List;
+
 import org.hamcrest.Description;
 import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
@@ -28,9 +30,9 @@ import org.hamcrest.Matcher;
  * @param <T>
  */
 final class OrMatcher<T> extends ReflectionMatcher<T> {
-	private final Matcher<T>[] matchers;
+	private final List<Matcher<T>> matchers;
 
-	private OrMatcher(final Matcher<T>... matchers) {
+	private OrMatcher(final List<Matcher<T>> matchers) {
 		this.matchers = matchers;
 	}
 
@@ -49,9 +51,9 @@ final class OrMatcher<T> extends ReflectionMatcher<T> {
 
 	@Override
 	public void describeTo(final Description description) {
-		for (int i = 0; i < matchers.length; i++) {
-			description.appendDescriptionOf(matchers[i]);
-			if (i + 1 < matchers.length) {
+		for (int i = 0; i < matchers.size(); i++) {
+			description.appendDescriptionOf(matchers.get(i));
+			if (i + 1 < matchers.size()) {
 				description.appendText(" or ");
 			}
 		}
@@ -66,7 +68,7 @@ final class OrMatcher<T> extends ReflectionMatcher<T> {
 	 *         true
 	 */
 	@Factory
-	public static <T> OrMatcher<T> or(final Matcher<T>... matchers) {
+	public static <T> OrMatcher<T> orOf(final List<Matcher<T>> matchers) {
 		return new OrMatcher<T>(matchers);
 	}
 }
