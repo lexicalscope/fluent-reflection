@@ -27,7 +27,7 @@ import org.junit.Test;
 /**
  * Unit test for simple App.
  */
-public class ReflectionOnInterfaceTest {
+public class TestReflectionOnInterface {
 	@Test
 	public void classUnderReflectionReturnsClassUnderReflection() {
 		assertThat(

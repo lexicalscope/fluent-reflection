@@ -7,7 +7,34 @@
     <artifactId>fluent-reflection</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>fluent-reflection</name>
-    <url>http://maven.apache.org</url>
+    <description>A library providing a neat interface to the Java language reflection facilites.</description>
+    <url>http://www.lexicalscope.com/fluent-reflection</url>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <organization>
+        <name>lexicalscope</name>
+        <url>http://www.lexicalscope.com</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>tim</id>
+            <name>Tim Wood</name>
+            <email>lexicalscope@gmail.com</email>
+            <url>http://www.lexicalscope.com</url>
+            <organization>lexicalscope</organization>
+            <organizationUrl>http://www.lexicalscope.com</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>0</timezone>
+        </developer>
+    </developers>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -110,6 +137,12 @@
             <artifactId>junit-dep</artifactId>
             <version>4.8.2</version>
             <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <version>2.5.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>

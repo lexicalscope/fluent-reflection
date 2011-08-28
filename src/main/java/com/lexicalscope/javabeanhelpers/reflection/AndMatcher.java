@@ -16,6 +16,9 @@ package com.lexicalscope.javabeanhelpers.reflection;
  * limitations under the License. 
  */
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.hamcrest.Description;
 import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
@@ -28,9 +31,9 @@ import org.hamcrest.Matcher;
  * @param <T>
  */
 final class AndMatcher<T> extends ReflectionMatcher<T> {
-	private final Matcher<T>[] matchers;
+	private final List<Matcher<T>> matchers;
 
-	private AndMatcher(final Matcher<T>... matchers) {
+	private AndMatcher(final List<Matcher<T>> matchers) {
 		this.matchers = matchers;
 	}
 
@@ -49,9 +52,9 @@ final class AndMatcher<T> extends ReflectionMatcher<T> {
 
 	@Override
 	public void describeTo(final Description description) {
-		for (int i = 0; i < matchers.length; i++) {
-			description.appendDescriptionOf(matchers[i]);
-			if (i + 1 < matchers.length) {
+		for (int i = 0; i < matchers.size(); i++) {
+			description.appendDescriptionOf(matchers.get(i));
+			if (i + 1 < matchers.size()) {
 				description.appendText(" and ");
 			}
 		}
@@ -66,6 +69,17 @@ final class AndMatcher<T> extends ReflectionMatcher<T> {
 	 */
 	@Factory
 	public static <T> AndMatcher<T> and(final Matcher<T>... matchers) {
+		return and(Arrays.asList(matchers));
+	}
+
+	/**
+	 * Creates an and matcher combining all the passed matchers
+	 * 
+	 * @param matchers
+	 *            The matchers to be put in and
+	 * @return A matcher that return true if all of the matchers return true
+	 */
+	public static <T> AndMatcher<T> and(final List<Matcher<T>> matchers) {
 		return new AndMatcher<T>(matchers);
 	}
 }

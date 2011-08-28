@@ -22,7 +22,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-public class ReflectionOnTypeHierarchyTest {
+public class TestReflectionOnTypeHierarchy {
 	@Test
 	public void topLevelInterface() {
 		assertThat(type(ExampleInterface.class), hasNoInterfaces());

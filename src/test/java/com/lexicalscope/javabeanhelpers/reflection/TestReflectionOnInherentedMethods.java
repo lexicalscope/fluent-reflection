@@ -26,7 +26,7 @@ import java.util.List;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-public class ReflectionOnInherentedMethodsTest {
+public class TestReflectionOnInherentedMethods {
 	@Test
 	public void subinterfaceMethodsIncludeSuperinterfaceMethods() {
 		assertThat(
