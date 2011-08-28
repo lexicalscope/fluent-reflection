@@ -35,15 +35,24 @@
             <timezone>0</timezone>
         </developer>
     </developers>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <ciManagement>
+        <system>jenkins</system>
+        <url>https://lexicalscope.ci.cloudbees.com/job/fluent-reflection/</url>
+    </ciManagement>
+    <scm>
+        <connection>scm:git:git@github.com:lexicalscope/fluent-reflection.git</connection>
+        <url>scm:git:git@github.com:lexicalscope/fluent-reflection.git</url>
+        <developerConnection>scm:git:git@github.com:lexicalscope/fluent-reflection.git</developerConnection>
+    </scm>
     <distributionManagement>
         <site>
             <id>github-project-site</id>
             <url>gitsite:git@github.com/lexicalscope/fluent-reflection</url>
         </site>
     </distributionManagement>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <build>
         <extensions>
             <extension>
