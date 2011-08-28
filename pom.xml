@@ -31,12 +31,18 @@
                 <version>2.5.1</version>
                 <executions>
                     <execution>
+                        <phase>package</phase>
                         <goals>
                             <goal>check</goal>
+                            <goal>cobertura</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
+                    <formats>
+                        <format>xml</format>
+                        <format>html</format>
+                    </formats>
                     <check>
                         <branchRate>85</branchRate>
                         <lineRate>85</lineRate>
