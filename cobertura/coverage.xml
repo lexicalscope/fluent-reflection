@@ -1,286 +1,280 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.7105263157894737" branch-rate="0.7142857142857143" lines-covered="108" lines-valid="152" branches-covered="30" branches-valid="42" complexity="1.3333333333333333" version="1.9.4.1" timestamp="1314549453889">
+<coverage line-rate="0.8013245033112583" branch-rate="0.9047619047619048" lines-covered="121" lines-valid="151" branches-covered="38" branches-valid="42" complexity="1.337837837837838" version="1.9.4.1" timestamp="1314551203393">
 	<sources>
 		<source>--source</source>
-		<source>/home/tim/workspace/fluent-reflection/src/main/java</source>
+		<source>/scratch/hudson/workspace/fluent-reflection/src/main/java</source>
 	</sources>
 	<packages>
-		<package name="com.lexicalscope.javabeanhelpers.reflection" line-rate="0.7105263157894737" branch-rate="0.7142857142857143" complexity="1.3333333333333333">
+		<package name="com.lexicalscope.fluentreflection" line-rate="0.8013245033112583" branch-rate="0.9047619047619048" complexity="1.337837837837838">
 			<classes>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.AndMatcher" filename="com/lexicalscope/javabeanhelpers/reflection/AndMatcher.java" line-rate="0.9285714285714286" branch-rate="1.0" complexity="2.0">
+				<class name="com.lexicalscope.fluentreflection.AndMatcher" filename="com/lexicalscope/fluentreflection/AndMatcher.java" line-rate="1.0" branch-rate="1.0" complexity="2.25">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/util/List;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="6" branch="false"/>
-								<line number="37" hits="6" branch="false"/>
-								<line number="38" hits="6" branch="false"/>
+								<line number="34" hits="5" branch="false"/>
+								<line number="35" hits="5" branch="false"/>
+								<line number="36" hits="5" branch="false"/>
 							</lines>
 						</method>
-						<method name="and" signature="(Ljava/util/List;)Lcom/lexicalscope/javabeanhelpers/reflection/AndMatcher;" line-rate="1.0" branch-rate="1.0">
+						<method name="andOf" signature="(Ljava/util/List;)Lcom/lexicalscope/fluentreflection/AndMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="83" hits="6" branch="false"/>
-							</lines>
-						</method>
-						<method name="and" signature="([Lorg/hamcrest/Matcher;)Lcom/lexicalscope/javabeanhelpers/reflection/AndMatcher;" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="72" hits="0" branch="false"/>
+								<line number="69" hits="5" branch="false"/>
 							</lines>
 						</method>
 						<method name="describeTo" signature="(Lorg/hamcrest/Description;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="55" hits="6" branch="true" condition-coverage="100% (2/2)">
+								<line number="53" hits="5" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="56" hits="4" branch="false"/>
-								<line number="57" hits="4" branch="true" condition-coverage="100% (2/2)">
+								<line number="54" hits="3" branch="false"/>
+								<line number="55" hits="3" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="58" hits="2" branch="false"/>
-								<line number="61" hits="2" branch="false"/>
+								<line number="56" hits="1" branch="false"/>
+								<line number="59" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
+								<line number="43" hits="3" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="44" hits="5" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="45" hits="2" branch="false"/>
+								<line number="48" hits="1" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="34" hits="5" branch="false"/>
+						<line number="35" hits="5" branch="false"/>
+						<line number="36" hits="5" branch="false"/>
+						<line number="43" hits="3" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="44" hits="5" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="45" hits="2" branch="false"/>
+						<line number="48" hits="1" branch="false"/>
+						<line number="53" hits="5" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="54" hits="3" branch="false"/>
+						<line number="55" hits="3" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="56" hits="1" branch="false"/>
+						<line number="59" hits="2" branch="false"/>
+						<line number="69" hits="5" branch="false"/>
+					</lines>
+				</class>
+				<class name="com.lexicalscope.fluentreflection.Class2ReflectedTypeConvertor" filename="com/lexicalscope/fluentreflection/Class2ReflectedTypeConvertor.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="convert" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectedType;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="24" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="convert" signature="(Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="21" hits="6" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="21" hits="6" branch="false"/>
+						<line number="24" hits="2" branch="false"/>
+					</lines>
+				</class>
+				<class name="com.lexicalscope.fluentreflection.ListBuilder" filename="com/lexicalscope/fluentreflection/ListBuilder.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="$" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="21" hits="11" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="6" hits="11" branch="false"/>
+								<line number="13" hits="11" branch="false"/>
+							</lines>
+						</method>
+						<method name="add" signature="(Ljava/lang/Object;)Lcom/lexicalscope/fluentreflection/ListBuilder;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="16" hits="20" branch="false"/>
+								<line number="17" hits="20" branch="false"/>
+							</lines>
+						</method>
+						<method name="list" signature="(Ljava/lang/Object;)Lcom/lexicalscope/fluentreflection/ListBuilder;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="8" hits="11" branch="false"/>
+								<line number="9" hits="11" branch="false"/>
+								<line number="10" hits="11" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="6" hits="11" branch="false"/>
+						<line number="8" hits="11" branch="false"/>
+						<line number="9" hits="11" branch="false"/>
+						<line number="10" hits="11" branch="false"/>
+						<line number="13" hits="11" branch="false"/>
+						<line number="16" hits="20" branch="false"/>
+						<line number="17" hits="20" branch="false"/>
+						<line number="21" hits="11" branch="false"/>
+					</lines>
+				</class>
+				<class name="com.lexicalscope.fluentreflection.OrMatcher" filename="com/lexicalscope/fluentreflection/OrMatcher.java" line-rate="1.0" branch-rate="1.0" complexity="2.25">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Ljava/util/List;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="35" hits="6" branch="false"/>
+								<line number="36" hits="6" branch="false"/>
+								<line number="37" hits="6" branch="false"/>
+							</lines>
+						</method>
+						<method name="describeTo" signature="(Lorg/hamcrest/Description;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="54" hits="5" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="55" hits="3" branch="false"/>
+								<line number="56" hits="3" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="57" hits="1" branch="false"/>
+								<line number="60" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="44" hits="4" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
 								<line number="45" hits="6" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="46" hits="10" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="47" hits="4" branch="false"/>
-								<line number="50" hits="2" branch="false"/>
+								<line number="46" hits="3" branch="false"/>
+								<line number="49" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="orOf" signature="(Ljava/util/List;)Lcom/lexicalscope/fluentreflection/OrMatcher;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="72" hits="6" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
+						<line number="35" hits="6" branch="false"/>
 						<line number="36" hits="6" branch="false"/>
 						<line number="37" hits="6" branch="false"/>
-						<line number="38" hits="6" branch="false"/>
+						<line number="44" hits="4" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
 						<line number="45" hits="6" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="46" hits="10" branch="true" condition-coverage="100% (2/2)">
+						<line number="46" hits="3" branch="false"/>
+						<line number="49" hits="1" branch="false"/>
+						<line number="54" hits="5" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="47" hits="4" branch="false"/>
-						<line number="50" hits="2" branch="false"/>
-						<line number="55" hits="6" branch="true" condition-coverage="100% (2/2)">
+						<line number="55" hits="3" branch="false"/>
+						<line number="56" hits="3" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="56" hits="4" branch="false"/>
-						<line number="57" hits="4" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="58" hits="2" branch="false"/>
-						<line number="61" hits="2" branch="false"/>
-						<line number="72" hits="0" branch="false"/>
-						<line number="83" hits="6" branch="false"/>
+						<line number="57" hits="1" branch="false"/>
+						<line number="60" hits="2" branch="false"/>
+						<line number="72" hits="6" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.Class2ReflectedTypeConvertor" filename="com/lexicalscope/javabeanhelpers/reflection/Class2ReflectedTypeConvertor.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
-					<methods>
-						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-							</lines>
-						</method>
-						<method name="convert" signature="(Ljava/lang/Class;)Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedType;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="24" hits="4" branch="false"/>
-							</lines>
-						</method>
-						<method name="convert" signature="(Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="21" hits="12" branch="false"/>
-							</lines>
-						</method>
-					</methods>
-					<lines>
-						<line number="21" hits="12" branch="false"/>
-						<line number="24" hits="4" branch="false"/>
-					</lines>
-				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ListBuilder" filename="com/lexicalscope/javabeanhelpers/reflection/ListBuilder.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
-					<methods>
-						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="6" hits="6" branch="false"/>
-								<line number="13" hits="6" branch="false"/>
-							</lines>
-						</method>
-						<method name="add" signature="(Ljava/lang/Object;)Lcom/lexicalscope/javabeanhelpers/reflection/ListBuilder;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="16" hits="12" branch="false"/>
-								<line number="17" hits="12" branch="false"/>
-							</lines>
-						</method>
-						<method name="build" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="21" hits="6" branch="false"/>
-							</lines>
-						</method>
-						<method name="list" signature="(Ljava/lang/Object;)Lcom/lexicalscope/javabeanhelpers/reflection/ListBuilder;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="8" hits="6" branch="false"/>
-								<line number="9" hits="6" branch="false"/>
-								<line number="10" hits="6" branch="false"/>
-							</lines>
-						</method>
-					</methods>
-					<lines>
-						<line number="6" hits="6" branch="false"/>
-						<line number="8" hits="6" branch="false"/>
-						<line number="9" hits="6" branch="false"/>
-						<line number="10" hits="6" branch="false"/>
-						<line number="13" hits="6" branch="false"/>
-						<line number="16" hits="12" branch="false"/>
-						<line number="17" hits="12" branch="false"/>
-						<line number="21" hits="6" branch="false"/>
-					</lines>
-				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.OrMatcher" filename="com/lexicalscope/javabeanhelpers/reflection/OrMatcher.java" line-rate="0.0" branch-rate="0.0" complexity="2.25">
-					<methods>
-						<method name="&lt;init&gt;" signature="([Lorg/hamcrest/Matcher;)V" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="33" hits="0" branch="false"/>
-								<line number="34" hits="0" branch="false"/>
-								<line number="35" hits="0" branch="false"/>
-							</lines>
-						</method>
-						<method name="describeTo" signature="(Lorg/hamcrest/Description;)V" line-rate="0.0" branch-rate="0.0">
-							<lines>
-								<line number="52" hits="0" branch="true" condition-coverage="0% (0/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="0%"/>
-									</conditions>
-								</line>
-								<line number="53" hits="0" branch="false"/>
-								<line number="54" hits="0" branch="true" condition-coverage="0% (0/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="0%"/>
-									</conditions>
-								</line>
-								<line number="55" hits="0" branch="false"/>
-								<line number="58" hits="0" branch="false"/>
-							</lines>
-						</method>
-						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="0.0" branch-rate="0.0">
-							<lines>
-								<line number="42" hits="0" branch="true" condition-coverage="0% (0/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="0%"/>
-									</conditions>
-								</line>
-								<line number="43" hits="0" branch="true" condition-coverage="0% (0/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="0%"/>
-									</conditions>
-								</line>
-								<line number="44" hits="0" branch="false"/>
-								<line number="47" hits="0" branch="false"/>
-							</lines>
-						</method>
-						<method name="or" signature="([Lorg/hamcrest/Matcher;)Lcom/lexicalscope/javabeanhelpers/reflection/OrMatcher;" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="70" hits="0" branch="false"/>
-							</lines>
-						</method>
-					</methods>
-					<lines>
-						<line number="33" hits="0" branch="false"/>
-						<line number="34" hits="0" branch="false"/>
-						<line number="35" hits="0" branch="false"/>
-						<line number="42" hits="0" branch="true" condition-coverage="0% (0/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="0%"/>
-							</conditions>
-						</line>
-						<line number="43" hits="0" branch="true" condition-coverage="0% (0/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="0%"/>
-							</conditions>
-						</line>
-						<line number="44" hits="0" branch="false"/>
-						<line number="47" hits="0" branch="false"/>
-						<line number="52" hits="0" branch="true" condition-coverage="0% (0/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="0%"/>
-							</conditions>
-						</line>
-						<line number="53" hits="0" branch="false"/>
-						<line number="54" hits="0" branch="true" condition-coverage="0% (0/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="0%"/>
-							</conditions>
-						</line>
-						<line number="55" hits="0" branch="false"/>
-						<line number="58" hits="0" branch="false"/>
-						<line number="70" hits="0" branch="false"/>
-					</lines>
-				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.Reflect" filename="com/lexicalscope/javabeanhelpers/reflection/Reflect.java" line-rate="0.5" branch-rate="1.0" complexity="1.0">
+				<class name="com.lexicalscope.fluentreflection.Reflect" filename="com/lexicalscope/fluentreflection/Reflect.java" line-rate="0.5" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
 							<lines>
 								<line number="22" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="type" signature="(Ljava/lang/Class;)Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedType;" line-rate="1.0" branch-rate="1.0">
+						<method name="type" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectedType;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="24" hits="34" branch="false"/>
+								<line number="24" hits="17" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
 						<line number="22" hits="0" branch="false"/>
-						<line number="24" hits="34" branch="false"/>
+						<line number="24" hits="17" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectedMethod" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectedMethod.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+				<class name="com.lexicalscope.fluentreflection.ReflectedMethod" filename="com/lexicalscope/fluentreflection/ReflectedMethod.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 					</methods>
 					<lines>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectedMethodImpl" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectedMethodImpl.java" line-rate="0.8571428571428571" branch-rate="1.0" complexity="1.0">
+				<class name="com.lexicalscope.fluentreflection.ReflectedMethodImpl" filename="com/lexicalscope/fluentreflection/ReflectedMethodImpl.java" line-rate="0.8571428571428571" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/reflect/Method;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="27" hits="114" branch="false"/>
-								<line number="28" hits="114" branch="false"/>
-								<line number="29" hits="114" branch="false"/>
+								<line number="27" hits="57" branch="false"/>
+								<line number="28" hits="57" branch="false"/>
+								<line number="29" hits="57" branch="false"/>
 							</lines>
 						</method>
 						<method name="getArgumentTypes" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="38" hits="8" branch="false"/>
+								<line number="38" hits="4" branch="false"/>
 							</lines>
 						</method>
-						<method name="getDeclaringClass" signature="()Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedType;" line-rate="1.0" branch-rate="1.0">
+						<method name="getDeclaringClass" signature="()Lcom/lexicalscope/fluentreflection/ReflectedType;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="43" hits="24" branch="false"/>
+								<line number="43" hits="12" branch="false"/>
 							</lines>
 						</method>
 						<method name="getName" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="33" hits="120" branch="false"/>
+								<line number="33" hits="60" branch="false"/>
 							</lines>
 						</method>
 						<method name="toString" signature="()Ljava/lang/String;" line-rate="0.0" branch-rate="1.0">
@@ -290,94 +284,94 @@
 						</method>
 					</methods>
 					<lines>
-						<line number="27" hits="114" branch="false"/>
-						<line number="28" hits="114" branch="false"/>
-						<line number="29" hits="114" branch="false"/>
-						<line number="33" hits="120" branch="false"/>
-						<line number="38" hits="8" branch="false"/>
-						<line number="43" hits="24" branch="false"/>
+						<line number="27" hits="57" branch="false"/>
+						<line number="28" hits="57" branch="false"/>
+						<line number="29" hits="57" branch="false"/>
+						<line number="33" hits="60" branch="false"/>
+						<line number="38" hits="4" branch="false"/>
+						<line number="43" hits="12" branch="false"/>
 						<line number="48" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectedType" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectedType.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+				<class name="com.lexicalscope.fluentreflection.ReflectedType" filename="com/lexicalscope/fluentreflection/ReflectedType.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 					</methods>
 					<lines>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectedType2ClassConvertor" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectedType2ClassConvertor.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+				<class name="com.lexicalscope.fluentreflection.ReflectedType2ClassConvertor" filename="com/lexicalscope/fluentreflection/ReflectedType2ClassConvertor.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
 							</lines>
 						</method>
-						<method name="convert" signature="(Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedType;)Ljava/lang/Class;" line-rate="1.0" branch-rate="1.0">
+						<method name="convert" signature="(Lcom/lexicalscope/fluentreflection/ReflectedType;)Ljava/lang/Class;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="24" hits="4" branch="false"/>
+								<line number="24" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="21" hits="12" branch="false"/>
+								<line number="21" hits="6" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="21" hits="12" branch="false"/>
-						<line number="24" hits="4" branch="false"/>
+						<line number="21" hits="6" branch="false"/>
+						<line number="24" hits="2" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectedTypeImpl" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectedTypeImpl.java" line-rate="0.9565217391304348" branch-rate="0.75" complexity="1.4">
+				<class name="com.lexicalscope.fluentreflection.ReflectedTypeImpl" filename="com/lexicalscope/fluentreflection/ReflectedTypeImpl.java" line-rate="0.9565217391304348" branch-rate="0.75" complexity="1.4">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="41" hits="146" branch="false"/>
-								<line number="42" hits="146" branch="false"/>
-								<line number="43" hits="146" branch="false"/>
+								<line number="41" hits="73" branch="false"/>
+								<line number="42" hits="73" branch="false"/>
+								<line number="43" hits="73" branch="false"/>
 							</lines>
 						</method>
-						<method name="create" signature="(Ljava/lang/Class;)Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedTypeImpl;" line-rate="1.0" branch-rate="1.0">
+						<method name="create" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectedTypeImpl;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="90" hits="112" branch="false"/>
+								<line number="90" hits="56" branch="false"/>
 							</lines>
 						</method>
 						<method name="getClassUnderReflection" signature="()Ljava/lang/Class;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="76" hits="106" branch="false"/>
+								<line number="76" hits="53" branch="false"/>
 							</lines>
 						</method>
 						<method name="getDeclaredMethodsOfClass" signature="(Ljava/lang/Class;)Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="66" hits="76" branch="false"/>
-								<line number="67" hits="76" branch="false"/>
-								<line number="68" hits="190" branch="true" condition-coverage="100% (2/2)">
+								<line number="66" hits="38" branch="false"/>
+								<line number="67" hits="38" branch="false"/>
+								<line number="68" hits="95" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="69" hits="114" branch="false"/>
-								<line number="71" hits="76" branch="false"/>
+								<line number="69" hits="57" branch="false"/>
+								<line number="71" hits="38" branch="false"/>
 							</lines>
 						</method>
 						<method name="getInterfaces" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="95" hits="4" branch="false"/>
+								<line number="95" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="interfacesAndSuperClasses" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="0.5">
 							<lines>
-								<line number="59" hits="32" branch="true" condition-coverage="50% (1/2)">
+								<line number="59" hits="16" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="60" hits="32" branch="false"/>
-								<line number="62" hits="32" branch="false"/>
+								<line number="60" hits="16" branch="false"/>
+								<line number="62" hits="16" branch="false"/>
 							</lines>
 						</method>
 						<method name="isInterface" signature="()Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="100" hits="8" branch="false"/>
+								<line number="100" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="methods" signature="()Ljava/util/List;" line-rate="0.0" branch-rate="1.0">
@@ -387,175 +381,175 @@
 						</method>
 						<method name="methods" signature="(Lorg/hamcrest/Matcher;)Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="81" hits="28" branch="false"/>
+								<line number="81" hits="14" branch="false"/>
 							</lines>
 						</method>
 						<method name="reflectedMethods" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="0.75">
 							<lines>
-								<line number="46" hits="28" branch="true" condition-coverage="50% (1/2)">
+								<line number="46" hits="14" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="47" hits="28" branch="false"/>
-								<line number="49" hits="28" branch="true" condition-coverage="100% (2/2)">
+								<line number="47" hits="14" branch="false"/>
+								<line number="49" hits="14" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="50" hits="76" branch="false"/>
-								<line number="53" hits="28" branch="false"/>
-								<line number="55" hits="28" branch="false"/>
+								<line number="50" hits="38" branch="false"/>
+								<line number="53" hits="14" branch="false"/>
+								<line number="55" hits="14" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="41" hits="146" branch="false"/>
-						<line number="42" hits="146" branch="false"/>
-						<line number="43" hits="146" branch="false"/>
-						<line number="46" hits="28" branch="true" condition-coverage="50% (1/2)">
+						<line number="41" hits="73" branch="false"/>
+						<line number="42" hits="73" branch="false"/>
+						<line number="43" hits="73" branch="false"/>
+						<line number="46" hits="14" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="47" hits="28" branch="false"/>
-						<line number="49" hits="28" branch="true" condition-coverage="100% (2/2)">
+						<line number="47" hits="14" branch="false"/>
+						<line number="49" hits="14" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="50" hits="76" branch="false"/>
-						<line number="53" hits="28" branch="false"/>
-						<line number="55" hits="28" branch="false"/>
-						<line number="59" hits="32" branch="true" condition-coverage="50% (1/2)">
+						<line number="50" hits="38" branch="false"/>
+						<line number="53" hits="14" branch="false"/>
+						<line number="55" hits="14" branch="false"/>
+						<line number="59" hits="16" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="60" hits="32" branch="false"/>
-						<line number="62" hits="32" branch="false"/>
-						<line number="66" hits="76" branch="false"/>
-						<line number="67" hits="76" branch="false"/>
-						<line number="68" hits="190" branch="true" condition-coverage="100% (2/2)">
+						<line number="60" hits="16" branch="false"/>
+						<line number="62" hits="16" branch="false"/>
+						<line number="66" hits="38" branch="false"/>
+						<line number="67" hits="38" branch="false"/>
+						<line number="68" hits="95" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="69" hits="114" branch="false"/>
-						<line number="71" hits="76" branch="false"/>
-						<line number="76" hits="106" branch="false"/>
-						<line number="81" hits="28" branch="false"/>
+						<line number="69" hits="57" branch="false"/>
+						<line number="71" hits="38" branch="false"/>
+						<line number="76" hits="53" branch="false"/>
+						<line number="81" hits="14" branch="false"/>
 						<line number="86" hits="0" branch="false"/>
-						<line number="90" hits="112" branch="false"/>
-						<line number="95" hits="4" branch="false"/>
-						<line number="100" hits="8" branch="false"/>
+						<line number="90" hits="56" branch="false"/>
+						<line number="95" hits="2" branch="false"/>
+						<line number="100" hits="4" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectionMatcher" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectionMatcher.java" line-rate="0.3333333333333333" branch-rate="1.0" complexity="1.0">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatcher" filename="com/lexicalscope/fluentreflection/ReflectionMatcher.java" line-rate="0.3333333333333333" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="22" hits="76" branch="false"/>
+								<line number="25" hits="46" branch="false"/>
 							</lines>
 						</method>
-						<method name="and" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/javabeanhelpers/reflection/ReflectionMatcher;" line-rate="0.0" branch-rate="1.0">
+						<method name="and" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="33" hits="0" branch="false"/>
+								<line number="35" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="or" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/javabeanhelpers/reflection/ReflectionMatcher;" line-rate="0.0" branch-rate="1.0">
+						<method name="or" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="46" hits="0" branch="false"/>
+								<line number="47" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="22" hits="76" branch="false"/>
-						<line number="33" hits="0" branch="false"/>
-						<line number="46" hits="0" branch="false"/>
+						<line number="25" hits="46" branch="false"/>
+						<line number="35" hits="0" branch="false"/>
+						<line number="47" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectionMatchers.java" line-rate="0.9230769230769231" branch-rate="1.0" complexity="1.1515151515151516">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.9230769230769231" branch-rate="1.0" complexity="1.1515151515151516">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
 							<lines>
 								<line number="28" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="contains" signature="(Ljava/lang/CharSequence;)Lcom/lexicalscope/javabeanhelpers/reflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
+						<method name="contains" signature="(Ljava/lang/CharSequence;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="73" hits="14" branch="false"/>
+								<line number="73" hits="7" branch="false"/>
 							</lines>
 						</method>
-						<method name="declaredBy" signature="(Ljava/lang/Class;)Lcom/lexicalscope/javabeanhelpers/reflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
+						<method name="declaredBy" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="125" hits="4" branch="false"/>
+								<line number="125" hits="2" branch="false"/>
 							</lines>
 						</method>
-						<method name="endingWith" signature="(Ljava/lang/String;)Lcom/lexicalscope/javabeanhelpers/reflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
+						<method name="endingWith" signature="(Ljava/lang/String;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="44" hits="2" branch="false"/>
+								<line number="44" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="hasInterface" signature="(Ljava/lang/Class;)Lorg/hamcrest/Matcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="153" hits="2" branch="false"/>
+								<line number="153" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="hasNoInterfaces" signature="()Lorg/hamcrest/Matcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="139" hits="2" branch="false"/>
+								<line number="139" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="isInterface" signature="()Lorg/hamcrest/Matcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="169" hits="4" branch="false"/>
+								<line number="169" hits="2" branch="false"/>
 							</lines>
 						</method>
-						<method name="matching" signature="(Ljava/lang/String;)Lcom/lexicalscope/javabeanhelpers/reflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
+						<method name="matching" signature="(Ljava/lang/String;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="58" hits="2" branch="false"/>
-								<line number="59" hits="2" branch="false"/>
+								<line number="58" hits="1" branch="false"/>
+								<line number="59" hits="1" branch="false"/>
 							</lines>
 						</method>
-						<method name="named" signature="(Ljava/lang/String;)Lcom/lexicalscope/javabeanhelpers/reflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
+						<method name="named" signature="(Ljava/lang/String;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="87" hits="32" branch="false"/>
+								<line number="87" hits="16" branch="false"/>
 							</lines>
 						</method>
 						<method name="reflectingOn" signature="(Ljava/lang/Class;)Lorg/hamcrest/Matcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="183" hits="2" branch="false"/>
+								<line number="183" hits="1" branch="false"/>
 							</lines>
 						</method>
-						<method name="startingWith" signature="(Ljava/lang/String;)Lcom/lexicalscope/javabeanhelpers/reflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
+						<method name="startingWith" signature="(Ljava/lang/String;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="30" hits="2" branch="false"/>
+								<line number="30" hits="1" branch="false"/>
 							</lines>
 						</method>
-						<method name="withArguments" signature="([Ljava/lang/Class;)Lcom/lexicalscope/javabeanhelpers/reflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
+						<method name="withArguments" signature="([Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="101" hits="4" branch="false"/>
+								<line number="101" hits="2" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
 						<line number="28" hits="0" branch="false"/>
-						<line number="30" hits="2" branch="false"/>
-						<line number="44" hits="2" branch="false"/>
-						<line number="58" hits="2" branch="false"/>
-						<line number="59" hits="2" branch="false"/>
-						<line number="73" hits="14" branch="false"/>
-						<line number="87" hits="32" branch="false"/>
-						<line number="101" hits="4" branch="false"/>
-						<line number="125" hits="4" branch="false"/>
-						<line number="139" hits="2" branch="false"/>
-						<line number="153" hits="2" branch="false"/>
-						<line number="169" hits="4" branch="false"/>
-						<line number="183" hits="2" branch="false"/>
+						<line number="30" hits="1" branch="false"/>
+						<line number="44" hits="1" branch="false"/>
+						<line number="58" hits="1" branch="false"/>
+						<line number="59" hits="1" branch="false"/>
+						<line number="73" hits="7" branch="false"/>
+						<line number="87" hits="16" branch="false"/>
+						<line number="101" hits="2" branch="false"/>
+						<line number="125" hits="2" branch="false"/>
+						<line number="139" hits="1" branch="false"/>
+						<line number="153" hits="1" branch="false"/>
+						<line number="169" hits="2" branch="false"/>
+						<line number="183" hits="1" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers$1" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers$1" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -567,25 +561,25 @@
 								<line number="39" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="matchesSafely" signature="(Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="1.0">
+						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="33" hits="4" branch="false"/>
+								<line number="33" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="30" hits="6" branch="false"/>
+								<line number="30" hits="3" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="30" hits="6" branch="false"/>
-						<line number="33" hits="4" branch="false"/>
+						<line number="30" hits="3" branch="false"/>
+						<line number="33" hits="2" branch="false"/>
 						<line number="38" hits="0" branch="false"/>
 						<line number="39" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers$10" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers$10" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -597,25 +591,25 @@
 								<line number="178" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="matchesSafely" signature="(Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedType;)Z" line-rate="1.0" branch-rate="1.0">
+						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedType;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="172" hits="8" branch="false"/>
+								<line number="172" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="169" hits="12" branch="false"/>
+								<line number="169" hits="6" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="169" hits="12" branch="false"/>
-						<line number="172" hits="8" branch="false"/>
+						<line number="169" hits="6" branch="false"/>
+						<line number="172" hits="4" branch="false"/>
 						<line number="177" hits="0" branch="false"/>
 						<line number="178" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers$11" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectionMatchers.java" line-rate="0.25" branch-rate="1.0" complexity="1.1515151515151516">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers$11" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.25" branch-rate="1.0" complexity="1.1515151515151516">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -627,25 +621,25 @@
 								<line number="192" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="matchesSafely" signature="(Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedType;)Z" line-rate="0.0" branch-rate="1.0">
+						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedType;)Z" line-rate="0.0" branch-rate="1.0">
 							<lines>
 								<line number="186" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="183" hits="2" branch="false"/>
+								<line number="183" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="183" hits="2" branch="false"/>
+						<line number="183" hits="1" branch="false"/>
 						<line number="186" hits="0" branch="false"/>
 						<line number="191" hits="0" branch="false"/>
 						<line number="192" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers$2" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers$2" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -657,25 +651,25 @@
 								<line number="53" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="matchesSafely" signature="(Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="1.0">
+						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="47" hits="4" branch="false"/>
+								<line number="47" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="44" hits="6" branch="false"/>
+								<line number="44" hits="3" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="44" hits="6" branch="false"/>
-						<line number="47" hits="4" branch="false"/>
+						<line number="44" hits="3" branch="false"/>
+						<line number="47" hits="2" branch="false"/>
 						<line number="52" hits="0" branch="false"/>
 						<line number="53" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers$3" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers$3" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/util/regex/Pattern;Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -687,25 +681,25 @@
 								<line number="68" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="matchesSafely" signature="(Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="1.0">
+						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="62" hits="4" branch="false"/>
+								<line number="62" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="59" hits="6" branch="false"/>
+								<line number="59" hits="3" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="59" hits="6" branch="false"/>
-						<line number="62" hits="4" branch="false"/>
+						<line number="59" hits="3" branch="false"/>
+						<line number="62" hits="2" branch="false"/>
 						<line number="67" hits="0" branch="false"/>
 						<line number="68" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers$4" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers$4" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/CharSequence;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -717,25 +711,25 @@
 								<line number="82" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="matchesSafely" signature="(Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="1.0">
+						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="76" hits="70" branch="false"/>
+								<line number="76" hits="35" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="73" hits="84" branch="false"/>
+								<line number="73" hits="42" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="73" hits="84" branch="false"/>
-						<line number="76" hits="70" branch="false"/>
+						<line number="73" hits="42" branch="false"/>
+						<line number="76" hits="35" branch="false"/>
 						<line number="81" hits="0" branch="false"/>
 						<line number="82" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers$5" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers$5" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -747,25 +741,25 @@
 								<line number="96" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="matchesSafely" signature="(Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="1.0">
+						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="90" hits="38" branch="false"/>
+								<line number="90" hits="19" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="87" hits="70" branch="false"/>
+								<line number="87" hits="35" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="87" hits="70" branch="false"/>
-						<line number="90" hits="38" branch="false"/>
+						<line number="87" hits="35" branch="false"/>
+						<line number="90" hits="19" branch="false"/>
 						<line number="95" hits="0" branch="false"/>
 						<line number="96" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers$6" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectionMatchers.java" line-rate="0.7777777777777778" branch-rate="0.875" complexity="1.1515151515151516">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers$6" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.7777777777777778" branch-rate="0.875" complexity="1.1515151515151516">
 					<methods>
 						<method name="&lt;init&gt;" signature="([Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -777,61 +771,61 @@
 								<line number="120" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="matchesSafely" signature="(Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="0.875">
+						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="0.875">
 							<lines>
-								<line number="104" hits="8" branch="false"/>
-								<line number="107" hits="8" branch="true" condition-coverage="75% (3/4)">
+								<line number="104" hits="4" branch="false"/>
+								<line number="107" hits="4" branch="true" condition-coverage="75% (3/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 										<condition number="1" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="108" hits="4" branch="true" condition-coverage="100% (2/2)">
+								<line number="108" hits="2" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="110" hits="4" branch="true" condition-coverage="100% (2/2)">
+								<line number="110" hits="2" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="111" hits="2" branch="false"/>
-								<line number="113" hits="2" branch="false"/>
+								<line number="111" hits="1" branch="false"/>
+								<line number="113" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="101" hits="12" branch="false"/>
+								<line number="101" hits="6" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="101" hits="12" branch="false"/>
-						<line number="104" hits="8" branch="false"/>
-						<line number="107" hits="8" branch="true" condition-coverage="75% (3/4)">
+						<line number="101" hits="6" branch="false"/>
+						<line number="104" hits="4" branch="false"/>
+						<line number="107" hits="4" branch="true" condition-coverage="75% (3/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 								<condition number="1" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="108" hits="4" branch="true" condition-coverage="100% (2/2)">
+						<line number="108" hits="2" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="110" hits="4" branch="true" condition-coverage="100% (2/2)">
+						<line number="110" hits="2" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="111" hits="2" branch="false"/>
-						<line number="113" hits="2" branch="false"/>
+						<line number="111" hits="1" branch="false"/>
+						<line number="113" hits="1" branch="false"/>
 						<line number="119" hits="0" branch="false"/>
 						<line number="120" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers$7" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers$7" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -843,25 +837,25 @@
 								<line number="134" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="matchesSafely" signature="(Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="1.0">
+						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="128" hits="24" branch="false"/>
+								<line number="128" hits="12" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="125" hits="28" branch="false"/>
+								<line number="125" hits="14" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="125" hits="28" branch="false"/>
-						<line number="128" hits="24" branch="false"/>
+						<line number="125" hits="14" branch="false"/>
+						<line number="128" hits="12" branch="false"/>
 						<line number="133" hits="0" branch="false"/>
 						<line number="134" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers$8" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers$8" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -873,25 +867,25 @@
 								<line number="148" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="matchesSafely" signature="(Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedType;)Z" line-rate="1.0" branch-rate="1.0">
+						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedType;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="142" hits="2" branch="false"/>
+								<line number="142" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="139" hits="4" branch="false"/>
+								<line number="139" hits="2" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="139" hits="4" branch="false"/>
-						<line number="142" hits="2" branch="false"/>
+						<line number="139" hits="2" branch="false"/>
+						<line number="142" hits="1" branch="false"/>
 						<line number="147" hits="0" branch="false"/>
 						<line number="148" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers$9" filename="com/lexicalscope/javabeanhelpers/reflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers$9" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.1515151515151516">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -903,106 +897,106 @@
 								<line number="164" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="matchesSafely" signature="(Lcom/lexicalscope/javabeanhelpers/reflection/ReflectedType;)Z" line-rate="1.0" branch-rate="1.0">
+						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedType;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="156" hits="2" branch="false"/>
+								<line number="156" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="153" hits="4" branch="false"/>
+								<line number="153" hits="2" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="153" hits="4" branch="false"/>
-						<line number="156" hits="2" branch="false"/>
+						<line number="153" hits="2" branch="false"/>
+						<line number="156" hits="1" branch="false"/>
 						<line number="163" hits="0" branch="false"/>
 						<line number="164" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.javabeanhelpers.reflection.TypeHierarchyCalculation" filename="com/lexicalscope/javabeanhelpers/reflection/TypeHierarchyCalculation.java" line-rate="0.9375" branch-rate="0.9" complexity="4.0">
+				<class name="com.lexicalscope.fluentreflection.TypeHierarchyCalculation" filename="com/lexicalscope/fluentreflection/TypeHierarchyCalculation.java" line-rate="0.9375" branch-rate="0.9" complexity="4.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="23" hits="32" branch="false"/>
-								<line number="24" hits="32" branch="false"/>
-								<line number="25" hits="32" branch="false"/>
+								<line number="23" hits="16" branch="false"/>
+								<line number="24" hits="16" branch="false"/>
+								<line number="25" hits="16" branch="false"/>
 							</lines>
 						</method>
 						<method name="interfacesAndSuperClass" signature="(Ljava/lang/Class;)Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="28" hits="32" branch="false"/>
-								<line number="29" hits="116" branch="true" condition-coverage="100% (2/2)">
+								<line number="28" hits="16" branch="false"/>
+								<line number="29" hits="58" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="30" hits="84" branch="false"/>
-								<line number="32" hits="32" branch="false"/>
+								<line number="30" hits="42" branch="false"/>
+								<line number="32" hits="16" branch="false"/>
 							</lines>
 						</method>
 						<method name="processClass" signature="(Ljava/lang/Class;)V" line-rate="0.8888888888888888" branch-rate="0.875">
 							<lines>
-								<line number="36" hits="84" branch="true" condition-coverage="50% (1/2)">
+								<line number="36" hits="42" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
 								<line number="37" hits="0" branch="false"/>
-								<line number="40" hits="84" branch="true" condition-coverage="100% (4/4)">
+								<line number="40" hits="42" branch="true" condition-coverage="100% (4/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 										<condition number="1" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="41" hits="16" branch="false"/>
-								<line number="43" hits="84" branch="false"/>
-								<line number="44" hits="120" branch="true" condition-coverage="100% (2/2)">
+								<line number="41" hits="8" branch="false"/>
+								<line number="43" hits="42" branch="false"/>
+								<line number="44" hits="60" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="45" hits="36" branch="false"/>
-								<line number="47" hits="84" branch="false"/>
-								<line number="48" hits="84" branch="false"/>
+								<line number="45" hits="18" branch="false"/>
+								<line number="47" hits="42" branch="false"/>
+								<line number="48" hits="42" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="23" hits="32" branch="false"/>
-						<line number="24" hits="32" branch="false"/>
-						<line number="25" hits="32" branch="false"/>
-						<line number="28" hits="32" branch="false"/>
-						<line number="29" hits="116" branch="true" condition-coverage="100% (2/2)">
+						<line number="23" hits="16" branch="false"/>
+						<line number="24" hits="16" branch="false"/>
+						<line number="25" hits="16" branch="false"/>
+						<line number="28" hits="16" branch="false"/>
+						<line number="29" hits="58" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="30" hits="84" branch="false"/>
-						<line number="32" hits="32" branch="false"/>
-						<line number="36" hits="84" branch="true" condition-coverage="50% (1/2)">
+						<line number="30" hits="42" branch="false"/>
+						<line number="32" hits="16" branch="false"/>
+						<line number="36" hits="42" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
 						<line number="37" hits="0" branch="false"/>
-						<line number="40" hits="84" branch="true" condition-coverage="100% (4/4)">
+						<line number="40" hits="42" branch="true" condition-coverage="100% (4/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 								<condition number="1" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="41" hits="16" branch="false"/>
-						<line number="43" hits="84" branch="false"/>
-						<line number="44" hits="120" branch="true" condition-coverage="100% (2/2)">
+						<line number="41" hits="8" branch="false"/>
+						<line number="43" hits="42" branch="false"/>
+						<line number="44" hits="60" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="45" hits="36" branch="false"/>
-						<line number="47" hits="84" branch="false"/>
-						<line number="48" hits="84" branch="false"/>
+						<line number="45" hits="18" branch="false"/>
+						<line number="47" hits="42" branch="false"/>
+						<line number="48" hits="42" branch="false"/>
 					</lines>
 				</class>
 			</classes>
