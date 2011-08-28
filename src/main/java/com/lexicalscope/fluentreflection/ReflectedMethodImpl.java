@@ -1,4 +1,4 @@
-package com.lexicalscope.javabeanhelpers.reflection;
+package com.lexicalscope.fluentreflection;
 
 /*
  * Copyright 2011 Tim Wood

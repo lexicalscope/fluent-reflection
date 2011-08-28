@@ -1,4 +1,4 @@
-package com.lexicalscope.javabeanhelpers.reflection;
+package com.lexicalscope.fluentreflection;
 
 /*
  * Copyright 2011 Tim Wood
@@ -16,8 +16,8 @@ package com.lexicalscope.javabeanhelpers.reflection;
  * limitations under the License. 
  */
 
-import static com.lexicalscope.javabeanhelpers.reflection.Reflect.type;
-import static com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers.*;
+import static com.lexicalscope.fluentreflection.Reflect.type;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -25,6 +25,8 @@ import java.util.List;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
+
+import com.lexicalscope.fluentreflection.ReflectedMethod;
 
 public class TestReflectionOnInherentedMethods {
 	@Test

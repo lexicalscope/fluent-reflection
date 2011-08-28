@@ -1,4 +1,4 @@
-package com.lexicalscope.javabeanhelpers.reflection;
+package com.lexicalscope.fluentreflection;
 
 /*
  * Copyright 2011 Tim Wood
@@ -16,18 +16,8 @@ package com.lexicalscope.javabeanhelpers.reflection;
  * limitations under the License. 
  */
 
-class ExampleSuperclass implements ExampleSubinterface {
-	@Override
-	public String getSubinterfaceProperty() {
-		return null;
-	}
+public interface ExampleInterface {
+	String getPropertyOne();
 
-	@Override
-	public String getSuperinterfaceProperty() {
-		return null;
-	}
-
-	public String getSuperclassProperty() {
-		return null;
-	}
+	void setPropertyOne(String value);
 }

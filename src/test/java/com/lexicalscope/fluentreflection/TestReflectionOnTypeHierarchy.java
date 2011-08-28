@@ -1,4 +1,4 @@
-package com.lexicalscope.javabeanhelpers.reflection;
+package com.lexicalscope.fluentreflection;
 
 /*
  * Copyright 2011 Tim Wood
@@ -16,11 +16,20 @@ package com.lexicalscope.javabeanhelpers.reflection;
  * limitations under the License. 
  */
 
-import ch.lambdaj.function.convert.Converter;
+import static com.lexicalscope.fluentreflection.Reflect.type;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-class Class2ReflectedTypeConvertor implements Converter<Class<?>, ReflectedType<?>> {
-	@Override
-	public ReflectedType<?> convert(final Class<?> from) {
-		return ReflectedTypeImpl.create(from);
+import org.junit.Test;
+
+public class TestReflectionOnTypeHierarchy {
+	@Test
+	public void topLevelInterface() {
+		assertThat(type(ExampleInterface.class), hasNoInterfaces());
+	}
+
+	@Test
+	public void ancestorInterfacesAreFound() {
+		assertThat(type(ExampleSuperclass.class), hasInterface(ExampleSuperinterface.class));
 	}
 }

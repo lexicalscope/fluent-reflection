@@ -1,4 +1,4 @@
-package com.lexicalscope.javabeanhelpers.reflection;
+package com.lexicalscope.fluentreflection;
 
 /*
  * Copyright 2011 Tim Wood
@@ -16,11 +16,11 @@ package com.lexicalscope.javabeanhelpers.reflection;
  * limitations under the License. 
  */
 
-/**
- * Main entry point for the reflection library
- */
-public class Reflect {
-	public static <T> ReflectedType<T> type(final Class<T> klass) {
-		return new ReflectedTypeImpl<T>(klass);
+import ch.lambdaj.function.convert.Converter;
+
+class Class2ReflectedTypeConvertor implements Converter<Class<?>, ReflectedType<?>> {
+	@Override
+	public ReflectedType<?> convert(final Class<?> from) {
+		return ReflectedTypeImpl.create(from);
 	}
 }

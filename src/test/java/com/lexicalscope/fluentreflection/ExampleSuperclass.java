@@ -1,4 +1,4 @@
-package com.lexicalscope.javabeanhelpers.reflection;
+package com.lexicalscope.fluentreflection;
 
 /*
  * Copyright 2011 Tim Wood
@@ -16,20 +16,18 @@ package com.lexicalscope.javabeanhelpers.reflection;
  * limitations under the License. 
  */
 
-import static com.lexicalscope.javabeanhelpers.reflection.Reflect.type;
-import static com.lexicalscope.javabeanhelpers.reflection.ReflectionMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.junit.Test;
-
-public class TestReflectionOnTypeHierarchy {
-	@Test
-	public void topLevelInterface() {
-		assertThat(type(ExampleInterface.class), hasNoInterfaces());
+class ExampleSuperclass implements ExampleSubinterface {
+	@Override
+	public String getSubinterfaceProperty() {
+		return null;
 	}
 
-	@Test
-	public void ancestorInterfacesAreFound() {
-		assertThat(type(ExampleSuperclass.class), hasInterface(ExampleSuperinterface.class));
+	@Override
+	public String getSuperinterfaceProperty() {
+		return null;
+	}
+
+	public String getSuperclassProperty() {
+		return null;
 	}
 }

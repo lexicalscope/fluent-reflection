@@ -1,4 +1,4 @@
-package com.lexicalscope.javabeanhelpers.reflection;
+package com.lexicalscope.fluentreflection;
 
 /*
  * Copyright 2011 Tim Wood
@@ -16,8 +16,8 @@ package com.lexicalscope.javabeanhelpers.reflection;
  * limitations under the License. 
  */
 
-import static com.lexicalscope.javabeanhelpers.reflection.AndMatcher.andOf;
-import static com.lexicalscope.javabeanhelpers.reflection.ListBuilder.list;
+import static com.lexicalscope.fluentreflection.AndMatcher.andOf;
+import static com.lexicalscope.fluentreflection.ListBuilder.list;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;

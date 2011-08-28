@@ -1,6 +1,6 @@
-package com.lexicalscope.javabeanhelpers.reflection;
+package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.javabeanhelpers.reflection.ListBuilder.list;
+import static com.lexicalscope.fluentreflection.ListBuilder.list;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -10,30 +10,27 @@ import org.jmock.Expectations;
 import org.junit.Rule;
 import org.junit.Test;
 
-public class TestOrMatcher {
+import com.lexicalscope.fluentreflection.AndMatcher;
+
+public class TestAndMatcher {
 	@Rule
 	public final JUnitRuleMockery context = new JUnitRuleMockery();
 
 	private final Matcher<String> matcherA = containsString("a");
 	private final Matcher<String> matcherB = containsString("b");
 
-	private final OrMatcher<String> matcher =
-			OrMatcher.orOf(list(matcherA).add(matcherB).$());
+	private final AndMatcher<String> matcher =
+			AndMatcher.andOf(list(matcherA).add(matcherB).$());
 
 	@Test
-	public void ifOnlyOneMatcherMatchesThenTrue() throws Exception {
-		assertThat("a", matcher);
-		assertThat("b", matcher);
+	public void ifOnlyOneMatcherMatchesThenFalse() throws Exception {
+		assertThat("a", not(matcher));
+		assertThat("b", not(matcher));
 	}
 
 	@Test
 	public void ifBothMatcherMatchesThenTrue() throws Exception {
 		assertThat("ab", matcher);
-	}
-
-	@Test
-	public void ifNeitherMatcherMatchesThenFalse() throws Exception {
-		assertThat("x", not(matcher));
 	}
 
 	@Test
@@ -43,7 +40,7 @@ public class TestOrMatcher {
 		context.checking(new Expectations() {
 			{
 				oneOf(description).appendDescriptionOf(matcherA);
-				oneOf(description).appendText(" or ");
+				oneOf(description).appendText(" and ");
 				oneOf(description).appendDescriptionOf(matcherB);
 			}
 		});
@@ -61,6 +58,6 @@ public class TestOrMatcher {
 			}
 		});
 
-		OrMatcher.orOf(list(matcherA).$()).describeTo(description);
+		AndMatcher.andOf(list(matcherA).$()).describeTo(description);
 	}
 }

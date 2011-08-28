@@ -1,4 +1,4 @@
-package com.lexicalscope.javabeanhelpers.reflection;
+package com.lexicalscope.fluentreflection;
 
 /*
  * Copyright 2011 Tim Wood
@@ -16,8 +16,11 @@ package com.lexicalscope.javabeanhelpers.reflection;
  * limitations under the License. 
  */
 
-class ExampleSubclass extends ExampleSuperclass {
-	public String getSubclassProperty() {
-		return null;
+import ch.lambdaj.function.convert.Converter;
+
+class ReflectedType2ClassConvertor implements Converter<ReflectedType<?>, Class<?>> {
+	@Override
+	public Class<?> convert(final ReflectedType<?> from) {
+		return from.getClassUnderReflection();
 	}
 }

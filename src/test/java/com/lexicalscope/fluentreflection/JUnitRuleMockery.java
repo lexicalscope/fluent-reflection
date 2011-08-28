@@ -1,4 +1,4 @@
-package com.lexicalscope.javabeanhelpers.reflection;
+package com.lexicalscope.fluentreflection;
 
 import org.jmock.integration.junit4.JUnit4Mockery;
 import org.junit.rules.MethodRule;

@@ -1,4 +1,4 @@
-package com.lexicalscope.javabeanhelpers.reflection;
+package com.lexicalscope.fluentreflection;
 
 /*
  * Copyright 2011 Tim Wood
@@ -19,6 +19,7 @@ package com.lexicalscope.javabeanhelpers.reflection;
 import java.util.List;
 
 import org.hamcrest.Description;
+import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
 
 /**
@@ -28,10 +29,10 @@ import org.hamcrest.Matcher;
  * 
  * @param <T>
  */
-final class AndMatcher<T> extends ReflectionMatcher<T> {
+final class OrMatcher<T> extends ReflectionMatcher<T> {
 	private final List<Matcher<T>> matchers;
 
-	private AndMatcher(final List<Matcher<T>> matchers) {
+	private OrMatcher(final List<Matcher<T>> matchers) {
 		this.matchers = matchers;
 	}
 
@@ -41,11 +42,11 @@ final class AndMatcher<T> extends ReflectionMatcher<T> {
 	@Override
 	public boolean matchesSafely(final T item) {
 		for (final Matcher<T> matcher : matchers) {
-			if (!matcher.matches(item)) {
-				return false;
+			if (matcher.matches(item)) {
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 	@Override
@@ -53,19 +54,21 @@ final class AndMatcher<T> extends ReflectionMatcher<T> {
 		for (int i = 0; i < matchers.size(); i++) {
 			description.appendDescriptionOf(matchers.get(i));
 			if (i + 1 < matchers.size()) {
-				description.appendText(" and ");
+				description.appendText(" or ");
 			}
 		}
 	}
 
 	/**
-	 * Creates an and matcher combining all the passed matchers
+	 * Creates an or matcher combining all the passed matchers
 	 * 
 	 * @param matchers
-	 *            The matchers to be put in and
-	 * @return A matcher that return true if all of the matchers return true
+	 *            The matchers to be put in or
+	 * @return A matcher that return true if at least one of the matchers return
+	 *         true
 	 */
-	public static <T> AndMatcher<T> andOf(final List<Matcher<T>> matchers) {
-		return new AndMatcher<T>(matchers);
+	@Factory
+	public static <T> OrMatcher<T> orOf(final List<Matcher<T>> matchers) {
+		return new OrMatcher<T>(matchers);
 	}
 }
