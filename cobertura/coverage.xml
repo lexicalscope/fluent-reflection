@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.848314606741573" branch-rate="0.9047619047619048" lines-covered="151" lines-valid="178" branches-covered="38" branches-valid="42" complexity="1.3012048192771084" version="1.9.4.1" timestamp="1314632402132">
+<coverage line-rate="0.848314606741573" branch-rate="0.9047619047619048" lines-covered="151" lines-valid="178" branches-covered="38" branches-valid="42" complexity="1.3012048192771084" version="1.9.4.1" timestamp="1314633044242">
 	<sources>
 		<source>--source</source>
 		<source>/scratch/hudson/workspace/fluent-reflection/src/main/java</source>
