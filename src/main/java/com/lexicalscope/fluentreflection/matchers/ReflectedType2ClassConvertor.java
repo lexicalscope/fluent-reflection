@@ -1,4 +1,4 @@
-package com.lexicalscope.fluentreflection;
+package com.lexicalscope.fluentreflection.matchers;
 
 /*
  * Copyright 2011 Tim Wood
@@ -15,6 +15,8 @@ package com.lexicalscope.fluentreflection;
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
+
+import com.lexicalscope.fluentreflection.ReflectedType;
 
 import ch.lambdaj.function.convert.Converter;
 

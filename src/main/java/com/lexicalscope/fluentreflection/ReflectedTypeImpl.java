@@ -25,6 +25,8 @@ import java.util.List;
 
 import org.hamcrest.Matcher;
 
+import com.lexicalscope.fluentreflection.matchers.ReflectionMatchers;
+
 /**
  * Not thread safe
  * 

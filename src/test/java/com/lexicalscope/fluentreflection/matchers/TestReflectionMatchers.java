@@ -1,6 +1,6 @@
-package com.lexicalscope.fluentreflection;
+package com.lexicalscope.fluentreflection.matchers;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
+import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.fail;
@@ -12,6 +12,10 @@ import org.jmock.Expectations;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
+
+import com.lexicalscope.fluentreflection.ReflectedMethod;
+import com.lexicalscope.fluentreflection.ReflectionMatcher;
+import com.lexicalscope.fluentreflection.testhelpers.JUnitRuleMockery;
 
 public class TestReflectionMatchers {
     @Rule

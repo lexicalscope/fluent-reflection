@@ -17,7 +17,7 @@ package com.lexicalscope.fluentreflection;
  */
 
 import static com.lexicalscope.fluentreflection.Reflect.type;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
+import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -61,14 +61,14 @@ public class TestReflectionOnInterface {
 	@Test
 	public void methodsWithNoArgumentsCanBeSelected() {
 		assertThat(
-				type(ExampleInterface.class).methods(withArguments()),
+				type(ExampleInterface.class).methods(methodWithArguments()),
 				Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
 	}
 
 	@Test
 	public void methodCanBeSelectedByArgument() {
 		assertThat(
-				type(ExampleInterface.class).methods(withArguments(String.class)),
+				type(ExampleInterface.class).methods(methodWithArguments(String.class)),
 				Matchers.<ReflectedMethod>hasItem(methodNamed("setPropertyOne")));
 	}
 }

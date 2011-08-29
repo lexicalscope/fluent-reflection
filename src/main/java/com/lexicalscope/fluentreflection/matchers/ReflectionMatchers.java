@@ -1,4 +1,4 @@
-package com.lexicalscope.fluentreflection;
+package com.lexicalscope.fluentreflection.matchers;
 
 /*
  * Copyright 2011 Tim Wood
@@ -17,108 +17,38 @@ package com.lexicalscope.fluentreflection;
  */
 
 import static ch.lambdaj.Lambda.*;
-import static org.hamcrest.Matchers.arrayContaining;
 
-import java.util.List;
-import java.util.regex.Pattern;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
+import com.lexicalscope.fluentreflection.ReflectedMethod;
+import com.lexicalscope.fluentreflection.ReflectedType;
+import com.lexicalscope.fluentreflection.ReflectionMatcher;
+
 public class ReflectionMatchers {
     public static ReflectionMatcher<ReflectedMethod> methodHasNameStartingWith(final String prefix) {
-        return new ReflectionMatcher<ReflectedMethod>() {
-            @Override
-            public boolean matchesSafely(final ReflectedMethod arg) {
-                return arg.getName().startsWith(prefix);
-            }
-
-            @Override
-            public void describeTo(final Description description) {
-                description.appendText("method starting with ").appendValue(prefix);
-            }
-        };
+        return new MethodHasNameStartingWith(prefix);
     }
 
     public static ReflectionMatcher<ReflectedMethod> methodHasNameEndingWith(final String suffix) {
-        return new ReflectionMatcher<ReflectedMethod>() {
-            @Override
-            public boolean matchesSafely(final ReflectedMethod arg) {
-                return arg.getName().endsWith(suffix);
-            }
-
-            @Override
-            public void describeTo(final Description description) {
-                description.appendText("method ending with ").appendValue(suffix);
-            }
-        };
+        return new MethodHasNameEndingWith(suffix);
     }
 
     public static ReflectionMatcher<ReflectedMethod> methodHasNameMatching(final String regex) {
-        final Pattern pattern = Pattern.compile(regex);
-        return new ReflectionMatcher<ReflectedMethod>() {
-            @Override
-            public boolean matchesSafely(final ReflectedMethod arg) {
-                return pattern.matcher(arg.getName()).matches();
-            }
-
-            @Override
-            public void describeTo(final Description description) {
-                description.appendText("method matching ").appendValue(regex);
-            }
-        };
+        return new MethodHasNameMatching(regex);
     }
 
     public static ReflectionMatcher<ReflectedMethod> methodHasNameContaining(final CharSequence substring) {
-        return new ReflectionMatcher<ReflectedMethod>() {
-            @Override
-            public boolean matchesSafely(final ReflectedMethod arg) {
-                return arg.getName().contains(substring);
-            }
-
-            @Override
-            public void describeTo(final Description description) {
-                description.appendText("method containing ").appendValue(substring);
-            }
-        };
+        return new MethodHasNameContaining(substring);
     }
 
     public static ReflectionMatcher<ReflectedMethod> methodNamed(final String name) {
-        return new ReflectionMatcher<ReflectedMethod>() {
-            @Override
-            public boolean matchesSafely(final ReflectedMethod arg) {
-                return arg.getName().startsWith(name);
-            }
-
-            @Override
-            public void describeTo(final Description description) {
-                description.appendText("method named ").appendValue(name);
-            }
-        };
+        return new MethodNamed(name);
     }
 
-    public static ReflectionMatcher<ReflectedMethod> withArguments(final Class<?>... expectedArgumentTypes) {
-        return new ReflectionMatcher<ReflectedMethod>() {
-            @Override
-            public boolean matchesSafely(final ReflectedMethod arg) {
-                final List<Class<?>> actualArgumentTypes =
-                        convert(arg.getArgumentTypes(), new ReflectedType2ClassConvertor());
-
-                if (expectedArgumentTypes == null || expectedArgumentTypes.length == 0) {
-                    return actualArgumentTypes.size() == 0;
-                }
-                if (expectedArgumentTypes.length != actualArgumentTypes.size()) {
-                    return false;
-                }
-                return arrayContaining(actualArgumentTypes.toArray(new Class[actualArgumentTypes.size()])).matches(
-                        expectedArgumentTypes);
-            }
-
-            @Override
-            public void describeTo(final Description description) {
-                description.appendText("method with arguments ").appendValue(expectedArgumentTypes);
-            }
-        };
+    public static ReflectionMatcher<ReflectedMethod> methodWithArguments(final Class<?>... expectedArgumentTypes) {
+        return new MethodWithArguments(expectedArgumentTypes);
     }
 
     public static ReflectionMatcher<ReflectedMethod> declaredBy(final Class<?> declaringKlass) {

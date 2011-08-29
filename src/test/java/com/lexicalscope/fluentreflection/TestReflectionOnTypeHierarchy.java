@@ -17,7 +17,7 @@ package com.lexicalscope.fluentreflection;
  */
 
 import static com.lexicalscope.fluentreflection.Reflect.type;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
+import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
