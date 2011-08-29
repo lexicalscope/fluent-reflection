@@ -25,11 +25,11 @@ import org.junit.Test;
 public class TestReflectionOnTypeHierarchy {
 	@Test
 	public void topLevelInterface() {
-		assertThat(type(ExampleInterface.class), hasNoInterfaces());
+		assertThat(type(ExampleInterface.class), typeHasNoInterfaces());
 	}
 
 	@Test
 	public void ancestorInterfacesAreFound() {
-		assertThat(type(ExampleSuperclass.class), hasInterface(ExampleSuperinterface.class));
+		assertThat(type(ExampleSuperclass.class), typeHasInterface(ExampleSuperinterface.class));
 	}
 }

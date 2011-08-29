@@ -16,10 +16,6 @@ package com.lexicalscope.fluentreflection.matchers;
  * limitations under the License. 
  */
 
-import static ch.lambdaj.Lambda.*;
-
-
-import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
 import com.lexicalscope.fluentreflection.ReflectedMethod;
@@ -51,75 +47,23 @@ public class ReflectionMatchers {
         return new MethodWithArguments(expectedArgumentTypes);
     }
 
-    public static ReflectionMatcher<ReflectedMethod> declaredBy(final Class<?> declaringKlass) {
-        return new ReflectionMatcher<ReflectedMethod>() {
-            @Override
-            public boolean matchesSafely(final ReflectedMethod arg) {
-                return arg.getDeclaringClass().getClassUnderReflection().equals(declaringKlass);
-            }
-
-            @Override
-            public void describeTo(final Description description) {
-                description.appendText("method declared by ").appendValue(declaringKlass);
-            }
-        };
+    public static ReflectionMatcher<ReflectedMethod> methodDeclaredBy(final Class<?> declaringKlass) {
+        return new MethodDeclaredBy(declaringKlass);
     }
 
-    public static Matcher<ReflectedType<?>> hasNoInterfaces() {
-        return new ReflectionMatcher<ReflectedType<?>>() {
-            @Override
-            public boolean matchesSafely(final ReflectedType<?> arg) {
-                return arg.getInterfaces().isEmpty();
-            }
-
-            @Override
-            public void describeTo(final Description description) {
-                description.appendText("type that implements no interfaces");
-            }
-        };
+    public static Matcher<ReflectedType<?>> typeHasNoInterfaces() {
+        return new TypeHasNoInterfaces();
     }
 
-    public static Matcher<ReflectedType<?>> hasInterface(final Class<?> interfac3) {
-        return new ReflectionMatcher<ReflectedType<?>>() {
-            @Override
-            public boolean matchesSafely(final ReflectedType<?> arg) {
-                return select(
-                        arg.getInterfaces(),
-                        reflectingOn(interfac3)).isEmpty();
-            }
-
-            @Override
-            public void describeTo(final Description description) {
-                description.appendText("type that implements no interfaces");
-            }
-        };
+    public static Matcher<ReflectedType<?>> typeHasInterface(final Class<?> interfac3) {
+        return new TypeHasInterface(interfac3);
     }
 
-    public static Matcher<ReflectedType<?>> isInterface() {
-        return new ReflectionMatcher<ReflectedType<?>>() {
-            @Override
-            public boolean matchesSafely(final ReflectedType<?> arg) {
-                return arg.isInterface();
-            }
-
-            @Override
-            public void describeTo(final Description description) {
-                description.appendText("type that is an interface");
-            }
-        };
+    public static Matcher<ReflectedType<?>> typeIsInterface() {
+        return new TypeIsInterface();
     }
 
-    public static Matcher<ReflectedType<?>> reflectingOn(final Class<?> klass) {
-        return new ReflectionMatcher<ReflectedType<?>>() {
-            @Override
-            public boolean matchesSafely(final ReflectedType<?> arg) {
-                return arg.getClassUnderReflection().equals(klass);
-            }
-
-            @Override
-            public void describeTo(final Description description) {
-                description.appendText("reflecting on type ").appendValue(klass);
-            }
-        };
+    public static Matcher<ReflectedType<?>> reflectedTypeReflectingOn(final Class<?> klass) {
+        return new ReflectedTypeReflectingOn(klass);
     }
 }

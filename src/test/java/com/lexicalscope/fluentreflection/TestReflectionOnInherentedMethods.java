@@ -81,7 +81,7 @@ public class TestReflectionOnInherentedMethods {
 	@Test
 	public void declaredSubclassMethodsAreFound() {
 		final List<ReflectedMethod> methodsDeclaredByExampleSubclass =
-				type(ExampleSubclass.class).methods(declaredBy(ExampleSubclass.class));
+				type(ExampleSubclass.class).methods(methodDeclaredBy(ExampleSubclass.class));
 
 		assertThat(
 				methodsDeclaredByExampleSubclass,
@@ -95,7 +95,7 @@ public class TestReflectionOnInherentedMethods {
 	@Test
 	public void declaredSuperclassMethodsAreFound() {
 		final List<ReflectedMethod> methodsDeclaredByExampleSuperclass =
-				type(ExampleSubclass.class).methods(declaredBy(ExampleSuperclass.class));
+				type(ExampleSubclass.class).methods(methodDeclaredBy(ExampleSuperclass.class));
 
 		assertThat(
 				methodsDeclaredByExampleSuperclass,

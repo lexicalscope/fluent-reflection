@@ -94,7 +94,7 @@ class ReflectedTypeImpl<T> implements ReflectedType<T> {
 
 	@Override
 	public List<ReflectedType<?>> getInterfaces() {
-		return select(interfacesAndSuperClasses(), ReflectionMatchers.isInterface());
+		return select(interfacesAndSuperClasses(), ReflectionMatchers.typeIsInterface());
 	}
 
 	@Override
