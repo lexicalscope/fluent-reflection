@@ -21,35 +21,48 @@ public class TestReflectionMatchers {
     private final Description description = new StringDescription();
 
     @Test
-    public void startingWithMatchesWhenNameStartsWith() {
+    public void methodHasNameStartingWithMatchesWhenNameStartsWith() {
         whenMethodHasName("abcdef");
 
         assertThat(method, methodHasNameStartingWith("abc"));
     }
 
     @Test
-    public void startingWithNotMatchesWhenNameNotStartsWith() {
+    public void methodHasNameStartingWithNotMatchesWhenNameNotStartsWith() {
         whenMethodHasName("defabc");
 
         assertThat(method, not(methodHasNameStartingWith("abc")));
     }
 
     @Test
-    public void startingWithDescriptionMakesSense() {
+    public void methodHasNameStartingWithDescriptionMakesSense() {
         assertHasDescription(methodHasNameStartingWith("abc"), equalTo("method starting with \"abc\""));
     }
 
     @Test
-    public void endingWithMatchesWhenNameStartsWith() {
+    public void methodHasNameEndingWithMatchesWhenNameEndsWith() {
         whenMethodHasName("defabc");
 
         assertThat(method, methodHasNameEndingWith("abc"));
     }
 
     @Test
-    @Ignore
-    public void testMatching() {
-        fail("Not yet implemented");
+    public void methodHasNameEndingWithNotMatchesWhenNameNotEndsWith() {
+        whenMethodHasName("abcdef");
+
+        assertThat(method, not(methodHasNameEndingWith("abc")));
+    }
+
+    @Test
+    public void methodHasNameEndingWithDescriptionMakesSense() {
+        assertHasDescription(methodHasNameEndingWith("abc"), equalTo("method ending with \"abc\""));
+    }
+
+    @Test
+    public void methodHasNameMatchingMatchesWhenNameMatches() {
+        whenMethodHasName("abcdef");
+
+        assertThat(method, methodHasNameMatching(".+bc.+"));
     }
 
     @Test

@@ -83,7 +83,7 @@ public class ReflectionMatchers {
         };
     }
 
-    public static ReflectionMatcher<ReflectedMethod> named(final String name) {
+    public static ReflectionMatcher<ReflectedMethod> methodNamed(final String name) {
         return new ReflectionMatcher<ReflectedMethod>() {
             @Override
             public boolean matchesSafely(final ReflectedMethod arg) {

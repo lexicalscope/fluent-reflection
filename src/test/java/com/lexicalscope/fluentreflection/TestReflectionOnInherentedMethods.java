@@ -33,49 +33,49 @@ public class TestReflectionOnInherentedMethods {
 	public void subinterfaceMethodsIncludeSuperinterfaceMethods() {
 		assertThat(
 				type(ExampleSubinterface.class).methods(methodHasNameContaining("Superinterface")),
-				Matchers.<ReflectedMethod>hasItem(named("getSuperinterfaceProperty")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getSuperinterfaceProperty")));
 	}
 
 	@Test
 	public void subinterfaceMethodsIncludeSubinterfaceMethods() {
 		assertThat(
 				type(ExampleSubinterface.class).methods(methodHasNameContaining("Subinterface")),
-				Matchers.<ReflectedMethod>hasItem(named("getSubinterfaceProperty")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getSubinterfaceProperty")));
 	}
 
 	@Test
 	public void subclassMethodsIncludeSuperinterfaceMethods() {
 		assertThat(
 				type(ExampleSubclass.class).methods(methodHasNameContaining("Superinterface")),
-				Matchers.<ReflectedMethod>hasItem(named("getSuperinterfaceProperty")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getSuperinterfaceProperty")));
 	}
 
 	@Test
 	public void subclassMethodsIncludeSubinterfaceMethods() {
 		assertThat(
 				type(ExampleSubclass.class).methods(methodHasNameContaining("Subinterface")),
-				Matchers.<ReflectedMethod>hasItem(named("getSubinterfaceProperty")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getSubinterfaceProperty")));
 	}
 
 	@Test
 	public void subclassMethodsIncludeSuperclassMethods() {
 		assertThat(
 				type(ExampleSubclass.class).methods(methodHasNameContaining("Superclass")),
-				Matchers.<ReflectedMethod>hasItem(named("getSuperclassProperty")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getSuperclassProperty")));
 	}
 
 	@Test
 	public void subclassMethodsIncludeSubclassMethods() {
 		assertThat(
 				type(ExampleSubclass.class).methods(methodHasNameContaining("Subclass")),
-				Matchers.<ReflectedMethod>hasItem(named("getSubclassProperty")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getSubclassProperty")));
 	}
 
 	@Test
 	public void subsubclassMethodsIncludeSuperclassMethods() {
 		assertThat(
 				type(ExampleSubsubclass.class).methods(methodHasNameContaining("Superclass")),
-				Matchers.<ReflectedMethod>hasItem(named("getSuperclassProperty")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getSuperclassProperty")));
 	}
 
 	@Test
@@ -85,7 +85,7 @@ public class TestReflectionOnInherentedMethods {
 
 		assertThat(
 				methodsDeclaredByExampleSubclass,
-				Matchers.<ReflectedMethod>hasItem(named("getSubclassProperty")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getSubclassProperty")));
 
 		assertThat(
 				methodsDeclaredByExampleSubclass.size(),
@@ -99,15 +99,15 @@ public class TestReflectionOnInherentedMethods {
 
 		assertThat(
 				methodsDeclaredByExampleSuperclass,
-				Matchers.<ReflectedMethod>hasItem(named("getSuperclassProperty")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getSuperclassProperty")));
 
 		assertThat(
 				methodsDeclaredByExampleSuperclass,
-				Matchers.<ReflectedMethod>hasItem(named("getSubinterfaceProperty")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getSubinterfaceProperty")));
 
 		assertThat(
 				methodsDeclaredByExampleSuperclass,
-				Matchers.<ReflectedMethod>hasItem(named("getSuperinterfaceProperty")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getSuperinterfaceProperty")));
 
 		assertThat(
 				methodsDeclaredByExampleSuperclass.size(),

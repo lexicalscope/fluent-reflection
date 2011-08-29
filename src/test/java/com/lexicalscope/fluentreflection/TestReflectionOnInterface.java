@@ -41,34 +41,34 @@ public class TestReflectionOnInterface {
 	public void methodsCanBeSelectedByPrefix() {
 		assertThat(
 				type(ExampleInterface.class).methods(methodHasNameStartingWith("get")),
-				Matchers.<ReflectedMethod>hasItem(named("getPropertyOne")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
 	}
 
 	@Test
 	public void methodsCanBeSelectedBySuffix() {
 		assertThat(
 				type(ExampleInterface.class).methods(methodHasNameEndingWith("One")),
-				Matchers.<ReflectedMethod>hasItem(named("getPropertyOne")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
 	}
 
 	@Test
 	public void methodsCanBeSelectedByRegularExpression() {
 		assertThat(
 				type(ExampleInterface.class).methods(methodHasNameMatching(".*Property.*")),
-				Matchers.<ReflectedMethod>hasItem(named("getPropertyOne")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
 	}
 
 	@Test
 	public void methodsWithNoArgumentsCanBeSelected() {
 		assertThat(
 				type(ExampleInterface.class).methods(withArguments()),
-				Matchers.<ReflectedMethod>hasItem(named("getPropertyOne")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
 	}
 
 	@Test
 	public void methodCanBeSelectedByArgument() {
 		assertThat(
 				type(ExampleInterface.class).methods(withArguments(String.class)),
-				Matchers.<ReflectedMethod>hasItem(named("setPropertyOne")));
+				Matchers.<ReflectedMethod>hasItem(methodNamed("setPropertyOne")));
 	}
 }
