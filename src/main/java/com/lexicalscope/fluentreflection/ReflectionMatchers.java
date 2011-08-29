@@ -26,170 +26,170 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
 public class ReflectionMatchers {
-	public static ReflectionMatcher<ReflectedMethod> startingWith(final String prefix) {
-		return new ReflectionMatcher<ReflectedMethod>() {
-			@Override
-			public boolean matchesSafely(final ReflectedMethod arg) {
-				return arg.getName().startsWith(prefix);
-			}
+    public static ReflectionMatcher<ReflectedMethod> methodHasNameStartingWith(final String prefix) {
+        return new ReflectionMatcher<ReflectedMethod>() {
+            @Override
+            public boolean matchesSafely(final ReflectedMethod arg) {
+                return arg.getName().startsWith(prefix);
+            }
 
-			@Override
-			public void describeTo(final Description description) {
-				description.appendText("method starting with ").appendValue(prefix);
-			}
-		};
-	}
+            @Override
+            public void describeTo(final Description description) {
+                description.appendText("method starting with ").appendValue(prefix);
+            }
+        };
+    }
 
-	public static ReflectionMatcher<ReflectedMethod> endingWith(final String suffix) {
-		return new ReflectionMatcher<ReflectedMethod>() {
-			@Override
-			public boolean matchesSafely(final ReflectedMethod arg) {
-				return arg.getName().endsWith(suffix);
-			}
+    public static ReflectionMatcher<ReflectedMethod> methodHasNameEndingWith(final String suffix) {
+        return new ReflectionMatcher<ReflectedMethod>() {
+            @Override
+            public boolean matchesSafely(final ReflectedMethod arg) {
+                return arg.getName().endsWith(suffix);
+            }
 
-			@Override
-			public void describeTo(final Description description) {
-				description.appendText("method ending with ").appendValue(suffix);
-			}
-		};
-	}
+            @Override
+            public void describeTo(final Description description) {
+                description.appendText("method ending with ").appendValue(suffix);
+            }
+        };
+    }
 
-	public static ReflectionMatcher<ReflectedMethod> matching(final String regex) {
-		final Pattern pattern = Pattern.compile(regex);
-		return new ReflectionMatcher<ReflectedMethod>() {
-			@Override
-			public boolean matchesSafely(final ReflectedMethod arg) {
-				return pattern.matcher(arg.getName()).matches();
-			}
+    public static ReflectionMatcher<ReflectedMethod> methodHasNameMatching(final String regex) {
+        final Pattern pattern = Pattern.compile(regex);
+        return new ReflectionMatcher<ReflectedMethod>() {
+            @Override
+            public boolean matchesSafely(final ReflectedMethod arg) {
+                return pattern.matcher(arg.getName()).matches();
+            }
 
-			@Override
-			public void describeTo(final Description description) {
-				description.appendText("method matching ").appendValue(regex);
-			}
-		};
-	}
+            @Override
+            public void describeTo(final Description description) {
+                description.appendText("method matching ").appendValue(regex);
+            }
+        };
+    }
 
-	public static ReflectionMatcher<ReflectedMethod> contains(final CharSequence substring) {
-		return new ReflectionMatcher<ReflectedMethod>() {
-			@Override
-			public boolean matchesSafely(final ReflectedMethod arg) {
-				return arg.getName().contains(substring);
-			}
+    public static ReflectionMatcher<ReflectedMethod> methodHasNameContaining(final CharSequence substring) {
+        return new ReflectionMatcher<ReflectedMethod>() {
+            @Override
+            public boolean matchesSafely(final ReflectedMethod arg) {
+                return arg.getName().contains(substring);
+            }
 
-			@Override
-			public void describeTo(final Description description) {
-				description.appendText("method containing ").appendValue(substring);
-			}
-		};
-	}
+            @Override
+            public void describeTo(final Description description) {
+                description.appendText("method containing ").appendValue(substring);
+            }
+        };
+    }
 
-	public static ReflectionMatcher<ReflectedMethod> named(final String name) {
-		return new ReflectionMatcher<ReflectedMethod>() {
-			@Override
-			public boolean matchesSafely(final ReflectedMethod arg) {
-				return arg.getName().startsWith(name);
-			}
+    public static ReflectionMatcher<ReflectedMethod> named(final String name) {
+        return new ReflectionMatcher<ReflectedMethod>() {
+            @Override
+            public boolean matchesSafely(final ReflectedMethod arg) {
+                return arg.getName().startsWith(name);
+            }
 
-			@Override
-			public void describeTo(final Description description) {
-				description.appendText("method named ").appendValue(name);
-			}
-		};
-	}
+            @Override
+            public void describeTo(final Description description) {
+                description.appendText("method named ").appendValue(name);
+            }
+        };
+    }
 
-	public static ReflectionMatcher<ReflectedMethod> withArguments(final Class<?>... expectedArgumentTypes) {
-		return new ReflectionMatcher<ReflectedMethod>() {
-			@Override
-			public boolean matchesSafely(final ReflectedMethod arg) {
-				final List<Class<?>> actualArgumentTypes =
-						convert(arg.getArgumentTypes(), new ReflectedType2ClassConvertor());
+    public static ReflectionMatcher<ReflectedMethod> withArguments(final Class<?>... expectedArgumentTypes) {
+        return new ReflectionMatcher<ReflectedMethod>() {
+            @Override
+            public boolean matchesSafely(final ReflectedMethod arg) {
+                final List<Class<?>> actualArgumentTypes =
+                        convert(arg.getArgumentTypes(), new ReflectedType2ClassConvertor());
 
-				if (expectedArgumentTypes == null || expectedArgumentTypes.length == 0) {
-					return actualArgumentTypes.size() == 0;
-				}
-				if (expectedArgumentTypes.length != actualArgumentTypes.size()) {
-					return false;
-				}
-				return arrayContaining(actualArgumentTypes.toArray(new Class[actualArgumentTypes.size()])).matches(
-						expectedArgumentTypes);
-			}
+                if (expectedArgumentTypes == null || expectedArgumentTypes.length == 0) {
+                    return actualArgumentTypes.size() == 0;
+                }
+                if (expectedArgumentTypes.length != actualArgumentTypes.size()) {
+                    return false;
+                }
+                return arrayContaining(actualArgumentTypes.toArray(new Class[actualArgumentTypes.size()])).matches(
+                        expectedArgumentTypes);
+            }
 
-			@Override
-			public void describeTo(final Description description) {
-				description.appendText("method with arguments ").appendValue(expectedArgumentTypes);
-			}
-		};
-	}
+            @Override
+            public void describeTo(final Description description) {
+                description.appendText("method with arguments ").appendValue(expectedArgumentTypes);
+            }
+        };
+    }
 
-	public static ReflectionMatcher<ReflectedMethod> declaredBy(final Class<?> declaringKlass) {
-		return new ReflectionMatcher<ReflectedMethod>() {
-			@Override
-			public boolean matchesSafely(final ReflectedMethod arg) {
-				return arg.getDeclaringClass().getClassUnderReflection().equals(declaringKlass);
-			}
+    public static ReflectionMatcher<ReflectedMethod> declaredBy(final Class<?> declaringKlass) {
+        return new ReflectionMatcher<ReflectedMethod>() {
+            @Override
+            public boolean matchesSafely(final ReflectedMethod arg) {
+                return arg.getDeclaringClass().getClassUnderReflection().equals(declaringKlass);
+            }
 
-			@Override
-			public void describeTo(final Description description) {
-				description.appendText("method declared by ").appendValue(declaringKlass);
-			}
-		};
-	}
+            @Override
+            public void describeTo(final Description description) {
+                description.appendText("method declared by ").appendValue(declaringKlass);
+            }
+        };
+    }
 
-	public static Matcher<ReflectedType<?>> hasNoInterfaces() {
-		return new ReflectionMatcher<ReflectedType<?>>() {
-			@Override
-			public boolean matchesSafely(final ReflectedType<?> arg) {
-				return arg.getInterfaces().isEmpty();
-			}
+    public static Matcher<ReflectedType<?>> hasNoInterfaces() {
+        return new ReflectionMatcher<ReflectedType<?>>() {
+            @Override
+            public boolean matchesSafely(final ReflectedType<?> arg) {
+                return arg.getInterfaces().isEmpty();
+            }
 
-			@Override
-			public void describeTo(final Description description) {
-				description.appendText("type that implements no interfaces");
-			}
-		};
-	}
+            @Override
+            public void describeTo(final Description description) {
+                description.appendText("type that implements no interfaces");
+            }
+        };
+    }
 
-	public static Matcher<ReflectedType<?>> hasInterface(final Class<?> interfac3) {
-		return new ReflectionMatcher<ReflectedType<?>>() {
-			@Override
-			public boolean matchesSafely(final ReflectedType<?> arg) {
-				return select(
-						arg.getInterfaces(),
-						reflectingOn(interfac3)).isEmpty();
-			}
+    public static Matcher<ReflectedType<?>> hasInterface(final Class<?> interfac3) {
+        return new ReflectionMatcher<ReflectedType<?>>() {
+            @Override
+            public boolean matchesSafely(final ReflectedType<?> arg) {
+                return select(
+                        arg.getInterfaces(),
+                        reflectingOn(interfac3)).isEmpty();
+            }
 
-			@Override
-			public void describeTo(final Description description) {
-				description.appendText("type that implements no interfaces");
-			}
-		};
-	}
+            @Override
+            public void describeTo(final Description description) {
+                description.appendText("type that implements no interfaces");
+            }
+        };
+    }
 
-	public static Matcher<ReflectedType<?>> isInterface() {
-		return new ReflectionMatcher<ReflectedType<?>>() {
-			@Override
-			public boolean matchesSafely(final ReflectedType<?> arg) {
-				return arg.isInterface();
-			}
+    public static Matcher<ReflectedType<?>> isInterface() {
+        return new ReflectionMatcher<ReflectedType<?>>() {
+            @Override
+            public boolean matchesSafely(final ReflectedType<?> arg) {
+                return arg.isInterface();
+            }
 
-			@Override
-			public void describeTo(final Description description) {
-				description.appendText("type that is an interface");
-			}
-		};
-	}
+            @Override
+            public void describeTo(final Description description) {
+                description.appendText("type that is an interface");
+            }
+        };
+    }
 
-	public static Matcher<ReflectedType<?>> reflectingOn(final Class<?> klass) {
-		return new ReflectionMatcher<ReflectedType<?>>() {
-			@Override
-			public boolean matchesSafely(final ReflectedType<?> arg) {
-				return arg.getClassUnderReflection().equals(klass);
-			}
+    public static Matcher<ReflectedType<?>> reflectingOn(final Class<?> klass) {
+        return new ReflectionMatcher<ReflectedType<?>>() {
+            @Override
+            public boolean matchesSafely(final ReflectedType<?> arg) {
+                return arg.getClassUnderReflection().equals(klass);
+            }
 
-			@Override
-			public void describeTo(final Description description) {
-				description.appendText("reflecting on type ").appendValue(klass);
-			}
-		};
-	}
+            @Override
+            public void describeTo(final Description description) {
+                description.appendText("reflecting on type ").appendValue(klass);
+            }
+        };
+    }
 }

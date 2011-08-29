@@ -40,21 +40,21 @@ public class TestReflectionOnInterface {
 	@Test
 	public void methodsCanBeSelectedByPrefix() {
 		assertThat(
-				type(ExampleInterface.class).methods(startingWith("get")),
+				type(ExampleInterface.class).methods(methodHasNameStartingWith("get")),
 				Matchers.<ReflectedMethod>hasItem(named("getPropertyOne")));
 	}
 
 	@Test
 	public void methodsCanBeSelectedBySuffix() {
 		assertThat(
-				type(ExampleInterface.class).methods(endingWith("One")),
+				type(ExampleInterface.class).methods(methodHasNameEndingWith("One")),
 				Matchers.<ReflectedMethod>hasItem(named("getPropertyOne")));
 	}
 
 	@Test
 	public void methodsCanBeSelectedByRegularExpression() {
 		assertThat(
-				type(ExampleInterface.class).methods(matching(".*Property.*")),
+				type(ExampleInterface.class).methods(methodHasNameMatching(".*Property.*")),
 				Matchers.<ReflectedMethod>hasItem(named("getPropertyOne")));
 	}
 
