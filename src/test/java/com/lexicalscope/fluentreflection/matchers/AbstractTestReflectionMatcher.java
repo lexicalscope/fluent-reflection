@@ -1,5 +1,6 @@
 package com.lexicalscope.fluentreflection.matchers;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -69,6 +70,26 @@ public abstract class AbstractTestReflectionMatcher<T> {
                 will(returnValue(declaringClass));
             }
         });
+    }
+
+    protected final void whenMethodHasArguments(final Class<?>... arguments) {
+        final ReflectedType<?>[] argumentTypes = new ReflectedType<?>[arguments.length];
+        for (int i = 0; i < argumentTypes.length; i++) {
+            argumentTypes[i] = context.mock(ReflectedType.class, "argument " + i + ": " + arguments[i].getSimpleName());
+        }
+
+        context.checking(new Expectations() {
+            {
+                oneOf(method).getArgumentTypes();
+                will(returnValue(asList(argumentTypes)));
+
+                for (int i = 0; i < argumentTypes.length; i++) {
+                    oneOf(argumentTypes[i]).getClassUnderReflection();
+                    will(returnValue(arguments[i]));
+                }
+            }
+        });
+
     }
 
     protected final void assertHasDescription(
