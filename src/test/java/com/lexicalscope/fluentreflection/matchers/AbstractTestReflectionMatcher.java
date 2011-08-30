@@ -23,21 +23,21 @@ public abstract class AbstractTestReflectionMatcher<T> {
     private final Description description = new StringDescription();
 
     @Test
-    public void methodHasNameStartingWithMatchesWhenNameStartsWith() {
+    public void matcherCanMatch() {
         setupMatchingCase();
 
         assertThat(method, matcher());
     }
 
     @Test
-    public void methodHasNameStartingWithNotMatchesWhenNameNotStartsWith() {
+    public void matcherCanFailToMatch() {
         setupFailingCase();
 
         assertThat(method, not(matcher()));
     }
 
     @Test
-    public void methodHasNameStartingWithDescriptionMakesSense() {
+    public void matcherDescriptionMakesSense() {
         assertHasDescription(matcher(), hasDescription());
     }
 
