@@ -11,6 +11,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import com.lexicalscope.fluentreflection.ReflectedMethod;
+import com.lexicalscope.fluentreflection.ReflectedType;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 import com.lexicalscope.fluentreflection.testhelpers.JUnitRuleMockery;
 
@@ -53,6 +54,19 @@ public abstract class AbstractTestReflectionMatcher<T> {
             {
                 oneOf(method).getName();
                 will(returnValue(methodName));
+            }
+        });
+    }
+
+    protected final void whenMethodDeclaredBy(final Class<?> declaringClass) {
+        final ReflectedType<?> declaringType = context.mock(ReflectedType.class, "declaringType");
+        context.checking(new Expectations() {
+            {
+                oneOf(method).getDeclaringClass();
+                will(returnValue(declaringType));
+
+                oneOf(declaringType).getClassUnderReflection();
+                will(returnValue(declaringClass));
             }
         });
     }
