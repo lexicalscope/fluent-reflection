@@ -16,8 +16,6 @@ package com.lexicalscope.fluentreflection.matchers;
  * limitations under the License. 
  */
 
-import org.hamcrest.Matcher;
-
 import com.lexicalscope.fluentreflection.ReflectedMethod;
 import com.lexicalscope.fluentreflection.ReflectedType;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
@@ -51,19 +49,19 @@ public class ReflectionMatchers {
         return new MethodDeclaredBy(declaringKlass);
     }
 
-    public static Matcher<ReflectedType<?>> typeHasNoInterfaces() {
+    public static ReflectionMatcher<ReflectedType<?>> typeHasNoInterfaces() {
         return new TypeHasNoInterfaces();
     }
 
-    public static Matcher<ReflectedType<?>> typeHasInterface(final Class<?> interfac3) {
+    public static ReflectionMatcher<ReflectedType<?>> typeHasInterface(final Class<?> interfac3) {
         return new TypeHasInterface(interfac3);
     }
 
-    public static Matcher<ReflectedType<?>> typeIsInterface() {
+    public static ReflectionMatcher<ReflectedType<?>> typeIsInterface() {
         return new TypeIsInterface();
     }
 
-    public static Matcher<ReflectedType<?>> reflectedTypeReflectingOn(final Class<?> klass) {
+    public static ReflectionMatcher<ReflectedType<?>> reflectedTypeReflectingOn(final Class<?> klass) {
         return new ReflectedTypeReflectingOn(klass);
     }
 }

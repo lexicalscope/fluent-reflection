@@ -10,6 +10,11 @@ import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
 public class TestMethodNamed extends AbstractTestReflectionMatcher<ReflectedMethod> {
     @Override
+    protected ReflectedMethod target() {
+        return method;
+    }
+
+    @Override
     protected ReflectionMatcher<ReflectedMethod> matcher() {
         return methodNamed("abc");
     }

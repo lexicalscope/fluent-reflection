@@ -40,7 +40,7 @@ class ReflectedMethodImpl implements ReflectedMethod {
 
 	@Override
 	public ReflectedType<?> getDeclaringClass() {
-		return ReflectedTypeImpl.create(method.getDeclaringClass());
+		return ReflectedTypeImpl.createReflectedType(method.getDeclaringClass());
 	}
 
 	@Override

@@ -23,13 +23,18 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.Test;
 
 public class TestReflectionOnTypeHierarchy {
-	@Test
-	public void topLevelInterface() {
-		assertThat(type(ExampleInterface.class), typeHasNoInterfaces());
-	}
+    @Test
+    public void topLevelClassImpleemntsNoInterfaces() {
+        assertThat(type(ExampleClass.class), typeHasNoInterfaces());
+    }
 
-	@Test
-	public void ancestorInterfacesAreFound() {
-		assertThat(type(ExampleSuperclass.class), typeHasInterface(ExampleSuperinterface.class));
-	}
+    @Test
+    public void topLevelInterfaceImplementsItsself() {
+        assertThat(type(ExampleInterface.class), typeHasInterface(ExampleInterface.class));
+    }
+
+    @Test
+    public void ancestorInterfacesAreFound() {
+        assertThat(type(ExampleSuperclass.class), typeHasInterface(ExampleSuperinterface.class));
+    }
 }

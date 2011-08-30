@@ -1,6 +1,8 @@
 package com.lexicalscope.fluentreflection.matchers;
 
+import static com.lexicalscope.fluentreflection.testhelpers.ListBuilder.list;
 import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -20,21 +22,22 @@ public abstract class AbstractTestReflectionMatcher<T> {
     @Rule
     public final JUnitRuleMockery context = new JUnitRuleMockery();
 
-    private final ReflectedMethod method = context.mock(ReflectedMethod.class);
+    protected final ReflectedMethod method = context.mock(ReflectedMethod.class);
+    protected final ReflectedType<?> type = context.mock(ReflectedType.class);
     private final Description description = new StringDescription();
 
     @Test
     public void matcherCanMatch() {
         setupMatchingCase();
 
-        assertThat(method, matcher());
+        assertThat(target(), matcher());
     }
 
     @Test
     public void matcherCanFailToMatch() {
         setupFailingCase();
 
-        assertThat(method, not(matcher()));
+        assertThat(target(), not(matcher()));
     }
 
     @Test
@@ -42,13 +45,15 @@ public abstract class AbstractTestReflectionMatcher<T> {
         assertHasDescription(matcher(), hasDescription());
     }
 
+    protected abstract T target();
+
     protected abstract Matcher<String> hasDescription();
 
     protected abstract void setupMatchingCase();
 
     protected abstract void setupFailingCase();
 
-    protected abstract ReflectionMatcher<ReflectedMethod> matcher();
+    protected abstract ReflectionMatcher<T> matcher();
 
     protected final void whenMethodHasName(final String methodName) {
         context.checking(new Expectations() {
@@ -90,6 +95,28 @@ public abstract class AbstractTestReflectionMatcher<T> {
             }
         });
 
+    }
+
+    protected final void whenTypeHasInterface(final Class<?> interfac3) {
+        final ReflectedType<?> interfaceType = context.mock(ReflectedType.class, "interfaceType");
+        context.checking(new Expectations() {
+            {
+                oneOf(type).getInterfaces();
+                will(returnValue(list(interfaceType).$()));
+
+                oneOf(interfaceType).getClassUnderReflection();
+                will(returnValue(interfac3));
+            }
+        });
+    }
+
+    protected final void whenTypeHasNoInterface() {
+        context.checking(new Expectations() {
+            {
+                oneOf(type).getInterfaces();
+                will(returnValue(emptyList()));
+            }
+        });
     }
 
     protected final void assertHasDescription(

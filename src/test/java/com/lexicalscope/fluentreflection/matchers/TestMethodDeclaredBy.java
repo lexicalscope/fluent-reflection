@@ -18,6 +18,11 @@ public class TestMethodDeclaredBy extends AbstractTestReflectionMatcher<Reflecte
     }
 
     @Override
+    protected ReflectedMethod target() {
+        return method;
+    }
+
+    @Override
     protected ReflectionMatcher<ReflectedMethod> matcher() {
         return methodDeclaredBy(DeclaringInterface.class);
     }

@@ -10,6 +10,11 @@ import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
 public class TestMethodHasNameContaining extends AbstractTestReflectionMatcher<ReflectedMethod> {
     @Override
+    protected ReflectedMethod target() {
+        return method;
+    }
+
+    @Override
     protected ReflectionMatcher<ReflectedMethod> matcher() {
         return methodHasNameContaining("abc");
     }
