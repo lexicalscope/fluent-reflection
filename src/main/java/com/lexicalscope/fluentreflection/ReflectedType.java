@@ -21,40 +21,48 @@ import java.util.List;
 import org.hamcrest.Matcher;
 
 public interface ReflectedType<T> {
+    /**
+     * Obtain the class being reflected
+     * 
+     * @return the class being reflected
+     */
+    Class<T> classUnderReflection();
 
-	/**
-	 * @return the class being reflected
-	 */
-	Class<T> getClassUnderReflection();
+    /**
+     * Find all methods matching the supplied matcher
+     * 
+     * @param methodMatcher
+     *            matches the methods
+     * 
+     * @return The methods matching the supplied matcher
+     */
+    List<ReflectedMethod> methods(Matcher<? super ReflectedMethod> methodMatcher);
 
-	/**
-	 * Find all methods matching the supplied matcher
-	 * 
-	 * @param methodMatcher
-	 *            matches the methods
-	 * 
-	 * @return The methods matching the supplied matcher
-	 */
-	List<ReflectedMethod> methods(Matcher<? super ReflectedMethod> methodMatcher);
+    /**
+     * All methods
+     * 
+     * @return all the methods
+     */
+    List<ReflectedMethod> methods();
 
-	/**
-	 * All methods
-	 * 
-	 * @return all the methods
-	 */
-	List<ReflectedMethod> methods();
+    /**
+     * All interfaces implemented by this type
+     * 
+     * @return all the interfaces
+     */
+    List<ReflectedType<?>> interfaces();
 
-	/**
-	 * All interfaces implemented by this type
-	 * 
-	 * @return all the interfaces
-	 */
-	List<ReflectedType<?>> getInterfaces();
+    /**
+     * True iff the type is an interface
+     * 
+     * @return True iff the type is an interface
+     */
+    boolean isInterface();
 
-	/**
-	 * True iff the type is an interface
-	 * 
-	 * @return True iff the type is an interface
-	 */
-	boolean isInterface();
+    /**
+     * Return the list of all superclasses with the immediate parent first
+     * 
+     * @return list of superclasses nearest first
+     */
+    List<ReflectedType<?>> superclasses();
 }

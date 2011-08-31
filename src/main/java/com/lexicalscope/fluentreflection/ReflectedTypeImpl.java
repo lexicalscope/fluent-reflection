@@ -18,7 +18,7 @@ package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.select;
 import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.typeIsInterface;
-import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.*;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -47,8 +47,9 @@ class ReflectedTypeImpl<T> implements ReflectedType<T> {
         if (reflectedMethods == null) {
             final List<ReflectedMethod> result = new ArrayList<ReflectedMethod>();
 
+            result.addAll(getDeclaredMethodsOfClass(klass));
             for (final ReflectedType<?> klassToReflect : interfacesAndSuperClasses()) {
-                result.addAll(getDeclaredMethodsOfClass(klassToReflect.getClassUnderReflection()));
+                result.addAll(getDeclaredMethodsOfClass(klassToReflect.classUnderReflection()));
             }
 
             reflectedMethods = result;
@@ -73,7 +74,7 @@ class ReflectedTypeImpl<T> implements ReflectedType<T> {
     }
 
     @Override
-    public Class<T> getClassUnderReflection() {
+    public Class<T> classUnderReflection() {
         return klass;
     }
 
@@ -92,13 +93,26 @@ class ReflectedTypeImpl<T> implements ReflectedType<T> {
     }
 
     @Override
-    public List<ReflectedType<?>> getInterfaces() {
+    public List<ReflectedType<?>> interfaces() {
         return select(interfacesAndSuperClasses(), typeIsInterface());
+    }
+
+    @Override
+    public List<ReflectedType<?>> superclasses() {
+        return select(interfacesAndSuperClasses(), not(typeIsInterface()));
     }
 
     @Override
     public boolean isInterface() {
         return klass.isInterface();
+    }
+
+    @Override
+    public boolean equals(final Object that) {
+        if (that != null && that.getClass().equals(this.getClass())) {
+            return klass.equals(((ReflectedTypeImpl<?>) that).klass);
+        }
+        return false;
     }
 
     @Override

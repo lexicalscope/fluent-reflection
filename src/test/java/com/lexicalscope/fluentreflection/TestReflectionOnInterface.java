@@ -33,7 +33,7 @@ public class TestReflectionOnInterface {
 	@Test
 	public void classUnderReflectionReturnsClassUnderReflection() {
 		assertThat(
-				type(ExampleInterface.class).getClassUnderReflection(),
+				type(ExampleInterface.class).classUnderReflection(),
 				equalTo(ExampleInterface.class));
 	}
 

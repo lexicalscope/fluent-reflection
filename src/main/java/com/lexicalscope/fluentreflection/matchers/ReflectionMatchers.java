@@ -53,6 +53,10 @@ public class ReflectionMatchers {
         return new TypeHasNoInterfaces();
     }
 
+    public static ReflectionMatcher<ReflectedType<?>> typeHasNoSuperclasses() {
+        return new TypeHasNoSuperclasses();
+    }
+
     public static ReflectionMatcher<ReflectedType<?>> typeHasInterface(final Class<?> interfac3) {
         return new TypeHasInterface(interfac3);
     }

@@ -19,22 +19,39 @@ package com.lexicalscope.fluentreflection;
 import static com.lexicalscope.fluentreflection.Reflect.type;
 import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
+import java.util.List;
 
 import org.junit.Test;
 
 public class TestReflectionOnTypeHierarchy {
     @Test
-    public void topLevelClassImpleemntsNoInterfaces() {
+    public void topLevelClassImplemntsNoInterfaces() {
         assertThat(type(ExampleClass.class), typeHasNoInterfaces());
     }
 
     @Test
-    public void topLevelInterfaceImplementsItsself() {
-        assertThat(type(ExampleInterface.class), typeHasInterface(ExampleInterface.class));
+    public void topLevelClassHasNoSuperclasses() {
+        assertThat(type(ExampleClass.class), typeHasNoInterfaces());
+    }
+
+    @Test
+    public void topLevelInterfaceHasNoInterfaces() {
+        assertThat(type(ExampleInterface.class), typeHasNoInterfaces());
     }
 
     @Test
     public void ancestorInterfacesAreFound() {
         assertThat(type(ExampleSuperclass.class), typeHasInterface(ExampleSuperinterface.class));
+    }
+
+    @Test
+    public void superClassesReturnedInOrder() {
+
+        final List<ReflectedType<?>> expectedSuperclasses =
+                ListBuilder.<ReflectedType<?>>list(type(ExampleSubclass.class)).add(type(ExampleSuperclass.class)).$();
+
+        assertThat(type(ExampleSubsubclass.class).superclasses(), equalTo(expectedSuperclasses));
     }
 }

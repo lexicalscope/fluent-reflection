@@ -27,18 +27,26 @@ class TypeHierarchyCalculation {
     private final List<Class<?>> pending = new LinkedList<Class<?>>();
 
     List<ReflectedType<?>> interfacesAndSuperClass(final Class<?> klassToReflect) {
-        pending.add(klassToReflect);
-        while (!pending.isEmpty()) {
-            processClass(pending.remove(0));
-        }
+        queueSuperclassAndInterfaces(klassToReflect);
+        processesPendingTypes();
         return result;
     }
 
+    private void processesPendingTypes() {
+        while (!pending.isEmpty()) {
+            processClass(pending.remove(0));
+        }
+    }
+
     private void processClass(final Class<?> klassToReflect) {
+        queueSuperclassAndInterfaces(klassToReflect);
         if (result.contains(klassToReflect)) {
             return;
         }
+        result.add(createReflectedType(klassToReflect));
+    }
 
+    private void queueSuperclassAndInterfaces(final Class<?> klassToReflect) {
         if (klassToReflect.getSuperclass() != null && !klassToReflect.getSuperclass().equals(Object.class)) {
             pending.add(klassToReflect.getSuperclass());
         }
@@ -46,6 +54,5 @@ class TypeHierarchyCalculation {
         for (final Class<?> interfac3 : interfaces) {
             pending.add(interfac3);
         }
-        result.add(createReflectedType(klassToReflect));
     }
 }

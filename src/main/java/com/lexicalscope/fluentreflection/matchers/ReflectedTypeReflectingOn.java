@@ -17,7 +17,7 @@ final class ReflectedTypeReflectingOn extends ReflectionMatcher<ReflectedType<?>
 
     @Override
     public boolean matchesSafely(final ReflectedType<?> arg) {
-        return arg.getClassUnderReflection().equals(klass);
+        return arg.classUnderReflection().equals(klass);
     }
 
     @Override

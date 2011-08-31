@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection.matchers;
 
-import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.reflectedTypeReflectingOn;
+import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.typeHasNoSuperclasses;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -8,7 +8,11 @@ import org.hamcrest.Matcher;
 import com.lexicalscope.fluentreflection.ReflectedType;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
-public class TestReflectedTypeReflectingOn extends AbstractTestReflectionMatcher<ReflectedType<?>> {
+public class TestTypeHasNoSuperclasses extends AbstractTestReflectionMatcher<ReflectedType<?>> {
+    class Superclass {
+
+    }
+
     @Override
     protected ReflectedType<?> target() {
         return type;
@@ -16,21 +20,21 @@ public class TestReflectedTypeReflectingOn extends AbstractTestReflectionMatcher
 
     @Override
     protected ReflectionMatcher<ReflectedType<?>> matcher() {
-        return reflectedTypeReflectingOn(Object.class);
+        return typeHasNoSuperclasses();
     }
 
     @Override
     protected void setupMatchingCase() {
-        whenType(Object.class);
+        whenTypeHasNoSuperclass();
     }
 
     @Override
     protected void setupFailingCase() {
-        whenType(String.class);
+        whenTypeHasSuperclass(Superclass.class);
     }
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("reflecting on type <class java.lang.Object>");
+        return equalTo("type that extends no superclasses");
     }
 }

@@ -22,29 +22,29 @@ import java.util.List;
 import ch.lambdaj.Lambda;
 
 class ReflectedMethodImpl implements ReflectedMethod {
-	private final Method method;
+    private final Method method;
 
-	public ReflectedMethodImpl(final Method method) {
-		this.method = method;
-	}
+    public ReflectedMethodImpl(final Method method) {
+        this.method = method;
+    }
 
-	@Override
-	public String getName() {
-		return method.getName();
-	}
+    @Override
+    public String getName() {
+        return method.getName();
+    }
 
-	@Override
-	public List<ReflectedType<?>> getArgumentTypes() {
-		return Lambda.convert(method.getParameterTypes(), new Class2ReflectedTypeConvertor());
-	}
+    @Override
+    public List<ReflectedType<?>> getArgumentTypes() {
+        return Lambda.convert(method.getParameterTypes(), new Class2ReflectedTypeConvertor());
+    }
 
-	@Override
-	public ReflectedType<?> getDeclaringClass() {
-		return ReflectedTypeImpl.createReflectedType(method.getDeclaringClass());
-	}
+    @Override
+    public ReflectedType<?> getDeclaringClass() {
+        return ReflectedTypeImpl.createReflectedType(method.getDeclaringClass());
+    }
 
-	@Override
-	public String toString() {
-		return method.toString();
-	}
+    @Override
+    public String toString() {
+        return method.toString();
+    }
 }

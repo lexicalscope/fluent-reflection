@@ -21,7 +21,7 @@ final class TypeHasInterface extends ReflectionMatcher<ReflectedType<?>> {
     @Override
     public boolean matchesSafely(final ReflectedType<?> arg) {
         return !select(
-                arg.getInterfaces(),
+                arg.interfaces(),
                 reflectedTypeReflectingOn(interfac3)).isEmpty();
     }
 

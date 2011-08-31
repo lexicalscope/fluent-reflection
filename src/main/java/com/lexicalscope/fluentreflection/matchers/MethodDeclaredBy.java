@@ -17,7 +17,7 @@ final class MethodDeclaredBy extends ReflectionMatcher<ReflectedMethod> {
 
     @Override
     public boolean matchesSafely(final ReflectedMethod arg) {
-        return arg.getDeclaringClass().getClassUnderReflection().equals(declaringKlass);
+        return arg.getDeclaringClass().classUnderReflection().equals(declaringKlass);
     }
 
     @Override

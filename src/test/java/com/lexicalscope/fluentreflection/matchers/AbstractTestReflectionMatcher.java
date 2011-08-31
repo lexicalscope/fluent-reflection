@@ -71,7 +71,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
                 oneOf(method).getDeclaringClass();
                 will(returnValue(declaringType));
 
-                oneOf(declaringType).getClassUnderReflection();
+                oneOf(declaringType).classUnderReflection();
                 will(returnValue(declaringClass));
             }
         });
@@ -89,7 +89,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
                 will(returnValue(asList(argumentTypes)));
 
                 for (int i = 0; i < argumentTypes.length; i++) {
-                    oneOf(argumentTypes[i]).getClassUnderReflection();
+                    oneOf(argumentTypes[i]).classUnderReflection();
                     will(returnValue(arguments[i]));
                 }
             }
@@ -101,11 +101,33 @@ public abstract class AbstractTestReflectionMatcher<T> {
         final ReflectedType<?> interfaceType = context.mock(ReflectedType.class, "interfaceType");
         context.checking(new Expectations() {
             {
-                oneOf(type).getInterfaces();
+                oneOf(type).interfaces();
                 will(returnValue(list(interfaceType).$()));
 
-                allowing(interfaceType).getClassUnderReflection();
+                allowing(interfaceType).classUnderReflection();
                 will(returnValue(interfac3));
+            }
+        });
+    }
+
+    protected final void whenTypeHasSuperclass(final Class<?> klass) {
+        final ReflectedType<?> superclassType = context.mock(ReflectedType.class, "superclassType");
+        context.checking(new Expectations() {
+            {
+                oneOf(type).superclasses();
+                will(returnValue(list(superclassType).$()));
+
+                allowing(superclassType).classUnderReflection();
+                will(returnValue(klass));
+            }
+        });
+    }
+
+    protected final void whenTypeHasNoSuperclass() {
+        context.checking(new Expectations() {
+            {
+                oneOf(type).superclasses();
+                will(returnValue(emptyList()));
             }
         });
     }
@@ -113,7 +135,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
     protected final void whenTypeHasNoInterface() {
         context.checking(new Expectations() {
             {
-                oneOf(type).getInterfaces();
+                oneOf(type).interfaces();
                 will(returnValue(emptyList()));
             }
         });
@@ -140,7 +162,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
     protected final void whenType(final Class<?> klass) {
         context.checking(new Expectations() {
             {
-                oneOf(type).getClassUnderReflection();
+                oneOf(type).classUnderReflection();
                 will(returnValue(klass));
             }
         });
