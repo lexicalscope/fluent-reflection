@@ -65,4 +65,11 @@ public interface ReflectedType<T> {
      * @return list of superclasses nearest first
      */
     List<ReflectedType<?>> superclasses();
+
+    /**
+     * Construct and object of the type under reflection
+     * 
+     * @return the constructed object
+     */
+    T construct();
 }

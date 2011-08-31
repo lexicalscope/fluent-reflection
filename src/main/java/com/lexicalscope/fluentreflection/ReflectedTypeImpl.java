@@ -20,8 +20,8 @@ import static ch.lambdaj.Lambda.select;
 import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.typeIsInterface;
 import static org.hamcrest.Matchers.*;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.hamcrest.Matcher;
@@ -33,44 +33,13 @@ import org.hamcrest.Matcher;
  * 
  * @param <T>
  */
-class ReflectedTypeImpl<T> implements ReflectedType<T> {
+final class ReflectedTypeImpl<T> implements ReflectedType<T> {
     private final Class<T> klass;
-
-    private List<ReflectedMethod> reflectedMethods;
-    private List<ReflectedType<?>> interfacesAndSuperClass;
+    private final ReflectedSuperclassesAndInterfaces<T> members;
 
     public ReflectedTypeImpl(final Class<T> klass) {
         this.klass = klass;
-    }
-
-    private List<ReflectedMethod> reflectedMethods() {
-        if (reflectedMethods == null) {
-            final List<ReflectedMethod> result = new ArrayList<ReflectedMethod>();
-
-            result.addAll(getDeclaredMethodsOfClass(klass));
-            for (final ReflectedType<?> klassToReflect : interfacesAndSuperClasses()) {
-                result.addAll(getDeclaredMethodsOfClass(klassToReflect.classUnderReflection()));
-            }
-
-            reflectedMethods = result;
-        }
-        return reflectedMethods;
-    }
-
-    private List<ReflectedType<?>> interfacesAndSuperClasses() {
-        if (interfacesAndSuperClass == null) {
-            interfacesAndSuperClass = new TypeHierarchyCalculation().interfacesAndSuperClass(klass);
-        }
-        return interfacesAndSuperClass;
-    }
-
-    private List<ReflectedMethod> getDeclaredMethodsOfClass(final Class<?> klassToReflect) {
-        final List<ReflectedMethod> result = new ArrayList<ReflectedMethod>();
-        final Method[] declaredMethods = klassToReflect.getDeclaredMethods();
-        for (final Method method : declaredMethods) {
-            result.add(new ReflectedMethodImpl(method));
-        }
-        return result;
+        this.members = new ReflectedSuperclassesAndInterfaces<T>(klass);
     }
 
     @Override
@@ -80,7 +49,7 @@ class ReflectedTypeImpl<T> implements ReflectedType<T> {
 
     @Override
     public List<ReflectedMethod> methods(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return select(reflectedMethods(), methodMatcher);
+        return select(members.methods(), methodMatcher);
     }
 
     @Override
@@ -94,12 +63,12 @@ class ReflectedTypeImpl<T> implements ReflectedType<T> {
 
     @Override
     public List<ReflectedType<?>> interfaces() {
-        return select(interfacesAndSuperClasses(), typeIsInterface());
+        return select(members.interfacesAndSuperClasses(), typeIsInterface());
     }
 
     @Override
     public List<ReflectedType<?>> superclasses() {
-        return select(interfacesAndSuperClasses(), not(typeIsInterface()));
+        return select(members.interfacesAndSuperClasses(), not(typeIsInterface()));
     }
 
     @Override
@@ -108,11 +77,37 @@ class ReflectedTypeImpl<T> implements ReflectedType<T> {
     }
 
     @Override
+    public T construct() {
+        final Constructor<?>[] constructors = klass.getConstructors();
+        for (final Constructor<?> constructor : constructors) {
+            if (constructor.getParameterTypes().length == 0) {
+                try {
+                    return klass.cast(constructor.newInstance());
+                } catch (final IllegalArgumentException e) {
+                    throw e;
+                } catch (final InstantiationException e) {
+                    throw new InstantiationRuntimeException(e, constructor);
+                } catch (final IllegalAccessException e) {
+                    throw new IllegalAccessRuntimeException(e, constructor);
+                } catch (final InvocationTargetException e) {
+                    throw new InvocationTargetRuntimeException(e, constructor);
+                }
+            }
+        }
+        throw new ConstructorNotFoundRuntimeException(klass);
+    }
+
+    @Override
     public boolean equals(final Object that) {
         if (that != null && that.getClass().equals(this.getClass())) {
             return klass.equals(((ReflectedTypeImpl<?>) that).klass);
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return klass.hashCode();
     }
 
     @Override

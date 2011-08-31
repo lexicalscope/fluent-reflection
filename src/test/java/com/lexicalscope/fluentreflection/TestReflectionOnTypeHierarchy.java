@@ -27,7 +27,7 @@ import org.junit.Test;
 
 public class TestReflectionOnTypeHierarchy {
     @Test
-    public void topLevelClassImplemntsNoInterfaces() {
+    public void topLevelClassImplementsNoInterfaces() {
         assertThat(type(ExampleClass.class), typeHasNoInterfaces());
     }
 
@@ -48,7 +48,6 @@ public class TestReflectionOnTypeHierarchy {
 
     @Test
     public void superClassesReturnedInOrder() {
-
         final List<ReflectedType<?>> expectedSuperclasses =
                 ListBuilder.<ReflectedType<?>>list(type(ExampleSubclass.class)).add(type(ExampleSuperclass.class)).$();
 

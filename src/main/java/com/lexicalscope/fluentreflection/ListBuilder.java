@@ -3,7 +3,7 @@ package com.lexicalscope.fluentreflection;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class ListBuilder<T> {
+final class ListBuilder<T> {
     static <T> ListBuilder<T> list(final T firstItem) {
         final ListBuilder<T> listBuilder = new ListBuilder<T>();
         listBuilder.add(firstItem);

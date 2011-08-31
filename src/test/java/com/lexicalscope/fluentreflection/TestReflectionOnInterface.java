@@ -24,51 +24,46 @@ import static org.hamcrest.Matchers.equalTo;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-import com.lexicalscope.fluentreflection.ReflectedMethod;
-
-/**
- * Unit test for simple App.
- */
 public class TestReflectionOnInterface {
-	@Test
-	public void classUnderReflectionReturnsClassUnderReflection() {
-		assertThat(
-				type(ExampleInterface.class).classUnderReflection(),
-				equalTo(ExampleInterface.class));
-	}
+    @Test
+    public void classUnderReflectionReturnsClassUnderReflection() {
+        assertThat(
+                type(ExampleInterface.class).classUnderReflection(),
+                equalTo(ExampleInterface.class));
+    }
 
-	@Test
-	public void methodsCanBeSelectedByPrefix() {
-		assertThat(
-				type(ExampleInterface.class).methods(methodHasNameStartingWith("get")),
-				Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
-	}
+    @Test
+    public void methodsCanBeSelectedByPrefix() {
+        assertThat(
+                type(ExampleInterface.class).methods(methodHasNameStartingWith("get")),
+                Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
+    }
 
-	@Test
-	public void methodsCanBeSelectedBySuffix() {
-		assertThat(
-				type(ExampleInterface.class).methods(methodHasNameEndingWith("One")),
-				Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
-	}
+    @Test
+    public void methodsCanBeSelectedBySuffix() {
+        assertThat(
+                type(ExampleInterface.class).methods(methodHasNameEndingWith("One")),
+                Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
+    }
 
-	@Test
-	public void methodsCanBeSelectedByRegularExpression() {
-		assertThat(
-				type(ExampleInterface.class).methods(methodHasNameMatching(".*Property.*")),
-				Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
-	}
+    @Test
+    public void methodsCanBeSelectedByRegularExpression() {
+        assertThat(
+                type(ExampleInterface.class).methods(methodHasNameMatching(".*Property.*")),
+                Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
+    }
 
-	@Test
-	public void methodsWithNoArgumentsCanBeSelected() {
-		assertThat(
-				type(ExampleInterface.class).methods(methodWithArguments()),
-				Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
-	}
+    @Test
+    public void methodsWithNoArgumentsCanBeSelected() {
+        assertThat(
+                type(ExampleInterface.class).methods(methodWithArguments()),
+                Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
+    }
 
-	@Test
-	public void methodCanBeSelectedByArgument() {
-		assertThat(
-				type(ExampleInterface.class).methods(methodWithArguments(String.class)),
-				Matchers.<ReflectedMethod>hasItem(methodNamed("setPropertyOne")));
-	}
+    @Test
+    public void methodCanBeSelectedByArgument() {
+        assertThat(
+                type(ExampleInterface.class).methods(methodWithArguments(String.class)),
+                Matchers.<ReflectedMethod>hasItem(methodNamed("setPropertyOne")));
+    }
 }
