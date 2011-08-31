@@ -104,7 +104,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
                 oneOf(type).getInterfaces();
                 will(returnValue(list(interfaceType).$()));
 
-                oneOf(interfaceType).getClassUnderReflection();
+                allowing(interfaceType).getClassUnderReflection();
                 will(returnValue(interfac3));
             }
         });
@@ -115,6 +115,24 @@ public abstract class AbstractTestReflectionMatcher<T> {
             {
                 oneOf(type).getInterfaces();
                 will(returnValue(emptyList()));
+            }
+        });
+    }
+
+    protected final void whenTypeIsInterface() {
+        context.checking(new Expectations() {
+            {
+                oneOf(type).isInterface();
+                will(returnValue(true));
+            }
+        });
+    }
+
+    protected final void whenTypeIsNotInterface() {
+        context.checking(new Expectations() {
+            {
+                oneOf(type).isInterface();
+                will(returnValue(false));
             }
         });
     }
