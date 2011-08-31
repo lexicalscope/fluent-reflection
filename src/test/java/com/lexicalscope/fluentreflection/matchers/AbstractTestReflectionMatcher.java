@@ -137,6 +137,15 @@ public abstract class AbstractTestReflectionMatcher<T> {
         });
     }
 
+    protected final void whenType(final Class<?> klass) {
+        context.checking(new Expectations() {
+            {
+                oneOf(type).getClassUnderReflection();
+                will(returnValue(klass));
+            }
+        });
+    }
+
     protected final void assertHasDescription(
             final ReflectionMatcher<?> matcherUnderTest,
             final Matcher<String> descriptionMatcher) {
