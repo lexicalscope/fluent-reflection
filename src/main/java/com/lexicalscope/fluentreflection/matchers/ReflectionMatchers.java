@@ -16,6 +16,7 @@ package com.lexicalscope.fluentreflection.matchers;
  * limitations under the License. 
  */
 
+import com.lexicalscope.fluentreflection.ReflectedConstructor;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
 import com.lexicalscope.fluentreflection.ReflectedType;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
@@ -67,5 +68,13 @@ public class ReflectionMatchers {
 
     public static ReflectionMatcher<ReflectedType<?>> reflectedTypeReflectingOn(final Class<?> klass) {
         return new ReflectedTypeReflectingOn(klass);
+    }
+
+    public static ReflectionMatcher<ReflectedConstructor<?>> constructorHasThisManyArguments(final int argumentCount) {
+        return new ArgumentMatcherCountMatcher(argumentCount);
+    }
+
+    public static ReflectionMatcher<ReflectedConstructor<?>> constructorHasArguments(final Class<?>... argTypes) {
+        return new ArgumentTypesMatcher(argTypes);
     }
 }

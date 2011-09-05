@@ -72,4 +72,6 @@ public interface ReflectedType<T> {
      * @return the constructed object
      */
     T construct();
+
+    List<ReflectedConstructor<T>> constructors(ReflectionMatcher<ReflectedConstructor<?>> constructorMatcher);
 }

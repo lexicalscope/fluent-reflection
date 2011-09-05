@@ -36,10 +36,12 @@ import org.hamcrest.Matcher;
 final class ReflectedTypeImpl<T> implements ReflectedType<T> {
     private final Class<T> klass;
     private final ReflectedSuperclassesAndInterfaces<T> members;
+    private final ReflectedConstructors<T> constructors;
 
     public ReflectedTypeImpl(final Class<T> klass) {
         this.klass = klass;
         this.members = new ReflectedSuperclassesAndInterfaces<T>(klass);
+        this.constructors = new ReflectedConstructors<T>(klass);
     }
 
     @Override
@@ -95,6 +97,12 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
             }
         }
         throw new ConstructorNotFoundRuntimeException(klass);
+    }
+
+    @Override
+    public List<ReflectedConstructor<T>> constructors(
+            final ReflectionMatcher<ReflectedConstructor<?>> constructorMatcher) {
+        return select(constructors.constructors(), constructorMatcher);
     }
 
     @Override
