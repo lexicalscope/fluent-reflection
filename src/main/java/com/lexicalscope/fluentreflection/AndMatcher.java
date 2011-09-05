@@ -39,7 +39,7 @@ final class AndMatcher<T> extends ReflectionMatcher<T> {
      * {@inheritDoc}
      */
     @Override
-    public boolean matchesSafely(final Object item) {
+    public boolean matchesSafely(final T item) {
         for (final Matcher<T> matcher : matchers) {
             if (!matcher.matches(item)) {
                 return false;
