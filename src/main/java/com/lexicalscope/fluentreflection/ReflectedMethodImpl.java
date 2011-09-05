@@ -39,6 +39,11 @@ class ReflectedMethodImpl implements ReflectedMethod {
     }
 
     @Override
+    public int argumentCount() {
+        return method.getParameterTypes().length;
+    }
+
+    @Override
     public ReflectedType<?> getDeclaringClass() {
         return ReflectedTypeImpl.createReflectedType(method.getDeclaringClass());
     }

@@ -14,12 +14,9 @@ package com.lexicalscope.fluentreflection;
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import java.util.List;
 
-public interface ReflectedMethod {
-	String getName();
+public interface ReflectedMethod extends ReflectedCallable {
+    String getName();
 
-	List<ReflectedType<?>> getArgumentTypes();
-
-	ReflectedType<?> getDeclaringClass();
+    ReflectedType<?> getDeclaringClass();
 }
