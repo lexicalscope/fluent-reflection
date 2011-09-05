@@ -5,7 +5,7 @@ import static ch.lambdaj.Lambda.convert;
 import java.lang.reflect.Constructor;
 import java.util.List;
 
-public class ReflectedConstructorImpl<T> implements ReflectedConstructor<T> {
+class ReflectedConstructorImpl<T> implements ReflectedConstructor<T> {
     private final Constructor<T> constructor;
 
     public ReflectedConstructorImpl(final Constructor<T> constructor) {
