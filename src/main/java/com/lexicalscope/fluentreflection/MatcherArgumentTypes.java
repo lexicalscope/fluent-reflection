@@ -10,14 +10,14 @@ import org.hamcrest.Matchers;
 import ch.lambdaj.Lambda;
 
 
-class ArgumentTypesMatcher extends ReflectionMatcher<ReflectedConstructor<?>> {
+class MatcherArgumentTypes extends ReflectionMatcher<ReflectedConstructor<?>> {
     private final List<Matcher<? super ReflectedType<?>>> argumentTypeMatchers;
 
-    public ArgumentTypesMatcher(final List<? extends Matcher<? super ReflectedType<?>>> argumentTypeMatchers) {
+    public MatcherArgumentTypes(final List<? extends Matcher<? super ReflectedType<?>>> argumentTypeMatchers) {
         this.argumentTypeMatchers = new ArrayList<Matcher<? super ReflectedType<?>>>(argumentTypeMatchers);
     }
 
-    public ArgumentTypesMatcher(final Class<?>[] expectedArgTypes) {
+    public MatcherArgumentTypes(final Class<?>[] expectedArgTypes) {
         this(Lambda.convert(expectedArgTypes, new ClassToReflectedTypeMatcherConvertor()));
     }
 

@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.typeHasNoInterfaces;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectedTypeReflectingOn;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -8,7 +8,7 @@ import org.hamcrest.Matcher;
 import com.lexicalscope.fluentreflection.ReflectedType;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
-public class TestTypeHasNoInterfacesMatcher extends AbstractTestReflectionMatcher<ReflectedType<?>> {
+public class TestMatcherReflectedTypeReflectingOn extends AbstractTestReflectionMatcher<ReflectedType<?>> {
     @Override
     protected ReflectedType<?> target() {
         return type;
@@ -16,21 +16,21 @@ public class TestTypeHasNoInterfacesMatcher extends AbstractTestReflectionMatche
 
     @Override
     protected ReflectionMatcher<ReflectedType<?>> matcher() {
-        return typeHasNoInterfaces();
+        return reflectedTypeReflectingOn(Object.class);
     }
 
     @Override
     protected void setupMatchingCase() {
-        whenTypeHasNoInterface();
+        whenType(Object.class);
     }
 
     @Override
     protected void setupFailingCase() {
-        whenTypeHasInterface(Object.class);
+        whenType(String.class);
     }
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("type that implements no interfaces");
+        return equalTo("reflecting on type <class java.lang.Object>");
     }
 }

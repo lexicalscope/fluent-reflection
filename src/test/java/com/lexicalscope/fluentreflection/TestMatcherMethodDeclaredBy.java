@@ -8,7 +8,7 @@ import org.hamcrest.Matcher;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
-public class TestMethodDeclaredByMatcher extends AbstractTestReflectionMatcher<ReflectedMethod> {
+public class TestMatcherMethodDeclaredBy extends AbstractTestReflectionMatcher<ReflectedMethod> {
     interface DeclaringInterface {
 
     }

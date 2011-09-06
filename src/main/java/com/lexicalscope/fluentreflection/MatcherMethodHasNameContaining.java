@@ -6,10 +6,10 @@ package com.lexicalscope.fluentreflection;
 import org.hamcrest.Description;
 
 
-final class MethodHasNameContainingMatcher extends ReflectionMatcher<ReflectedMethod> {
+final class MatcherMethodHasNameContaining extends ReflectionMatcher<ReflectedMethod> {
     private final CharSequence substring;
 
-    MethodHasNameContainingMatcher(CharSequence substring) {
+    MatcherMethodHasNameContaining(CharSequence substring) {
         this.substring = substring;
     }
 

@@ -6,10 +6,10 @@ package com.lexicalscope.fluentreflection;
 import org.hamcrest.Description;
 
 
-final class MethodNamedMatcher extends ReflectionMatcher<ReflectedMethod> {
+final class MatcherMethodNamed extends ReflectionMatcher<ReflectedMethod> {
     private final String name;
 
-    MethodNamedMatcher(String name) {
+    MatcherMethodNamed(String name) {
         this.name = name;
     }
 

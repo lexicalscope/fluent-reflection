@@ -9,10 +9,10 @@ import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectedType
 import org.hamcrest.Description;
 
 
-final class TypeHasInterfaceMatcher extends ReflectionMatcher<ReflectedType<?>> {
+final class MatcherTypeHasInterface extends ReflectionMatcher<ReflectedType<?>> {
     private final Class<?> interfac3;
 
-    TypeHasInterfaceMatcher(final Class<?> interfac3) {
+    MatcherTypeHasInterface(final Class<?> interfac3) {
         this.interfac3 = interfac3;
     }
 

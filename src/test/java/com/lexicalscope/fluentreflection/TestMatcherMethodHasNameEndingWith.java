@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.methodHasNameMatching;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.methodHasNameEndingWith;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -8,7 +8,7 @@ import org.hamcrest.Matcher;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
-public class TestMethodHasNameMatchingMatcher extends AbstractTestReflectionMatcher<ReflectedMethod> {
+public class TestMatcherMethodHasNameEndingWith extends AbstractTestReflectionMatcher<ReflectedMethod> {
     @Override
     protected ReflectedMethod target() {
         return method;
@@ -16,21 +16,21 @@ public class TestMethodHasNameMatchingMatcher extends AbstractTestReflectionMatc
 
     @Override
     protected ReflectionMatcher<ReflectedMethod> matcher() {
-        return methodHasNameMatching(".+bc.+");
+        return methodHasNameEndingWith("abc");
     }
 
     @Override
     protected void setupMatchingCase() {
-        whenMethodHasName("abcdef");
-    }
-
-    @Override
-    protected void setupFailingCase() {
         whenMethodHasName("defabc");
     }
 
     @Override
+    protected void setupFailingCase() {
+        whenMethodHasName("abcdef");
+    }
+
+    @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("method matching \".+bc.+\"");
+        return equalTo("method ending with \"abc\"");
     }
 }

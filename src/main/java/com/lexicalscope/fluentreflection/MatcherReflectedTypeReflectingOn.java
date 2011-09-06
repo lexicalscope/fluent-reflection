@@ -6,10 +6,10 @@ package com.lexicalscope.fluentreflection;
 import org.hamcrest.Description;
 
 
-final class ReflectedTypeReflectingOnMatcher extends ReflectionMatcher<ReflectedType<?>> {
+final class MatcherReflectedTypeReflectingOn extends ReflectionMatcher<ReflectedType<?>> {
     private final Class<?> klass;
 
-    ReflectedTypeReflectingOnMatcher(Class<?> klass) {
+    MatcherReflectedTypeReflectingOn(Class<?> klass) {
         this.klass = klass;
     }
 

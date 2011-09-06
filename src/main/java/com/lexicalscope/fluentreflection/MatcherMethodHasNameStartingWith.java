@@ -6,10 +6,10 @@ package com.lexicalscope.fluentreflection;
 import org.hamcrest.Description;
 
 
-final class MethodHasNameStartingWithMatcher extends ReflectionMatcher<ReflectedMethod> {
+final class MatcherMethodHasNameStartingWith extends ReflectionMatcher<ReflectedMethod> {
     private final String prefix;
 
-    MethodHasNameStartingWithMatcher(String prefix) {
+    MatcherMethodHasNameStartingWith(String prefix) {
         this.prefix = prefix;
     }
 

@@ -8,7 +8,7 @@ import org.hamcrest.Matcher;
 import com.lexicalscope.fluentreflection.ReflectedType;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
-public class TestTypeHasNoSuperclassesMatcher extends AbstractTestReflectionMatcher<ReflectedType<?>> {
+public class TestMatcherTypeHasNoSuperclasses extends AbstractTestReflectionMatcher<ReflectedType<?>> {
     class Superclass {
 
     }

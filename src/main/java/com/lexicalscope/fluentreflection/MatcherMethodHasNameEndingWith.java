@@ -6,10 +6,10 @@ package com.lexicalscope.fluentreflection;
 import org.hamcrest.Description;
 
 
-final class MethodHasNameEndingWithMatcher extends ReflectionMatcher<ReflectedMethod> {
+final class MatcherMethodHasNameEndingWith extends ReflectionMatcher<ReflectedMethod> {
     private final String suffix;
 
-    MethodHasNameEndingWithMatcher(String suffix) {
+    MatcherMethodHasNameEndingWith(String suffix) {
         this.suffix = suffix;
     }
 

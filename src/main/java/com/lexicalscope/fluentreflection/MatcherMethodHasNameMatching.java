@@ -8,11 +8,11 @@ import java.util.regex.Pattern;
 import org.hamcrest.Description;
 
 
-final class MethodHasNameMatchingMatcher extends ReflectionMatcher<ReflectedMethod> {
+final class MatcherMethodHasNameMatching extends ReflectionMatcher<ReflectedMethod> {
     private final String regex;
     private final Pattern pattern;
 
-    MethodHasNameMatchingMatcher(String regex) {
+    MatcherMethodHasNameMatching(String regex) {
         this.regex = regex;
         pattern = Pattern.compile(regex);
     }

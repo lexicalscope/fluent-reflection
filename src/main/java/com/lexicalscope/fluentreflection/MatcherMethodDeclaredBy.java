@@ -6,10 +6,10 @@ package com.lexicalscope.fluentreflection;
 import org.hamcrest.Description;
 
 
-final class MethodDeclaredByMatcher extends ReflectionMatcher<ReflectedMethod> {
+final class MatcherMethodDeclaredBy extends ReflectionMatcher<ReflectedMethod> {
     private final Class<?> declaringKlass;
 
-    MethodDeclaredByMatcher(Class<?> declaringKlass) {
+    MatcherMethodDeclaredBy(Class<?> declaringKlass) {
         this.declaringKlass = declaringKlass;
     }
 

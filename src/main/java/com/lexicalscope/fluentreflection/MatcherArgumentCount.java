@@ -3,10 +3,10 @@ package com.lexicalscope.fluentreflection;
 import org.hamcrest.Description;
 
 
-class ArgumentMatcherCountMatcher extends ReflectionMatcher<ReflectedConstructor<?>> {
+class MatcherArgumentCount extends ReflectionMatcher<ReflectedConstructor<?>> {
     private final int expectedArgumentCount;
 
-    public ArgumentMatcherCountMatcher(final int expectedArgumentCount) {
+    public MatcherArgumentCount(final int expectedArgumentCount) {
         this.expectedArgumentCount = expectedArgumentCount;
     }
 

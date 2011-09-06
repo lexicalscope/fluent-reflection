@@ -28,10 +28,10 @@ import org.hamcrest.Matcher;
  * 
  * @param <T>
  */
-final class AndMatcher<T> extends ReflectionMatcher<T> {
+final class MatcherAnd<T> extends ReflectionMatcher<T> {
     private final List<Matcher<T>> matchers;
 
-    private AndMatcher(final List<Matcher<T>> matchers) {
+    private MatcherAnd(final List<Matcher<T>> matchers) {
         this.matchers = matchers;
     }
 
@@ -65,7 +65,7 @@ final class AndMatcher<T> extends ReflectionMatcher<T> {
      *            The matchers to be put in and
      * @return A matcher that return true if all of the matchers return true
      */
-    public static <T> AndMatcher<T> andOf(final List<Matcher<T>> matchers) {
-        return new AndMatcher<T>(matchers);
+    public static <T> MatcherAnd<T> andOf(final List<Matcher<T>> matchers) {
+        return new MatcherAnd<T>(matchers);
     }
 }

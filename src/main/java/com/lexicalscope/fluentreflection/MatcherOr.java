@@ -29,10 +29,10 @@ import org.hamcrest.Matcher;
  * 
  * @param <T>
  */
-final class OrMatcher<T> extends ReflectionMatcher<T> {
+final class MatcherOr<T> extends ReflectionMatcher<T> {
 	private final List<Matcher<T>> matchers;
 
-	private OrMatcher(final List<Matcher<T>> matchers) {
+	private MatcherOr(final List<Matcher<T>> matchers) {
 		this.matchers = matchers;
 	}
 
@@ -68,7 +68,7 @@ final class OrMatcher<T> extends ReflectionMatcher<T> {
 	 *         true
 	 */
 	@Factory
-	public static <T> OrMatcher<T> orOf(final List<Matcher<T>> matchers) {
-		return new OrMatcher<T>(matchers);
+	public static <T> MatcherOr<T> orOf(final List<Matcher<T>> matchers) {
+		return new MatcherOr<T>(matchers);
 	}
 }

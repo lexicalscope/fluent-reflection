@@ -11,10 +11,10 @@ import java.util.List;
 import org.hamcrest.Description;
 
 
-final class MethodWithArgumentsMatcher extends ReflectionMatcher<ReflectedMethod> {
+final class MatcherMethodWithArguments extends ReflectionMatcher<ReflectedMethod> {
     private final Class<?>[] expectedArgumentTypes;
 
-    MethodWithArgumentsMatcher(Class<?>[] expectedArgumentTypes) {
+    MatcherMethodWithArguments(Class<?>[] expectedArgumentTypes) {
         this.expectedArgumentTypes = expectedArgumentTypes;
     }
 

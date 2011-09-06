@@ -16,7 +16,7 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-import static com.lexicalscope.fluentreflection.AndMatcher.andOf;
+import static com.lexicalscope.fluentreflection.MatcherAnd.andOf;
 import static com.lexicalscope.fluentreflection.ListBuilder.list;
 
 import org.hamcrest.Matcher;
@@ -44,6 +44,6 @@ public abstract class ReflectionMatcher<T> extends TypeSafeMatcher<T> {
 	 *         return true
 	 */
 	public ReflectionMatcher<T> or(final Matcher<T> matcher) {
-		return OrMatcher.orOf(list((Matcher<T>) this).add(matcher).$());
+		return MatcherOr.orOf(list((Matcher<T>) this).add(matcher).$());
 	}
 }

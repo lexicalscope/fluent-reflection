@@ -10,32 +10,27 @@ import org.jmock.Expectations;
 import org.junit.Rule;
 import org.junit.Test;
 
-import com.lexicalscope.fluentreflection.OrMatcher;
+import com.lexicalscope.fluentreflection.MatcherAnd;
 
-public class TestOrMatcher {
+public class TestMatcherAnd {
 	@Rule
 	public final JUnitRuleMockery context = new JUnitRuleMockery();
 
 	private final Matcher<String> matcherA = containsString("a");
 	private final Matcher<String> matcherB = containsString("b");
 
-	private final OrMatcher<String> matcher =
-			OrMatcher.orOf(list(matcherA).add(matcherB).$());
+	private final MatcherAnd<String> matcher =
+			MatcherAnd.andOf(list(matcherA).add(matcherB).$());
 
 	@Test
-	public void ifOnlyOneMatcherMatchesThenTrue() throws Exception {
-		assertThat("a", matcher);
-		assertThat("b", matcher);
+	public void ifOnlyOneMatcherMatchesThenFalse() throws Exception {
+		assertThat("a", not(matcher));
+		assertThat("b", not(matcher));
 	}
 
 	@Test
 	public void ifBothMatcherMatchesThenTrue() throws Exception {
 		assertThat("ab", matcher);
-	}
-
-	@Test
-	public void ifNeitherMatcherMatchesThenFalse() throws Exception {
-		assertThat("x", not(matcher));
 	}
 
 	@Test
@@ -45,7 +40,7 @@ public class TestOrMatcher {
 		context.checking(new Expectations() {
 			{
 				oneOf(description).appendDescriptionOf(matcherA);
-				oneOf(description).appendText(" or ");
+				oneOf(description).appendText(" and ");
 				oneOf(description).appendDescriptionOf(matcherB);
 			}
 		});
@@ -63,6 +58,6 @@ public class TestOrMatcher {
 			}
 		});
 
-		OrMatcher.orOf(list(matcherA).$()).describeTo(description);
+		MatcherAnd.andOf(list(matcherA).$()).describeTo(description);
 	}
 }
