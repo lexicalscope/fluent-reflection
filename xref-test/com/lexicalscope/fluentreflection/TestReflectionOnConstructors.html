@@ -11,31 +11,30 @@
 <a name="1" href="#1">1</a>   <strong class="jxr_keyword">package</strong> com.lexicalscope.fluentreflection;
 <a name="2" href="#2">2</a>   
 <a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.Reflect.type;
-<a name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.constructorHasThisManyArguments;
+<a name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasThisManyArguments;
 <a name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.MatcherAssert.assertThat;
 <a name="6" href="#6">6</a>   
 <a name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> org.hamcrest.Matchers;
 <a name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> org.junit.Test;
 <a name="9" href="#9">9</a>   
-<a name="10" href="#10">10</a>  <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.matchers.ReflectionMatchers;
-<a name="11" href="#11">11</a>  
-<a name="12" href="#12">12</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/TestReflectionOnConstructors.html">TestReflectionOnConstructors</a> {
-<a name="13" href="#13">13</a>      <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/TestReflectionOnConstructors.html">TwoConstructorsWithDifferentNumbersOfArguments</a> {
-<a name="14" href="#14">14</a>          <strong class="jxr_keyword">public</strong> <a href="../../../com/lexicalscope/fluentreflection/TestReflectionOnConstructors.html">TwoConstructorsWithDifferentNumbersOfArguments</a>(<strong class="jxr_keyword">final</strong> String argumentZero) {
-<a name="15" href="#15">15</a>          }
-<a name="16" href="#16">16</a>  
-<a name="17" href="#17">17</a>          <strong class="jxr_keyword">public</strong> <a href="../../../com/lexicalscope/fluentreflection/TestReflectionOnConstructors.html">TwoConstructorsWithDifferentNumbersOfArguments</a>(<strong class="jxr_keyword">final</strong> String argumentZero, <strong class="jxr_keyword">final</strong> Integer argumentOne) {
-<a name="18" href="#18">18</a>          }
-<a name="19" href="#19">19</a>      }
-<a name="20" href="#20">20</a>  
-<a name="21" href="#21">21</a>      @Test
-<a name="22" href="#22">22</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> canFindConstructorsByTheNumberOfArguments() {
-<a name="23" href="#23">23</a>          assertThat(type(TwoConstructorsWithDifferentNumbersOfArguments.<strong class="jxr_keyword">class</strong>).constructors(
-<a name="24" href="#24">24</a>                  constructorHasThisManyArguments(2)), Matchers.contains(ReflectionMatchers.constructorHasArguments(
-<a name="25" href="#25">25</a>                  String.<strong class="jxr_keyword">class</strong>,
-<a name="26" href="#26">26</a>                  Integer.<strong class="jxr_keyword">class</strong>)));
-<a name="27" href="#27">27</a>      }
-<a name="28" href="#28">28</a>  }
+<a name="10" href="#10">10</a>  
+<a name="11" href="#11">11</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/TestReflectionOnConstructors.html">TestReflectionOnConstructors</a> {
+<a name="12" href="#12">12</a>      <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/TestReflectionOnConstructors.html">TwoConstructorsWithDifferentNumbersOfArguments</a> {
+<a name="13" href="#13">13</a>          <strong class="jxr_keyword">public</strong> <a href="../../../com/lexicalscope/fluentreflection/TestReflectionOnConstructors.html">TwoConstructorsWithDifferentNumbersOfArguments</a>(<strong class="jxr_keyword">final</strong> String argumentZero) {
+<a name="14" href="#14">14</a>          }
+<a name="15" href="#15">15</a>  
+<a name="16" href="#16">16</a>          <strong class="jxr_keyword">public</strong> <a href="../../../com/lexicalscope/fluentreflection/TestReflectionOnConstructors.html">TwoConstructorsWithDifferentNumbersOfArguments</a>(<strong class="jxr_keyword">final</strong> String argumentZero, <strong class="jxr_keyword">final</strong> Integer argumentOne) {
+<a name="17" href="#17">17</a>          }
+<a name="18" href="#18">18</a>      }
+<a name="19" href="#19">19</a>  
+<a name="20" href="#20">20</a>      @Test
+<a name="21" href="#21">21</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> canFindConstructorsByTheNumberOfArguments() {
+<a name="22" href="#22">22</a>          assertThat(type(TwoConstructorsWithDifferentNumbersOfArguments.<strong class="jxr_keyword">class</strong>).constructors(
+<a name="23" href="#23">23</a>                  callableHasThisManyArguments(2)), Matchers.contains(ReflectionMatchers.constructorHasArguments(
+<a name="24" href="#24">24</a>                  String.<strong class="jxr_keyword">class</strong>,
+<a name="25" href="#25">25</a>                  Integer.<strong class="jxr_keyword">class</strong>)));
+<a name="26" href="#26">26</a>      }
+<a name="27" href="#27">27</a>  }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>
