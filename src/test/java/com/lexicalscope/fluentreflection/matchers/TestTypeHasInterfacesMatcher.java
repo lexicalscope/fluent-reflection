@@ -8,7 +8,7 @@ import org.hamcrest.Matcher;
 import com.lexicalscope.fluentreflection.ReflectedType;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
-public class TestTypeHasInterfaces extends AbstractTestReflectionMatcher<ReflectedType<?>> {
+public class TestTypeHasInterfacesMatcher extends AbstractTestReflectionMatcher<ReflectedType<?>> {
     @Override
     protected ReflectedType<?> target() {
         return type;

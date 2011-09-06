@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection.matchers;
 
-import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.methodNamed;
+import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.methodDeclaredBy;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -8,7 +8,15 @@ import org.hamcrest.Matcher;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
-public class TestMethodNamed extends AbstractTestReflectionMatcher<ReflectedMethod> {
+public class TestMethodDeclaredByMatcher extends AbstractTestReflectionMatcher<ReflectedMethod> {
+    interface DeclaringInterface {
+
+    }
+
+    interface NonDeclaringInterface {
+
+    }
+
     @Override
     protected ReflectedMethod target() {
         return method;
@@ -16,21 +24,21 @@ public class TestMethodNamed extends AbstractTestReflectionMatcher<ReflectedMeth
 
     @Override
     protected ReflectionMatcher<ReflectedMethod> matcher() {
-        return methodNamed("abc");
+        return methodDeclaredBy(DeclaringInterface.class);
     }
 
     @Override
     protected void setupMatchingCase() {
-        whenMethodHasName("abc");
+        whenMethodDeclaredBy(DeclaringInterface.class);
     }
 
     @Override
     protected void setupFailingCase() {
-        whenMethodHasName("def");
+        whenMethodDeclaredBy(NonDeclaringInterface.class);
     }
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("method named \"abc\"");
+        return equalTo("method declared by <" + DeclaringInterface.class + ">");
     }
 }

@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection.matchers;
 
-import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.methodHasNameStartingWith;
+import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.methodWithArguments;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -8,7 +8,7 @@ import org.hamcrest.Matcher;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
-public class TestMethodHasNameStartingWith extends AbstractTestReflectionMatcher<ReflectedMethod> {
+public class TestMethodWithArgumentsMatcher extends AbstractTestReflectionMatcher<ReflectedMethod> {
     @Override
     protected ReflectedMethod target() {
         return method;
@@ -16,21 +16,21 @@ public class TestMethodHasNameStartingWith extends AbstractTestReflectionMatcher
 
     @Override
     protected ReflectionMatcher<ReflectedMethod> matcher() {
-        return methodHasNameStartingWith("abc");
+        return methodWithArguments(String.class);
     }
 
     @Override
     protected void setupMatchingCase() {
-        whenMethodHasName("abcdef");
+        whenMethodHasArguments(String.class);
     }
 
     @Override
     protected void setupFailingCase() {
-        whenMethodHasName("defabc");
+        whenMethodHasArguments(String.class, String.class);
     }
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("method starting with \"abc\"");
+        return equalTo("method with arguments [<class java.lang.String>]");
     }
 }

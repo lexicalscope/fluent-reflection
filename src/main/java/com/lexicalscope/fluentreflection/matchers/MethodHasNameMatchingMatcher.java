@@ -10,11 +10,11 @@ import org.hamcrest.Description;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
-final class MethodHasNameMatching extends ReflectionMatcher<ReflectedMethod> {
+final class MethodHasNameMatchingMatcher extends ReflectionMatcher<ReflectedMethod> {
     private final String regex;
     private final Pattern pattern;
 
-    MethodHasNameMatching(String regex) {
+    MethodHasNameMatchingMatcher(String regex) {
         this.regex = regex;
         pattern = Pattern.compile(regex);
     }

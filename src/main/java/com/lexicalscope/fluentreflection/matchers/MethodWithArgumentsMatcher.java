@@ -13,10 +13,10 @@ import org.hamcrest.Description;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
-final class MethodWithArguments extends ReflectionMatcher<ReflectedMethod> {
+final class MethodWithArgumentsMatcher extends ReflectionMatcher<ReflectedMethod> {
     private final Class<?>[] expectedArgumentTypes;
 
-    MethodWithArguments(Class<?>[] expectedArgumentTypes) {
+    MethodWithArgumentsMatcher(Class<?>[] expectedArgumentTypes) {
         this.expectedArgumentTypes = expectedArgumentTypes;
     }
 

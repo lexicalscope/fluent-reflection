@@ -23,51 +23,51 @@ import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
 public class ReflectionMatchers {
     public static ReflectionMatcher<ReflectedMethod> methodHasNameStartingWith(final String prefix) {
-        return new MethodHasNameStartingWith(prefix);
+        return new MethodHasNameStartingWithMatcher(prefix);
     }
 
     public static ReflectionMatcher<ReflectedMethod> methodHasNameEndingWith(final String suffix) {
-        return new MethodHasNameEndingWith(suffix);
+        return new MethodHasNameEndingWithMatcher(suffix);
     }
 
     public static ReflectionMatcher<ReflectedMethod> methodHasNameMatching(final String regex) {
-        return new MethodHasNameMatching(regex);
+        return new MethodHasNameMatchingMatcher(regex);
     }
 
     public static ReflectionMatcher<ReflectedMethod> methodHasNameContaining(final CharSequence substring) {
-        return new MethodHasNameContaining(substring);
+        return new MethodHasNameContainingMatcher(substring);
     }
 
     public static ReflectionMatcher<ReflectedMethod> methodNamed(final String name) {
-        return new MethodNamed(name);
+        return new MethodNamedMatcher(name);
     }
 
     public static ReflectionMatcher<ReflectedMethod> methodWithArguments(final Class<?>... expectedArgumentTypes) {
-        return new MethodWithArguments(expectedArgumentTypes);
+        return new MethodWithArgumentsMatcher(expectedArgumentTypes);
     }
 
     public static ReflectionMatcher<ReflectedMethod> methodDeclaredBy(final Class<?> declaringKlass) {
-        return new MethodDeclaredBy(declaringKlass);
+        return new MethodDeclaredByMatcher(declaringKlass);
     }
 
     public static ReflectionMatcher<ReflectedType<?>> typeHasNoInterfaces() {
-        return new TypeHasNoInterfaces();
+        return new TypeHasNoInterfacesMatcher();
     }
 
     public static ReflectionMatcher<ReflectedType<?>> typeHasNoSuperclasses() {
-        return new TypeHasNoSuperclasses();
+        return new TypeHasNoSuperclassesMatcher();
     }
 
     public static ReflectionMatcher<ReflectedType<?>> typeHasInterface(final Class<?> interfac3) {
-        return new TypeHasInterface(interfac3);
+        return new TypeHasInterfaceMatcher(interfac3);
     }
 
     public static ReflectionMatcher<ReflectedType<?>> typeIsInterface() {
-        return new TypeIsInterface();
+        return new TypeIsInterfaceMatcher();
     }
 
     public static ReflectionMatcher<ReflectedType<?>> reflectedTypeReflectingOn(final Class<?> klass) {
-        return new ReflectedTypeReflectingOn(klass);
+        return new ReflectedTypeReflectingOnMatcher(klass);
     }
 
     public static ReflectionMatcher<ReflectedConstructor<?>> constructorHasThisManyArguments(final int argumentCount) {

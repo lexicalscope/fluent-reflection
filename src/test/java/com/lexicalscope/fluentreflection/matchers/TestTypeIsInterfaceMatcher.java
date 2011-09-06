@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection.matchers;
 
-import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.typeHasNoSuperclasses;
+import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.typeIsInterface;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -8,11 +8,7 @@ import org.hamcrest.Matcher;
 import com.lexicalscope.fluentreflection.ReflectedType;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
-public class TestTypeHasNoSuperclasses extends AbstractTestReflectionMatcher<ReflectedType<?>> {
-    class Superclass {
-
-    }
-
+public class TestTypeIsInterfaceMatcher extends AbstractTestReflectionMatcher<ReflectedType<?>> {
     @Override
     protected ReflectedType<?> target() {
         return type;
@@ -20,21 +16,21 @@ public class TestTypeHasNoSuperclasses extends AbstractTestReflectionMatcher<Ref
 
     @Override
     protected ReflectionMatcher<ReflectedType<?>> matcher() {
-        return typeHasNoSuperclasses();
+        return typeIsInterface();
     }
 
     @Override
     protected void setupMatchingCase() {
-        whenTypeHasNoSuperclass();
+        whenTypeIsInterface();
     }
 
     @Override
     protected void setupFailingCase() {
-        whenTypeHasSuperclass(Superclass.class);
+        whenTypeIsNotInterface();
     }
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("type that extends no superclasses");
+        return equalTo("type that is an interface");
     }
 }

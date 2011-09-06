@@ -8,20 +8,20 @@ import org.hamcrest.Description;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
-final class MethodHasNameStartingWith extends ReflectionMatcher<ReflectedMethod> {
-    private final String prefix;
+final class MethodHasNameEndingWithMatcher extends ReflectionMatcher<ReflectedMethod> {
+    private final String suffix;
 
-    MethodHasNameStartingWith(String prefix) {
-        this.prefix = prefix;
+    MethodHasNameEndingWithMatcher(String suffix) {
+        this.suffix = suffix;
     }
 
     @Override
     public boolean matchesSafely(final ReflectedMethod arg) {
-        return arg.getName().startsWith(prefix);
+        return arg.getName().endsWith(suffix);
     }
 
     @Override
     public void describeTo(final Description description) {
-        description.appendText("method starting with ").appendValue(prefix);
+        description.appendText("method ending with ").appendValue(suffix);
     }
 }
