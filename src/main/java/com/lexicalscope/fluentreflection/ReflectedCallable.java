@@ -5,5 +5,5 @@ import java.util.List;
 public interface ReflectedCallable {
     int argumentCount();
 
-    List<ReflectedType<?>> getArgumentTypes();
+    List<ReflectedType<?>> argumentTypes();
 }

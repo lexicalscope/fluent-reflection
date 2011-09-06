@@ -16,7 +16,6 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-
 public class ReflectionMatchers {
     public static ReflectionMatcher<ReflectedMethod> methodHasNameStartingWith(final String prefix) {
         return new MatcherMethodHasNameStartingWith(prefix);
@@ -66,7 +65,7 @@ public class ReflectionMatchers {
         return new MatcherReflectedTypeReflectingOn(klass);
     }
 
-    public static ReflectionMatcher<ReflectedConstructor<?>> constructorHasThisManyArguments(final int argumentCount) {
+    public static ReflectionMatcher<ReflectedCallable> callableHasThisManyArguments(final int argumentCount) {
         return new MatcherArgumentCount(argumentCount);
     }
 

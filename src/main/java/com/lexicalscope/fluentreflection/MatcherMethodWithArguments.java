@@ -21,7 +21,7 @@ final class MatcherMethodWithArguments extends ReflectionMatcher<ReflectedMethod
     @Override
     public boolean matchesSafely(final ReflectedMethod arg) {
         final List<Class<?>> actualArgumentTypes =
-                convert(arg.getArgumentTypes(), new ConvertReflectedType2Class());
+                convert(arg.argumentTypes(), new ConvertReflectedType2Class());
 
         if (expectedArgumentTypes == null || expectedArgumentTypes.length == 0) {
             return actualArgumentTypes.size() == 0;

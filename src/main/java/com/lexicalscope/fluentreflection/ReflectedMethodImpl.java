@@ -34,7 +34,7 @@ class ReflectedMethodImpl implements ReflectedMethod {
     }
 
     @Override
-    public List<ReflectedType<?>> getArgumentTypes() {
+    public List<ReflectedType<?>> argumentTypes() {
         return Lambda.convert(method.getParameterTypes(), new ConvertClassToReflectedType());
     }
 

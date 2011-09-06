@@ -73,5 +73,5 @@ public interface ReflectedType<T> {
      */
     T construct();
 
-    List<ReflectedConstructor<T>> constructors(ReflectionMatcher<ReflectedConstructor<?>> constructorMatcher);
+    List<ReflectedConstructor<T>> constructors(ReflectionMatcher<? super ReflectedConstructor<?>> constructorMatcher);
 }

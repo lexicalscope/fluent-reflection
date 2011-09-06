@@ -27,7 +27,7 @@ class MatcherArgumentTypes extends ReflectionMatcher<ReflectedConstructor<?>> {
             return false;
         }
 
-        return Matchers.contains(argumentTypeMatchers).matches(item.getArgumentTypes());
+        return Matchers.contains(argumentTypeMatchers).matches(item.argumentTypes());
     }
 
     @Override

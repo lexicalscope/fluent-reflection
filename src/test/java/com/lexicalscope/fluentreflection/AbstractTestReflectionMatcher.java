@@ -13,16 +13,13 @@ import org.jmock.Expectations;
 import org.junit.Rule;
 import org.junit.Test;
 
-import com.lexicalscope.fluentreflection.ReflectedMethod;
-import com.lexicalscope.fluentreflection.ReflectedType;
-import com.lexicalscope.fluentreflection.ReflectionMatcher;
-
 public abstract class AbstractTestReflectionMatcher<T> {
     @Rule
     public final JUnitRuleMockery context = new JUnitRuleMockery();
 
     protected final ReflectedMethod method = context.mock(ReflectedMethod.class);
     protected final ReflectedType<?> type = context.mock(ReflectedType.class);
+    protected final ReflectedCallable callable = context.mock(ReflectedCallable.class);
     private final Description description = new StringDescription();
 
     @Test
@@ -84,7 +81,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
 
         context.checking(new Expectations() {
             {
-                oneOf(method).getArgumentTypes();
+                oneOf(method).argumentTypes();
                 will(returnValue(asList(argumentTypes)));
 
                 for (int i = 0; i < argumentTypes.length; i++) {

@@ -1,7 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
 import static com.lexicalscope.fluentreflection.Reflect.type;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.constructorHasThisManyArguments;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasThisManyArguments;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.hamcrest.Matchers;
@@ -20,7 +20,7 @@ public class TestReflectionOnConstructors {
     @Test
     public void canFindConstructorsByTheNumberOfArguments() {
         assertThat(type(TwoConstructorsWithDifferentNumbersOfArguments.class).constructors(
-                constructorHasThisManyArguments(2)), Matchers.contains(ReflectionMatchers.constructorHasArguments(
+                callableHasThisManyArguments(2)), Matchers.contains(ReflectionMatchers.constructorHasArguments(
                 String.class,
                 Integer.class)));
     }

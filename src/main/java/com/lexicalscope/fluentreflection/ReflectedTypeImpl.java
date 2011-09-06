@@ -101,7 +101,7 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
 
     @Override
     public List<ReflectedConstructor<T>> constructors(
-            final ReflectionMatcher<ReflectedConstructor<?>> constructorMatcher) {
+            final ReflectionMatcher<? super ReflectedConstructor<?>> constructorMatcher) {
         return select(constructors.constructors(), constructorMatcher);
     }
 
