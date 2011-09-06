@@ -18,7 +18,7 @@ class MatcherArgumentTypes extends ReflectionMatcher<ReflectedConstructor<?>> {
     }
 
     public MatcherArgumentTypes(final Class<?>[] expectedArgTypes) {
-        this(Lambda.convert(expectedArgTypes, new ClassToReflectedTypeMatcherConvertor()));
+        this(Lambda.convert(expectedArgTypes, new ConvertClassToReflectedTypeMatcher()));
     }
 
     @Override

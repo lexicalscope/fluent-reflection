@@ -19,6 +19,6 @@ class ReflectedConstructorImpl<T> implements ReflectedConstructor<T> {
 
     @Override
     public List<ReflectedType<?>> getArgumentTypes() {
-        return convert(constructor.getParameterTypes(), new Class2ReflectedTypeConvertor());
+        return convert(constructor.getParameterTypes(), new ConvertClassToReflectedType());
     }
 }

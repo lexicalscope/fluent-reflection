@@ -12,6 +12,6 @@ class ReflectedConstructors<T> {
     }
 
     public List<ReflectedConstructor<T>> constructors() {
-        return Lambda.convert(klass.getConstructors(), new ConvertorConstructorToReflectedConstructor<T>());
+        return Lambda.convert(klass.getConstructors(), new ConvertConstructorToReflectedConstructor<T>());
     }
 }
