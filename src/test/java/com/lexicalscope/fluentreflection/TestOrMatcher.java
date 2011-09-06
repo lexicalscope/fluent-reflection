@@ -11,7 +11,6 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import com.lexicalscope.fluentreflection.OrMatcher;
-import com.lexicalscope.fluentreflection.testhelpers.JUnitRuleMockery;
 
 public class TestOrMatcher {
 	@Rule

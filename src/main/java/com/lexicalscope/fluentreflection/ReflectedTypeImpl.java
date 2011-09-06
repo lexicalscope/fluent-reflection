@@ -17,7 +17,7 @@ package com.lexicalscope.fluentreflection;
  */
 
 import static ch.lambdaj.Lambda.select;
-import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.typeIsInterface;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.typeIsInterface;
 import static org.hamcrest.Matchers.*;
 
 import java.lang.reflect.Constructor;

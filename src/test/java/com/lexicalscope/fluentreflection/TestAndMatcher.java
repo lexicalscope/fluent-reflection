@@ -11,7 +11,6 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import com.lexicalscope.fluentreflection.AndMatcher;
-import com.lexicalscope.fluentreflection.testhelpers.JUnitRuleMockery;
 
 public class TestAndMatcher {
 	@Rule

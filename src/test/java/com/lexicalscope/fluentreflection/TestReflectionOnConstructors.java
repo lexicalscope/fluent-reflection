@@ -1,13 +1,12 @@
 package com.lexicalscope.fluentreflection;
 
 import static com.lexicalscope.fluentreflection.Reflect.type;
-import static com.lexicalscope.fluentreflection.matchers.ReflectionMatchers.constructorHasThisManyArguments;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.constructorHasThisManyArguments;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-import com.lexicalscope.fluentreflection.matchers.ReflectionMatchers;
 
 public class TestReflectionOnConstructors {
     static class TwoConstructorsWithDifferentNumbersOfArguments {
