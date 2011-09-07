@@ -12,9 +12,9 @@
 <a name="2" href="#2">2</a>   
 <a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> ch.lambdaj.function.convert.Converter;
 <a name="4" href="#4">4</a>   
-<a name="5" href="#5">5</a>   <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertObjectToClass.html">ConvertObjectToClass</a> implements Converter&lt;Object, Object&gt; {
+<a name="5" href="#5">5</a>   <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertObjectToClass.html">ConvertObjectToClass</a> implements Converter&lt;Object, Class&lt;?&gt;&gt; {
 <a name="6" href="#6">6</a>       @Override
-<a name="7" href="#7">7</a>       <strong class="jxr_keyword">public</strong> Object convert(<strong class="jxr_keyword">final</strong> Object from) {
+<a name="7" href="#7">7</a>       <strong class="jxr_keyword">public</strong> Class&lt;?&gt; convert(<strong class="jxr_keyword">final</strong> Object from) {
 <a name="8" href="#8">8</a>           <strong class="jxr_keyword">if</strong> (from == <strong class="jxr_keyword">null</strong>) {
 <a name="9" href="#9">9</a>               <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
 <a name="10" href="#10">10</a>          }
