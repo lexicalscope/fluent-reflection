@@ -7,7 +7,7 @@ import static org.hamcrest.Matchers.equalTo;
 import org.junit.Test;
 
 public class TestConstructionByReflection {
-    static class ClassWithDefaultConstructor {
+    public static class ClassWithDefaultConstructor {
         private final boolean called;
 
         public ClassWithDefaultConstructor() {
