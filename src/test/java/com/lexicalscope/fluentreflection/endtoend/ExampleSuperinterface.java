@@ -1,4 +1,4 @@
-package com.lexicalscope.fluentreflection;
+package com.lexicalscope.fluentreflection.endtoend;
 
 /*
  * Copyright 2011 Tim Wood
@@ -16,6 +16,6 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-interface ExampleSubinterface extends ExampleSuperinterface {
-	String getSubinterfaceProperty();
+interface ExampleSuperinterface {
+	String getSuperinterfaceProperty();
 }

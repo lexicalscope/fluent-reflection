@@ -1,4 +1,4 @@
-package com.lexicalscope.fluentreflection;
+package com.lexicalscope.fluentreflection.endtoend;
 
 import static com.lexicalscope.fluentreflection.Reflect.type;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasThisManyArguments;
@@ -6,6 +6,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
+
+import com.lexicalscope.fluentreflection.ReflectionMatchers;
 
 
 public class TestReflectionOnConstructors {

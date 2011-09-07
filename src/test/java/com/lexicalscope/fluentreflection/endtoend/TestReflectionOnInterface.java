@@ -1,4 +1,4 @@
-package com.lexicalscope.fluentreflection;
+package com.lexicalscope.fluentreflection.endtoend;
 
 /*
  * Copyright 2011 Tim Wood
@@ -23,6 +23,8 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
+
+import com.lexicalscope.fluentreflection.ReflectedMethod;
 
 public class TestReflectionOnInterface {
     @Test

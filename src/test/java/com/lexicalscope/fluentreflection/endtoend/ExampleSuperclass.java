@@ -1,4 +1,4 @@
-package com.lexicalscope.fluentreflection;
+package com.lexicalscope.fluentreflection.endtoend;
 
 /*
  * Copyright 2011 Tim Wood
@@ -16,8 +16,18 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-class ExampleSubsubclass extends ExampleSubclass {
-	public String getSubsubclassProperty() {
+class ExampleSuperclass implements ExampleSubinterface {
+	@Override
+	public String getSubinterfaceProperty() {
+		return null;
+	}
+
+	@Override
+	public String getSuperinterfaceProperty() {
+		return null;
+	}
+
+	public String getSuperclassProperty() {
 		return null;
 	}
 }

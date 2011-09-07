@@ -1,4 +1,4 @@
-package com.lexicalscope.fluentreflection;
+package com.lexicalscope.fluentreflection.endtoend;
 
 import static com.lexicalscope.fluentreflection.Reflect.type;
 import static org.hamcrest.MatcherAssert.assertThat;

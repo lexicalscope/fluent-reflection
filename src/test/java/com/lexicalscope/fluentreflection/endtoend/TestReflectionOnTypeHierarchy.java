@@ -1,4 +1,4 @@
-package com.lexicalscope.fluentreflection;
+package com.lexicalscope.fluentreflection.endtoend;
 
 /*
  * Copyright 2011 Tim Wood
@@ -24,6 +24,8 @@ import static org.hamcrest.Matchers.equalTo;
 import java.util.List;
 
 import org.junit.Test;
+
+import com.lexicalscope.fluentreflection.ReflectedType;
 
 public class TestReflectionOnTypeHierarchy {
     @Test

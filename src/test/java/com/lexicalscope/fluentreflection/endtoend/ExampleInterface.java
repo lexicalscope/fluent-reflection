@@ -1,4 +1,4 @@
-package com.lexicalscope.fluentreflection;
+package com.lexicalscope.fluentreflection.endtoend;
 
 /*
  * Copyright 2011 Tim Wood
@@ -16,8 +16,8 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-public interface ExampleInterface {
-	String getPropertyOne();
+interface ExampleInterface {
+    String getPropertyOne();
 
-	void setPropertyOne(String value);
+    void setPropertyOne(String value);
 }
