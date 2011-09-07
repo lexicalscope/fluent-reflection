@@ -16,11 +16,12 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
+import static com.lexicalscope.fluentreflection.ReflectedTypeImpl.createReflectedType;
 import ch.lambdaj.function.convert.Converter;
 
 class ConvertClassToReflectedType implements Converter<Class<?>, ReflectedType<?>> {
-	@Override
-	public ReflectedType<?> convert(final Class<?> from) {
-		return ReflectedTypeImpl.createReflectedType(from);
-	}
+    @Override
+    public ReflectedType<?> convert(final Class<?> from) {
+        return createReflectedType(from);
+    }
 }
