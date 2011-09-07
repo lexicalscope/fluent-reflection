@@ -19,7 +19,7 @@ package com.lexicalscope.fluentreflection;
 
 import ch.lambdaj.function.convert.Converter;
 
-class ConvertReflectedType2Class implements Converter<ReflectedType<?>, Class<?>> {
+class ConvertReflectedTypeToClass implements Converter<ReflectedType<?>, Class<?>> {
 	@Override
 	public Class<?> convert(final ReflectedType<?> from) {
 		return from.classUnderReflection();
