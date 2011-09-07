@@ -1,5 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
+import java.lang.reflect.Constructor;
+
 /*
  * Copyright 2011 Tim Wood
  *
@@ -63,6 +65,10 @@ public class ReflectionMatchers {
 
     public static ReflectionMatcher<ReflectedType<?>> reflectedTypeReflectingOn(final Class<?> klass) {
         return new MatcherReflectedTypeReflectingOn(klass);
+    }
+
+    public static ReflectionMatcher<ReflectedConstructor<?>> reflectedConstructorReflectingOn(final Constructor<?> constructor) {
+        return new MatcherConstructorReflectingOn(constructor);
     }
 
     public static ReflectionMatcher<ReflectedCallable> callableHasThisManyArguments(final int argumentCount) {

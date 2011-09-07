@@ -21,4 +21,9 @@ class ReflectedConstructorImpl<T> implements ReflectedConstructor<T> {
     public List<ReflectedType<?>> argumentTypes() {
         return convert(constructor.getParameterTypes(), new ConvertClassToReflectedType());
     }
+
+    @Override
+    public Constructor<T> constructorUnderReflection() {
+        return constructor;
+    }
 }
