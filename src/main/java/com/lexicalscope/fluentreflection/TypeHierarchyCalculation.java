@@ -23,6 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 class TypeHierarchyCalculation {
+    private final List<Class<?>> done = new ArrayList<Class<?>>();
     private final List<ReflectedType<?>> result = new ArrayList<ReflectedType<?>>();
     private final List<Class<?>> pending = new LinkedList<Class<?>>();
 
@@ -40,9 +41,10 @@ class TypeHierarchyCalculation {
 
     private void processClass(final Class<?> klassToReflect) {
         queueSuperclassAndInterfaces(klassToReflect);
-        if (result.contains(klassToReflect)) {
+        if (done.contains(klassToReflect)) {
             return;
         }
+        done.add(klassToReflect);
         result.add(createReflectedType(klassToReflect));
     }
 
