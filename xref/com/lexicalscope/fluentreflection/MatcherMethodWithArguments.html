@@ -31,7 +31,7 @@
 <a name="21" href="#21">21</a>      @Override
 <a name="22" href="#22">22</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matchesSafely(<strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedMethod.html">ReflectedMethod</a> arg) {
 <a name="23" href="#23">23</a>          <strong class="jxr_keyword">final</strong> List&lt;Class&lt;?&gt;&gt; actualArgumentTypes =
-<a name="24" href="#24">24</a>                  convert(arg.argumentTypes(), <strong class="jxr_keyword">new</strong> ConvertReflectedType2Class());
+<a name="24" href="#24">24</a>                  convert(arg.argumentTypes(), <strong class="jxr_keyword">new</strong> ConvertReflectedTypeToClass());
 <a name="25" href="#25">25</a>  
 <a name="26" href="#26">26</a>          <strong class="jxr_keyword">if</strong> (expectedArgumentTypes == <strong class="jxr_keyword">null</strong> || expectedArgumentTypes.length == 0) {
 <a name="27" href="#27">27</a>              <strong class="jxr_keyword">return</strong> actualArgumentTypes.size() == 0;
