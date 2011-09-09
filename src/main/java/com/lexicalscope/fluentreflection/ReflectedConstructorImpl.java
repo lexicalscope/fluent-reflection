@@ -1,6 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.convert;
+import static com.lexicalscope.fluentreflection.Reflect.type;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -41,5 +42,15 @@ class ReflectedConstructorImpl<T> implements ReflectedConstructor<T> {
         } catch (final InvocationTargetException e) {
             throw new InvocationTargetRuntimeException(e, constructor);
         }
+    }
+
+    @Override
+    public ReflectedType<?> getDeclaringClass() {
+        return type(constructor.getDeclaringClass());
+    }
+
+    @Override
+    public String getName() {
+        return constructor.getName();
     }
 }

@@ -5,17 +5,14 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-import com.lexicalscope.fluentreflection.ReflectedMethod;
-import com.lexicalscope.fluentreflection.ReflectionMatcher;
-
-public class TestMatcherMethodWithArguments extends AbstractTestReflectionMatcher<ReflectedMethod> {
+public class TestMatcherCallableWithArguments extends AbstractTestReflectionMatcher<ReflectedCallable> {
     @Override
     protected ReflectedMethod target() {
         return method;
     }
 
     @Override
-    protected ReflectionMatcher<ReflectedMethod> matcher() {
+    protected ReflectionMatcher<ReflectedCallable> matcher() {
         return methodWithArguments(String.class);
     }
 
@@ -31,6 +28,6 @@ public class TestMatcherMethodWithArguments extends AbstractTestReflectionMatche
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("method with arguments [<class java.lang.String>]");
+        return equalTo("callable with arguments [<class java.lang.String>]");
     }
 }

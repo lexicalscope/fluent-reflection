@@ -23,32 +23,32 @@ import java.util.List;
  */
 
 public class ReflectionMatchers {
-    public static ReflectionMatcher<ReflectedMethod> methodHasNameStartingWith(final String prefix) {
-        return new MatcherMethodHasNameStartingWith(prefix);
+    public static ReflectionMatcher<ReflectedCallable> methodHasNameStartingWith(final String prefix) {
+        return new MatcherCallableHasNameStartingWith(prefix);
     }
 
-    public static ReflectionMatcher<ReflectedMethod> methodHasNameEndingWith(final String suffix) {
-        return new MatcherMethodHasNameEndingWith(suffix);
+    public static ReflectionMatcher<ReflectedCallable> methodHasNameEndingWith(final String suffix) {
+        return new MatcherCallableHasNameEndingWith(suffix);
     }
 
-    public static ReflectionMatcher<ReflectedMethod> methodHasNameMatching(final String regex) {
-        return new MatcherMethodHasNameMatching(regex);
+    public static ReflectionMatcher<ReflectedCallable> methodHasNameMatching(final String regex) {
+        return new MatcherCallableHasNameMatching(regex);
     }
 
-    public static ReflectionMatcher<ReflectedMethod> methodHasNameContaining(final CharSequence substring) {
-        return new MatcherMethodHasNameContaining(substring);
+    public static ReflectionMatcher<ReflectedCallable> methodHasNameContaining(final CharSequence substring) {
+        return new MatcherCallableHasNameContaining(substring);
     }
 
-    public static ReflectionMatcher<ReflectedMethod> methodNamed(final String name) {
-        return new MatcherMethodNamed(name);
+    public static ReflectionMatcher<ReflectedCallable> methodNamed(final String name) {
+        return new MatcherCallableNamed(name);
     }
 
-    public static ReflectionMatcher<ReflectedMethod> methodWithArguments(final Class<?>... expectedArgumentTypes) {
-        return new MatcherMethodWithArguments(expectedArgumentTypes);
+    public static ReflectionMatcher<ReflectedCallable> methodWithArguments(final Class<?>... expectedArgumentTypes) {
+        return new MatcherCallableWithArguments(expectedArgumentTypes);
     }
 
-    public static ReflectionMatcher<ReflectedMethod> methodDeclaredBy(final Class<?> declaringKlass) {
-        return new MatcherMethodDeclaredBy(declaringKlass);
+    public static ReflectionMatcher<ReflectedCallable> methodDeclaredBy(final Class<?> declaringKlass) {
+        return new MatcherCallableDeclaredBy(declaringKlass);
     }
 
     public static ReflectionMatcher<ReflectedType<?>> typeHasNoInterfaces() {

@@ -1,22 +1,19 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.methodHasNameStartingWith;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.methodHasNameMatching;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-import com.lexicalscope.fluentreflection.ReflectedMethod;
-import com.lexicalscope.fluentreflection.ReflectionMatcher;
-
-public class TestMatcherMethodHasNameStartingWith extends AbstractTestReflectionMatcher<ReflectedMethod> {
+public class TestMatcherCallableHasNameMatching extends AbstractTestReflectionMatcher<ReflectedCallable> {
     @Override
     protected ReflectedMethod target() {
         return method;
     }
 
     @Override
-    protected ReflectionMatcher<ReflectedMethod> matcher() {
-        return methodHasNameStartingWith("abc");
+    protected ReflectionMatcher<ReflectedCallable> matcher() {
+        return methodHasNameMatching(".+bc.+");
     }
 
     @Override
@@ -31,6 +28,6 @@ public class TestMatcherMethodHasNameStartingWith extends AbstractTestReflection
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("method starting with \"abc\"");
+        return equalTo("callable matching \".+bc.+\"");
     }
 }

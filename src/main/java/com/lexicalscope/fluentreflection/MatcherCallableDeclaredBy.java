@@ -5,21 +5,20 @@ package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
-
-final class MatcherMethodDeclaredBy extends ReflectionMatcher<ReflectedMethod> {
+final class MatcherCallableDeclaredBy extends ReflectionMatcher<ReflectedCallable> {
     private final Class<?> declaringKlass;
 
-    MatcherMethodDeclaredBy(Class<?> declaringKlass) {
+    MatcherCallableDeclaredBy(final Class<?> declaringKlass) {
         this.declaringKlass = declaringKlass;
     }
 
     @Override
-    public boolean matchesSafely(final ReflectedMethod arg) {
+    public boolean matchesSafely(final ReflectedCallable arg) {
         return arg.getDeclaringClass().classUnderReflection().equals(declaringKlass);
     }
 
     @Override
     public void describeTo(final Description description) {
-        description.appendText("method declared by ").appendValue(declaringKlass);
+        description.appendText("callable declared by ").appendValue(declaringKlass);
     }
 }

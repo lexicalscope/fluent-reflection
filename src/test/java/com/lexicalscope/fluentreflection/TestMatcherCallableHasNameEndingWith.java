@@ -5,17 +5,14 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-import com.lexicalscope.fluentreflection.ReflectedMethod;
-import com.lexicalscope.fluentreflection.ReflectionMatcher;
-
-public class TestMatcherMethodHasNameEndingWith extends AbstractTestReflectionMatcher<ReflectedMethod> {
+public class TestMatcherCallableHasNameEndingWith extends AbstractTestReflectionMatcher<ReflectedCallable> {
     @Override
     protected ReflectedMethod target() {
         return method;
     }
 
     @Override
-    protected ReflectionMatcher<ReflectedMethod> matcher() {
+    protected ReflectionMatcher<ReflectedCallable> matcher() {
         return methodHasNameEndingWith("abc");
     }
 
@@ -31,6 +28,6 @@ public class TestMatcherMethodHasNameEndingWith extends AbstractTestReflectionMa
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("method ending with \"abc\"");
+        return equalTo("callable ending with \"abc\"");
     }
 }

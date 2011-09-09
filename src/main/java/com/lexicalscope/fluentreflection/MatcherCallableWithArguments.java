@@ -10,16 +10,15 @@ import java.util.List;
 
 import org.hamcrest.Description;
 
-
-final class MatcherMethodWithArguments extends ReflectionMatcher<ReflectedMethod> {
+final class MatcherCallableWithArguments extends ReflectionMatcher<ReflectedCallable> {
     private final Class<?>[] expectedArgumentTypes;
 
-    MatcherMethodWithArguments(Class<?>[] expectedArgumentTypes) {
+    MatcherCallableWithArguments(final Class<?>[] expectedArgumentTypes) {
         this.expectedArgumentTypes = expectedArgumentTypes;
     }
 
     @Override
-    public boolean matchesSafely(final ReflectedMethod arg) {
+    public boolean matchesSafely(final ReflectedCallable arg) {
         final List<Class<?>> actualArgumentTypes =
                 convert(arg.argumentTypes(), new ConvertReflectedTypeToClass());
 
@@ -35,6 +34,6 @@ final class MatcherMethodWithArguments extends ReflectionMatcher<ReflectedMethod
 
     @Override
     public void describeTo(final Description description) {
-        description.appendText("method with arguments ").appendValue(expectedArgumentTypes);
+        description.appendText("callable with arguments ").appendValue(expectedArgumentTypes);
     }
 }

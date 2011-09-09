@@ -5,10 +5,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-import com.lexicalscope.fluentreflection.ReflectedMethod;
-import com.lexicalscope.fluentreflection.ReflectionMatcher;
-
-public class TestMatcherMethodDeclaredBy extends AbstractTestReflectionMatcher<ReflectedMethod> {
+public class TestMatcherCallableDeclaredBy extends AbstractTestReflectionMatcher<ReflectedCallable> {
     interface DeclaringInterface {
 
     }
@@ -23,7 +20,7 @@ public class TestMatcherMethodDeclaredBy extends AbstractTestReflectionMatcher<R
     }
 
     @Override
-    protected ReflectionMatcher<ReflectedMethod> matcher() {
+    protected ReflectionMatcher<ReflectedCallable> matcher() {
         return methodDeclaredBy(DeclaringInterface.class);
     }
 
@@ -39,6 +36,6 @@ public class TestMatcherMethodDeclaredBy extends AbstractTestReflectionMatcher<R
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("method declared by <" + DeclaringInterface.class + ">");
+        return equalTo("callable declared by <" + DeclaringInterface.class + ">");
     }
 }
