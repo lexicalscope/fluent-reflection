@@ -28,6 +28,18 @@ public class TestConstructionByReflection {
         }
     }
 
+    public static class ClassWithAmbigiousConstructors {
+        private final boolean called;
+
+        public ClassWithAmbigiousConstructors(final Object object) {
+            called = true;
+        }
+
+        public ClassWithAmbigiousConstructors(final String string) {
+            called = true;
+        }
+    }
+
     @Test
     public void constructUsingDefaultConstructor() {
         assertThat(type(ClassWithDefaultConstructor.class).construct().called, equalTo(true));
@@ -56,5 +68,10 @@ public class TestConstructionByReflection {
     @Test
     public void constructUsingTwoArgumentWithTwoNullValueConstructor() {
         assertThat(type(ClassWithTwoConstructors.class).construct(null, null).stringAndIntegerCalled, equalTo(true));
+    }
+
+    @Test
+    public void constructUsingAnyConstructorIfMultipleMatchers() {
+        assertThat(type(ClassWithAmbigiousConstructors.class).construct("string").called, equalTo(true));
     }
 }
