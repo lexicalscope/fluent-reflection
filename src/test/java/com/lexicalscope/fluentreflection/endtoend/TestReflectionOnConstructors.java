@@ -22,7 +22,7 @@ public class TestReflectionOnConstructors {
     @Test
     public void canFindConstructorsByTheNumberOfArguments() {
         assertThat(type(TwoConstructorsWithDifferentNumbersOfArguments.class).constructors(
-                callableHasThisManyArguments(2)), Matchers.contains(ReflectionMatchers.constructorHasArguments(
+                callableHasThisManyArguments(2)), Matchers.contains(ReflectionMatchers.callableHasArguments(
                 String.class,
                 Integer.class)));
     }

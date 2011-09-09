@@ -9,4 +9,6 @@ public interface ReflectedConstructor<T> extends ReflectedCallable {
      * @return the class being reflected
      */
     Constructor<T> constructorUnderReflection();
+
+    T call(Object... args);
 }

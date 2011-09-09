@@ -1,6 +1,10 @@
 package com.lexicalscope.fluentreflection;
 
+import static ch.lambdaj.Lambda.convert;
+import static java.util.Arrays.asList;
+
 import java.lang.reflect.Constructor;
+import java.util.List;
 
 /*
  * Copyright 2011 Tim Wood
@@ -67,7 +71,8 @@ public class ReflectionMatchers {
         return new MatcherReflectedTypeReflectingOn(klass);
     }
 
-    public static ReflectionMatcher<ReflectedConstructor<?>> reflectedConstructorReflectingOn(final Constructor<?> constructor) {
+    public static ReflectionMatcher<ReflectedConstructor<?>> reflectedConstructorReflectingOn(
+            final Constructor<?> constructor) {
         return new MatcherConstructorReflectingOn(constructor);
     }
 
@@ -75,7 +80,11 @@ public class ReflectionMatchers {
         return new MatcherArgumentCount(argumentCount);
     }
 
-    public static ReflectionMatcher<ReflectedConstructor<?>> constructorHasArguments(final Class<?>... argTypes) {
-        return new MatcherArgumentTypes(argTypes);
+    public static ReflectionMatcher<ReflectedCallable> callableHasArguments(final Class<?>... argTypes) {
+        return callableHasArguments(asList(argTypes));
+    }
+
+    public static ReflectionMatcher<ReflectedCallable> callableHasArguments(final List<Class<?>> argTypes) {
+        return new MatcherArgumentTypes(convert(argTypes, new ConvertClassToReflectedTypeMatcher()));
     }
 }

@@ -71,7 +71,17 @@ public interface ReflectedType<T> {
      * 
      * @return the constructed object
      */
-    T construct();
+    T construct(Object... args);
 
+    /**
+     * Find all constructors matching the supplied matcher
+     * 
+     * @param constructorMatcher
+     *            matches the constructors
+     * 
+     * @return
+     */
     List<ReflectedConstructor<T>> constructors(ReflectionMatcher<? super ReflectedConstructor<?>> constructorMatcher);
+
+    ReflectedConstructor<T> constructor(ReflectionMatcher<? super ReflectedConstructor<?>> constructorMatcher);
 }

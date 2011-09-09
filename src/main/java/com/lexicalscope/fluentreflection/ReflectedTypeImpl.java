@@ -16,15 +16,15 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-import static ch.lambdaj.Lambda.select;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.typeIsInterface;
+import static ch.lambdaj.Lambda.*;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static org.hamcrest.Matchers.*;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.hamcrest.Matcher;
+
+import ch.lambdaj.Lambda;
 
 /**
  * Not thread safe
@@ -79,30 +79,27 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
     }
 
     @Override
-    public T construct() {
-        final Constructor<?>[] constructors = klass.getConstructors();
-        for (final Constructor<?> constructor : constructors) {
-            if (constructor.getParameterTypes().length == 0) {
-                try {
-                    return klass.cast(constructor.newInstance());
-                } catch (final IllegalArgumentException e) {
-                    throw e;
-                } catch (final InstantiationException e) {
-                    throw new InstantiationRuntimeException(e, constructor);
-                } catch (final IllegalAccessException e) {
-                    throw new IllegalAccessRuntimeException(e, constructor);
-                } catch (final InvocationTargetException e) {
-                    throw new InvocationTargetRuntimeException(e, constructor);
-                }
-            }
+    public T construct(final Object... args) {
+        final ReflectedConstructor<T> constructor =
+                constructor(callableHasArguments(convert(args, new ConvertObjectToClass())));
+
+        if (constructor == null) {
+            throw new ConstructorNotFoundRuntimeException(klass);
         }
-        throw new ConstructorNotFoundRuntimeException(klass);
+
+        return constructor.call(args);
     }
 
     @Override
     public List<ReflectedConstructor<T>> constructors(
             final ReflectionMatcher<? super ReflectedConstructor<?>> constructorMatcher) {
         return select(constructors.constructors(), constructorMatcher);
+    }
+
+    @Override
+    public ReflectedConstructor<T> constructor(
+            final ReflectionMatcher<? super ReflectedConstructor<?>> constructorMatcher) {
+        return Lambda.selectFirst(constructors.constructors(), constructorMatcher);
     }
 
     @Override

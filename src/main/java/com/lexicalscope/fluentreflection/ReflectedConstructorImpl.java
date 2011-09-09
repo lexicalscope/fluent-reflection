@@ -3,6 +3,7 @@ package com.lexicalscope.fluentreflection;
 import static ch.lambdaj.Lambda.convert;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 class ReflectedConstructorImpl<T> implements ReflectedConstructor<T> {
@@ -25,5 +26,20 @@ class ReflectedConstructorImpl<T> implements ReflectedConstructor<T> {
     @Override
     public Constructor<T> constructorUnderReflection() {
         return constructor;
+    }
+
+    @Override
+    public T call(final Object... args) {
+        try {
+            return constructor.newInstance(args);
+        } catch (final IllegalArgumentException e) {
+            throw e;
+        } catch (final InstantiationException e) {
+            throw new InstantiationRuntimeException(e, constructor);
+        } catch (final IllegalAccessException e) {
+            throw new IllegalAccessRuntimeException(e, constructor);
+        } catch (final InvocationTargetException e) {
+            throw new InvocationTargetRuntimeException(e, constructor);
+        }
     }
 }
