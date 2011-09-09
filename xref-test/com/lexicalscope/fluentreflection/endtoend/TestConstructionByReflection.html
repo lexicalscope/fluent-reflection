@@ -25,11 +25,49 @@
 <a name="15" href="#15">15</a>          }
 <a name="16" href="#16">16</a>      }
 <a name="17" href="#17">17</a>  
-<a name="18" href="#18">18</a>      @Test
-<a name="19" href="#19">19</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> constructUsingDefaultConstructor() {
-<a name="20" href="#20">20</a>          assertThat(type(ClassWithDefaultConstructor.<strong class="jxr_keyword">class</strong>).construct().called, equalTo(<strong class="jxr_keyword">true</strong>));
-<a name="21" href="#21">21</a>      }
-<a name="22" href="#22">22</a>  }
+<a name="18" href="#18">18</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/lexicalscope/fluentreflection/endtoend/TestConstructionByReflection.html">ClassWithTwoConstructors</a> {
+<a name="19" href="#19">19</a>          <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> stringCalled;
+<a name="20" href="#20">20</a>          <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> stringAndIntegerCalled;
+<a name="21" href="#21">21</a>  
+<a name="22" href="#22">22</a>          <strong class="jxr_keyword">public</strong> <a href="../../../../com/lexicalscope/fluentreflection/endtoend/TestConstructionByReflection.html">ClassWithTwoConstructors</a>(<strong class="jxr_keyword">final</strong> String string) {
+<a name="23" href="#23">23</a>              stringCalled = <strong class="jxr_keyword">true</strong>;
+<a name="24" href="#24">24</a>          }
+<a name="25" href="#25">25</a>  
+<a name="26" href="#26">26</a>          <strong class="jxr_keyword">public</strong> <a href="../../../../com/lexicalscope/fluentreflection/endtoend/TestConstructionByReflection.html">ClassWithTwoConstructors</a>(<strong class="jxr_keyword">final</strong> String string, <strong class="jxr_keyword">final</strong> Integer integer) {
+<a name="27" href="#27">27</a>              stringAndIntegerCalled = <strong class="jxr_keyword">true</strong>;
+<a name="28" href="#28">28</a>          }
+<a name="29" href="#29">29</a>      }
+<a name="30" href="#30">30</a>  
+<a name="31" href="#31">31</a>      @Test
+<a name="32" href="#32">32</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> constructUsingDefaultConstructor() {
+<a name="33" href="#33">33</a>          assertThat(type(ClassWithDefaultConstructor.<strong class="jxr_keyword">class</strong>).construct().called, equalTo(<strong class="jxr_keyword">true</strong>));
+<a name="34" href="#34">34</a>      }
+<a name="35" href="#35">35</a>  
+<a name="36" href="#36">36</a>      @Test
+<a name="37" href="#37">37</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> constructUsingOneArgumentConstructor() {
+<a name="38" href="#38">38</a>          assertThat(type(ClassWithTwoConstructors.<strong class="jxr_keyword">class</strong>).construct(<span class="jxr_string">"string"</span>).stringCalled, equalTo(<strong class="jxr_keyword">true</strong>));
+<a name="39" href="#39">39</a>      }
+<a name="40" href="#40">40</a>  
+<a name="41" href="#41">41</a>      @Test
+<a name="42" href="#42">42</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> constructUsingOneArgumentWithNullValueConstructor() {
+<a name="43" href="#43">43</a>          assertThat(type(ClassWithTwoConstructors.<strong class="jxr_keyword">class</strong>).construct((Object) <strong class="jxr_keyword">null</strong>).stringCalled, equalTo(<strong class="jxr_keyword">true</strong>));
+<a name="44" href="#44">44</a>      }
+<a name="45" href="#45">45</a>  
+<a name="46" href="#46">46</a>      @Test
+<a name="47" href="#47">47</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> constructUsingTwoArgumentConstructor() {
+<a name="48" href="#48">48</a>          assertThat(type(ClassWithTwoConstructors.<strong class="jxr_keyword">class</strong>).construct(<span class="jxr_string">"string"</span>, 13).stringAndIntegerCalled, equalTo(<strong class="jxr_keyword">true</strong>));
+<a name="49" href="#49">49</a>      }
+<a name="50" href="#50">50</a>  
+<a name="51" href="#51">51</a>      @Test
+<a name="52" href="#52">52</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> constructUsingTwoArgumentWithOneNullValueConstructor() {
+<a name="53" href="#53">53</a>          assertThat(type(ClassWithTwoConstructors.<strong class="jxr_keyword">class</strong>).construct(<span class="jxr_string">"string"</span>, <strong class="jxr_keyword">null</strong>).stringAndIntegerCalled, equalTo(<strong class="jxr_keyword">true</strong>));
+<a name="54" href="#54">54</a>      }
+<a name="55" href="#55">55</a>  
+<a name="56" href="#56">56</a>      @Test
+<a name="57" href="#57">57</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> constructUsingTwoArgumentWithTwoNullValueConstructor() {
+<a name="58" href="#58">58</a>          assertThat(type(ClassWithTwoConstructors.<strong class="jxr_keyword">class</strong>).construct(<strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>).stringAndIntegerCalled, equalTo(<strong class="jxr_keyword">true</strong>));
+<a name="59" href="#59">59</a>      }
+<a name="60" href="#60">60</a>  }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>
