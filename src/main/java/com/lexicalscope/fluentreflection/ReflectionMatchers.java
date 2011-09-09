@@ -67,8 +67,16 @@ public class ReflectionMatchers {
         return new MatcherTypeIsInterface();
     }
 
+    public static ReflectionMatcher<ReflectedType<?>> anyReflectedType() {
+        return new MatcherAnyReflectedType();
+    }
+
     public static ReflectionMatcher<ReflectedType<?>> reflectedTypeReflectingOn(final Class<?> klass) {
         return new MatcherReflectedTypeReflectingOn(klass);
+    }
+
+    public static ReflectionMatcher<ReflectedType<?>> reflectedTypeReflectingOnAssignableFrom(final Class<?> klass) {
+        return new MatcherReflectedTypeReflectingOnAssignableFrom(klass);
     }
 
     public static ReflectionMatcher<ReflectedConstructor<?>> reflectedConstructorReflectingOn(
@@ -85,6 +93,6 @@ public class ReflectionMatchers {
     }
 
     public static ReflectionMatcher<ReflectedCallable> callableHasArguments(final List<Class<?>> argTypes) {
-        return new MatcherArgumentTypes(convert(argTypes, new ConvertClassToReflectedTypeMatcher()));
+        return new MatcherArgumentTypes(convert(argTypes, new ConvertClassToReflectedTypeAssignableMatcher()));
     }
 }

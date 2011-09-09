@@ -39,7 +39,22 @@ public class TestConstructionByReflection {
     }
 
     @Test
+    public void constructUsingOneArgumentWithNullValueConstructor() {
+        assertThat(type(ClassWithTwoConstructors.class).construct((Object) null).stringCalled, equalTo(true));
+    }
+
+    @Test
     public void constructUsingTwoArgumentConstructor() {
         assertThat(type(ClassWithTwoConstructors.class).construct("string", 13).stringAndIntegerCalled, equalTo(true));
+    }
+
+    @Test
+    public void constructUsingTwoArgumentWithOneNullValueConstructor() {
+        assertThat(type(ClassWithTwoConstructors.class).construct("string", null).stringAndIntegerCalled, equalTo(true));
+    }
+
+    @Test
+    public void constructUsingTwoArgumentWithTwoNullValueConstructor() {
+        assertThat(type(ClassWithTwoConstructors.class).construct(null, null).stringAndIntegerCalled, equalTo(true));
     }
 }
