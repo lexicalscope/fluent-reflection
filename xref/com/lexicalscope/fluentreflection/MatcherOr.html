@@ -78,7 +78,7 @@
 <a name="68" href="#68">68</a>  <em class="jxr_javadoccomment">     *         true</em>
 <a name="69" href="#69">69</a>  <em class="jxr_javadoccomment">     */</em>
 <a name="70" href="#70">70</a>      @Factory
-<a name="71" href="#71">71</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; MatcherOr&lt;T&gt; orOf(<strong class="jxr_keyword">final</strong> List&lt;Matcher&lt;T&gt;&gt; matchers) {
+<a name="71" href="#71">71</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; MatcherOr&lt;T&gt; orOf(<strong class="jxr_keyword">final</strong> List&lt;? <strong class="jxr_keyword">extends</strong> Matcher&lt;? <strong class="jxr_keyword">super</strong> T&gt;&gt; matchers) {
 <a name="72" href="#72">72</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> MatcherOr&lt;T&gt;(matchers);
 <a name="73" href="#73">73</a>      }
 <a name="74" href="#74">74</a>  }
