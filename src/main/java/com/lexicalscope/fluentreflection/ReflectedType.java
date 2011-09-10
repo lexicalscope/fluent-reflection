@@ -101,7 +101,7 @@ public interface ReflectedType<T> {
      * 
      * @return
      */
-    List<ReflectedConstructor<T>> constructors(ReflectionMatcher<? super ReflectedConstructor<?>> constructorMatcher);
+    List<ReflectedConstructor<T>> constructors(Matcher<? super ReflectedConstructor<?>> constructorMatcher);
 
     /**
      * Find the first constructor method matching the supplied matcher
@@ -111,6 +111,5 @@ public interface ReflectedType<T> {
      * 
      * @return The constructor matching the supplied matcher
      */
-    ReflectedConstructor<T> constructor(ReflectionMatcher<? super ReflectedConstructor<?>> constructorMatcher);
-
+    ReflectedConstructor<T> constructor(Matcher<? super ReflectedConstructor<?>> constructorMatcher);
 }

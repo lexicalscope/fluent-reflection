@@ -1,5 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
+import static java.util.Collections.unmodifiableList;
+
 import java.util.List;
 
 class ReflectedSuperclassesAndInterfacesImpl<T> implements ReflectedSuperclassesAndInterfaces<T> {
@@ -11,9 +13,9 @@ class ReflectedSuperclassesAndInterfacesImpl<T> implements ReflectedSuperclasses
     }
 
     @Override
-    public List<ReflectedType<?>> superClassesAndInterfaces() {
+    public List<ReflectedType<?>> superclassesAndInterfaces() {
         if (interfacesAndSuperClass == null) {
-            interfacesAndSuperClass = new TypeHierarchyCalculation().interfacesAndSuperClass(klass);
+            interfacesAndSuperClass = unmodifiableList(new TypeHierarchyCalculation().interfacesAndSuperClass(klass));
         }
         return interfacesAndSuperClass;
     }

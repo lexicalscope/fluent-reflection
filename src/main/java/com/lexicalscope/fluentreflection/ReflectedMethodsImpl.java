@@ -1,5 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
+import static java.util.Collections.unmodifiableList;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +23,11 @@ class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
             final List<ReflectedMethod> result = new ArrayList<ReflectedMethod>();
 
             result.addAll(getDeclaredMethodsOfClass(klass));
-            for (final ReflectedType<?> klassToReflect : allTypes.superClassesAndInterfaces()) {
+            for (final ReflectedType<?> klassToReflect : allTypes.superclassesAndInterfaces()) {
                 result.addAll(getDeclaredMethodsOfClass(klassToReflect.classUnderReflection()));
             }
 
-            reflectedMethods = result;
+            reflectedMethods = unmodifiableList(result);
         }
         return reflectedMethods;
     }

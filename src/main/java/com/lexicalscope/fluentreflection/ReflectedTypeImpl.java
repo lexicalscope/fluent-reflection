@@ -16,15 +16,13 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-import static ch.lambdaj.Lambda.*;
+import static ch.lambdaj.Lambda.convert;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.not;
 
 import java.util.List;
 
 import org.hamcrest.Matcher;
-
-import ch.lambdaj.Lambda;
 
 /**
  * Not thread safe
@@ -35,15 +33,11 @@ import ch.lambdaj.Lambda;
  */
 final class ReflectedTypeImpl<T> implements ReflectedType<T> {
     private final Class<T> klass;
-    private final ReflectedSuperclassesAndInterfaces<T> superclassesAndInterfaces;
-    private final ReflectedMethods<T> methods;
-    private final ReflectedConstructors<T> constructors;
+    private final ReflectedMembers<T> members;
 
     public ReflectedTypeImpl(final Class<T> klass) {
         this.klass = klass;
-        this.superclassesAndInterfaces = new ReflectedSuperclassesAndInterfacesImpl<T>(klass);
-        this.methods = new ReflectedMethodsImpl<T>(klass, superclassesAndInterfaces);
-        this.constructors = new ReflectedConstructors<T>(klass);
+        this.members = new ReflectedMembersImpl<T>(klass);
     }
 
     @Override
@@ -53,12 +47,12 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
 
     @Override
     public List<ReflectedMethod> methods(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return select(methods.methods(), methodMatcher);
+        return members.methods(methodMatcher);
     }
 
     @Override
     public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return selectFirst(methods.methods(), methodMatcher);
+        return members.method(methodMatcher);
     }
 
     @Override
@@ -68,7 +62,7 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
 
     @Override
     public List<ReflectedMethod> methods() {
-        return methods(anything());
+        return members.methods();
     }
 
     static <T> ReflectedTypeImpl<?> createReflectedType(final Class<T> from) {
@@ -77,12 +71,12 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
 
     @Override
     public List<ReflectedType<?>> interfaces() {
-        return select(superclassesAndInterfaces.superClassesAndInterfaces(), typeIsInterface());
+        return members.superclassesAndInterfaces(typeIsInterface());
     }
 
     @Override
     public List<ReflectedType<?>> superclasses() {
-        return select(superclassesAndInterfaces.superClassesAndInterfaces(), not(typeIsInterface()));
+        return members.superclassesAndInterfaces(not(typeIsInterface()));
     }
 
     @Override
@@ -104,14 +98,14 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
 
     @Override
     public List<ReflectedConstructor<T>> constructors(
-            final ReflectionMatcher<? super ReflectedConstructor<?>> constructorMatcher) {
-        return select(constructors.constructors(), constructorMatcher);
+            final Matcher<? super ReflectedConstructor<?>> constructorMatcher) {
+        return members.constructors(constructorMatcher);
     }
 
     @Override
     public ReflectedConstructor<T> constructor(
-            final ReflectionMatcher<? super ReflectedConstructor<?>> constructorMatcher) {
-        return Lambda.selectFirst(constructors.constructors(), constructorMatcher);
+            final Matcher<? super ReflectedConstructor<?>> constructorMatcher) {
+        return members.constructor(constructorMatcher);
     }
 
     @Override
