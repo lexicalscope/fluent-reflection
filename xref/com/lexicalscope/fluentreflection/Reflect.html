@@ -34,11 +34,11 @@
 <a name="24" href="#24">24</a>  <em class="jxr_javadoccomment"> */</em>
 <a name="25" href="#25">25</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/Reflect.html">Reflect</a> {
 <a name="26" href="#26">26</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; ReflectedType&lt;T&gt; type(<strong class="jxr_keyword">final</strong> Class&lt;T&gt; klass) {
-<a name="27" href="#27">27</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ReflectedTypeImpl&lt;T&gt;(klass);
+<a name="27" href="#27">27</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedTypeFactoryImpl.html">ReflectedTypeFactoryImpl</a>().reflect(klass);
 <a name="28" href="#28">28</a>      }
 <a name="29" href="#29">29</a>  
 <a name="30" href="#30">30</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedMethod.html">ReflectedMethod</a> method(<strong class="jxr_keyword">final</strong> Method method) {
-<a name="31" href="#31">31</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedMethodImpl.html">ReflectedMethodImpl</a>(method);
+<a name="31" href="#31">31</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedTypeFactoryImpl.html">ReflectedTypeFactoryImpl</a>().method(method);
 <a name="32" href="#32">32</a>      }
 <a name="33" href="#33">33</a>  
 <a name="34" href="#34">34</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; T dynamicProxy(<strong class="jxr_keyword">final</strong> ProxyImplementation&lt;T&gt; proxyImplementation) {
