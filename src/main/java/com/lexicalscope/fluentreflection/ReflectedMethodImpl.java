@@ -16,7 +16,6 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-import static com.lexicalscope.fluentreflection.ReflectedTypeImpl.createReflectedType;
 import static java.lang.System.arraycopy;
 
 import java.lang.reflect.InvocationTargetException;
@@ -27,9 +26,11 @@ import java.util.List;
 import ch.lambdaj.Lambda;
 
 class ReflectedMethodImpl implements ReflectedMethod {
+    private final ReflectedTypeFactory reflectedTypeFactory;
     private final Method method;
 
-    public ReflectedMethodImpl(final Method method) {
+    public ReflectedMethodImpl(final ReflectedTypeFactory reflectedTypeFactory, final Method method) {
+        this.reflectedTypeFactory = reflectedTypeFactory;
         this.method = method;
     }
 
@@ -40,7 +41,7 @@ class ReflectedMethodImpl implements ReflectedMethod {
 
     @Override
     public List<ReflectedType<?>> argumentTypes() {
-        return Lambda.convert(method.getParameterTypes(), new ConvertClassToReflectedType());
+        return Lambda.convert(method.getParameterTypes(), new ConvertClassToReflectedType(reflectedTypeFactory));
     }
 
     @Override
@@ -50,7 +51,7 @@ class ReflectedMethodImpl implements ReflectedMethod {
 
     @Override
     public ReflectedType<?> getDeclaringClass() {
-        return createReflectedType(method.getDeclaringClass());
+        return reflectedTypeFactory.reflect(method.getDeclaringClass());
     }
 
     @Override

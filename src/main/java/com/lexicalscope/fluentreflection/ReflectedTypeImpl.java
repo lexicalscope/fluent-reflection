@@ -32,12 +32,16 @@ import org.hamcrest.Matcher;
  * @param <T>
  */
 final class ReflectedTypeImpl<T> implements ReflectedType<T> {
+    private final ReflectedTypeFactory reflectedTypeFactory;
     private final Class<T> klass;
     private final ReflectedMembers<T> members;
 
-    public ReflectedTypeImpl(final Class<T> klass) {
+    public ReflectedTypeImpl(final ReflectedTypeFactory reflectedTypeFactory,
+                             final Class<T> klass,
+                             final ReflectedMembers<T> members) {
+        this.reflectedTypeFactory = reflectedTypeFactory;
         this.klass = klass;
-        this.members = new ReflectedMembersImpl<T>(klass);
+        this.members = members;
     }
 
     @Override
@@ -63,10 +67,6 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
     @Override
     public List<ReflectedMethod> methods() {
         return members.methods();
-    }
-
-    static <T> ReflectedTypeImpl<?> createReflectedType(final Class<T> from) {
-        return new ReflectedTypeImpl<T>(from);
     }
 
     @Override

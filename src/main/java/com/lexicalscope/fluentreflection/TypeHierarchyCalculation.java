@@ -16,8 +16,6 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-import static com.lexicalscope.fluentreflection.ReflectedTypeImpl.createReflectedType;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +24,11 @@ class TypeHierarchyCalculation {
     private final List<Class<?>> done = new ArrayList<Class<?>>();
     private final List<ReflectedType<?>> result = new ArrayList<ReflectedType<?>>();
     private final List<Class<?>> pending = new LinkedList<Class<?>>();
+    private final ReflectedTypeFactory reflectedTypeFactory;
+
+    public TypeHierarchyCalculation(final ReflectedTypeFactory reflectedTypeFactory) {
+        this.reflectedTypeFactory = reflectedTypeFactory;
+    }
 
     List<ReflectedType<?>> interfacesAndSuperClass(final Class<?> klassToReflect) {
         queueSuperclassAndInterfaces(klassToReflect);
@@ -45,7 +48,7 @@ class TypeHierarchyCalculation {
             return;
         }
         done.add(klassToReflect);
-        result.add(createReflectedType(klassToReflect));
+        result.add(reflectedTypeFactory.reflect(klassToReflect));
     }
 
     private void queueSuperclassAndInterfaces(final Class<?> klassToReflect) {

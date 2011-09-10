@@ -7,12 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
+    private final ReflectedTypeFactory reflectedTypeFactory;
     private final Class<T> klass;
     private final ReflectedSuperclassesAndInterfaces<T> allTypes;
 
     private List<ReflectedMethod> reflectedMethods;
 
-    ReflectedMethodsImpl(final Class<T> klass, final ReflectedSuperclassesAndInterfaces<T> allTypes) {
+    ReflectedMethodsImpl(
+            final ReflectedTypeFactory reflectedTypeFactory,
+            final Class<T> klass,
+            final ReflectedSuperclassesAndInterfaces<T> allTypes) {
+        this.reflectedTypeFactory = reflectedTypeFactory;
         this.klass = klass;
         this.allTypes = allTypes;
     }
@@ -36,7 +41,7 @@ class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
         final List<ReflectedMethod> result = new ArrayList<ReflectedMethod>();
         final Method[] declaredMethods = klassToReflect.getDeclaredMethods();
         for (final Method method : declaredMethods) {
-            result.add(new ReflectedMethodImpl(method));
+            result.add(reflectedTypeFactory.method(method));
         }
         return result;
     }

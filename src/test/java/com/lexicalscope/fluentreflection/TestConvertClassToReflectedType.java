@@ -12,7 +12,7 @@ public class TestConvertClassToReflectedType {
     @Test
     public void classCanBeConvertedToReflectedType() throws Exception {
         assertThat(
-                new ConvertClassToReflectedType().convert(ExampleClass.class),
+                new ConvertClassToReflectedType(new ReflectedTypeFactoryImpl()).convert(ExampleClass.class),
                 reflectedTypeReflectingOn(ExampleClass.class));
     }
 }

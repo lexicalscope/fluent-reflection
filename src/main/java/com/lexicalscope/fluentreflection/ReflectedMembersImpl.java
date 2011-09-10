@@ -11,10 +11,10 @@ class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
     private final ReflectedMethods<T> methods;
     private final ReflectedConstructors<T> constructors;
 
-    public ReflectedMembersImpl(final Class<T> klass) {
-        this.superclassesAndInterfaces = new ReflectedSuperclassesAndInterfacesImpl<T>(klass);
-        this.methods = new ReflectedMethodsImpl<T>(klass, superclassesAndInterfaces);
-        this.constructors = new ReflectedConstructorsImpl<T>(klass);
+    public ReflectedMembersImpl(final ReflectedTypeFactory reflectedTypeFactory, final Class<T> klass) {
+        this.superclassesAndInterfaces = new ReflectedSuperclassesAndInterfacesImpl<T>(reflectedTypeFactory, klass);
+        this.methods = new ReflectedMethodsImpl<T>(reflectedTypeFactory, klass, superclassesAndInterfaces);
+        this.constructors = new ReflectedConstructorsImpl<T>(reflectedTypeFactory, klass);
     }
 
     @Override

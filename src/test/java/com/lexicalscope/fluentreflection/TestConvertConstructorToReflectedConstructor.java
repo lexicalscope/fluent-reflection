@@ -13,8 +13,9 @@ public class TestConvertConstructorToReflectedConstructor {
 
     @Test
     public void constructorIsConvertedToReflectedConstructor() throws Exception {
-        assertThat(new ConvertConstructorToReflectedConstructor<ExampleClass>().convert(ExampleClass.class
-                .getDeclaredConstructor()), reflectedConstructorReflectingOn(ExampleClass.class
+        assertThat(new ConvertConstructorToReflectedConstructor<ExampleClass>(new ReflectedTypeFactoryImpl())
+                .convert(ExampleClass.class
+                        .getDeclaredConstructor()), reflectedConstructorReflectingOn(ExampleClass.class
                 .getDeclaredConstructor()));
     }
 }

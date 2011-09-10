@@ -1,5 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
+import java.lang.reflect.Method;
+
 /*
  * Copyright 2011 Tim Wood
  *
@@ -16,17 +18,8 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-import ch.lambdaj.function.convert.Converter;
+public interface ReflectedTypeFactory {
+    <T> ReflectedType<T> reflect(Class<T> klass);
 
-class ConvertClassToReflectedType implements Converter<Class<?>, ReflectedType<?>> {
-    private final ReflectedTypeFactory reflectedTypeFactory;
-
-    public ConvertClassToReflectedType(final ReflectedTypeFactory reflectedTypeFactory) {
-        this.reflectedTypeFactory = reflectedTypeFactory;
-    }
-
-    @Override
-    public ReflectedType<?> convert(final Class<?> from) {
-        return reflectedTypeFactory.reflect(from);
-    }
+    ReflectedMethod method(Method method);
 }
