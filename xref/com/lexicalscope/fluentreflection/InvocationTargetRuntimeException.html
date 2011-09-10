@@ -10,8 +10,8 @@
 
 <a name="1" href="#1">1</a>   <strong class="jxr_keyword">package</strong> com.lexicalscope.fluentreflection;
 <a name="2" href="#2">2</a>   
-<a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> java.lang.reflect.Constructor;
-<a name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> java.lang.reflect.InvocationTargetException;
+<a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> java.lang.reflect.InvocationTargetException;
+<a name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> java.lang.reflect.Member;
 <a name="5" href="#5">5</a>   
 <a name="6" href="#6">6</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/InvocationTargetRuntimeException.html">InvocationTargetRuntimeException</a> <strong class="jxr_keyword">extends</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectionRuntimeException.html">ReflectionRuntimeException</a> {
 <a name="7" href="#7">7</a>       <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">long</strong> serialVersionUID = -4623735792822350866L;
@@ -32,7 +32,7 @@
 <a name="22" href="#22">22</a>          <strong class="jxr_keyword">super</strong>(cause);
 <a name="23" href="#23">23</a>      }
 <a name="24" href="#24">24</a>  
-<a name="25" href="#25">25</a>      <strong class="jxr_keyword">public</strong> <a href="../../../com/lexicalscope/fluentreflection/InvocationTargetRuntimeException.html">InvocationTargetRuntimeException</a>(<strong class="jxr_keyword">final</strong> InvocationTargetException e, <strong class="jxr_keyword">final</strong> Constructor&lt;?&gt; constructor) {
+<a name="25" href="#25">25</a>      <strong class="jxr_keyword">public</strong> <a href="../../../com/lexicalscope/fluentreflection/InvocationTargetRuntimeException.html">InvocationTargetRuntimeException</a>(<strong class="jxr_keyword">final</strong> InvocationTargetException e, <strong class="jxr_keyword">final</strong> Member member) {
 <a name="26" href="#26">26</a>          <em class="jxr_comment">// TODO Auto-generated constructor stub</em>
 <a name="27" href="#27">27</a>      }
 <a name="28" href="#28">28</a>  }

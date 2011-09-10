@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2011-09-09T19:47:00.894">
+<pmd version="4.2.5" timestamp="2011-09-10T11:29:45.611">
 <file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/IllegalAccessRuntimeException.java">
 <violation beginline="24" endline="26" begincolumn="12" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.lexicalscope.fluentreflection" class="IllegalAccessRuntimeException" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
-Avoid unused constructor parameters such as 'constructor'.
+Avoid unused constructor parameters such as 'e'.
 </violation>
 <violation beginline="24" endline="26" begincolumn="12" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.lexicalscope.fluentreflection" class="IllegalAccessRuntimeException" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
-Avoid unused constructor parameters such as 'e'.
+Avoid unused constructor parameters such as 'member'.
 </violation>
 </file>
 <file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/InstantiationRuntimeException.java">
@@ -18,10 +18,10 @@ Avoid unused constructor parameters such as 'e'.
 </file>
 <file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/InvocationTargetRuntimeException.java">
 <violation beginline="25" endline="27" begincolumn="12" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.lexicalscope.fluentreflection" class="InvocationTargetRuntimeException" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
-Avoid unused constructor parameters such as 'constructor'.
+Avoid unused constructor parameters such as 'e'.
 </violation>
 <violation beginline="25" endline="27" begincolumn="12" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.lexicalscope.fluentreflection" class="InvocationTargetRuntimeException" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
-Avoid unused constructor parameters such as 'e'.
+Avoid unused constructor parameters such as 'member'.
 </violation>
 </file>
 </pmd>
