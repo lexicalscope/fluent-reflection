@@ -89,7 +89,7 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
     }
 
     @Override
-    public T construct(final Object... args) {
+    public T constructRaw(final Object... args) {
         final ReflectedConstructor<T> constructor =
                 constructor(callableHasArguments(convert(args, new ConvertObjectToClass())));
 

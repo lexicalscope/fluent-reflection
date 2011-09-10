@@ -91,7 +91,7 @@ public interface ReflectedType<T> {
      * 
      * @return the constructed object
      */
-    T construct(Object... args);
+    T constructRaw(Object... args);
 
     /**
      * Find all constructors matching the supplied matcher

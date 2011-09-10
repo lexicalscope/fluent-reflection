@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.junit.Test;
 
-public class TestConstructionByReflection {
+public class TestRawConstructionByReflection {
     public static class ClassWithDefaultConstructor {
         private final boolean called;
 
@@ -42,36 +42,36 @@ public class TestConstructionByReflection {
 
     @Test
     public void constructUsingDefaultConstructor() {
-        assertThat(type(ClassWithDefaultConstructor.class).construct().called, equalTo(true));
+        assertThat(type(ClassWithDefaultConstructor.class).constructRaw().called, equalTo(true));
     }
 
     @Test
     public void constructUsingOneArgumentConstructor() {
-        assertThat(type(ClassWithTwoConstructors.class).construct("string").stringCalled, equalTo(true));
+        assertThat(type(ClassWithTwoConstructors.class).constructRaw("string").stringCalled, equalTo(true));
     }
 
     @Test
     public void constructUsingOneArgumentWithNullValueConstructor() {
-        assertThat(type(ClassWithTwoConstructors.class).construct((Object) null).stringCalled, equalTo(true));
+        assertThat(type(ClassWithTwoConstructors.class).constructRaw((Object) null).stringCalled, equalTo(true));
     }
 
     @Test
     public void constructUsingTwoArgumentConstructor() {
-        assertThat(type(ClassWithTwoConstructors.class).construct("string", 13).stringAndIntegerCalled, equalTo(true));
+        assertThat(type(ClassWithTwoConstructors.class).constructRaw("string", 13).stringAndIntegerCalled, equalTo(true));
     }
 
     @Test
     public void constructUsingTwoArgumentWithOneNullValueConstructor() {
-        assertThat(type(ClassWithTwoConstructors.class).construct("string", null).stringAndIntegerCalled, equalTo(true));
+        assertThat(type(ClassWithTwoConstructors.class).constructRaw("string", null).stringAndIntegerCalled, equalTo(true));
     }
 
     @Test
     public void constructUsingTwoArgumentWithTwoNullValueConstructor() {
-        assertThat(type(ClassWithTwoConstructors.class).construct(null, null).stringAndIntegerCalled, equalTo(true));
+        assertThat(type(ClassWithTwoConstructors.class).constructRaw(null, null).stringAndIntegerCalled, equalTo(true));
     }
 
     @Test
     public void constructUsingAnyConstructorIfMultipleMatchers() {
-        assertThat(type(ClassWithAmbigiousConstructors.class).construct("string").called, equalTo(true));
+        assertThat(type(ClassWithAmbigiousConstructors.class).constructRaw("string").called, equalTo(true));
     }
 }
