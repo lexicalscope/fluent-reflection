@@ -39,6 +39,16 @@ public interface ReflectedType<T> {
     List<ReflectedMethod> methods(Matcher<? super ReflectedMethod> methodMatcher);
 
     /**
+     * Find the first static method matching the supplied matcher
+     * 
+     * @param methodNamed
+     *            matches the method
+     * 
+     * @return The method matching the supplied matcher
+     */
+    ReflectedMethod staticMethod(Matcher<? super ReflectedMethod> methodNamed);
+
+    /**
      * All methods
      * 
      * @return all the methods

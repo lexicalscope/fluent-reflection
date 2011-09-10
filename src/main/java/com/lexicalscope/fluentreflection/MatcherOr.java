@@ -30,45 +30,45 @@ import org.hamcrest.Matcher;
  * @param <T>
  */
 final class MatcherOr<T> extends ReflectionMatcher<T> {
-	private final List<Matcher<T>> matchers;
+    private final List<? extends Matcher<? super T>> matchers;
 
-	private MatcherOr(final List<Matcher<T>> matchers) {
-		this.matchers = matchers;
-	}
+    private MatcherOr(final List<? extends Matcher<? super T>> matchers) {
+        this.matchers = matchers;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean matchesSafely(final T item) {
-		for (final Matcher<T> matcher : matchers) {
-			if (matcher.matches(item)) {
-				return true;
-			}
-		}
-		return false;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean matchesSafely(final T item) {
+        for (final Matcher<? super T> matcher : matchers) {
+            if (matcher.matches(item)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	@Override
-	public void describeTo(final Description description) {
-		for (int i = 0; i < matchers.size(); i++) {
-			description.appendDescriptionOf(matchers.get(i));
-			if (i + 1 < matchers.size()) {
-				description.appendText(" or ");
-			}
-		}
-	}
+    @Override
+    public void describeTo(final Description description) {
+        for (int i = 0; i < matchers.size(); i++) {
+            description.appendDescriptionOf(matchers.get(i));
+            if (i + 1 < matchers.size()) {
+                description.appendText(" or ");
+            }
+        }
+    }
 
-	/**
-	 * Creates an or matcher combining all the passed matchers
-	 * 
-	 * @param matchers
-	 *            The matchers to be put in or
-	 * @return A matcher that return true if at least one of the matchers return
-	 *         true
-	 */
-	@Factory
-	public static <T> MatcherOr<T> orOf(final List<Matcher<T>> matchers) {
-		return new MatcherOr<T>(matchers);
-	}
+    /**
+     * Creates an or matcher combining all the passed matchers
+     * 
+     * @param matchers
+     *            The matchers to be put in or
+     * @return A matcher that return true if at least one of the matchers return
+     *         true
+     */
+    @Factory
+    public static <T> MatcherOr<T> orOf(final List<Matcher<T>> matchers) {
+        return new MatcherOr<T>(matchers);
+    }
 }

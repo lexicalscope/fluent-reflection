@@ -95,4 +95,8 @@ public class ReflectionMatchers {
     public static ReflectionMatcher<ReflectedCallable> callableHasArguments(final List<Class<?>> argTypes) {
         return new MatcherArgumentTypes(convert(argTypes, new ConvertClassToReflectedTypeAssignableMatcher()));
     }
+
+    public static ReflectionMatcher<ReflectedMethod> staticMethod() {
+        return new MatcherMethodIsStatic();
+    }
 }

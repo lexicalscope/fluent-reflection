@@ -1,7 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Member;
 
 public class InvocationTargetRuntimeException extends ReflectionRuntimeException {
     private static final long serialVersionUID = -4623735792822350866L;
@@ -22,7 +22,7 @@ public class InvocationTargetRuntimeException extends ReflectionRuntimeException
         super(cause);
     }
 
-    public InvocationTargetRuntimeException(final InvocationTargetException e, final Constructor<?> constructor) {
+    public InvocationTargetRuntimeException(final InvocationTargetException e, final Member member) {
         // TODO Auto-generated constructor stub
     }
 }

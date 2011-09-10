@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import java.lang.reflect.Constructor;
+import java.lang.reflect.Member;
 
 public class IllegalAccessRuntimeException extends ReflectionRuntimeException {
     private static final long serialVersionUID = -2532532215028572886L;
@@ -21,7 +21,7 @@ public class IllegalAccessRuntimeException extends ReflectionRuntimeException {
         super(cause);
     }
 
-    public IllegalAccessRuntimeException(final IllegalAccessException e, final Constructor<?> constructor) {
+    public IllegalAccessRuntimeException(final IllegalAccessException e, final Member member) {
         // TODO Auto-generated constructor stub
     }
 }

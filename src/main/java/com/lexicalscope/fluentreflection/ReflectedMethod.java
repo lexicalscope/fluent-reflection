@@ -15,5 +15,5 @@ package com.lexicalscope.fluentreflection;
 // limitations under the License.
 
 public interface ReflectedMethod extends ReflectedCallable {
-
+    boolean isStatic();
 }

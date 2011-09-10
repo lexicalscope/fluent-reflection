@@ -29,9 +29,9 @@ import org.hamcrest.Matcher;
  * @param <T>
  */
 final class MatcherAnd<T> extends ReflectionMatcher<T> {
-    private final List<Matcher<T>> matchers;
+    private final List<? extends Matcher<? super T>> matchers;
 
-    private MatcherAnd(final List<Matcher<T>> matchers) {
+    private MatcherAnd(final List<? extends Matcher<? super T>> matchers) {
         this.matchers = matchers;
     }
 
@@ -40,7 +40,7 @@ final class MatcherAnd<T> extends ReflectionMatcher<T> {
      */
     @Override
     public boolean matchesSafely(final T item) {
-        for (final Matcher<T> matcher : matchers) {
+        for (final Matcher<? super T> matcher : matchers) {
             if (!matcher.matches(item)) {
                 return false;
             }
@@ -65,7 +65,7 @@ final class MatcherAnd<T> extends ReflectionMatcher<T> {
      *            The matchers to be put in and
      * @return A matcher that return true if all of the matchers return true
      */
-    public static <T> MatcherAnd<T> andOf(final List<Matcher<T>> matchers) {
+    public static <T> MatcherAnd<T> andOf(final List<? extends Matcher<? super T>> matchers) {
         return new MatcherAnd<T>(matchers);
     }
 }

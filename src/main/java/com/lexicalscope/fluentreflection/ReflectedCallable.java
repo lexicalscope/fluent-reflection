@@ -10,4 +10,6 @@ public interface ReflectedCallable {
     int argumentCount();
 
     List<ReflectedType<?>> argumentTypes();
+
+    Object call(Object... args);
 }

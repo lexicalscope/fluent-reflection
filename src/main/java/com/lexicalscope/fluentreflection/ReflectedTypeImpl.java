@@ -55,6 +55,11 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
     }
 
     @Override
+    public ReflectedMethod staticMethod(final Matcher<? super ReflectedMethod> methodmatcher) {
+        return selectFirst(members.methods(), ReflectionMatchers.staticMethod().and(methodmatcher));
+    }
+
+    @Override
     public List<ReflectedMethod> methods() {
         return methods(anything());
     }

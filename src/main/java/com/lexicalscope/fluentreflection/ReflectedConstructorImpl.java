@@ -33,8 +33,6 @@ class ReflectedConstructorImpl<T> implements ReflectedConstructor<T> {
     public T call(final Object... args) {
         try {
             return constructor.newInstance(args);
-        } catch (final IllegalArgumentException e) {
-            throw e;
         } catch (final InstantiationException e) {
             throw new InstantiationRuntimeException(e, constructor);
         } catch (final IllegalAccessException e) {

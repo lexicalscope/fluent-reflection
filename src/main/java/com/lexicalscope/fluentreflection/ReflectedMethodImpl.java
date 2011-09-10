@@ -16,7 +16,11 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
+import static com.lexicalscope.fluentreflection.ReflectedTypeImpl.createReflectedType;
+
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.List;
 
 import ch.lambdaj.Lambda;
@@ -45,11 +49,30 @@ class ReflectedMethodImpl implements ReflectedMethod {
 
     @Override
     public ReflectedType<?> getDeclaringClass() {
-        return ReflectedTypeImpl.createReflectedType(method.getDeclaringClass());
+        return createReflectedType(method.getDeclaringClass());
     }
 
     @Override
     public String toString() {
         return method.toString();
+    }
+
+    @Override
+    public Object call(final Object... args) {
+        if (isStatic()) {
+            try {
+                return method.invoke(null, args);
+            } catch (final IllegalAccessException e) {
+                throw new IllegalAccessRuntimeException(e, method);
+            } catch (final InvocationTargetException e) {
+                throw new InvocationTargetRuntimeException(e, method);
+            }
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean isStatic() {
+        return Modifier.isStatic(method.getModifiers());
     }
 }

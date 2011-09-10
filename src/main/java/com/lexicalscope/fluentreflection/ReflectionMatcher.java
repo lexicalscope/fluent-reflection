@@ -16,34 +16,40 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-import static com.lexicalscope.fluentreflection.MatcherAnd.andOf;
 import static com.lexicalscope.fluentreflection.ListBuilder.list;
+import static com.lexicalscope.fluentreflection.MatcherAnd.andOf;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
 public abstract class ReflectionMatcher<T> extends TypeSafeMatcher<T> {
-	/**
-	 * Creates an and matcher combining this matcher and the given one
-	 * 
-	 * @param matcher
-	 *            The matcher to be put in and with this one
-	 * @return A matcher that return true if this matcher and the passed one
-	 *         return true
-	 */
-	public ReflectionMatcher<T> and(final Matcher<T> matcher) {
-		return andOf(list((Matcher<T>) this).add(matcher).$());
-	}
+    /**
+     * Creates an and matcher combining this matcher and the given one
+     * 
+     * @param matcher
+     *            The matcher to be put in and with this one
+     * @return A matcher that return true if this matcher and the passed one
+     *         return true
+     */
+    public ReflectionMatcher<T> and(final Matcher<? super T> matcher) {
+        final List<Matcher<? super T>> list = new ArrayList<Matcher<? super T>>();
+        list.add(this);
+        list.add(matcher);
+        return andOf(list);
+    }
 
-	/**
-	 * Creates an or matcher combining this matcher and the given one
-	 * 
-	 * @param matcher
-	 *            The matcher to be put in or with this one
-	 * @return A matcher that return true if this matcher or the passed one
-	 *         return true
-	 */
-	public ReflectionMatcher<T> or(final Matcher<T> matcher) {
-		return MatcherOr.orOf(list((Matcher<T>) this).add(matcher).$());
-	}
+    /**
+     * Creates an or matcher combining this matcher and the given one
+     * 
+     * @param matcher
+     *            The matcher to be put in or with this one
+     * @return A matcher that return true if this matcher or the passed one
+     *         return true
+     */
+    public ReflectionMatcher<T> or(final Matcher<T> matcher) {
+        return MatcherOr.orOf(list((Matcher<T>) this).add(matcher).$());
+    }
 }
