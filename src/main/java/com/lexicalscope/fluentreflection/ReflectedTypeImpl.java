@@ -35,12 +35,14 @@ import ch.lambdaj.Lambda;
  */
 final class ReflectedTypeImpl<T> implements ReflectedType<T> {
     private final Class<T> klass;
-    private final ReflectedSuperclassesAndInterfaces<T> members;
+    private final ReflectedSuperclassesAndInterfaces<T> superclassesAndInterfaces;
+    private final ReflectedMethods<T> methods;
     private final ReflectedConstructors<T> constructors;
 
     public ReflectedTypeImpl(final Class<T> klass) {
         this.klass = klass;
-        this.members = new ReflectedSuperclassesAndInterfaces<T>(klass);
+        this.superclassesAndInterfaces = new ReflectedSuperclassesAndInterfacesImpl<T>(klass);
+        this.methods = new ReflectedMethodsImpl<T>(klass, superclassesAndInterfaces);
         this.constructors = new ReflectedConstructors<T>(klass);
     }
 
@@ -51,12 +53,12 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
 
     @Override
     public List<ReflectedMethod> methods(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return select(members.methods(), methodMatcher);
+        return select(methods.methods(), methodMatcher);
     }
 
     @Override
     public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return selectFirst(members.methods(), methodMatcher);
+        return selectFirst(methods.methods(), methodMatcher);
     }
 
     @Override
@@ -75,12 +77,12 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
 
     @Override
     public List<ReflectedType<?>> interfaces() {
-        return select(members.interfacesAndSuperClasses(), typeIsInterface());
+        return select(superclassesAndInterfaces.superClassesAndInterfaces(), typeIsInterface());
     }
 
     @Override
     public List<ReflectedType<?>> superclasses() {
-        return select(members.interfacesAndSuperClasses(), not(typeIsInterface()));
+        return select(superclassesAndInterfaces.superClassesAndInterfaces(), not(typeIsInterface()));
     }
 
     @Override
