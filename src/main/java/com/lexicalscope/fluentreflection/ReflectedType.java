@@ -29,6 +29,13 @@ public interface ReflectedType<T> {
     Class<T> classUnderReflection();
 
     /**
+     * All methods
+     * 
+     * @return all the methods
+     */
+    List<ReflectedMethod> methods();
+
+    /**
      * Find all methods matching the supplied matcher
      * 
      * @param methodMatcher
@@ -57,13 +64,6 @@ public interface ReflectedType<T> {
      * @return The method matching the supplied matcher
      */
     ReflectedMethod staticMethod(Matcher<? super ReflectedMethod> methodNamed);
-
-    /**
-     * All methods
-     * 
-     * @return all the methods
-     */
-    List<ReflectedMethod> methods();
 
     /**
      * All interfaces implemented by this type
@@ -103,6 +103,14 @@ public interface ReflectedType<T> {
      */
     List<ReflectedConstructor<T>> constructors(ReflectionMatcher<? super ReflectedConstructor<?>> constructorMatcher);
 
+    /**
+     * Find the first constructor method matching the supplied matcher
+     * 
+     * @param constructorMatcher
+     *            matches the method
+     * 
+     * @return The constructor matching the supplied matcher
+     */
     ReflectedConstructor<T> constructor(ReflectionMatcher<? super ReflectedConstructor<?>> constructorMatcher);
 
 }
