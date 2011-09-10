@@ -1,6 +1,5 @@
 package com.lexicalscope.fluentreflection;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -16,6 +15,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
     private static class MethodInvokationContext {
         private final Method method;
         private final Object[] args;
+        public Object result;
 
         public MethodInvokationContext(final Method method, final Object[] args) {
             this.method = method;
@@ -24,8 +24,8 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         }
     }
 
-    private final Map<Matcher<? super ReflectedMethod>, Object> registeredMethodHandlers =
-            new LinkedHashMap<Matcher<? super ReflectedMethod>, Object>();
+    private final Map<Matcher<? super ReflectedMethod>, MethodBody> registeredMethodHandlers =
+            new LinkedHashMap<Matcher<? super ReflectedMethod>, MethodBody>();
 
     private final TypeLiteral<?> typeLiteral;
     private final ThreadLocal<MethodInvokationContext> methodInvokationContext =
@@ -46,28 +46,21 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
     @Override
     public final Object invoke(final Object proxy, final Method method, final Object[] args) throws Throwable {
         methodInvokationContext.set(new MethodInvokationContext(method, args));
+        try {
+            for (final Entry<Matcher<? super ReflectedMethod>, MethodBody> registeredMethodHandler : registeredMethodHandlers
+                    .entrySet()) {
+                if (registeredMethodHandler.getKey().matches(Reflect.method(method))) {
+                    final MethodBody registeredImplementation = registeredMethodHandler.getValue();
 
-        for (final Entry<Matcher<? super ReflectedMethod>, Object> registeredMethodHandler : registeredMethodHandlers
-                .entrySet()) {
-            if (registeredMethodHandler.getKey().matches(method)) {
-                final Object registeredImplementation = registeredMethodHandler.getValue();
-                final Class<?> registeredImplementationType = registeredImplementation.getClass();
+                    registeredImplementation.body();
 
-                final Constructor<?>[] constructors =
-                        registeredImplementationType.getDeclaredClasses()[0].getDeclaredConstructors();
-                for (final Constructor<?> constructor : constructors) {
-                    System.out.println(constructor);
+                    return methodInvokationContext.get().result;
                 }
-
-                final Constructor<?> declaredConstructor =
-                        registeredImplementationType.getDeclaredClasses()[0].getDeclaredConstructor(
-                                new Class[] { registeredImplementationType });
-                declaredConstructor.setAccessible(true);
-                return declaredConstructor
-                        .newInstance(new Object[] { registeredImplementation });
             }
+            throw new UnsupportedOperationException("no implemention found for method " + method);
+        } finally {
+            methodInvokationContext.set(null);
         }
-        return new UnsupportedOperationException("no implemention found for method " + method);
     }
 
     @Override
@@ -78,13 +71,17 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
     public final MethodBinding<T> matching(final Matcher<? super ReflectedMethod> methodMatcher) {
         return new MethodBinding<T>() {
             @Override
-            public void execute(final Object callable) {
-                registeredMethodHandlers.put(methodMatcher, callable);
+            public void execute(final MethodBody methodBody) {
+                registeredMethodHandlers.put(methodMatcher, methodBody);
             }
         };
     }
 
     public final String methodName() {
         return methodInvokationContext.get().method.getName();
+    }
+
+    public final void returnValue(final Object value) {
+        methodInvokationContext.get().result = value;
     }
 }

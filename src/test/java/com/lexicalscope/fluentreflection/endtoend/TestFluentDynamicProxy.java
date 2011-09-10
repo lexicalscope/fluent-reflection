@@ -1,37 +1,55 @@
 package com.lexicalscope.fluentreflection.endtoend;
 
 import static com.lexicalscope.fluentreflection.Reflect.dynamicProxy;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.methodNamed;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import com.lexicalscope.fluentreflection.Implementing;
+import com.lexicalscope.fluentreflection.MethodBody;
 
 public class TestFluentDynamicProxy {
+    @Rule
+    public final ExpectedException exception = ExpectedException.none();
+
+    static class MyException extends Exception {
+        private static final long serialVersionUID = -4179362193684542734L;
+    }
+
+    interface ThrowingMethod {
+        void method() throws MyException;
+    }
+
     interface TwoMethods {
         void methodA();
 
         void methodB();
     }
 
-    private final List<String> called = new ArrayList<String>();
+    interface QueryMethod {
+        int methodA();
+
+        int methodB();
+    }
 
     @Test
-    public void proxyEveryMethod() throws Exception {
+    public void canProxyMultipleMethods() throws Exception {
+        final List<String> called = new ArrayList<String>();
 
         final TwoMethods dynamicProxy = dynamicProxy(new Implementing<TwoMethods>() {
             {
-                matching(anything()).execute(new Object() {
-                    class Body {
-                        {
-                            called.add(methodName());
-                        }
+                matching(anything()).execute(new MethodBody() {
+                    @Override
+                    public void body() {
+                        called.add(methodName());
                     }
                 });
             }
@@ -41,24 +59,96 @@ public class TestFluentDynamicProxy {
 
         dynamicProxy.methodA();
 
-        assertThat(called, Matchers.contains("methodA"));
+        assertThat(called, contains("methodA"));
+
+        dynamicProxy.methodB();
+
+        assertThat(called, contains("methodA", "methodB"));
     }
 
     @Test
-    @Ignore("needs a better error message and fail fast")
-    public void cannotCloseOverMethodVariables() throws Exception {
-        final List<String> closedVariable = new ArrayList<String>();
-        final TwoMethods dynamicProxy = dynamicProxy(new Implementing<TwoMethods>() {
+    public void canReturnValueFromProxiedMethod() throws Exception {
+
+        final QueryMethod dynamicProxy = dynamicProxy(new Implementing<QueryMethod>() {
             {
-                matching(Matchers.anything()).execute(new Object() {
-                    class Body {
-                        {
-                            closedVariable.add("never executed");
-                        }
+                matching(anything()).execute(new MethodBody() {
+                    @Override
+                    public void body() {
+                        returnValue(42);
                     }
                 });
             }
         });
-        dynamicProxy.methodA();
+
+        assertThat(dynamicProxy.methodA(), equalTo(42));
+        assertThat(dynamicProxy.methodB(), equalTo(42));
+    }
+
+    @Test
+    public void canReturnDifferentValuesFromEachProxiedMethod() throws Exception {
+
+        final QueryMethod dynamicProxy = dynamicProxy(new Implementing<QueryMethod>() {
+            {
+                matching(methodNamed("methodA")).execute(new MethodBody() {
+                    @Override
+                    public void body() {
+                        returnValue(42);
+                    }
+                });
+
+                matching(methodNamed("methodB")).execute(new MethodBody() {
+                    @Override
+                    public void body() {
+                        returnValue(24);
+                    }
+                });
+            }
+        });
+
+        assertThat(dynamicProxy.methodA(), equalTo(42));
+        assertThat(dynamicProxy.methodB(), equalTo(24));
+    }
+
+    @Test
+    public void canDefineDefaultImplementationForUnmatchedMethods() throws Exception {
+
+        final QueryMethod dynamicProxy = dynamicProxy(new Implementing<QueryMethod>() {
+            {
+                matching(methodNamed("methodA")).execute(new MethodBody() {
+                    @Override
+                    public void body() {
+                        returnValue(42);
+                    }
+                });
+
+                matching(anything()).execute(new MethodBody() {
+                    @Override
+                    public void body() {
+                        returnValue(24);
+                    }
+                });
+            }
+        });
+
+        assertThat(dynamicProxy.methodA(), equalTo(42));
+        assertThat(dynamicProxy.methodB(), equalTo(24));
+    }
+
+    @Test
+    public void canThrowException() throws Exception {
+
+        final ThrowingMethod dynamicProxy = dynamicProxy(new Implementing<ThrowingMethod>() {
+            {
+                matching(anything()).execute(new MethodBody() {
+                    @Override
+                    public void body() throws MyException {
+                        throw new MyException();
+                    }
+                });
+            }
+        });
+
+        exception.expect(MyException.class);
+        dynamicProxy.method();
     }
 }

@@ -1,5 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /*
@@ -24,6 +25,10 @@ import java.lang.reflect.Proxy;
 public class Reflect {
     public static <T> ReflectedType<T> type(final Class<T> klass) {
         return new ReflectedTypeImpl<T>(klass);
+    }
+
+    public static ReflectedMethod method(final Method method) {
+        return new ReflectedMethodImpl(method);
     }
 
     public static <T> T dynamicProxy(final ProxyImplementation<T> proxyImplementation) {
