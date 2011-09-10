@@ -19,7 +19,6 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
 
         public MethodInvokationContext(final Method method, final Object[] args) {
             this.method = method;
-            // TODO Auto-generated constructor stub
             this.args = args;
         }
     }

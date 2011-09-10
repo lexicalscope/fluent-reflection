@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
  * limitations under the License. 
  */
 
-public interface ReflectedTypeFactory {
+interface ReflectedTypeFactory {
     <T> ReflectedType<T> reflect(Class<T> klass);
 
     ReflectedMethod method(Method method);
