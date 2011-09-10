@@ -39,6 +39,16 @@ public interface ReflectedType<T> {
     List<ReflectedMethod> methods(Matcher<? super ReflectedMethod> methodMatcher);
 
     /**
+     * Find the first method matching the supplied matcher
+     * 
+     * @param methodMatcher
+     *            matches the method
+     * 
+     * @return The method matching the supplied matcher
+     */
+    ReflectedCallable method(Matcher<? super ReflectedMethod> methodMatcher);
+
+    /**
      * Find the first static method matching the supplied matcher
      * 
      * @param methodNamed
@@ -94,4 +104,5 @@ public interface ReflectedType<T> {
     List<ReflectedConstructor<T>> constructors(ReflectionMatcher<? super ReflectedConstructor<?>> constructorMatcher);
 
     ReflectedConstructor<T> constructor(ReflectionMatcher<? super ReflectedConstructor<?>> constructorMatcher);
+
 }

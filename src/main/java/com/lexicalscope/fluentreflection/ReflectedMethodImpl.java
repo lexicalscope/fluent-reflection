@@ -17,6 +17,7 @@ package com.lexicalscope.fluentreflection;
  */
 
 import static com.lexicalscope.fluentreflection.ReflectedTypeImpl.createReflectedType;
+import static java.lang.System.arraycopy;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -67,8 +68,22 @@ class ReflectedMethodImpl implements ReflectedMethod {
             } catch (final InvocationTargetException e) {
                 throw new InvocationTargetRuntimeException(e, method);
             }
+        } else {
+            if (args.length < 1) {
+                throw new IllegalArgumentException("target instance must be specified as first argument when calling "
+                        + method);
+            }
+
+            final Object[] remainingArguments = new Object[args.length - 1];
+            arraycopy(args, 1, remainingArguments, 0, args.length - 1);
+            try {
+                return method.invoke(args[0], remainingArguments);
+            } catch (final IllegalAccessException e) {
+                throw new IllegalAccessRuntimeException(e, method);
+            } catch (final InvocationTargetException e) {
+                throw new InvocationTargetRuntimeException(e, method);
+            }
         }
-        throw new UnsupportedOperationException();
     }
 
     @Override

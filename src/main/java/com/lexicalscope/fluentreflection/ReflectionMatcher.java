@@ -16,8 +16,8 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-import static com.lexicalscope.fluentreflection.ListBuilder.list;
 import static com.lexicalscope.fluentreflection.MatcherAnd.andOf;
+import static com.lexicalscope.fluentreflection.MatcherOr.orOf;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,10 @@ public abstract class ReflectionMatcher<T> extends TypeSafeMatcher<T> {
      * @return A matcher that return true if this matcher or the passed one
      *         return true
      */
-    public ReflectionMatcher<T> or(final Matcher<T> matcher) {
-        return MatcherOr.orOf(list((Matcher<T>) this).add(matcher).$());
+    public ReflectionMatcher<T> or(final Matcher<? super T> matcher) {
+        final List<Matcher<? super T>> list = new ArrayList<Matcher<? super T>>();
+        list.add(this);
+        list.add(matcher);
+        return orOf(list);
     }
 }

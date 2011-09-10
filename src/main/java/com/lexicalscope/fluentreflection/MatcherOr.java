@@ -68,7 +68,7 @@ final class MatcherOr<T> extends ReflectionMatcher<T> {
      *         true
      */
     @Factory
-    public static <T> MatcherOr<T> orOf(final List<Matcher<T>> matchers) {
+    public static <T> MatcherOr<T> orOf(final List<? extends Matcher<? super T>> matchers) {
         return new MatcherOr<T>(matchers);
     }
 }
