@@ -14,7 +14,7 @@ final class MatcherCallableDeclaredBy extends ReflectionMatcher<ReflectedCallabl
 
     @Override
     public boolean matchesSafely(final ReflectedCallable arg) {
-        return arg.getDeclaringClass().classUnderReflection().equals(declaringKlass);
+        return arg.declaringClass().classUnderReflection().equals(declaringKlass);
     }
 
     @Override

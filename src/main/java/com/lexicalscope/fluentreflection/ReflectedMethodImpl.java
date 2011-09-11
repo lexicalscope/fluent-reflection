@@ -16,21 +16,25 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
+import static ch.lambdaj.Lambda.convert;
 import static java.lang.System.arraycopy;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.List;
-
-import ch.lambdaj.Lambda;
 
 class ReflectedMethodImpl implements ReflectedMethod {
     private final ReflectedTypeFactory reflectedTypeFactory;
+    private final ReflectedClass<?> reflectedClass;
     private final Method method;
 
-    public ReflectedMethodImpl(final ReflectedTypeFactory reflectedTypeFactory, final Method method) {
+    public ReflectedMethodImpl(final ReflectedTypeFactory reflectedTypeFactory,
+                               final ReflectedClass<?> reflectedClass,
+                               final Method method) {
         this.reflectedTypeFactory = reflectedTypeFactory;
+        this.reflectedClass = reflectedClass;
         this.method = method;
     }
 
@@ -41,7 +45,10 @@ class ReflectedMethodImpl implements ReflectedMethod {
 
     @Override
     public List<ReflectedClass<?>> argumentTypes() {
-        return Lambda.convert(method.getParameterTypes(), new ConvertClassToReflectedType(reflectedTypeFactory));
+        final List<ReflectedClass<?>> result = new ArrayList<ReflectedClass<?>>();
+        result.add(reflectedClass);
+        result.addAll(convert(method.getParameterTypes(), new ConvertClassToReflectedType(reflectedTypeFactory)));
+        return result;
     }
 
     @Override
@@ -54,7 +61,7 @@ class ReflectedMethodImpl implements ReflectedMethod {
     }
 
     @Override
-    public ReflectedClass<?> getDeclaringClass() {
+    public ReflectedClass<?> declaringClass() {
         return reflectedTypeFactory.reflect(method.getDeclaringClass());
     }
 

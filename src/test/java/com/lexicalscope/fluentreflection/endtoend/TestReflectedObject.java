@@ -65,6 +65,20 @@ public class TestReflectedObject {
     }
 
     @Test
+    public void instanceMethodArgumentTypeIsCorrect() throws Exception {
+        assertThat(
+                reflectedInstance.method(methodNamed("doubleIt")).argumentTypes(),
+                contains(reflectedTypeReflectingOn(int.class)));
+    }
+
+    @Test
+    public void instanceMethodDeclaringTypeIsCorrect() throws Exception {
+        assertThat(
+                reflectedInstance.method(methodNamed("doubleIt")).declaringClass(),
+                reflectedTypeReflectingOn(ExampleObject.class));
+    }
+
+    @Test
     public void staticMethodsAreNotFound() throws Exception {
         assertThat(reflectedInstance.methods(), not(hasItem(methodIsStatic())));
     }

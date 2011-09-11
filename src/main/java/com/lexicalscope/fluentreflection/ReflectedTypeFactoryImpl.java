@@ -31,6 +31,6 @@ class ReflectedTypeFactoryImpl implements ReflectedTypeFactory {
 
     @Override
     public ReflectedMethod method(final Method method) {
-        return new ReflectedMethodImpl(this, method);
+        return new ReflectedMethodImpl(this, reflect(method.getDeclaringClass()), method);
     }
 }

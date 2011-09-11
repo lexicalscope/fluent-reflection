@@ -58,14 +58,15 @@ public class TestReflectionOnInterface {
     @Test
     public void methodsWithNoArgumentsCanBeSelected() {
         assertThat(
-                type(ExampleInterface.class).methods(methodWithArguments()),
+                type(ExampleInterface.class).methods(
+                        methodWithArguments(ExampleInterface.class)),
                 Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
     }
 
     @Test
     public void methodCanBeSelectedByArgument() {
         assertThat(
-                type(ExampleInterface.class).methods(methodWithArguments(String.class)),
+                type(ExampleInterface.class).methods(methodWithArguments(ExampleInterface.class, String.class)),
                 Matchers.<ReflectedMethod>hasItem(methodNamed("setPropertyOne")));
     }
 }

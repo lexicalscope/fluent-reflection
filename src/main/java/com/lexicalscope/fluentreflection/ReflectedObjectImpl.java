@@ -49,8 +49,9 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
 
     @Override
     public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return new ConvertReflectedMethodToBoundReflectedMethod(instance).convert(reflect.method(methodIsNotStatic()
-                .and(methodMatcher)));
+        return new ConvertReflectedMethodToBoundReflectedMethod(instance).convert(reflect
+                .method(methodIsNotStatic()
+                        .and(methodMatcher)));
     }
 
     @Override

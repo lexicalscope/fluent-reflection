@@ -1,9 +1,9 @@
 package com.lexicalscope.fluentreflection.endtoend;
 
 import static com.lexicalscope.fluentreflection.Reflect.type;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.methodNamed;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -78,6 +78,17 @@ public class TestReflectedClassInstanceMethod {
         assertThat(
                 type(ClassWithInstanceMethods.class).method(methodNamed("methodWithTwoArguments")).argumentCount(),
                 equalTo(3));
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void instanceMethodArgumentTypeIsCorrect() throws Exception {
+        assertThat(
+                type(ClassWithInstanceMethods.class).method(methodNamed("methodWithTwoArguments")).argumentTypes(),
+                contains(
+                        reflectedTypeReflectingOn(ClassWithInstanceMethods.class),
+                        reflectedTypeReflectingOn(String.class),
+                        reflectedTypeReflectingOn(Integer.class)));
     }
 
     @Test

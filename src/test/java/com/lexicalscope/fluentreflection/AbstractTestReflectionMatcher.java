@@ -64,7 +64,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
         final ReflectedClass<?> declaringType = context.mock(ReflectedClass.class, "declaringType");
         context.checking(new Expectations() {
             {
-                oneOf(method).getDeclaringClass();
+                oneOf(method).declaringClass();
                 will(returnValue(declaringType));
 
                 oneOf(declaringType).classUnderReflection();

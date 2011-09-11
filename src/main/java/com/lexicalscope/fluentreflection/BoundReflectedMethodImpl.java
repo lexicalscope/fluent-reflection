@@ -2,6 +2,7 @@ package com.lexicalscope.fluentreflection;
 
 import static java.lang.System.arraycopy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -24,7 +25,9 @@ class BoundReflectedMethodImpl implements ReflectedMethod {
     private final ReflectedMethod method;
     private final Object instance;
 
-    public BoundReflectedMethodImpl(final ReflectedMethod method, final Object instance) {
+    public BoundReflectedMethodImpl(
+            final ReflectedMethod method,
+            final Object instance) {
         if (method.isStatic()) {
             throw new IllegalArgumentException("cannot bind static method " + method);
         }
@@ -39,7 +42,7 @@ class BoundReflectedMethodImpl implements ReflectedMethod {
 
     @Override
     public List<ReflectedClass<?>> argumentTypes() {
-        return null;
+        return new ArrayList<ReflectedClass<?>>(method.argumentTypes().subList(1, argumentCount() + 1));
     }
 
     @Override
@@ -51,8 +54,8 @@ class BoundReflectedMethodImpl implements ReflectedMethod {
     }
 
     @Override
-    public ReflectedClass<?> getDeclaringClass() {
-        return null;
+    public ReflectedClass<?> declaringClass() {
+        return method.declaringClass();
     }
 
     @Override

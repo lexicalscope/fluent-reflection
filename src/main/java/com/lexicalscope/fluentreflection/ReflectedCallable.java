@@ -5,7 +5,7 @@ import java.util.List;
 public interface ReflectedCallable {
     String getName();
 
-    ReflectedClass<?> getDeclaringClass();
+    ReflectedClass<?> declaringClass();
 
     int argumentCount();
 

@@ -45,7 +45,7 @@ class ReflectedConstructorImpl<T> implements ReflectedConstructor<T> {
     }
 
     @Override
-    public ReflectedClass<?> getDeclaringClass() {
+    public ReflectedClass<?> declaringClass() {
         return type(constructor.getDeclaringClass());
     }
 
