@@ -5,10 +5,12 @@ import static org.hamcrest.Matchers.contains;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
-class MatcherArgumentTypes extends ReflectionMatcher<ReflectedCallable> {
+final class MatcherArgumentTypes extends ReflectionMatcher<ReflectedCallable> {
     private final List<Matcher<? super ReflectedType<?>>> argumentTypeMatchers;
 
     public MatcherArgumentTypes(final List<? extends Matcher<? super ReflectedType<?>>> argumentTypeMatchers) {
@@ -29,5 +31,20 @@ class MatcherArgumentTypes extends ReflectionMatcher<ReflectedCallable> {
     @Override
     public void describeTo(final Description description) {
         description.appendText("callable with arguments ").appendList("(", ", ", ")", argumentTypeMatchers);
+    }
+
+    @Override
+    public final boolean equals(final Object that) {
+        if (that != null && that.getClass().equals(this.getClass())) {
+            return new EqualsBuilder()
+                    .append(argumentTypeMatchers, ((MatcherArgumentTypes) that).argumentTypeMatchers)
+                    .isEquals();
+        }
+        return false;
+    }
+
+    @Override
+    public final int hashCode() {
+        return new HashCodeBuilder().append(argumentTypeMatchers).toHashCode();
     }
 }

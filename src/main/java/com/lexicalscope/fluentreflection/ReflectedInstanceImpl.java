@@ -1,7 +1,5 @@
 package com.lexicalscope.fluentreflection;
 
-import java.lang.reflect.Method;
-
 /*
  * Copyright 2011 Tim Wood
  *
@@ -18,19 +16,11 @@ import java.lang.reflect.Method;
  * limitations under the License. 
  */
 
-class ReflectedTypeFactoryImpl implements ReflectedTypeFactory {
-    @Override
-    public <T> ReflectedType<T> reflect(final Class<T> klass) {
-        return new ReflectedTypeImpl<T>(this, klass, new ReflectedMembersImpl<T>(this, klass));
-    }
-
-    @Override
-    public <T> ReflectedInstance<T> reflect(final Class<T> klass, final T instance) {
-        return new ReflectedInstanceImpl<T>(this, reflect(klass), instance);
-    }
-
-    @Override
-    public ReflectedMethod method(final Method method) {
-        return new ReflectedMethodImpl(this, method);
+class ReflectedInstanceImpl<T> implements ReflectedInstance<T> {
+    public ReflectedInstanceImpl(
+            final ReflectedTypeFactoryImpl reflectedTypeFactoryImpl,
+            final ReflectedType<T> reflect,
+            final T instance) {
+        // TODO Auto-generated constructor stub
     }
 }

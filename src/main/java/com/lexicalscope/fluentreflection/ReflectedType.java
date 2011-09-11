@@ -87,11 +87,18 @@ public interface ReflectedType<T> {
     List<ReflectedType<?>> superclasses();
 
     /**
-     * Construct and object of the type under reflection
+     * Construct an object of the type under reflection
      * 
      * @return the constructed object
      */
     T constructRaw(Object... args);
+
+    /**
+     * Construct an object of the type under reflection
+     * 
+     * @return a reflection wrapper around the constructed object
+     */
+    ReflectedInstance<T> construct(Object... args);
 
     /**
      * Find all constructors matching the supplied matcher

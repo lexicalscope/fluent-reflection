@@ -229,5 +229,12 @@
         	<classifier>no_aop</classifier>
         	<scope>compile</scope>
         </dependency>
+        <dependency>
+        	<groupId>org.apache.commons</groupId>
+        	<artifactId>commons-lang3</artifactId>
+        	<version>3.0.1</version>
+        	<type>jar</type>
+        	<scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>

@@ -97,6 +97,12 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
     }
 
     @Override
+    public ReflectedInstance<T> construct(final Object... args) {
+        final T newInstance = constructRaw(args);
+        return reflectedTypeFactory.reflect(klass, newInstance);
+    }
+
+    @Override
     public List<ReflectedConstructor<T>> constructors(
             final Matcher<? super ReflectedConstructor<?>> constructorMatcher) {
         return members.constructors(constructorMatcher);
