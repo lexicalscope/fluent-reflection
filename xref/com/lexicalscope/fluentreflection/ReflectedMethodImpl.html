@@ -56,52 +56,67 @@
 <a name="46" href="#46">46</a>  
 <a name="47" href="#47">47</a>      @Override
 <a name="48" href="#48">48</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> argumentCount() {
-<a name="49" href="#49">49</a>          <strong class="jxr_keyword">return</strong> method.getParameterTypes().length;
-<a name="50" href="#50">50</a>      }
-<a name="51" href="#51">51</a>  
-<a name="52" href="#52">52</a>      @Override
-<a name="53" href="#53">53</a>      <strong class="jxr_keyword">public</strong> ReflectedClass&lt;?&gt; getDeclaringClass() {
-<a name="54" href="#54">54</a>          <strong class="jxr_keyword">return</strong> reflectedTypeFactory.reflect(method.getDeclaringClass());
-<a name="55" href="#55">55</a>      }
-<a name="56" href="#56">56</a>  
-<a name="57" href="#57">57</a>      @Override
-<a name="58" href="#58">58</a>      <strong class="jxr_keyword">public</strong> String toString() {
-<a name="59" href="#59">59</a>          <strong class="jxr_keyword">return</strong> method.toString();
-<a name="60" href="#60">60</a>      }
-<a name="61" href="#61">61</a>  
-<a name="62" href="#62">62</a>      @Override
-<a name="63" href="#63">63</a>      <strong class="jxr_keyword">public</strong> Object call(<strong class="jxr_keyword">final</strong> Object... args) {
-<a name="64" href="#64">64</a>          <strong class="jxr_keyword">if</strong> (isStatic()) {
-<a name="65" href="#65">65</a>              <strong class="jxr_keyword">try</strong> {
-<a name="66" href="#66">66</a>                  <strong class="jxr_keyword">return</strong> method.invoke(<strong class="jxr_keyword">null</strong>, args);
-<a name="67" href="#67">67</a>              } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> IllegalAccessException e) {
-<a name="68" href="#68">68</a>                  <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/IllegalAccessRuntimeException.html">IllegalAccessRuntimeException</a>(e, method);
-<a name="69" href="#69">69</a>              } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> InvocationTargetException e) {
-<a name="70" href="#70">70</a>                  <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/InvocationTargetRuntimeException.html">InvocationTargetRuntimeException</a>(e, method);
-<a name="71" href="#71">71</a>              }
-<a name="72" href="#72">72</a>          } <strong class="jxr_keyword">else</strong> {
-<a name="73" href="#73">73</a>              <strong class="jxr_keyword">if</strong> (args.length &lt; 1) {
-<a name="74" href="#74">74</a>                  <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(<span class="jxr_string">"target instance must be specified as first argument when calling "</span>
-<a name="75" href="#75">75</a>                          + method);
-<a name="76" href="#76">76</a>              }
-<a name="77" href="#77">77</a>  
-<a name="78" href="#78">78</a>              <strong class="jxr_keyword">final</strong> Object[] remainingArguments = <strong class="jxr_keyword">new</strong> Object[args.length - 1];
-<a name="79" href="#79">79</a>              arraycopy(args, 1, remainingArguments, 0, args.length - 1);
-<a name="80" href="#80">80</a>              <strong class="jxr_keyword">try</strong> {
-<a name="81" href="#81">81</a>                  <strong class="jxr_keyword">return</strong> method.invoke(args[0], remainingArguments);
-<a name="82" href="#82">82</a>              } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> IllegalAccessException e) {
-<a name="83" href="#83">83</a>                  <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/IllegalAccessRuntimeException.html">IllegalAccessRuntimeException</a>(e, method);
-<a name="84" href="#84">84</a>              } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> InvocationTargetException e) {
-<a name="85" href="#85">85</a>                  <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/InvocationTargetRuntimeException.html">InvocationTargetRuntimeException</a>(e, method);
+<a name="49" href="#49">49</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> parameterCount = method.getParameterTypes().length;
+<a name="50" href="#50">50</a>          <strong class="jxr_keyword">if</strong> (isStatic()) {
+<a name="51" href="#51">51</a>              <strong class="jxr_keyword">return</strong> parameterCount;
+<a name="52" href="#52">52</a>          }
+<a name="53" href="#53">53</a>          <strong class="jxr_keyword">return</strong> parameterCount + 1;
+<a name="54" href="#54">54</a>      }
+<a name="55" href="#55">55</a>  
+<a name="56" href="#56">56</a>      @Override
+<a name="57" href="#57">57</a>      <strong class="jxr_keyword">public</strong> ReflectedClass&lt;?&gt; getDeclaringClass() {
+<a name="58" href="#58">58</a>          <strong class="jxr_keyword">return</strong> reflectedTypeFactory.reflect(method.getDeclaringClass());
+<a name="59" href="#59">59</a>      }
+<a name="60" href="#60">60</a>  
+<a name="61" href="#61">61</a>      @Override
+<a name="62" href="#62">62</a>      <strong class="jxr_keyword">public</strong> String toString() {
+<a name="63" href="#63">63</a>          <strong class="jxr_keyword">return</strong> method.toString();
+<a name="64" href="#64">64</a>      }
+<a name="65" href="#65">65</a>  
+<a name="66" href="#66">66</a>      @Override
+<a name="67" href="#67">67</a>      <strong class="jxr_keyword">public</strong> Object call(<strong class="jxr_keyword">final</strong> Object... args) {
+<a name="68" href="#68">68</a>          <strong class="jxr_keyword">if</strong> (isStatic()) {
+<a name="69" href="#69">69</a>              <strong class="jxr_keyword">return</strong> invokeMethod(<strong class="jxr_keyword">null</strong>, args);
+<a name="70" href="#70">70</a>          } <strong class="jxr_keyword">else</strong> {
+<a name="71" href="#71">71</a>              <strong class="jxr_keyword">if</strong> (args.length &lt; 1) {
+<a name="72" href="#72">72</a>                  <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(<span class="jxr_string">"target instance must be specified as first argument when calling "</span>
+<a name="73" href="#73">73</a>                          + method);
+<a name="74" href="#74">74</a>              }
+<a name="75" href="#75">75</a>  
+<a name="76" href="#76">76</a>              <strong class="jxr_keyword">final</strong> Object[] remainingArguments = <strong class="jxr_keyword">new</strong> Object[args.length - 1];
+<a name="77" href="#77">77</a>              arraycopy(args, 1, remainingArguments, 0, args.length - 1);
+<a name="78" href="#78">78</a>              <strong class="jxr_keyword">return</strong> invokeMethod(args[0], remainingArguments);
+<a name="79" href="#79">79</a>          }
+<a name="80" href="#80">80</a>      }
+<a name="81" href="#81">81</a>  
+<a name="82" href="#82">82</a>      <strong class="jxr_keyword">private</strong> Object invokeMethod(<strong class="jxr_keyword">final</strong> Object instance, <strong class="jxr_keyword">final</strong> Object[] arguments) {
+<a name="83" href="#83">83</a>          <strong class="jxr_keyword">try</strong> {
+<a name="84" href="#84">84</a>              <strong class="jxr_keyword">if</strong> (!method.isAccessible()) {
+<a name="85" href="#85">85</a>                  method.setAccessible(<strong class="jxr_keyword">true</strong>);
 <a name="86" href="#86">86</a>              }
-<a name="87" href="#87">87</a>          }
-<a name="88" href="#88">88</a>      }
-<a name="89" href="#89">89</a>  
-<a name="90" href="#90">90</a>      @Override
-<a name="91" href="#91">91</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isStatic() {
-<a name="92" href="#92">92</a>          <strong class="jxr_keyword">return</strong> Modifier.isStatic(method.getModifiers());
+<a name="87" href="#87">87</a>              <strong class="jxr_keyword">return</strong> method.invoke(instance, arguments);
+<a name="88" href="#88">88</a>          } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> IllegalAccessException e) {
+<a name="89" href="#89">89</a>              <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/IllegalAccessRuntimeException.html">IllegalAccessRuntimeException</a>(e, method);
+<a name="90" href="#90">90</a>          } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> InvocationTargetException e) {
+<a name="91" href="#91">91</a>              <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/InvocationTargetRuntimeException.html">InvocationTargetRuntimeException</a>(e, method);
+<a name="92" href="#92">92</a>          }
 <a name="93" href="#93">93</a>      }
-<a name="94" href="#94">94</a>  }
+<a name="94" href="#94">94</a>  
+<a name="95" href="#95">95</a>      @Override
+<a name="96" href="#96">96</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isStatic() {
+<a name="97" href="#97">97</a>          <strong class="jxr_keyword">return</strong> Modifier.isStatic(method.getModifiers());
+<a name="98" href="#98">98</a>      }
+<a name="99" href="#99">99</a>  
+<a name="100" href="#100">100</a>     @Override
+<a name="101" href="#101">101</a>     <strong class="jxr_keyword">public</strong> &lt;T&gt; ReflectedQuery&lt;T&gt; returning(<strong class="jxr_keyword">final</strong> Class&lt;T&gt; returnType) {
+<a name="102" href="#102">102</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ReflectedQuery&lt;T&gt;() {
+<a name="103" href="#103">103</a>             @Override
+<a name="104" href="#104">104</a>             <strong class="jxr_keyword">public</strong> T call(<strong class="jxr_keyword">final</strong> Object... args) {
+<a name="105" href="#105">105</a>                 <strong class="jxr_keyword">return</strong> returnType.<strong class="jxr_keyword">cast</strong>(ReflectedMethodImpl.<strong class="jxr_keyword">this</strong>.call(args));
+<a name="106" href="#106">106</a>             }
+<a name="107" href="#107">107</a>         };
+<a name="108" href="#108">108</a>     }
+<a name="109" href="#109">109</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>
