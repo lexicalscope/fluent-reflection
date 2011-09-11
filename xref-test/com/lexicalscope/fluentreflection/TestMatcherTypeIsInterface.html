@@ -15,17 +15,17 @@
 <a name="5" href="#5">5</a>   
 <a name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> org.hamcrest.Matcher;
 <a name="7" href="#7">7</a>   
-<a name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.ReflectedType;
+<a name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.ReflectedClass;
 <a name="9" href="#9">9</a>   <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.ReflectionMatcher;
 <a name="10" href="#10">10</a>  
-<a name="11" href="#11">11</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/TestMatcherTypeIsInterface.html">TestMatcherTypeIsInterface</a> <strong class="jxr_keyword">extends</strong> AbstractTestReflectionMatcher&lt;ReflectedType&lt;?&gt;&gt; {
+<a name="11" href="#11">11</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/TestMatcherTypeIsInterface.html">TestMatcherTypeIsInterface</a> <strong class="jxr_keyword">extends</strong> AbstractTestReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; {
 <a name="12" href="#12">12</a>      @Override
-<a name="13" href="#13">13</a>      <strong class="jxr_keyword">protected</strong> ReflectedType&lt;?&gt; target() {
+<a name="13" href="#13">13</a>      <strong class="jxr_keyword">protected</strong> ReflectedClass&lt;?&gt; target() {
 <a name="14" href="#14">14</a>          <strong class="jxr_keyword">return</strong> type;
 <a name="15" href="#15">15</a>      }
 <a name="16" href="#16">16</a>  
 <a name="17" href="#17">17</a>      @Override
-<a name="18" href="#18">18</a>      <strong class="jxr_keyword">protected</strong> ReflectionMatcher&lt;ReflectedType&lt;?&gt;&gt; matcher() {
+<a name="18" href="#18">18</a>      <strong class="jxr_keyword">protected</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; matcher() {
 <a name="19" href="#19">19</a>          <strong class="jxr_keyword">return</strong> typeIsInterface();
 <a name="20" href="#20">20</a>      }
 <a name="21" href="#21">21</a>  
