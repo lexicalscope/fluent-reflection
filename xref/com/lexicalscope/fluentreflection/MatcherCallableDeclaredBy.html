@@ -24,7 +24,7 @@
 <a name="14" href="#14">14</a>  
 <a name="15" href="#15">15</a>      @Override
 <a name="16" href="#16">16</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matchesSafely(<strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedCallable.html">ReflectedCallable</a> arg) {
-<a name="17" href="#17">17</a>          <strong class="jxr_keyword">return</strong> arg.getDeclaringClass().classUnderReflection().equals(declaringKlass);
+<a name="17" href="#17">17</a>          <strong class="jxr_keyword">return</strong> arg.declaringClass().classUnderReflection().equals(declaringKlass);
 <a name="18" href="#18">18</a>      }
 <a name="19" href="#19">19</a>  
 <a name="20" href="#20">20</a>      @Override

@@ -74,7 +74,7 @@
 <a name="64" href="#64">64</a>          <strong class="jxr_keyword">final</strong> ReflectedClass&lt;?&gt; declaringType = context.mock(ReflectedClass.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"declaringType"</span>);
 <a name="65" href="#65">65</a>          context.checking(<strong class="jxr_keyword">new</strong> Expectations() {
 <a name="66" href="#66">66</a>              {
-<a name="67" href="#67">67</a>                  oneOf(method).getDeclaringClass();
+<a name="67" href="#67">67</a>                  oneOf(method).declaringClass();
 <a name="68" href="#68">68</a>                  will(returnValue(declaringType));
 <a name="69" href="#69">69</a>  
 <a name="70" href="#70">70</a>                  oneOf(declaringType).classUnderReflection();
