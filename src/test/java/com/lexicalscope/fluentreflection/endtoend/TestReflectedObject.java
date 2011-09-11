@@ -88,4 +88,9 @@ public class TestReflectedObject {
         assertThat(reflectedInstance.methods(), Matchers.<ReflectedMethod>hasItem(methodNamed("method")));
         assertThat(reflectedInstance.methods(), Matchers.<ReflectedMethod>hasItem(methodNamed("doubleIt")));
     }
+
+    @Test
+    public void classUnderReflectionIsCorrect() throws Exception {
+        assertThat(reflectedInstance.classUnderReflection(), Matchers.equalTo(ExampleObject.class));
+    }
 }

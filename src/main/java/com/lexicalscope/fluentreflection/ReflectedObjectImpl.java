@@ -2,6 +2,7 @@ package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.*;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.methodIsNotStatic;
+import static org.hamcrest.Matchers.anything;
 
 import java.util.List;
 
@@ -37,8 +38,7 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
 
     @Override
     public Class<T> classUnderReflection() {
-        // TODO Auto-generated method stub
-        return null;
+        return reflect.classUnderReflection();
     }
 
     @Override
@@ -56,15 +56,14 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
 
     @Override
     public List<ReflectedMethod> methods() {
-        return convert(
-                select(reflect.methods(), methodIsNotStatic()),
-                new ConvertReflectedMethodToBoundReflectedMethod(instance));
+        return methods(anything());
     }
 
     @Override
     public List<ReflectedMethod> methods(final Matcher<? super ReflectedMethod> methodMatcher) {
-        // TODO Auto-generated method stub
-        return null;
+        return convert(
+                select(reflect.methods(), methodIsNotStatic().and(methodMatcher)),
+                new ConvertReflectedMethodToBoundReflectedMethod(instance));
     }
 
     @Override
