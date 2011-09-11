@@ -40,7 +40,7 @@ class ReflectedMethodImpl implements ReflectedMethod {
     }
 
     @Override
-    public List<ReflectedType<?>> argumentTypes() {
+    public List<ReflectedClass<?>> argumentTypes() {
         return Lambda.convert(method.getParameterTypes(), new ConvertClassToReflectedType(reflectedTypeFactory));
     }
 
@@ -50,7 +50,7 @@ class ReflectedMethodImpl implements ReflectedMethod {
     }
 
     @Override
-    public ReflectedType<?> getDeclaringClass() {
+    public ReflectedClass<?> getDeclaringClass() {
         return reflectedTypeFactory.reflect(method.getDeclaringClass());
     }
 

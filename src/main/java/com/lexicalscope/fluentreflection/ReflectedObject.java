@@ -16,6 +16,6 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-public interface ReflectedInstance<T> {
+public interface ReflectedObject<T> {
 
 }

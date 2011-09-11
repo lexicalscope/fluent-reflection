@@ -6,9 +6,9 @@ import org.hamcrest.Matcher;
 
 import ch.lambdaj.function.convert.Converter;
 
-class ConvertClassToReflectedTypeAssignableMatcher implements Converter<Class<?>, Matcher<ReflectedType<?>>> {
+class ConvertClassToReflectedTypeAssignableMatcher implements Converter<Class<?>, Matcher<ReflectedClass<?>>> {
     @Override
-    public Matcher<ReflectedType<?>> convert(final Class<?> from) {
+    public Matcher<ReflectedClass<?>> convert(final Class<?> from) {
         if (from == null) {
             return anyReflectedType();
         }

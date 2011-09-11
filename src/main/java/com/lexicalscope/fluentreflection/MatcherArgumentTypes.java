@@ -11,10 +11,10 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
 final class MatcherArgumentTypes extends ReflectionMatcher<ReflectedCallable> {
-    private final List<Matcher<? super ReflectedType<?>>> argumentTypeMatchers;
+    private final List<Matcher<? super ReflectedClass<?>>> argumentTypeMatchers;
 
-    public MatcherArgumentTypes(final List<? extends Matcher<? super ReflectedType<?>>> argumentTypeMatchers) {
-        this.argumentTypeMatchers = new ArrayList<Matcher<? super ReflectedType<?>>>(argumentTypeMatchers);
+    public MatcherArgumentTypes(final List<? extends Matcher<? super ReflectedClass<?>>> argumentTypeMatchers) {
+        this.argumentTypeMatchers = new ArrayList<Matcher<? super ReflectedClass<?>>>(argumentTypeMatchers);
     }
 
     @Override

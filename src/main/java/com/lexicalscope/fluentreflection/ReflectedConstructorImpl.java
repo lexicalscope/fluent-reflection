@@ -22,7 +22,7 @@ class ReflectedConstructorImpl<T> implements ReflectedConstructor<T> {
     }
 
     @Override
-    public List<ReflectedType<?>> argumentTypes() {
+    public List<ReflectedClass<?>> argumentTypes() {
         return convert(constructor.getParameterTypes(), new ConvertClassToReflectedType(reflectedTypeFactory));
     }
 
@@ -45,7 +45,7 @@ class ReflectedConstructorImpl<T> implements ReflectedConstructor<T> {
     }
 
     @Override
-    public ReflectedType<?> getDeclaringClass() {
+    public ReflectedClass<?> getDeclaringClass() {
         return type(constructor.getDeclaringClass());
     }
 

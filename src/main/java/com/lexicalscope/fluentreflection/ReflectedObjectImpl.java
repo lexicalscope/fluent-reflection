@@ -16,10 +16,10 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-class ReflectedInstanceImpl<T> implements ReflectedInstance<T> {
-    public ReflectedInstanceImpl(
+class ReflectedObjectImpl<T> implements ReflectedObject<T> {
+    public ReflectedObjectImpl(
             final ReflectedTypeFactoryImpl reflectedTypeFactoryImpl,
-            final ReflectedType<T> reflect,
+            final ReflectedClass<T> reflect,
             final T instance) {
         // TODO Auto-generated constructor stub
     }

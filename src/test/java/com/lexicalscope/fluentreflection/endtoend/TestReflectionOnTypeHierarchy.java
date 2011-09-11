@@ -25,7 +25,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.lexicalscope.fluentreflection.ReflectedType;
+import com.lexicalscope.fluentreflection.ReflectedClass;
 
 public class TestReflectionOnTypeHierarchy {
     @Test
@@ -50,8 +50,8 @@ public class TestReflectionOnTypeHierarchy {
 
     @Test
     public void superClassesReturnedInOrder() {
-        final List<ReflectedType<?>> expectedSuperclasses =
-                ListBuilder.<ReflectedType<?>>list(type(ExampleSubclass.class)).add(type(ExampleSuperclass.class)).$();
+        final List<ReflectedClass<?>> expectedSuperclasses =
+                ListBuilder.<ReflectedClass<?>>list(type(ExampleSubclass.class)).add(type(ExampleSuperclass.class)).$();
 
         assertThat(type(ExampleSubsubclass.class).superclasses(), equalTo(expectedSuperclasses));
     }

@@ -28,7 +28,7 @@ class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
             final List<ReflectedMethod> result = new ArrayList<ReflectedMethod>();
 
             result.addAll(getDeclaredMethodsOfClass(klass));
-            for (final ReflectedType<?> klassToReflect : allTypes.superclassesAndInterfaces()) {
+            for (final ReflectedClass<?> klassToReflect : allTypes.superclassesAndInterfaces()) {
                 result.addAll(getDeclaredMethodsOfClass(klassToReflect.classUnderReflection()));
             }
 

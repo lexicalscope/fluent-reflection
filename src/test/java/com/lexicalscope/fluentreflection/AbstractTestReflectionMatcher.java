@@ -18,7 +18,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
     public final JUnitRuleMockery context = new JUnitRuleMockery();
 
     protected final ReflectedMethod method = context.mock(ReflectedMethod.class);
-    protected final ReflectedType<?> type = context.mock(ReflectedType.class);
+    protected final ReflectedClass<?> type = context.mock(ReflectedClass.class);
     protected final ReflectedCallable callable = context.mock(ReflectedCallable.class);
     private final Description description = new StringDescription();
 
@@ -61,7 +61,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
     }
 
     protected final void whenMethodDeclaredBy(final Class<?> declaringClass) {
-        final ReflectedType<?> declaringType = context.mock(ReflectedType.class, "declaringType");
+        final ReflectedClass<?> declaringType = context.mock(ReflectedClass.class, "declaringType");
         context.checking(new Expectations() {
             {
                 oneOf(method).getDeclaringClass();
@@ -74,9 +74,9 @@ public abstract class AbstractTestReflectionMatcher<T> {
     }
 
     protected final void whenMethodHasArguments(final Class<?>... arguments) {
-        final ReflectedType<?>[] argumentTypes = new ReflectedType<?>[arguments.length];
+        final ReflectedClass<?>[] argumentTypes = new ReflectedClass<?>[arguments.length];
         for (int i = 0; i < argumentTypes.length; i++) {
-            argumentTypes[i] = context.mock(ReflectedType.class, "argument " + i + ": " + arguments[i].getSimpleName());
+            argumentTypes[i] = context.mock(ReflectedClass.class, "argument " + i + ": " + arguments[i].getSimpleName());
         }
 
         context.checking(new Expectations() {
@@ -94,7 +94,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
     }
 
     protected final void whenTypeHasInterface(final Class<?> interfac3) {
-        final ReflectedType<?> interfaceType = context.mock(ReflectedType.class, "interfaceType");
+        final ReflectedClass<?> interfaceType = context.mock(ReflectedClass.class, "interfaceType");
         context.checking(new Expectations() {
             {
                 oneOf(type).interfaces();
@@ -107,7 +107,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
     }
 
     protected final void whenTypeHasSuperclass(final Class<?> klass) {
-        final ReflectedType<?> superclassType = context.mock(ReflectedType.class, "superclassType");
+        final ReflectedClass<?> superclassType = context.mock(ReflectedClass.class, "superclassType");
         context.checking(new Expectations() {
             {
                 oneOf(type).superclasses();

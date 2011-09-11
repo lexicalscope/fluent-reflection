@@ -5,11 +5,11 @@ import java.util.List;
 public interface ReflectedCallable {
     String getName();
 
-    ReflectedType<?> getDeclaringClass();
+    ReflectedClass<?> getDeclaringClass();
 
     int argumentCount();
 
-    List<ReflectedType<?>> argumentTypes();
+    List<ReflectedClass<?>> argumentTypes();
 
     Object call(Object... args);
 }

@@ -6,7 +6,7 @@ package com.lexicalscope.fluentreflection;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.hamcrest.Description;
 
-final class MatcherReflectedTypeReflectingOn extends ReflectionMatcher<ReflectedType<?>> {
+final class MatcherReflectedTypeReflectingOn extends ReflectionMatcher<ReflectedClass<?>> {
     private final Class<?> klass;
 
     MatcherReflectedTypeReflectingOn(final Class<?> klass) {
@@ -14,7 +14,7 @@ final class MatcherReflectedTypeReflectingOn extends ReflectionMatcher<Reflected
     }
 
     @Override
-    public boolean matchesSafely(final ReflectedType<?> arg) {
+    public boolean matchesSafely(final ReflectedClass<?> arg) {
         return arg.classUnderReflection().equals(klass);
     }
 

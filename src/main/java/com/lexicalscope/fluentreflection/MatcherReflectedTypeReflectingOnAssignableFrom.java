@@ -5,7 +5,7 @@ package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
-final class MatcherReflectedTypeReflectingOnAssignableFrom extends ReflectionMatcher<ReflectedType<?>> {
+final class MatcherReflectedTypeReflectingOnAssignableFrom extends ReflectionMatcher<ReflectedClass<?>> {
     private final Class<?> klass;
 
     MatcherReflectedTypeReflectingOnAssignableFrom(final Class<?> klass) {
@@ -13,7 +13,7 @@ final class MatcherReflectedTypeReflectingOnAssignableFrom extends ReflectionMat
     }
 
     @Override
-    public boolean matchesSafely(final ReflectedType<?> arg) {
+    public boolean matchesSafely(final ReflectedClass<?> arg) {
         return arg.classUnderReflection().isAssignableFrom(klass);
     }
 

@@ -19,9 +19,9 @@ import java.lang.reflect.Method;
  */
 
 interface ReflectedTypeFactory {
-    <T> ReflectedType<T> reflect(Class<T> klass);
+    <T> ReflectedClass<T> reflect(Class<T> klass);
 
-    <T> ReflectedInstance<T> reflect(Class<T> klass, T instance);
+    <T> ReflectedObject<T> reflect(Class<T> klass, T instance);
 
     ReflectedMethod method(Method method);
 }

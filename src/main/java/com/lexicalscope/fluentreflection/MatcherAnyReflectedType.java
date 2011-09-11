@@ -5,9 +5,9 @@ package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
-final class MatcherAnyReflectedType extends ReflectionMatcher<ReflectedType<?>> {
+final class MatcherAnyReflectedType extends ReflectionMatcher<ReflectedClass<?>> {
     @Override
-    public boolean matchesSafely(final ReflectedType<?> arg) {
+    public boolean matchesSafely(final ReflectedClass<?> arg) {
         return true;
     }
 

@@ -7,7 +7,7 @@ import org.hamcrest.Matcher;
 interface ReflectedMembers<T> {
     List<ReflectedMethod> methods();
 
-    List<ReflectedType<?>> superclassesAndInterfaces();
+    List<ReflectedClass<?>> superclassesAndInterfaces();
 
     List<ReflectedConstructor<T>> constructors();
 
@@ -19,5 +19,5 @@ interface ReflectedMembers<T> {
 
     ReflectedConstructor<T> constructor(Matcher<? super ReflectedConstructor<?>> constructorMatcher);
 
-    List<ReflectedType<?>> superclassesAndInterfaces(Matcher<? super ReflectedType<?>> supertypeMatcher);
+    List<ReflectedClass<?>> superclassesAndInterfaces(Matcher<? super ReflectedClass<?>> supertypeMatcher);
 }

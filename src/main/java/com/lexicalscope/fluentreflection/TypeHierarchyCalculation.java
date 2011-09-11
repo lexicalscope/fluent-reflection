@@ -22,7 +22,7 @@ import java.util.List;
 
 class TypeHierarchyCalculation {
     private final List<Class<?>> done = new ArrayList<Class<?>>();
-    private final List<ReflectedType<?>> result = new ArrayList<ReflectedType<?>>();
+    private final List<ReflectedClass<?>> result = new ArrayList<ReflectedClass<?>>();
     private final List<Class<?>> pending = new LinkedList<Class<?>>();
     private final ReflectedTypeFactory reflectedTypeFactory;
 
@@ -30,7 +30,7 @@ class TypeHierarchyCalculation {
         this.reflectedTypeFactory = reflectedTypeFactory;
     }
 
-    List<ReflectedType<?>> interfacesAndSuperClass(final Class<?> klassToReflect) {
+    List<ReflectedClass<?>> interfacesAndSuperClass(final Class<?> klassToReflect) {
         queueSuperclassAndInterfaces(klassToReflect);
         processesPendingTypes();
         return result;

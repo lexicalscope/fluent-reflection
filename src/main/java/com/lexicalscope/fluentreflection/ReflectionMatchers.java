@@ -51,31 +51,31 @@ public class ReflectionMatchers {
         return new MatcherCallableDeclaredBy(declaringKlass);
     }
 
-    public static ReflectionMatcher<ReflectedType<?>> typeHasNoInterfaces() {
+    public static ReflectionMatcher<ReflectedClass<?>> typeHasNoInterfaces() {
         return new MatcherTypeHasNoInterfaces();
     }
 
-    public static ReflectionMatcher<ReflectedType<?>> typeHasNoSuperclasses() {
+    public static ReflectionMatcher<ReflectedClass<?>> typeHasNoSuperclasses() {
         return new MatcherTypeHasNoSuperclasses();
     }
 
-    public static ReflectionMatcher<ReflectedType<?>> typeHasInterface(final Class<?> interfac3) {
+    public static ReflectionMatcher<ReflectedClass<?>> typeHasInterface(final Class<?> interfac3) {
         return new MatcherTypeHasInterface(interfac3);
     }
 
-    public static ReflectionMatcher<ReflectedType<?>> typeIsInterface() {
+    public static ReflectionMatcher<ReflectedClass<?>> typeIsInterface() {
         return new MatcherTypeIsInterface();
     }
 
-    public static ReflectionMatcher<ReflectedType<?>> anyReflectedType() {
+    public static ReflectionMatcher<ReflectedClass<?>> anyReflectedType() {
         return new MatcherAnyReflectedType();
     }
 
-    public static ReflectionMatcher<ReflectedType<?>> reflectedTypeReflectingOn(final Class<?> klass) {
+    public static ReflectionMatcher<ReflectedClass<?>> reflectedTypeReflectingOn(final Class<?> klass) {
         return new MatcherReflectedTypeReflectingOn(klass);
     }
 
-    public static ReflectionMatcher<ReflectedType<?>> reflectedTypeReflectingOnAssignableFrom(final Class<?> klass) {
+    public static ReflectionMatcher<ReflectedClass<?>> reflectedTypeReflectingOnAssignableFrom(final Class<?> klass) {
         return new MatcherReflectedTypeReflectingOnAssignableFrom(klass);
     }
 

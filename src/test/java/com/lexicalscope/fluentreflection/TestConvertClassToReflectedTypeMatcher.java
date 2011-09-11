@@ -13,7 +13,7 @@ public class TestConvertClassToReflectedTypeMatcher {
 
     @Test
     public void classConvertedToMatcherForReflectedType() throws Exception {
-        final Matcher<ReflectedType<?>> matcherUnderTest =
+        final Matcher<ReflectedClass<?>> matcherUnderTest =
                 new ConvertClassToReflectedTypeMatcher().convert(ExampleClass.class);
 
         assertThat(type(ExampleClass.class), matcherUnderTest);

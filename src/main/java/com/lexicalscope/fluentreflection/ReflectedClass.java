@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.hamcrest.Matcher;
 
-public interface ReflectedType<T> {
+public interface ReflectedClass<T> {
     /**
      * Obtain the class being reflected
      * 
@@ -70,7 +70,7 @@ public interface ReflectedType<T> {
      * 
      * @return all the interfaces
      */
-    List<ReflectedType<?>> interfaces();
+    List<ReflectedClass<?>> interfaces();
 
     /**
      * True iff the type is an interface
@@ -84,7 +84,7 @@ public interface ReflectedType<T> {
      * 
      * @return list of superclasses nearest first
      */
-    List<ReflectedType<?>> superclasses();
+    List<ReflectedClass<?>> superclasses();
 
     /**
      * Construct an object of the type under reflection
@@ -98,7 +98,7 @@ public interface ReflectedType<T> {
      * 
      * @return a reflection wrapper around the constructed object
      */
-    ReflectedInstance<T> construct(Object... args);
+    ReflectedObject<T> construct(Object... args);
 
     /**
      * Find all constructors matching the supplied matcher

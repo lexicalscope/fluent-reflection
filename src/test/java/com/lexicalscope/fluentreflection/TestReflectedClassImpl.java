@@ -26,7 +26,7 @@ import com.google.inject.TypeLiteral;
  * limitations under the License. 
  */
 
-public class TestReflectedTypeImpl {
+public class TestReflectedClassImpl {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
@@ -39,8 +39,8 @@ public class TestReflectedTypeImpl {
             context.mock(new TypeLiteral<ReflectedConstructor<ExampleClass>>() {
             });
 
-    private final ReflectedInstance<ExampleClass> reflectedInstance =
-            context.mock(new TypeLiteral<ReflectedInstance<ExampleClass>>() {
+    private final ReflectedObject<ExampleClass> reflectedInstance =
+            context.mock(new TypeLiteral<ReflectedObject<ExampleClass>>() {
             });
 
     class ExampleClass {
@@ -66,8 +66,8 @@ public class TestReflectedTypeImpl {
             }
         });
 
-        final ReflectedTypeImpl<ExampleClass> reflectedTypeImpl =
-                new ReflectedTypeImpl<ExampleClass>(reflectedTypeFactory, ExampleClass.class, members);
+        final ReflectedClassImpl<ExampleClass> reflectedTypeImpl =
+                new ReflectedClassImpl<ExampleClass>(reflectedTypeFactory, ExampleClass.class, members);
 
         assertThat(reflectedTypeImpl.construct(), Matchers.equalTo(reflectedInstance));
     }

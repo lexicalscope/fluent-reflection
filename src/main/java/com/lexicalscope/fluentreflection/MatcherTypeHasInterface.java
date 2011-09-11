@@ -9,7 +9,7 @@ import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectedType
 import org.hamcrest.Description;
 
 
-final class MatcherTypeHasInterface extends ReflectionMatcher<ReflectedType<?>> {
+final class MatcherTypeHasInterface extends ReflectionMatcher<ReflectedClass<?>> {
     private final Class<?> interfac3;
 
     MatcherTypeHasInterface(final Class<?> interfac3) {
@@ -17,7 +17,7 @@ final class MatcherTypeHasInterface extends ReflectionMatcher<ReflectedType<?>> 
     }
 
     @Override
-    public boolean matchesSafely(final ReflectedType<?> arg) {
+    public boolean matchesSafely(final ReflectedClass<?> arg) {
         return !select(
                 arg.interfaces(),
                 reflectedTypeReflectingOn(interfac3)).isEmpty();

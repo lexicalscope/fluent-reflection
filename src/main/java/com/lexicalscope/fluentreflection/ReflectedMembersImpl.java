@@ -28,7 +28,7 @@ class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
     }
 
     @Override
-    public List<ReflectedType<?>> superclassesAndInterfaces() {
+    public List<ReflectedClass<?>> superclassesAndInterfaces() {
         return superclassesAndInterfaces.superclassesAndInterfaces();
     }
 
@@ -55,7 +55,7 @@ class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
     }
 
     @Override
-    public List<ReflectedType<?>> superclassesAndInterfaces(final Matcher<? super ReflectedType<?>> supertypeMatcher) {
+    public List<ReflectedClass<?>> superclassesAndInterfaces(final Matcher<? super ReflectedClass<?>> supertypeMatcher) {
         return select(superclassesAndInterfaces(), supertypeMatcher);
     }
 }

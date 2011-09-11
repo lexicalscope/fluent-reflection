@@ -31,12 +31,12 @@ import org.hamcrest.Matcher;
  * 
  * @param <T>
  */
-final class ReflectedTypeImpl<T> implements ReflectedType<T> {
+final class ReflectedClassImpl<T> implements ReflectedClass<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final Class<T> klass;
     private final ReflectedMembers<T> members;
 
-    public ReflectedTypeImpl(final ReflectedTypeFactory reflectedTypeFactory,
+    public ReflectedClassImpl(final ReflectedTypeFactory reflectedTypeFactory,
                              final Class<T> klass,
                              final ReflectedMembers<T> members) {
         this.reflectedTypeFactory = reflectedTypeFactory;
@@ -70,12 +70,12 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
     }
 
     @Override
-    public List<ReflectedType<?>> interfaces() {
+    public List<ReflectedClass<?>> interfaces() {
         return members.superclassesAndInterfaces(typeIsInterface());
     }
 
     @Override
-    public List<ReflectedType<?>> superclasses() {
+    public List<ReflectedClass<?>> superclasses() {
         return members.superclassesAndInterfaces(not(typeIsInterface()));
     }
 
@@ -97,7 +97,7 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
     }
 
     @Override
-    public ReflectedInstance<T> construct(final Object... args) {
+    public ReflectedObject<T> construct(final Object... args) {
         final T newInstance = constructRaw(args);
         return reflectedTypeFactory.reflect(klass, newInstance);
     }
@@ -117,7 +117,7 @@ final class ReflectedTypeImpl<T> implements ReflectedType<T> {
     @Override
     public boolean equals(final Object that) {
         if (that != null && that.getClass().equals(this.getClass())) {
-            return klass.equals(((ReflectedTypeImpl<?>) that).klass);
+            return klass.equals(((ReflectedClassImpl<?>) that).klass);
         }
         return false;
     }

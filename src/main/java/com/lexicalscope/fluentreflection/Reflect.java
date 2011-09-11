@@ -23,7 +23,7 @@ import java.lang.reflect.Proxy;
  * Main entry point for the reflection library
  */
 public class Reflect {
-    public static <T> ReflectedType<T> type(final Class<T> klass) {
+    public static <T> ReflectedClass<T> type(final Class<T> klass) {
         return new ReflectedTypeFactoryImpl().reflect(klass);
     }
 

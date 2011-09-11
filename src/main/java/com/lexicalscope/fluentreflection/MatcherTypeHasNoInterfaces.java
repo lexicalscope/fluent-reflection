@@ -6,9 +6,9 @@ package com.lexicalscope.fluentreflection;
 import org.hamcrest.Description;
 
 
-final class MatcherTypeHasNoInterfaces extends ReflectionMatcher<ReflectedType<?>> {
+final class MatcherTypeHasNoInterfaces extends ReflectionMatcher<ReflectedClass<?>> {
     @Override
-    public boolean matchesSafely(final ReflectedType<?> arg) {
+    public boolean matchesSafely(final ReflectedClass<?> arg) {
         return arg.interfaces().isEmpty();
     }
 
