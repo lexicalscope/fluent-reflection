@@ -10,8 +10,10 @@ class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
     private final ReflectedSuperclassesAndInterfaces<T> superclassesAndInterfaces;
     private final ReflectedMethods<T> methods;
     private final ReflectedConstructors<T> constructors;
+    private final Class<T> klass;
 
     public ReflectedMembersImpl(final ReflectedTypeFactory reflectedTypeFactory, final Class<T> klass) {
+        this.klass = klass;
         this.superclassesAndInterfaces = new ReflectedSuperclassesAndInterfacesImpl<T>(reflectedTypeFactory, klass);
         this.methods = new ReflectedMethodsImpl<T>(reflectedTypeFactory, klass, superclassesAndInterfaces);
         this.constructors = new ReflectedConstructorsImpl<T>(reflectedTypeFactory, klass);
@@ -39,7 +41,11 @@ class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
 
     @Override
     public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return selectFirst(methods(), methodMatcher);
+        final ReflectedMethod selectedMethod = selectFirst(methods(), methodMatcher);
+        if (selectedMethod == null) {
+            throw new MethodNotFoundException(klass, methodMatcher);
+        }
+        return selectedMethod;
     }
 
     @Override

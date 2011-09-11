@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.equalTo;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestCallStaticMethodByReflection {
+public class TestReflectedClassStaticMethods {
     public static class ClassWithStaticMethods {
         private static boolean called;
         private static boolean objectCalled;
@@ -75,5 +75,12 @@ public class TestCallStaticMethodByReflection {
         type(ClassWithStaticMethods.class).staticMethod(methodNamed("staticMethodWithTwoArguments")).call("string", 42);
         assertThat(ClassWithStaticMethods.stringAndIntegerCalled,
                 equalTo(true));
+    }
+
+    @Test
+    public void methodWithTwoArgumentsHasCorrectArgumentCount() {
+        assertThat(
+                type(ClassWithStaticMethods.class).method(methodNamed("staticMethodWithTwoArguments")).argumentCount(),
+                equalTo(2));
     }
 }

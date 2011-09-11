@@ -9,7 +9,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public class TestInstanceMethodByReflection {
+public class TestReflectedClassInstanceMethod {
     @Rule
     public final ExpectedException exception = ExpectedException.none();
 
@@ -71,6 +71,13 @@ public class TestInstanceMethodByReflection {
         type(ClassWithInstanceMethods.class).method(methodNamed("methodWithTwoArguments")).call(instance, "string", 42);
 
         assertThat(instance.stringAndIntegerCalled, equalTo(true));
+    }
+
+    @Test
+    public void methodWithTwoArgumentsHasCorrectArgumentCount() {
+        assertThat(
+                type(ClassWithInstanceMethods.class).method(methodNamed("methodWithTwoArguments")).argumentCount(),
+                equalTo(3));
     }
 
     @Test

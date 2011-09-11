@@ -37,4 +37,8 @@ public class Reflect {
                 new Class[] { proxyImplementation.proxiedInterface() },
                 proxyImplementation);
     }
+
+    public static <T> ReflectedObject<T> object(final T object) {
+        return new ReflectedTypeFactoryImpl().reflect((Class<T>) object.getClass(), object);
+    }
 }

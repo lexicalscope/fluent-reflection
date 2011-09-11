@@ -61,7 +61,7 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
 
     @Override
     public ReflectedMethod staticMethod(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return method(ReflectionMatchers.staticMethod().and(methodMatcher));
+        return method(ReflectionMatchers.methodIsStatic().and(methodMatcher));
     }
 
     @Override

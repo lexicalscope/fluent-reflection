@@ -6,6 +6,8 @@ import static java.util.Arrays.asList;
 import java.lang.reflect.Constructor;
 import java.util.List;
 
+import org.hamcrest.Description;
+
 /*
  * Copyright 2011 Tim Wood
  *
@@ -96,7 +98,25 @@ public class ReflectionMatchers {
         return new MatcherArgumentTypes(convert(argTypes, new ConvertClassToReflectedTypeAssignableMatcher()));
     }
 
-    public static ReflectionMatcher<ReflectedMethod> staticMethod() {
+    public static ReflectionMatcher<ReflectedMethod> methodIsStatic() {
         return new MatcherMethodIsStatic();
+    }
+
+    public static ReflectionMatcher<ReflectedMethod> methodIsNotStatic() {
+        return not(methodIsStatic());
+    }
+
+    public static <T> ReflectionMatcher<T> not(final ReflectionMatcher<T> matcher) {
+        return new ReflectionMatcher<T>() {
+            @Override
+            protected boolean matchesSafely(final T item) {
+                return !matcher.matches(item);
+            }
+
+            @Override
+            public void describeTo(final Description description) {
+                description.appendText("not ").appendDescriptionOf(matcher);
+            }
+        };
     }
 }

@@ -10,8 +10,6 @@ class MatcherMethodIsStatic extends ReflectionMatcher<ReflectedMethod> {
 
     @Override
     public void describeTo(final Description description) {
-        // TODO Auto-generated method stub
-
+        description.appendText("static method");
     }
-
 }

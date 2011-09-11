@@ -46,7 +46,11 @@ class ReflectedMethodImpl implements ReflectedMethod {
 
     @Override
     public int argumentCount() {
-        return method.getParameterTypes().length;
+        final int parameterCount = method.getParameterTypes().length;
+        if (isStatic()) {
+            return parameterCount;
+        }
+        return parameterCount + 1;
     }
 
     @Override
@@ -62,13 +66,7 @@ class ReflectedMethodImpl implements ReflectedMethod {
     @Override
     public Object call(final Object... args) {
         if (isStatic()) {
-            try {
-                return method.invoke(null, args);
-            } catch (final IllegalAccessException e) {
-                throw new IllegalAccessRuntimeException(e, method);
-            } catch (final InvocationTargetException e) {
-                throw new InvocationTargetRuntimeException(e, method);
-            }
+            return invokeMethod(null, args);
         } else {
             if (args.length < 1) {
                 throw new IllegalArgumentException("target instance must be specified as first argument when calling "
@@ -77,18 +75,35 @@ class ReflectedMethodImpl implements ReflectedMethod {
 
             final Object[] remainingArguments = new Object[args.length - 1];
             arraycopy(args, 1, remainingArguments, 0, args.length - 1);
-            try {
-                return method.invoke(args[0], remainingArguments);
-            } catch (final IllegalAccessException e) {
-                throw new IllegalAccessRuntimeException(e, method);
-            } catch (final InvocationTargetException e) {
-                throw new InvocationTargetRuntimeException(e, method);
+            return invokeMethod(args[0], remainingArguments);
+        }
+    }
+
+    private Object invokeMethod(final Object instance, final Object[] arguments) {
+        try {
+            if (!method.isAccessible()) {
+                method.setAccessible(true);
             }
+            return method.invoke(instance, arguments);
+        } catch (final IllegalAccessException e) {
+            throw new IllegalAccessRuntimeException(e, method);
+        } catch (final InvocationTargetException e) {
+            throw new InvocationTargetRuntimeException(e, method);
         }
     }
 
     @Override
     public boolean isStatic() {
         return Modifier.isStatic(method.getModifiers());
+    }
+
+    @Override
+    public <T> ReflectedQuery<T> returning(final Class<T> returnType) {
+        return new ReflectedQuery<T>() {
+            @Override
+            public T call(final Object... args) {
+                return returnType.cast(ReflectedMethodImpl.this.call(args));
+            }
+        };
     }
 }

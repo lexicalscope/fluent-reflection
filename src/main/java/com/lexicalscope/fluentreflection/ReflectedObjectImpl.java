@@ -1,5 +1,12 @@
 package com.lexicalscope.fluentreflection;
 
+import static ch.lambdaj.Lambda.*;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.methodIsNotStatic;
+
+import java.util.List;
+
+import org.hamcrest.Matcher;
+
 /*
  * Copyright 2011 Tim Wood
  *
@@ -17,10 +24,51 @@ package com.lexicalscope.fluentreflection;
  */
 
 class ReflectedObjectImpl<T> implements ReflectedObject<T> {
+    private final ReflectedClass<T> reflect;
+    private final T instance;
+
     public ReflectedObjectImpl(
             final ReflectedTypeFactoryImpl reflectedTypeFactoryImpl,
             final ReflectedClass<T> reflect,
             final T instance) {
-        // TODO Auto-generated constructor stub
+        this.reflect = reflect;
+        this.instance = instance;
+    }
+
+    @Override
+    public Class<T> classUnderReflection() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<ReflectedClass<?>> interfaces() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
+        return new ConvertReflectedMethodToBoundReflectedMethod(instance).convert(reflect.method(methodIsNotStatic()
+                .and(methodMatcher)));
+    }
+
+    @Override
+    public List<ReflectedMethod> methods() {
+        return convert(
+                select(reflect.methods(), methodIsNotStatic()),
+                new ConvertReflectedMethodToBoundReflectedMethod(instance));
+    }
+
+    @Override
+    public List<ReflectedMethod> methods(final Matcher<? super ReflectedMethod> methodMatcher) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<ReflectedClass<?>> superclasses() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

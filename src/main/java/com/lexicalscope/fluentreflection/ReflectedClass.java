@@ -20,71 +20,13 @@ import java.util.List;
 
 import org.hamcrest.Matcher;
 
-public interface ReflectedClass<T> {
-    /**
-     * Obtain the class being reflected
-     * 
-     * @return the class being reflected
-     */
-    Class<T> classUnderReflection();
-
-    /**
-     * All methods
-     * 
-     * @return all the methods
-     */
-    List<ReflectedMethod> methods();
-
-    /**
-     * Find all methods matching the supplied matcher
-     * 
-     * @param methodMatcher
-     *            matches the methods
-     * 
-     * @return The methods matching the supplied matcher
-     */
-    List<ReflectedMethod> methods(Matcher<? super ReflectedMethod> methodMatcher);
-
-    /**
-     * Find the first method matching the supplied matcher
-     * 
-     * @param methodMatcher
-     *            matches the method
-     * 
-     * @return The method matching the supplied matcher
-     */
-    ReflectedCallable method(Matcher<? super ReflectedMethod> methodMatcher);
-
-    /**
-     * Find the first static method matching the supplied matcher
-     * 
-     * @param methodNamed
-     *            matches the method
-     * 
-     * @return The method matching the supplied matcher
-     */
-    ReflectedMethod staticMethod(Matcher<? super ReflectedMethod> methodNamed);
-
-    /**
-     * All interfaces implemented by this type
-     * 
-     * @return all the interfaces
-     */
-    List<ReflectedClass<?>> interfaces();
-
+public interface ReflectedClass<T> extends ReflectedType<T> {
     /**
      * True iff the type is an interface
      * 
      * @return True iff the type is an interface
      */
     boolean isInterface();
-
-    /**
-     * Return the list of all superclasses with the immediate parent first
-     * 
-     * @return list of superclasses nearest first
-     */
-    List<ReflectedClass<?>> superclasses();
 
     /**
      * Construct an object of the type under reflection
@@ -119,4 +61,15 @@ public interface ReflectedClass<T> {
      * @return The constructor matching the supplied matcher
      */
     ReflectedConstructor<T> constructor(Matcher<? super ReflectedConstructor<?>> constructorMatcher);
+
+    /**
+     * Find the first static method matching the supplied matcher
+     * 
+     * @param methodNamed
+     *            matches the method
+     * 
+     * @return The method matching the supplied matcher
+     */
+    ReflectedMethod staticMethod(Matcher<? super ReflectedMethod> methodNamed);
+
 }

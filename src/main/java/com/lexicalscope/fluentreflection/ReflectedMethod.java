@@ -16,4 +16,6 @@ package com.lexicalscope.fluentreflection;
 
 public interface ReflectedMethod extends ReflectedCallable {
     boolean isStatic();
+
+    <T> ReflectedQuery<T> returning(Class<T> returnType);
 }
