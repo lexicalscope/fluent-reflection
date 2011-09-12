@@ -29,6 +29,20 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
     boolean isInterface();
 
     /**
+     * All interfaces implemented by this type
+     * 
+     * @return all the interfaces
+     */
+    List<ReflectedClass<?>> interfaces();
+
+    /**
+     * Return the list of all superclasses with the immediate parent first
+     * 
+     * @return list of superclasses nearest first
+     */
+    List<ReflectedClass<?>> superclasses();
+
+    /**
      * Construct an object of the type under reflection
      * 
      * @return the constructed object

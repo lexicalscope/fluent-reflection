@@ -42,9 +42,8 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
     }
 
     @Override
-    public List<ReflectedClass<?>> interfaces() {
-        // TODO Auto-generated method stub
-        return null;
+    public ReflectedClass<T> reflectedClass() {
+        return reflect;
     }
 
     @Override
@@ -64,11 +63,5 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
         return convert(
                 select(reflect.methods(), methodIsNotStatic().and(methodMatcher)),
                 new ConvertReflectedMethodToBoundReflectedMethod(instance));
-    }
-
-    @Override
-    public List<ReflectedClass<?>> superclasses() {
-        // TODO Auto-generated method stub
-        return null;
     }
 }

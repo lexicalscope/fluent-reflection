@@ -91,6 +91,7 @@ public class TestReflectedObject {
 
     @Test
     public void classUnderReflectionIsCorrect() throws Exception {
-        assertThat(reflectedInstance.classUnderReflection(), Matchers.equalTo(ExampleObject.class));
+        assertThat(reflectedInstance.classUnderReflection(), equalTo(ExampleObject.class));
+        assertThat(reflectedInstance.reflectedClass().classUnderReflection(), equalTo(ExampleObject.class));
     }
 }

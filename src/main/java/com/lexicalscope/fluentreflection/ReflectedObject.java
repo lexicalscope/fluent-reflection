@@ -17,5 +17,10 @@ package com.lexicalscope.fluentreflection;
  */
 
 public interface ReflectedObject<T> extends ReflectedType<T> {
-
+    /**
+     * get the static reflection information about the type of this object
+     * 
+     * @return the static reflection infomraiton about the type fo this object
+     */
+    ReflectedClass<T> reflectedClass();
 }
