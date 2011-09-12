@@ -46,7 +46,9 @@ class ReflectedMethodImpl implements ReflectedMethod {
     @Override
     public List<ReflectedClass<?>> argumentTypes() {
         final List<ReflectedClass<?>> result = new ArrayList<ReflectedClass<?>>();
-        result.add(reflectedClass);
+        if (!isStatic()) {
+            result.add(reflectedClass);
+        }
         result.addAll(convert(method.getParameterTypes(), new ConvertClassToReflectedType(reflectedTypeFactory)));
         return result;
     }
@@ -112,5 +114,14 @@ class ReflectedMethodImpl implements ReflectedMethod {
                 return returnType.cast(ReflectedMethodImpl.this.call(args));
             }
         };
+    }
+
+    @Override
+    public ReflectedClass<?> returnType() {
+        final Class<?> returnType = method.getReturnType();
+        if (returnType == null) {
+            return null;
+        }
+        return reflectedTypeFactory.reflect(returnType);
     }
 }

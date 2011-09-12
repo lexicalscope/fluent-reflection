@@ -1,19 +1,29 @@
 package com.lexicalscope.fluentreflection.dynamicproxy;
 
+import static com.lexicalscope.fluentreflection.FluentReflection.type;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
+
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.hamcrest.Matcher;
 
 import com.google.inject.TypeLiteral;
-import com.lexicalscope.fluentreflection.MethodBinding;
-import com.lexicalscope.fluentreflection.MethodBody;
 import com.lexicalscope.fluentreflection.FluentReflection;
+import com.lexicalscope.fluentreflection.IllegalAccessRuntimeException;
+import com.lexicalscope.fluentreflection.InvocationTargetRuntimeException;
+import com.lexicalscope.fluentreflection.ReflectedCallable;
+import com.lexicalscope.fluentreflection.ReflectedClass;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
+import com.lexicalscope.fluentreflection.ReflectionMatcher;
+import com.lexicalscope.fluentreflection.SecurityException;
 
 public abstract class Implementing<T> implements ProxyImplementation<T> {
     private static class MethodInvokationContext {
@@ -23,7 +33,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
 
         public MethodInvokationContext(final Method method, final Object[] args) {
             this.method = method;
-            this.args = args;
+            this.args = args == null ? new Object[] {} : args;
         }
     }
 
@@ -77,7 +87,45 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
             public void execute(final MethodBody methodBody) {
                 registeredMethodHandlers.put(methodMatcher, methodBody);
             }
+
+            @Override
+            public void execute(final QueryMethod queryMethod) {
+                execute(new MethodBody() {
+                    @Override
+                    public void body() throws Exception {
+                        try {
+                            final Method method = queryMethod.getClass().getDeclaredMethods()[0];
+                            method.setAccessible(true);
+                            returnValue(method.invoke(queryMethod, args()));
+                        } catch (final SecurityException e) {
+                            throw new SecurityException("unable to invoke method in " + queryMethod.getClass(), e);
+                        } catch (final IllegalAccessException e) {
+                            throw new IllegalAccessRuntimeException("unable to invoke method in "
+                                    + queryMethod.getClass(), e);
+                        } catch (final InvocationTargetException e) {
+                            throw new InvocationTargetRuntimeException("exception propogated by "
+                                    + queryMethod.getClass(), e);
+                        }
+                    }
+                });
+            }
         };
+    }
+
+    public final void matchingSignature(final QueryMethod queryMethod) {
+        final ReflectedMethod userDefinedMethod = type(queryMethod.getClass()).methods().get(0);
+
+        final List<ReflectedClass<?>> argumentTypes =
+                new ArrayList<ReflectedClass<?>>(userDefinedMethod.argumentTypes());
+        argumentTypes.set(0, FluentReflection.type(typeLiteral.getRawType()));
+
+        final ReflectionMatcher<ReflectedCallable> matchArguments =
+                callableHasReflectedArguments(argumentTypes);
+
+        final ReflectionMatcher<ReflectedCallable> matchReturnType =
+                callableHasReturnType(userDefinedMethod.returnType());
+
+        matching(matchArguments.and(matchReturnType)).execute(queryMethod);
     }
 
     public final String methodName() {
@@ -86,5 +134,9 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
 
     public final void returnValue(final Object value) {
         methodInvokationContext.get().result = value;
+    }
+
+    public final Object[] args() {
+        return methodInvokationContext.get().args;
     }
 }

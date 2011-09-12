@@ -11,5 +11,7 @@ public interface ReflectedCallable {
 
     List<ReflectedClass<?>> argumentTypes();
 
+    ReflectedClass<?> returnType();
+
     Object call(Object... args);
 }

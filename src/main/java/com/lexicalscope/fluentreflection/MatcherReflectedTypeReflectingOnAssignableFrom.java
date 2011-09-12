@@ -12,6 +12,10 @@ final class MatcherReflectedTypeReflectingOnAssignableFrom extends ReflectionMat
         this.klass = klass;
     }
 
+    public MatcherReflectedTypeReflectingOnAssignableFrom(final ReflectedClass<?> klass) {
+        this(klass.classUnderReflection());
+    }
+
     @Override
     public boolean matchesSafely(final ReflectedClass<?> arg) {
         return arg.classUnderReflection().isAssignableFrom(klass);

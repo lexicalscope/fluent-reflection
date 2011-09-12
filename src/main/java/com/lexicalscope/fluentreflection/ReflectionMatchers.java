@@ -81,6 +81,11 @@ public class ReflectionMatchers {
         return new MatcherReflectedTypeReflectingOnAssignableFrom(klass);
     }
 
+    public static ReflectionMatcher<ReflectedClass<?>> reflectedTypeReflectingOnAssignableFrom(
+            final ReflectedClass<?> klass) {
+        return new MatcherReflectedTypeReflectingOnAssignableFrom(klass);
+    }
+
     public static ReflectionMatcher<ReflectedConstructor<?>> reflectedConstructorReflectingOn(
             final Constructor<?> constructor) {
         return new MatcherConstructorReflectingOn(constructor);
@@ -96,6 +101,30 @@ public class ReflectionMatchers {
 
     public static ReflectionMatcher<ReflectedCallable> callableHasArguments(final List<Class<?>> argTypes) {
         return new MatcherArgumentTypes(convert(argTypes, new ConvertClassToReflectedTypeAssignableMatcher()));
+    }
+
+    public static ReflectionMatcher<ReflectedCallable> callableHasReflectedArguments(
+            final ReflectedClass<?>... argTypes) {
+        return callableHasReflectedArguments(asList(argTypes));
+    }
+
+    public static ReflectionMatcher<ReflectedCallable> callableHasReflectedArguments(
+            final List<ReflectedClass<?>> argTypes) {
+        return new MatcherArgumentTypes(convert(argTypes, new ConvertReflectedTypeToReflectedTypeAssignableMatcher()));
+    }
+
+    public static ReflectionMatcher<ReflectedCallable> callableHasReturnType(final Class<?> returnType) {
+        if (returnType == null) {
+            return new MatcherNoReturnType();
+        }
+        return new MatcherReturnType(new ConvertClassToReflectedTypeAssignableMatcher().convert(returnType));
+    }
+
+    public static ReflectionMatcher<ReflectedCallable> callableHasReturnType(final ReflectedClass<?> returnType) {
+        if (returnType == null) {
+            return new MatcherNoReturnType();
+        }
+        return new MatcherReturnType(new ConvertReflectedTypeToReflectedTypeAssignableMatcher().convert(returnType));
     }
 
     public static ReflectionMatcher<ReflectedMethod> methodIsStatic() {
