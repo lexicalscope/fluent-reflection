@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection.endtoend;
 
-import static com.lexicalscope.fluentreflection.Reflect.object;
+import static com.lexicalscope.fluentreflection.FluentReflection.object;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;

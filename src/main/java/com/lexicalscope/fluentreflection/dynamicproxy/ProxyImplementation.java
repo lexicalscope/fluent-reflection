@@ -1,4 +1,4 @@
-package com.lexicalscope.fluentreflection;
+package com.lexicalscope.fluentreflection.dynamicproxy;
 
 import java.lang.reflect.InvocationHandler;
 

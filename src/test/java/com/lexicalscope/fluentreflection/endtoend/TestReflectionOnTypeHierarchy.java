@@ -16,7 +16,7 @@ package com.lexicalscope.fluentreflection.endtoend;
  * limitations under the License. 
  */
 
-import static com.lexicalscope.fluentreflection.Reflect.type;
+import static com.lexicalscope.fluentreflection.FluentReflection.type;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;

@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection.endtoend;
 
-import static com.lexicalscope.fluentreflection.Reflect.type;
+import static com.lexicalscope.fluentreflection.FluentReflection.type;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.methodNamed;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;

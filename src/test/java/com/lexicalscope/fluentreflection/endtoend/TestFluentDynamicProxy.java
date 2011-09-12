@@ -1,7 +1,7 @@
 package com.lexicalscope.fluentreflection.endtoend;
 
-import static com.lexicalscope.fluentreflection.Reflect.dynamicProxy;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.methodNamed;
+import static com.lexicalscope.fluentreflection.dynamicproxy.FluentProxy.dynamicProxy;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -13,8 +13,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import com.lexicalscope.fluentreflection.Implementing;
 import com.lexicalscope.fluentreflection.MethodBody;
+import com.lexicalscope.fluentreflection.dynamicproxy.FluentProxy;
+import com.lexicalscope.fluentreflection.dynamicproxy.Implementing;
 
 public class TestFluentDynamicProxy {
     @Rule
@@ -44,7 +45,7 @@ public class TestFluentDynamicProxy {
     public void canProxyMultipleMethods() throws Exception {
         final List<String> called = new ArrayList<String>();
 
-        final TwoMethods dynamicProxy = dynamicProxy(new Implementing<TwoMethods>() {
+        final TwoMethods dynamicProxy = FluentProxy.dynamicProxy(new Implementing<TwoMethods>() {
             {
                 matching(anything()).execute(new MethodBody() {
                     @Override

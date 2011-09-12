@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.Reflect.type;
+import static com.lexicalscope.fluentreflection.FluentReflection.type;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 

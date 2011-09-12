@@ -1,6 +1,5 @@
-package com.lexicalscope.fluentreflection;
+package com.lexicalscope.fluentreflection.dynamicproxy;
 
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /*
@@ -19,26 +18,11 @@ import java.lang.reflect.Proxy;
  * limitations under the License. 
  */
 
-/**
- * Main entry point for the reflection library
- */
-public class Reflect {
-    public static <T> ReflectedClass<T> type(final Class<T> klass) {
-        return new ReflectedTypeFactoryImpl().reflect(klass);
-    }
-
-    public static ReflectedMethod method(final Method method) {
-        return new ReflectedTypeFactoryImpl().method(method);
-    }
-
+public class FluentProxy {
     public static <T> T dynamicProxy(final ProxyImplementation<T> proxyImplementation) {
         return (T) Proxy.newProxyInstance(
                 Thread.currentThread().getContextClassLoader(),
                 new Class[] { proxyImplementation.proxiedInterface() },
                 proxyImplementation);
-    }
-
-    public static <T> ReflectedObject<T> object(final T object) {
-        return new ReflectedTypeFactoryImpl().reflect((Class<T>) object.getClass(), object);
     }
 }

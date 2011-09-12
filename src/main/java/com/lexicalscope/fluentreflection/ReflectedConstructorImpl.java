@@ -1,7 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.convert;
-import static com.lexicalscope.fluentreflection.Reflect.type;
+import static com.lexicalscope.fluentreflection.FluentReflection.type;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

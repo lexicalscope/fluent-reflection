@@ -1,4 +1,4 @@
-package com.lexicalscope.fluentreflection;
+package com.lexicalscope.fluentreflection.dynamicproxy;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -10,6 +10,10 @@ import java.util.Map.Entry;
 import org.hamcrest.Matcher;
 
 import com.google.inject.TypeLiteral;
+import com.lexicalscope.fluentreflection.MethodBinding;
+import com.lexicalscope.fluentreflection.MethodBody;
+import com.lexicalscope.fluentreflection.FluentReflection;
+import com.lexicalscope.fluentreflection.ReflectedMethod;
 
 public abstract class Implementing<T> implements ProxyImplementation<T> {
     private static class MethodInvokationContext {
@@ -48,7 +52,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         try {
             for (final Entry<Matcher<? super ReflectedMethod>, MethodBody> registeredMethodHandler : registeredMethodHandlers
                     .entrySet()) {
-                if (registeredMethodHandler.getKey().matches(Reflect.method(method))) {
+                if (registeredMethodHandler.getKey().matches(FluentReflection.method(method))) {
                     final MethodBody registeredImplementation = registeredMethodHandler.getValue();
 
                     registeredImplementation.body();
