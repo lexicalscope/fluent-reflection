@@ -3,11 +3,11 @@ package com.lexicalscope.fluentreflection.usecases;
 import static ch.lambdaj.Lambda.forEach;
 import static com.lexicalscope.fluentreflection.FluentReflection.object;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableAnnotatedWith;
-import static java.util.Collections.reverse;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -83,15 +83,16 @@ public class TestCanCallPostConstructMethodsTopDown {
     public void canCallPreDestroyMethodsInTheCorrectOrder() throws Exception {
         final AfterConstructionExtension subject = new AfterConstructionExtension();
 
-        final List<ReflectedMethod> predestroyMethods =
-                new ArrayList<ReflectedMethod>(object(subject).methods(callableAnnotatedWith(PreDestroy.class)));
-
-        reverse(predestroyMethods);
-
         forEach(
-                predestroyMethods,
+                reverse(object(subject).methods(callableAnnotatedWith(PreDestroy.class))),
                 ReflectedMethod.class).call();
 
         assertThat(subject.result, contains("beforeDestructionExtension", "beforeDestruction"));
+    }
+
+    private <T> List<T> reverse(final List<T> list) {
+        final ArrayList<T> result = new ArrayList<T>(list.size());
+        Collections.reverse(result);
+        return result;
     }
 }
