@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.7401709401709402" branch-rate="0.6694915254237288" lines-covered="433" lines-valid="585" branches-covered="79" branches-valid="118" complexity="1.3460207612456747" version="1.9.4.1" timestamp="1315945355532">
+<coverage line-rate="0.7534246575342466" branch-rate="0.6982758620689655" lines-covered="440" lines-valid="584" branches-covered="81" branches-valid="116" complexity="1.3379310344827586" version="1.9.4.1" timestamp="1315947051946">
 	<sources>
 		<source>--source</source>
 		<source>/scratch/hudson/workspace/fluent-reflection/src/main/java</source>
 	</sources>
 	<packages>
-		<package name="com.lexicalscope.fluentreflection" line-rate="0.7296786389413988" branch-rate="0.6636363636363637" complexity="1.3210332103321034">
+		<package name="com.lexicalscope.fluentreflection" line-rate="0.7443181818181818" branch-rate="0.6944444444444444" complexity="1.3125">
 			<classes>
 				<class name="com.lexicalscope.fluentreflection.BoundReflectedMethodImpl" filename="com/lexicalscope/fluentreflection/BoundReflectedMethodImpl.java" line-rate="1.0" branch-rate="1.0" complexity="1.1818181818181819">
 					<methods>
@@ -225,21 +225,15 @@
 						<line number="15" hits="7" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.ConvertClassToReflectedTypeMatcher" filename="com/lexicalscope/fluentreflection/ConvertClassToReflectedTypeMatcher.java" line-rate="0.75" branch-rate="0.5" complexity="3.0">
+				<class name="com.lexicalscope.fluentreflection.ConvertClassToReflectedTypeMatcher" filename="com/lexicalscope/fluentreflection/ConvertClassToReflectedTypeMatcher.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
 							</lines>
 						</method>
-						<method name="convert" signature="(Ljava/lang/Class;)Lorg/hamcrest/Matcher;" line-rate="0.6666666666666666" branch-rate="0.5">
+						<method name="convert" signature="(Ljava/lang/Class;)Lorg/hamcrest/Matcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="12" hits="1" branch="true" condition-coverage="50% (1/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="50%"/>
-									</conditions>
-								</line>
-								<line number="13" hits="0" branch="false"/>
-								<line number="15" hits="1" branch="false"/>
+								<line number="12" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
@@ -250,13 +244,7 @@
 					</methods>
 					<lines>
 						<line number="9" hits="1" branch="false"/>
-						<line number="12" hits="1" branch="true" condition-coverage="50% (1/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="50%"/>
-							</conditions>
-						</line>
-						<line number="13" hits="0" branch="false"/>
-						<line number="15" hits="1" branch="false"/>
+						<line number="12" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.ConvertConstructorToReflectedConstructor" filename="com/lexicalscope/fluentreflection/ConvertConstructorToReflectedConstructor.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -417,34 +405,36 @@
 						<line number="16" hits="3" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.FluentReflection" filename="com/lexicalscope/fluentreflection/FluentReflection.java" line-rate="0.75" branch-rate="1.0" complexity="1.0">
+				<class name="com.lexicalscope.fluentreflection.FluentReflection" filename="com/lexicalscope/fluentreflection/FluentReflection.java" line-rate="0.6" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="24" hits="0" branch="false"/>
+								<line number="25" hits="0" branch="false"/>
+								<line number="26" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="method" signature="(Ljava/lang/reflect/Method;)Lcom/lexicalscope/fluentreflection/ReflectedMethod;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="30" hits="17" branch="false"/>
+								<line number="33" hits="17" branch="false"/>
 							</lines>
 						</method>
 						<method name="object" signature="(Ljava/lang/Object;)Lcom/lexicalscope/fluentreflection/ReflectedObject;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="34" hits="9" branch="false"/>
+								<line number="37" hits="9" branch="false"/>
 							</lines>
 						</method>
 						<method name="type" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="26" hits="48" branch="false"/>
+								<line number="29" hits="48" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="24" hits="0" branch="false"/>
-						<line number="26" hits="48" branch="false"/>
-						<line number="30" hits="17" branch="false"/>
-						<line number="34" hits="9" branch="false"/>
+						<line number="25" hits="0" branch="false"/>
+						<line number="26" hits="0" branch="false"/>
+						<line number="29" hits="48" branch="false"/>
+						<line number="33" hits="17" branch="false"/>
+						<line number="37" hits="9" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.IllegalAccessRuntimeException" filename="com/lexicalscope/fluentreflection/IllegalAccessRuntimeException.java" line-rate="0.0" branch-rate="1.0" complexity="1.0">
@@ -705,34 +695,34 @@
 						<line number="69" hits="19" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.MatcherAnyReflectedType" filename="com/lexicalscope/fluentreflection/MatcherAnyReflectedType.java" line-rate="0.5" branch-rate="1.0" complexity="1.0">
+				<class name="com.lexicalscope.fluentreflection.MatcherAnyReflectedType" filename="com/lexicalscope/fluentreflection/MatcherAnyReflectedType.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
 							</lines>
 						</method>
-						<method name="describeTo" signature="(Lorg/hamcrest/Description;)V" line-rate="0.0" branch-rate="1.0">
+						<method name="describeTo" signature="(Lorg/hamcrest/Description;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="16" hits="0" branch="false"/>
-								<line number="17" hits="0" branch="false"/>
+								<line number="16" hits="1" branch="false"/>
+								<line number="17" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedClass;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="11" hits="4" branch="false"/>
+								<line number="11" hits="5" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="8" hits="8" branch="false"/>
+								<line number="8" hits="12" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="8" hits="8" branch="false"/>
-						<line number="11" hits="4" branch="false"/>
-						<line number="16" hits="0" branch="false"/>
-						<line number="17" hits="0" branch="false"/>
+						<line number="8" hits="12" branch="false"/>
+						<line number="11" hits="5" branch="false"/>
+						<line number="16" hits="1" branch="false"/>
+						<line number="17" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.MatcherArgumentCount" filename="com/lexicalscope/fluentreflection/MatcherArgumentCount.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -1049,6 +1039,66 @@
 						<line number="23" hits="1" branch="false"/>
 					</lines>
 				</class>
+				<class name="com.lexicalscope.fluentreflection.MatcherCallableHasVoidReturn" filename="com/lexicalscope/fluentreflection/MatcherCallableHasVoidReturn.java" line-rate="0.6666666666666666" branch-rate="0.3333333333333333" complexity="1.25">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="describeTo" signature="(Lorg/hamcrest/Description;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="29" hits="1" branch="false"/>
+								<line number="30" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="equals" signature="(Ljava/lang/Object;)Z" line-rate="0.0" branch-rate="0.0">
+							<lines>
+								<line number="34" hits="0" branch="true" condition-coverage="0% (0/4)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+										<condition number="1" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+						<method name="hashCode" signature="()I" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="39" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedCallable;)Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="24" hits="2" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="21" hits="5" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="21" hits="5" branch="false"/>
+						<line number="24" hits="2" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="29" hits="1" branch="false"/>
+						<line number="30" hits="1" branch="false"/>
+						<line number="34" hits="0" branch="true" condition-coverage="0% (0/4)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+								<condition number="1" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="39" hits="0" branch="false"/>
+					</lines>
+				</class>
 				<class name="com.lexicalscope.fluentreflection.MatcherCallableNamed" filename="com/lexicalscope/fluentreflection/MatcherCallableNamed.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
@@ -1221,66 +1271,6 @@
 						<line number="8" hits="32" branch="false"/>
 						<line number="13" hits="0" branch="false"/>
 						<line number="14" hits="0" branch="false"/>
-					</lines>
-				</class>
-				<class name="com.lexicalscope.fluentreflection.MatcherNoReturnType" filename="com/lexicalscope/fluentreflection/MatcherNoReturnType.java" line-rate="0.0" branch-rate="0.0" complexity="1.25">
-					<methods>
-						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-							</lines>
-						</method>
-						<method name="describeTo" signature="(Lorg/hamcrest/Description;)V" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="29" hits="0" branch="false"/>
-								<line number="30" hits="0" branch="false"/>
-							</lines>
-						</method>
-						<method name="equals" signature="(Ljava/lang/Object;)Z" line-rate="0.0" branch-rate="0.0">
-							<lines>
-								<line number="34" hits="0" branch="true" condition-coverage="0% (0/4)">
-									<conditions>
-										<condition number="0" type="jump" coverage="0%"/>
-										<condition number="1" type="jump" coverage="0%"/>
-									</conditions>
-								</line>
-							</lines>
-						</method>
-						<method name="hashCode" signature="()I" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="39" hits="0" branch="false"/>
-							</lines>
-						</method>
-						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedCallable;)Z" line-rate="0.0" branch-rate="0.0">
-							<lines>
-								<line number="24" hits="0" branch="true" condition-coverage="0% (0/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="0%"/>
-									</conditions>
-								</line>
-							</lines>
-						</method>
-						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="21" hits="0" branch="false"/>
-							</lines>
-						</method>
-					</methods>
-					<lines>
-						<line number="21" hits="0" branch="false"/>
-						<line number="24" hits="0" branch="true" condition-coverage="0% (0/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="0%"/>
-							</conditions>
-						</line>
-						<line number="29" hits="0" branch="false"/>
-						<line number="30" hits="0" branch="false"/>
-						<line number="34" hits="0" branch="true" condition-coverage="0% (0/4)">
-							<conditions>
-								<condition number="0" type="jump" coverage="0%"/>
-								<condition number="1" type="jump" coverage="0%"/>
-							</conditions>
-						</line>
-						<line number="39" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.MatcherOr" filename="com/lexicalscope/fluentreflection/MatcherOr.java" line-rate="1.0" branch-rate="1.0" complexity="2.25">
@@ -2519,7 +2509,7 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="28" hits="190" branch="false"/>
+								<line number="28" hits="196" branch="false"/>
 							</lines>
 						</method>
 						<method name="and" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
@@ -2540,7 +2530,7 @@
 						</method>
 					</methods>
 					<lines>
-						<line number="28" hits="190" branch="false"/>
+						<line number="28" hits="196" branch="false"/>
 						<line number="38" hits="14" branch="false"/>
 						<line number="39" hits="14" branch="false"/>
 						<line number="40" hits="14" branch="false"/>
@@ -2551,7 +2541,7 @@
 						<line number="56" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.8064516129032258" branch-rate="0.25" complexity="1.1428571428571428">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.8709677419354839" branch-rate="0.5" complexity="1.1428571428571428">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
 							<lines>
@@ -2560,7 +2550,7 @@
 						</method>
 						<method name="anyReflectedType" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="73" hits="4" branch="false"/>
+								<line number="73" hits="7" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableHasArguments" signature="(Ljava/util/List;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
@@ -2594,14 +2584,14 @@
 								<line number="127" hits="1" branch="false"/>
 							</lines>
 						</method>
-						<method name="callableHasReturnType" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="0.0" branch-rate="0.0">
+						<method name="callableHasReturnType" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="0.6666666666666666" branch-rate="0.5">
 							<lines>
-								<line number="117" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="117" hits="3" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
-										<condition number="0" type="jump" coverage="0%"/>
+										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="118" hits="0" branch="false"/>
+								<line number="118" hits="3" branch="false"/>
 								<line number="120" hits="0" branch="false"/>
 							</lines>
 						</method>
@@ -2714,7 +2704,7 @@
 						<line number="61" hits="3" branch="false"/>
 						<line number="65" hits="4" branch="false"/>
 						<line number="69" hits="8" branch="false"/>
-						<line number="73" hits="4" branch="false"/>
+						<line number="73" hits="7" branch="false"/>
 						<line number="77" hits="14" branch="false"/>
 						<line number="81" hits="7" branch="false"/>
 						<line number="86" hits="3" branch="false"/>
@@ -2724,12 +2714,12 @@
 						<line number="103" hits="10" branch="false"/>
 						<line number="108" hits="0" branch="false"/>
 						<line number="113" hits="1" branch="false"/>
-						<line number="117" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="117" hits="3" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
-								<condition number="0" type="jump" coverage="0%"/>
+								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="118" hits="0" branch="false"/>
+						<line number="118" hits="3" branch="false"/>
 						<line number="120" hits="0" branch="false"/>
 						<line number="124" hits="1" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
