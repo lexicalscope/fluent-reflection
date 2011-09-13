@@ -87,4 +87,9 @@ class BoundReflectedMethodImpl implements ReflectedMethod {
     public ReflectedClass<?> returnType() {
         return method.returnType();
     }
+
+    @Override
+    public ReflectedClass<?> annotation(final ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher) {
+        return method.annotation(annotationMatcher);
+    }
 }

@@ -14,4 +14,6 @@ public interface ReflectedCallable {
     ReflectedClass<?> returnType();
 
     Object call(Object... args);
+
+    ReflectedClass<?> annotation(ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher);
 }

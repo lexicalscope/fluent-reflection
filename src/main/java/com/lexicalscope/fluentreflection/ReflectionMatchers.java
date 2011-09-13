@@ -3,10 +3,12 @@ package com.lexicalscope.fluentreflection;
 import static ch.lambdaj.Lambda.convert;
 import static java.util.Arrays.asList;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.util.List;
 
 import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 
 /*
  * Copyright 2011 Tim Wood
@@ -125,6 +127,10 @@ public class ReflectionMatchers {
             return new MatcherCallableHasVoidReturn();
         }
         return new MatcherReturnType(new ConvertReflectedTypeToReflectedTypeAssignableMatcher().convert(returnType));
+    }
+
+    public static Matcher<ReflectedCallable> callableAnnotatedWith(final Class<? extends Annotation> annotation) {
+        return new MatcherCallableAnnotatedWith(annotation);
     }
 
     public static ReflectionMatcher<ReflectedMethod> methodIsStatic() {

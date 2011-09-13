@@ -6,11 +6,12 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-class ReflectedConstructorImpl<T> implements ReflectedConstructor<T> {
+class ReflectedConstructorImpl<T> extends AbstractReflectedCallable implements ReflectedConstructor<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final Constructor<T> constructor;
 
     public ReflectedConstructorImpl(final ReflectedTypeFactory reflectedTypeFactory, final Constructor<T> constructor) {
+        super(reflectedTypeFactory, constructor);
         this.reflectedTypeFactory = reflectedTypeFactory;
         this.constructor = constructor;
     }

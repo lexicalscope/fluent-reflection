@@ -25,7 +25,7 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
-class ReflectedMethodImpl implements ReflectedMethod {
+class ReflectedMethodImpl extends AbstractReflectedCallable implements ReflectedMethod {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final ReflectedClass<?> reflectedClass;
     private final Method method;
@@ -33,6 +33,7 @@ class ReflectedMethodImpl implements ReflectedMethod {
     public ReflectedMethodImpl(final ReflectedTypeFactory reflectedTypeFactory,
                                final ReflectedClass<?> reflectedClass,
                                final Method method) {
+        super(reflectedTypeFactory, method);
         this.reflectedTypeFactory = reflectedTypeFactory;
         this.reflectedClass = reflectedClass;
         this.method = method;

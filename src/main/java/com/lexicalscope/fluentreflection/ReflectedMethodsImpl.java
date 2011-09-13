@@ -4,6 +4,7 @@ import static java.util.Collections.unmodifiableList;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
@@ -32,6 +33,7 @@ class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
                 result.addAll(getDeclaredMethodsOfClass(klassToReflect.classUnderReflection()));
             }
 
+            Collections.reverse(result);
             reflectedMethods = unmodifiableList(result);
         }
         return reflectedMethods;
