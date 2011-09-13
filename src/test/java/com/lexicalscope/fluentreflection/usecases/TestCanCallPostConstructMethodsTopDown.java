@@ -2,7 +2,7 @@ package com.lexicalscope.fluentreflection.usecases;
 
 import static ch.lambdaj.Lambda.forEach;
 import static com.lexicalscope.fluentreflection.FluentReflection.object;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableAnnotatedWith;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.annotatedWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 
@@ -73,7 +73,7 @@ public class TestCanCallPostConstructMethodsTopDown {
         final AfterConstructionExtension subject = new AfterConstructionExtension();
 
         forEach(
-                object(subject).methods(callableAnnotatedWith(PostConstruct.class)),
+                object(subject).methods(annotatedWith(PostConstruct.class)),
                 ReflectedMethod.class).call();
 
         assertThat(subject.result, contains("afterConstruction", "afterConstructionExtension"));
@@ -84,14 +84,14 @@ public class TestCanCallPostConstructMethodsTopDown {
         final AfterConstructionExtension subject = new AfterConstructionExtension();
 
         forEach(
-                reverse(object(subject).methods(callableAnnotatedWith(PreDestroy.class))),
+                reverse(object(subject).methods(annotatedWith(PreDestroy.class))),
                 ReflectedMethod.class).call();
-
+        System.out.println(subject.result);
         assertThat(subject.result, contains("beforeDestructionExtension", "beforeDestruction"));
     }
 
     private <T> List<T> reverse(final List<T> list) {
-        final ArrayList<T> result = new ArrayList<T>(list.size());
+        final ArrayList<T> result = new ArrayList<T>(list);
         Collections.reverse(result);
         return result;
     }

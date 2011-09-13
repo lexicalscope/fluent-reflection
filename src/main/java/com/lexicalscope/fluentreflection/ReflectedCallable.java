@@ -2,7 +2,7 @@ package com.lexicalscope.fluentreflection;
 
 import java.util.List;
 
-public interface ReflectedCallable {
+public interface ReflectedCallable extends ReflectedAnnotated {
     String getName();
 
     ReflectedClass<?> declaringClass();
@@ -14,6 +14,4 @@ public interface ReflectedCallable {
     ReflectedClass<?> returnType();
 
     Object call(Object... args);
-
-    ReflectedClass<?> annotation(ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher);
 }

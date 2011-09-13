@@ -129,7 +129,7 @@ public class ReflectionMatchers {
         return new MatcherReturnType(new ConvertReflectedTypeToReflectedTypeAssignableMatcher().convert(returnType));
     }
 
-    public static Matcher<ReflectedCallable> callableAnnotatedWith(final Class<? extends Annotation> annotation) {
+    public static Matcher<ReflectedAnnotated> annotatedWith(final Class<? extends Annotation> annotation) {
         return new MatcherCallableAnnotatedWith(annotation);
     }
 
