@@ -3,6 +3,7 @@ package com.lexicalscope.fluentreflection.usecases;
 import static ch.lambdaj.Lambda.forEach;
 import static com.lexicalscope.fluentreflection.FluentReflection.object;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableAnnotatedWith;
+import static java.util.Collections.reverse;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import org.junit.Test;
 
@@ -34,6 +36,8 @@ import com.lexicalscope.fluentreflection.ReflectedMethod;
 public class TestCanCallPostConstructMethodsTopDown {
     interface TopInterface {
         void afterConstruction();
+
+        void beforeDestruction();
     }
 
     static class AfterConstruction implements TopInterface {
@@ -44,12 +48,23 @@ public class TestCanCallPostConstructMethodsTopDown {
         public void afterConstruction() {
             result.add("afterConstruction");
         }
+
+        @Override
+        @PreDestroy
+        public void beforeDestruction() {
+            result.add("beforeDestruction");
+        }
     }
 
     static class AfterConstructionExtension extends AfterConstruction {
         @PostConstruct
         public void afterConstructionExtension() {
             result.add("afterConstructionExtension");
+        }
+
+        @PreDestroy
+        public void beforeDestructionExtension() {
+            result.add("beforeDestructionExtension");
         }
     }
 
@@ -62,5 +77,21 @@ public class TestCanCallPostConstructMethodsTopDown {
                 ReflectedMethod.class).call();
 
         assertThat(subject.result, contains("afterConstruction", "afterConstructionExtension"));
+    }
+
+    @Test
+    public void canCallPreDestroyMethodsInTheCorrectOrder() throws Exception {
+        final AfterConstructionExtension subject = new AfterConstructionExtension();
+
+        final List<ReflectedMethod> predestroyMethods =
+                new ArrayList<ReflectedMethod>(object(subject).methods(callableAnnotatedWith(PreDestroy.class)));
+
+        reverse(predestroyMethods);
+
+        forEach(
+                predestroyMethods,
+                ReflectedMethod.class).call();
+
+        assertThat(subject.result, contains("beforeDestructionExtension", "beforeDestruction"));
     }
 }
