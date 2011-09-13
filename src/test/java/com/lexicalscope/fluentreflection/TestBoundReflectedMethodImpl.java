@@ -1,6 +1,9 @@
 package com.lexicalscope.fluentreflection;
 
 import static com.lexicalscope.fluentreflection.FluentReflection.method;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectedTypeReflectingOn;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -31,6 +34,25 @@ public class TestBoundReflectedMethodImpl {
         }
     }
 
+    static class ClassWithMethod {
+        Integer method() {
+            return 42;
+        }
+
+        @Override
+        public String toString() {
+            return "my toString";
+        }
+    }
+
+    private final BoundReflectedMethodImpl methodWithReturnType;
+
+    public TestBoundReflectedMethodImpl() throws SecurityException, NoSuchMethodException {
+        methodWithReturnType = new BoundReflectedMethodImpl(
+                method(ClassWithMethod.class.getDeclaredMethod("method")),
+                new ClassWithMethod());
+    }
+
     @Test
     public void bindingStaticMethodIsNotAllowed() throws Exception {
         exception.expect(IllegalArgumentException.class);
@@ -38,5 +60,19 @@ public class TestBoundReflectedMethodImpl {
         new BoundReflectedMethodImpl(
                 method(ClassWithStaticMethod.class.getDeclaredMethods()[0]),
                 new ClassWithStaticMethod());
+    }
+
+    @Test
+    public void boundMethodToStringIsAllowed() throws Exception {
+        assertThat(
+                methodWithReturnType,
+                hasToString(containsString("method() in my toString")));
+    }
+
+    @Test
+    public void boundMethodReturnTypeIsAvailable() throws Exception {
+        assertThat(
+                methodWithReturnType.returnType(),
+                reflectedTypeReflectingOn(Integer.class));
     }
 }
