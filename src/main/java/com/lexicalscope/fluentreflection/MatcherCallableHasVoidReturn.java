@@ -18,7 +18,7 @@ import org.hamcrest.Description;
  * limitations under the License. 
  */
 
-class MatcherNoReturnType extends ReflectionMatcher<ReflectedCallable> {
+class MatcherCallableHasVoidReturn extends ReflectionMatcher<ReflectedCallable> {
     @Override
     protected boolean matchesSafely(final ReflectedCallable item) {
         return item.returnType() == null;
@@ -36,6 +36,6 @@ class MatcherNoReturnType extends ReflectionMatcher<ReflectedCallable> {
 
     @Override
     public final int hashCode() {
-        return MatcherNoReturnType.class.hashCode();
+        return MatcherCallableHasVoidReturn.class.hashCode();
     }
 }

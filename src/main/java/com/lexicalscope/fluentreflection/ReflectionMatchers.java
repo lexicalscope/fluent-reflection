@@ -115,14 +115,14 @@ public class ReflectionMatchers {
 
     public static ReflectionMatcher<ReflectedCallable> callableHasReturnType(final Class<?> returnType) {
         if (returnType == null) {
-            return new MatcherNoReturnType();
+            return new MatcherCallableHasVoidReturn();
         }
         return new MatcherReturnType(new ConvertClassToReflectedTypeAssignableMatcher().convert(returnType));
     }
 
     public static ReflectionMatcher<ReflectedCallable> callableHasReturnType(final ReflectedClass<?> returnType) {
         if (returnType == null) {
-            return new MatcherNoReturnType();
+            return new MatcherCallableHasVoidReturn();
         }
         return new MatcherReturnType(new ConvertReflectedTypeToReflectedTypeAssignableMatcher().convert(returnType));
     }
