@@ -9,9 +9,6 @@ import ch.lambdaj.function.convert.Converter;
 class ConvertClassToReflectedTypeMatcher implements Converter<Class<?>, Matcher<ReflectedClass<?>>> {
     @Override
     public Matcher<ReflectedClass<?>> convert(final Class<?> from) {
-        if (from == null) {
-            return null;
-        }
         return reflectedTypeReflectingOn(from);
     }
 }

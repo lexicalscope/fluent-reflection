@@ -33,7 +33,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
     public void matcherCanFailToMatch() {
         setupFailingCase();
 
-        assertThat(target(), not(matcher()));
+        assertThat(failingTarget(), not(matcher()));
     }
 
     @Test
@@ -45,11 +45,18 @@ public abstract class AbstractTestReflectionMatcher<T> {
 
     protected abstract Matcher<String> hasDescription();
 
-    protected abstract void setupMatchingCase();
+    protected void setupMatchingCase() {
+    }
 
-    protected abstract void setupFailingCase();
+    protected void setupFailingCase() {
+
+    }
 
     protected abstract ReflectionMatcher<T> matcher();
+
+    protected T failingTarget() {
+        return target();
+    }
 
     protected final void whenMethodHasName(final String methodName) {
         context.checking(new Expectations() {
@@ -76,7 +83,8 @@ public abstract class AbstractTestReflectionMatcher<T> {
     protected final void whenMethodHasArguments(final Class<?>... arguments) {
         final ReflectedClass<?>[] argumentTypes = new ReflectedClass<?>[arguments.length];
         for (int i = 0; i < argumentTypes.length; i++) {
-            argumentTypes[i] = context.mock(ReflectedClass.class, "argument " + i + ": " + arguments[i].getSimpleName());
+            argumentTypes[i] =
+                    context.mock(ReflectedClass.class, "argument " + i + ": " + arguments[i].getSimpleName());
         }
 
         context.checking(new Expectations() {
