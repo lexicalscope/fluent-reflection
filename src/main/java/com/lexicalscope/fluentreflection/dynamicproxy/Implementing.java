@@ -120,7 +120,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         argumentTypes.set(0, FluentReflection.type(typeLiteral.getRawType()));
 
         final ReflectionMatcher<ReflectedCallable> matchArguments =
-                callableHasReflectedArguments(argumentTypes);
+                callableHasReflectedArgumentList(argumentTypes);
 
         final ReflectionMatcher<ReflectedCallable> matchReturnType =
                 callableHasReturnType(userDefinedMethod.returnType());

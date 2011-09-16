@@ -87,7 +87,7 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
     @Override
     public T constructRaw(final Object... args) {
         final ReflectedConstructor<T> constructor =
-                constructor(callableHasArguments(convert(args, new ConvertObjectToClass())));
+                constructor(callableHasArgumentList(convert(args, new ConvertObjectToClass())));
 
         if (constructor == null) {
             throw new ConstructorNotFoundRuntimeException(klass);

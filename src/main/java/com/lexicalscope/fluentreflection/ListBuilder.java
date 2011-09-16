@@ -3,8 +3,8 @@ package com.lexicalscope.fluentreflection;
 import java.util.ArrayList;
 import java.util.List;
 
-final class ListBuilder<T> {
-    static <T> ListBuilder<T> list(final T firstItem) {
+public final class ListBuilder<T> {
+    public static <T> ListBuilder<T> list(final T firstItem) {
         final ListBuilder<T> listBuilder = new ListBuilder<T>();
         listBuilder.add(firstItem);
         return listBuilder;
@@ -12,12 +12,12 @@ final class ListBuilder<T> {
 
     private final List<T> list = new ArrayList<T>();
 
-    ListBuilder<T> add(final T item) {
+    public ListBuilder<T> add(final T item) {
         list.add(item);
         return this;
     }
 
-    List<T> $() {
+    public List<T> $() {
         return list;
     }
 }

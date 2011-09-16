@@ -2,11 +2,13 @@ package com.lexicalscope.fluentreflection.usecases;
 
 import static com.lexicalscope.fluentreflection.FluentReflection.object;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertThat;
 
-import org.hamcrest.Matchers;
+import org.hamcrest.Matcher;
 import org.junit.Test;
 
+import com.lexicalscope.fluentreflection.ListBuilder;
 import com.lexicalscope.fluentreflection.ReflectedCallable;
 
 /*
@@ -55,15 +57,15 @@ public class TestFindAllBeanMethods {
         }
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void canSelectAllGetters() throws Exception {
         assertThat(
                 object(new Bean()).methods(
                         methodHasNameStartingWith("get").and(callableHasNoArguments()).and(
                                 not(callableHasVoidReturn()))),
-                Matchers.<ReflectedCallable>containsInAnyOrder(
-                        methodHasName("getReadOnlyProperty"),
-                        methodHasName("getReadWriteProperty")));
+                containsInAnyOrder(
+                        ListBuilder.<Matcher<? super ReflectedCallable>>
+                                list(methodHasName("getReadOnlyProperty")).add(
+                                        methodHasName("getReadWriteProperty")).$()));
     }
 }

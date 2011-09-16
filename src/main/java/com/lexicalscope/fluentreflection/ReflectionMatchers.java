@@ -98,19 +98,19 @@ public class ReflectionMatchers {
     }
 
     public static ReflectionMatcher<ReflectedCallable> callableHasArguments(final Class<?>... argTypes) {
-        return callableHasArguments(asList(argTypes));
+        return callableHasArgumentList(asList(argTypes));
     }
 
-    public static ReflectionMatcher<ReflectedCallable> callableHasArguments(final List<Class<?>> argTypes) {
+    public static ReflectionMatcher<ReflectedCallable> callableHasArgumentList(final List<Class<?>> argTypes) {
         return new MatcherArgumentTypes(convert(argTypes, new ConvertClassToReflectedTypeAssignableMatcher()));
     }
 
     public static ReflectionMatcher<ReflectedCallable> callableHasReflectedArguments(
             final ReflectedClass<?>... argTypes) {
-        return callableHasReflectedArguments(asList(argTypes));
+        return callableHasReflectedArgumentList(asList(argTypes));
     }
 
-    public static ReflectionMatcher<ReflectedCallable> callableHasReflectedArguments(
+    public static ReflectionMatcher<ReflectedCallable> callableHasReflectedArgumentList(
             final List<ReflectedClass<?>> argTypes) {
         return new MatcherArgumentTypes(convert(argTypes, new ConvertReflectedTypeToReflectedTypeAssignableMatcher()));
     }
