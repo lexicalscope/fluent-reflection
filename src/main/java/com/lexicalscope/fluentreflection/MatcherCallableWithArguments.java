@@ -4,32 +4,36 @@
 package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.convert;
-import static org.hamcrest.Matchers.arrayContaining;
+import static org.hamcrest.Matchers.contains;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 
 final class MatcherCallableWithArguments extends ReflectionMatcher<ReflectedCallable> {
-    private final Class<?>[] expectedArgumentTypes;
+    private final List<Matcher<? super ReflectedClass<?>>> expectedArgumentTypes;
 
     MatcherCallableWithArguments(final Class<?>[] expectedArgumentTypes) {
-        this.expectedArgumentTypes = expectedArgumentTypes;
+        this(convert(expectedArgumentTypes, new ConvertClassToReflectedTypeMatcher()));
+    }
+
+    MatcherCallableWithArguments(final List<? extends Matcher<? super ReflectedClass<?>>> expectedArgumentTypes) {
+        this.expectedArgumentTypes = new ArrayList<Matcher<? super ReflectedClass<?>>>(expectedArgumentTypes);
     }
 
     @Override
     public boolean matchesSafely(final ReflectedCallable arg) {
-        final List<Class<?>> actualArgumentTypes =
-                convert(arg.argumentTypes(), new ConvertReflectedTypeToClass());
+        final List<ReflectedClass<?>> actualArgumentTypes = arg.argumentTypes();
 
-        if (expectedArgumentTypes == null || expectedArgumentTypes.length == 0) {
+        if (expectedArgumentTypes == null || expectedArgumentTypes.size() == 0) {
             return actualArgumentTypes.size() == 0;
         }
-        if (expectedArgumentTypes.length != actualArgumentTypes.size()) {
+        if (expectedArgumentTypes.size() != actualArgumentTypes.size()) {
             return false;
         }
-        return arrayContaining(actualArgumentTypes.toArray(new Class[actualArgumentTypes.size()])).matches(
-                expectedArgumentTypes);
+        return contains(expectedArgumentTypes).matches(expectedArgumentTypes);
     }
 
     @Override

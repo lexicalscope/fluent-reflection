@@ -19,9 +19,12 @@ final class MatcherArgumentTypes extends ReflectionMatcher<ReflectedCallable> {
 
     @Override
     protected boolean matchesSafely(final ReflectedCallable item) {
-        if (item.argumentCount() != argumentTypeMatchers.size()) {
+        final int actualArgumentCount = item.argumentCount();
+        final int expectedArgumentCount = argumentTypeMatchers.size();
+
+        if (actualArgumentCount != expectedArgumentCount) {
             return false;
-        } else if (item.argumentCount() == 0 && argumentTypeMatchers.size() == 0) {
+        } else if (actualArgumentCount == 0 && expectedArgumentCount == 0) {
             return true;
         }
 

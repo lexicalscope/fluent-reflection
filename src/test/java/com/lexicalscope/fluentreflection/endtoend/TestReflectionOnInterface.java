@@ -38,35 +38,35 @@ public class TestReflectionOnInterface {
     public void methodsCanBeSelectedByPrefix() {
         assertThat(
                 type(ExampleInterface.class).methods(methodHasNameStartingWith("get")),
-                Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
+                Matchers.<ReflectedMethod>hasItem(methodHasName("getPropertyOne")));
     }
 
     @Test
     public void methodsCanBeSelectedBySuffix() {
         assertThat(
                 type(ExampleInterface.class).methods(methodHasNameEndingWith("One")),
-                Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
+                Matchers.<ReflectedMethod>hasItem(methodHasName("getPropertyOne")));
     }
 
     @Test
     public void methodsCanBeSelectedByRegularExpression() {
         assertThat(
                 type(ExampleInterface.class).methods(methodHasNameMatching(".*Property.*")),
-                Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
+                Matchers.<ReflectedMethod>hasItem(methodHasName("getPropertyOne")));
     }
 
     @Test
     public void methodsWithNoArgumentsCanBeSelected() {
         assertThat(
                 type(ExampleInterface.class).methods(
-                        methodWithArguments(ExampleInterface.class)),
-                Matchers.<ReflectedMethod>hasItem(methodNamed("getPropertyOne")));
+                        callableHasArguments(ExampleInterface.class)),
+                Matchers.<ReflectedMethod>hasItem(methodHasName("getPropertyOne")));
     }
 
     @Test
     public void methodCanBeSelectedByArgument() {
         assertThat(
-                type(ExampleInterface.class).methods(methodWithArguments(ExampleInterface.class, String.class)),
-                Matchers.<ReflectedMethod>hasItem(methodNamed("setPropertyOne")));
+                type(ExampleInterface.class).methods(callableHasArguments(ExampleInterface.class, String.class)),
+                Matchers.<ReflectedMethod>hasItem(methodHasName("setPropertyOne")));
     }
 }

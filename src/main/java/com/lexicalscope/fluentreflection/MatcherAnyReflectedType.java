@@ -13,6 +13,6 @@ final class MatcherAnyReflectedType extends ReflectionMatcher<ReflectedClass<?>>
 
     @Override
     public void describeTo(final Description description) {
-        description.appendText("any reflected type");
+        description.appendText("any type");
     }
 }

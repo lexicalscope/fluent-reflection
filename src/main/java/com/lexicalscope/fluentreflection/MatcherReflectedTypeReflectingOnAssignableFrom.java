@@ -23,6 +23,6 @@ final class MatcherReflectedTypeReflectingOnAssignableFrom extends ReflectionMat
 
     @Override
     public void describeTo(final Description description) {
-        description.appendText("reflecting on type assignable from ").appendValue(klass);
+        description.appendText("type assignable from ").appendValue(klass);
     }
 }

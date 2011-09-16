@@ -13,7 +13,7 @@ public class TestMatcherAnyReflectedType extends AbstractTestReflectionMatcher<R
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("any reflected type");
+        return equalTo("any type");
     }
 
     @Override

@@ -20,7 +20,7 @@ final class MatcherReflectedTypeReflectingOn extends ReflectionMatcher<Reflected
 
     @Override
     public void describeTo(final Description description) {
-        description.appendText("reflecting on type ").appendValue(klass);
+        description.appendText("type ").appendValue(klass);
     }
 
     @Override

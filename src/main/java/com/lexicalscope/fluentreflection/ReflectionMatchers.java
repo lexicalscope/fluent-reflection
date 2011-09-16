@@ -43,12 +43,8 @@ public class ReflectionMatchers {
         return new MatcherCallableHasNameContaining(substring);
     }
 
-    public static ReflectionMatcher<ReflectedCallable> methodNamed(final String name) {
+    public static ReflectionMatcher<ReflectedCallable> methodHasName(final String name) {
         return new MatcherCallableNamed(name);
-    }
-
-    public static ReflectionMatcher<ReflectedCallable> methodWithArguments(final Class<?>... expectedArgumentTypes) {
-        return new MatcherCallableWithArguments(expectedArgumentTypes);
     }
 
     public static ReflectionMatcher<ReflectedCallable> methodDeclaredBy(final Class<?> declaringKlass) {
@@ -117,14 +113,18 @@ public class ReflectionMatchers {
 
     public static ReflectionMatcher<ReflectedCallable> callableHasReturnType(final Class<?> returnType) {
         if (returnType == null) {
-            return new MatcherCallableHasVoidReturn();
+            return callableHasVoidReturn();
         }
         return new MatcherReturnType(new ConvertClassToReflectedTypeAssignableMatcher().convert(returnType));
     }
 
+    public static ReflectionMatcher<ReflectedCallable> callableHasVoidReturn() {
+        return new MatcherReturnType(reflectedTypeReflectingOn(void.class));
+    }
+
     public static ReflectionMatcher<ReflectedCallable> callableHasReturnType(final ReflectedClass<?> returnType) {
         if (returnType == null) {
-            return new MatcherCallableHasVoidReturn();
+            return callableHasVoidReturn();
         }
         return new MatcherReturnType(new ConvertReflectedTypeToReflectedTypeAssignableMatcher().convert(returnType));
     }

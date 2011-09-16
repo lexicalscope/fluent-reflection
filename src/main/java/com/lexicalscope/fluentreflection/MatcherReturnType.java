@@ -14,16 +14,18 @@ final class MatcherReturnType extends ReflectionMatcher<ReflectedCallable> {
 
     @Override
     protected boolean matchesSafely(final ReflectedCallable item) {
-        if (item.returnType() == null) {
+        final ReflectedClass<?> actualReturnType = item.returnType();
+
+        if (actualReturnType == null) {
             return false;
         }
 
-        return returnTypeMatcher.matches(item.returnType());
+        return returnTypeMatcher.matches(actualReturnType);
     }
 
     @Override
     public void describeTo(final Description description) {
-        description.appendText("callable with return type ").appendDescriptionOf(returnTypeMatcher);
+        description.appendText("callable with return ").appendDescriptionOf(returnTypeMatcher);
     }
 
     @Override

@@ -89,11 +89,14 @@ public abstract class AbstractTestReflectionMatcher<T> {
 
         context.checking(new Expectations() {
             {
-                oneOf(method).argumentTypes();
+                oneOf(method).argumentCount();
+                will(returnValue(arguments.length));
+
+                allowing(method).argumentTypes();
                 will(returnValue(asList(argumentTypes)));
 
                 for (int i = 0; i < argumentTypes.length; i++) {
-                    oneOf(argumentTypes[i]).classUnderReflection();
+                    allowing(argumentTypes[i]).classUnderReflection();
                     will(returnValue(arguments[i]));
                 }
             }

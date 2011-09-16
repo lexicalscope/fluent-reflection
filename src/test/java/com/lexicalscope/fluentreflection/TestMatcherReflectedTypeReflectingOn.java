@@ -5,9 +5,6 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-import com.lexicalscope.fluentreflection.ReflectedClass;
-import com.lexicalscope.fluentreflection.ReflectionMatcher;
-
 public class TestMatcherReflectedTypeReflectingOn extends AbstractTestReflectionMatcher<ReflectedClass<?>> {
     @Override
     protected ReflectedClass<?> target() {
@@ -31,6 +28,6 @@ public class TestMatcherReflectedTypeReflectingOn extends AbstractTestReflection
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("reflecting on type <class java.lang.Object>");
+        return equalTo("type <class java.lang.Object>");
     }
 }

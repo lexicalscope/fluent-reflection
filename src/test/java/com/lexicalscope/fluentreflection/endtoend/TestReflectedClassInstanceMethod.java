@@ -44,7 +44,7 @@ public class TestReflectedClassInstanceMethod {
 
     @Test
     public void simpleMethodCanBeCalled() {
-        type(ClassWithInstanceMethods.class).method(methodNamed("simpleMethod")).call(instance);
+        type(ClassWithInstanceMethods.class).method(methodHasName("simpleMethod")).call(instance);
 
         assertThat(instance.called, equalTo(true));
     }
@@ -53,7 +53,7 @@ public class TestReflectedClassInstanceMethod {
     public void callingMethodWithReturnValueReturnsValue() {
         final Integer result =
                 (Integer) type(ClassWithInstanceMethods.class)
-                        .method(methodNamed("methodWithReturnValue"))
+                        .method(methodHasName("methodWithReturnValue"))
                         .call(instance);
 
         assertThat(result, equalTo(42));
@@ -61,14 +61,14 @@ public class TestReflectedClassInstanceMethod {
 
     @Test
     public void canCallMethodWithOneArgumentIfMultipleMatches() {
-        type(ClassWithInstanceMethods.class).method(methodNamed("methodWithOneArgument")).call(instance, "string");
+        type(ClassWithInstanceMethods.class).method(methodHasName("methodWithOneArgument")).call(instance, "string");
 
         assertThat(instance.stringCalled || instance.objectCalled, equalTo(true));
     }
 
     @Test
     public void methodWithTwoArgumentsCanBeCalled() {
-        type(ClassWithInstanceMethods.class).method(methodNamed("methodWithTwoArguments")).call(instance, "string", 42);
+        type(ClassWithInstanceMethods.class).method(methodHasName("methodWithTwoArguments")).call(instance, "string", 42);
 
         assertThat(instance.stringAndIntegerCalled, equalTo(true));
     }
@@ -76,7 +76,7 @@ public class TestReflectedClassInstanceMethod {
     @Test
     public void methodWithTwoArgumentsHasCorrectArgumentCount() {
         assertThat(
-                type(ClassWithInstanceMethods.class).method(methodNamed("methodWithTwoArguments")).argumentCount(),
+                type(ClassWithInstanceMethods.class).method(methodHasName("methodWithTwoArguments")).argumentCount(),
                 equalTo(3));
     }
 
@@ -84,7 +84,7 @@ public class TestReflectedClassInstanceMethod {
     @Test
     public void instanceMethodArgumentTypeIsCorrect() throws Exception {
         assertThat(
-                type(ClassWithInstanceMethods.class).method(methodNamed("methodWithTwoArguments")).argumentTypes(),
+                type(ClassWithInstanceMethods.class).method(methodHasName("methodWithTwoArguments")).argumentTypes(),
                 contains(
                         reflectedTypeReflectingOn(ClassWithInstanceMethods.class),
                         reflectedTypeReflectingOn(String.class),
@@ -96,7 +96,7 @@ public class TestReflectedClassInstanceMethod {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("target instance must be specified");
 
-        type(ClassWithInstanceMethods.class).method(methodNamed("simpleMethod")).call();
+        type(ClassWithInstanceMethods.class).method(methodHasName("simpleMethod")).call();
     }
 
     @Test
@@ -104,6 +104,6 @@ public class TestReflectedClassInstanceMethod {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("not an instance of declaring class");
 
-        type(ClassWithInstanceMethods.class).method(methodNamed("simpleMethod")).call(new Object());
+        type(ClassWithInstanceMethods.class).method(methodHasName("simpleMethod")).call(new Object());
     }
 }

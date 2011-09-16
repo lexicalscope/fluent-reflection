@@ -33,7 +33,7 @@ import com.lexicalscope.fluentreflection.ReflectedMethod;
  * limitations under the License. 
  */
 
-public class TestCanCallPostConstructMethodsTopDown {
+public class TestCanCallAnnotatedMethodsInTheRightOrder {
     interface TopInterface {
         void afterConstruction();
 
@@ -86,7 +86,7 @@ public class TestCanCallPostConstructMethodsTopDown {
         forEach(
                 reverse(object(subject).methods(annotatedWith(PreDestroy.class))),
                 ReflectedMethod.class).call();
-        System.out.println(subject.result);
+
         assertThat(subject.result, contains("beforeDestructionExtension", "beforeDestruction"));
     }
 

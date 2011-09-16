@@ -14,7 +14,7 @@ public class TestMatcherCallableHasVoidReturn extends AbstractTestReflectionMatc
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("callable with no return type");
+        return equalTo("callable with return type <void>");
     }
 
     @Override
@@ -23,6 +23,9 @@ public class TestMatcherCallableHasVoidReturn extends AbstractTestReflectionMatc
             {
                 oneOf(method).returnType();
                 will(returnValue(type));
+
+                oneOf(type).classUnderReflection();
+                will(returnValue(Object.class));
             }
         });
     }
@@ -32,7 +35,10 @@ public class TestMatcherCallableHasVoidReturn extends AbstractTestReflectionMatc
         context.checking(new Expectations() {
             {
                 oneOf(method).returnType();
-                will(returnValue(null));
+                will(returnValue(type));
+
+                oneOf(type).classUnderReflection();
+                will(returnValue(void.class));
             }
         });
     }
