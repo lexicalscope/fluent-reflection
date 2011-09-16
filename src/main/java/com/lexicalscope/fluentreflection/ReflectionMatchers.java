@@ -93,6 +93,10 @@ public class ReflectionMatchers {
         return new MatcherArgumentCount(argumentCount);
     }
 
+    public static ReflectionMatcher<ReflectedCallable> callableHasNoArguments() {
+        return callableHasArguments();
+    }
+
     public static ReflectionMatcher<ReflectedCallable> callableHasArguments(final Class<?>... argTypes) {
         return callableHasArguments(asList(argTypes));
     }

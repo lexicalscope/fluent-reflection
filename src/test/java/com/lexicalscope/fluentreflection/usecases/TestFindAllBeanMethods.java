@@ -60,7 +60,7 @@ public class TestFindAllBeanMethods {
     public void canSelectAllGetters() throws Exception {
         assertThat(
                 object(new Bean()).methods(
-                        methodHasNameStartingWith("get").and(callableHasArguments(Bean.class)).and(
+                        methodHasNameStartingWith("get").and(callableHasNoArguments()).and(
                                 not(callableHasVoidReturn()))),
                 Matchers.<ReflectedCallable>containsInAnyOrder(
                         methodHasName("getReadOnlyProperty"),
