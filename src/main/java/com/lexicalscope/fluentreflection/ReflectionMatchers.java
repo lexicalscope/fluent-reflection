@@ -105,6 +105,16 @@ public class ReflectionMatchers {
         return new MatcherArgumentTypes(convert(argTypes, new ConvertClassToReflectedTypeAssignableMatcher()));
     }
 
+    public static ReflectionMatcher<ReflectedCallable> callableHasArgumentsMatching(
+            final Matcher<? super ReflectedClass<?>>... argTypes) {
+        return callableHasArgumentListMatching(asList(argTypes));
+    }
+
+    public static ReflectionMatcher<ReflectedCallable> callableHasArgumentListMatching(
+            final List<Matcher<? super ReflectedClass<?>>> argTypes) {
+        return new MatcherArgumentTypes(argTypes);
+    }
+
     public static ReflectionMatcher<ReflectedCallable> callableHasReflectedArguments(
             final ReflectedClass<?>... argTypes) {
         return callableHasReflectedArgumentList(asList(argTypes));
@@ -126,11 +136,20 @@ public class ReflectionMatchers {
         return new MatcherReturnType(reflectedTypeReflectingOn(void.class));
     }
 
+    public static ReflectionMatcher<ReflectedCallable> callableHasNonVoidReturn() {
+        return not(callableHasVoidReturn());
+    }
+
     public static ReflectionMatcher<ReflectedCallable> callableHasReturnType(final ReflectedClass<?> returnType) {
         if (returnType == null) {
             return callableHasVoidReturn();
         }
         return new MatcherReturnType(new ConvertReflectedTypeToReflectedTypeAssignableMatcher().convert(returnType));
+    }
+
+    public static ReflectionMatcher<ReflectedCallable> callableHasReturnType(
+            final Matcher<? super ReflectedClass<?>> returnType) {
+        return new MatcherReturnType(returnType);
     }
 
     public static Matcher<ReflectedAnnotated> annotatedWith(final Class<? extends Annotation> annotation) {

@@ -2,7 +2,7 @@ package com.lexicalscope.fluentreflection.usecases;
 
 import static com.lexicalscope.fluentreflection.FluentReflection.object;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
-import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 import org.hamcrest.Matcher;
@@ -31,22 +31,21 @@ public class TestFindAllBeanMethods {
     static class Bean {
         private int readWriteProperty;
         private String readOnlyProperty;
-        private Object writeOnlyProperty;
 
         String getReadOnlyProperty() {
             return readOnlyProperty;
-        }
-
-        void setReadOnlyProperty(final String readOnlyProperty) {
-            this.readOnlyProperty = readOnlyProperty;
         }
 
         int getReadWriteProperty() {
             return readWriteProperty;
         }
 
+        void setReadWriteProperty(final int readWriteProperty) {
+            this.readWriteProperty = readWriteProperty;
+        }
+
         void setWriteOnlyProperty(final Object writeOnlyProperty) {
-            this.writeOnlyProperty = writeOnlyProperty;
+            // do something with it
         }
 
         int getMethodWithArgument(final int outOfPlace) {
@@ -67,5 +66,17 @@ public class TestFindAllBeanMethods {
                         ListBuilder.<Matcher<? super ReflectedCallable>>
                                 list(methodHasName("getReadOnlyProperty")).add(
                                         methodHasName("getReadWriteProperty")).$()));
+    }
+
+    @Test
+    public void canSelectAllSetters() throws Exception {
+        assertThat(
+                object(new Bean()).methods(
+                        methodHasNameStartingWith("set").and(callableHasArgumentsMatching(anything())).and(
+                                not(callableHasNonVoidReturn()))),
+                containsInAnyOrder(
+                        ListBuilder.<Matcher<? super ReflectedCallable>>
+                                list(methodHasName("setWriteOnlyProperty")).add(
+                                        methodHasName("setReadWriteProperty")).$()));
     }
 }

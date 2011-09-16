@@ -17,6 +17,7 @@ package com.lexicalscope.fluentreflection;
  */
 
 import static ch.lambdaj.Lambda.convert;
+import static java.lang.String.format;
 import static java.lang.System.arraycopy;
 
 import java.lang.reflect.InvocationTargetException;
@@ -66,11 +67,6 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
     @Override
     public ReflectedClass<?> declaringClass() {
         return reflectedTypeFactory.reflect(method.getDeclaringClass());
-    }
-
-    @Override
-    public String toString() {
-        return method.toString();
     }
 
     @Override
@@ -124,5 +120,23 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
             return null;
         }
         return reflectedTypeFactory.reflect(returnType);
+    }
+
+    @Override
+    public String toString() {
+        return format("%s %s(%s)", method.getReturnType().getSimpleName(), method.getName(), join(convert(
+                method.getParameterTypes(),
+                new ConvertClassToSimpleName())));
+    }
+
+    private static String join(final List<String> strings) {
+        final StringBuilder result = new StringBuilder();
+        String separator = "";
+        for (final String string : strings) {
+            result.append(separator);
+            result.append(string);
+            separator = ", ";
+        }
+        return result.toString();
     }
 }
