@@ -112,41 +112,42 @@
                             <goal>jarjar</goal>
                         </goals>
                         <configuration>
+                            <overwrite>true</overwrite>
                             <input>{classes}</input>
                         </configuration>
                     </execution>
-                    <!-- 
-                    <execution>
-                        <id>jarjar-test-classes</id>
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>jarjar</goal>
-                        </goals>
-                        <configuration>
-                            <input>{test-classes}</input>
-                        </configuration>
-                    </execution>
-                     -->
                 </executions>
                 <configuration>
                     <overwrite>true</overwrite>
                     <includes>
-                        <include>com.google.inject:guice:no_aop</include>
+                        <include>com.google.inject:guice</include>
                         <include>com.googlecode.lambdaj:lambdaj</include>
                         <include>org.apache.commons:commons-lang3</include>
                     </includes>
                     <rules>
                         <rule>
-                            <pattern>com.google.inject.**</pattern>
-                            <result>com.lexicalscope.fluentreflection.internal.guice.@1</result>
+                            <pattern>com.google.inject.**.*</pattern>
+                            <result>com.lexicalscope.fluentreflection.internal.guice.@1.$@2</result>
                         </rule>
                         <rule>
-                            <pattern>ch.lambdaj.**</pattern>
-                            <result>com.lexicalscope.fluentreflection.internal.lamdaj.@1</result>
+                            <pattern>com.google.inject.*</pattern>
+                            <result>com.lexicalscope.fluentreflection.internal.guice.$@1</result>
                         </rule>
                         <rule>
-                            <pattern>org.apache.commons.lang3.**</pattern>
-                            <result>com.lexicalscope.fluentreflection.internal.lang3.@1</result>
+                            <pattern>ch.lambdaj.**.*</pattern>
+                            <result>com.lexicalscope.fluentreflection.internal.lamdaj.@1.$@2</result>
+                        </rule>
+                        <rule>
+                            <pattern>ch.lambdaj.*</pattern>
+                            <result>com.lexicalscope.fluentreflection.internal.lamdaj.$@1</result>
+                        </rule>
+                        <rule>
+                            <pattern>org.apache.commons.lang3.**.*</pattern>
+                            <result>com.lexicalscope.fluentreflection.internal.lang3.@1.$@2</result>
+                        </rule>
+                        <rule>
+                            <pattern>org.apache.commons.lang3.*</pattern>
+                            <result>com.lexicalscope.fluentreflection.internal.lang3.$@1</result>
                         </rule>
                     </rules>
                 </configuration>
@@ -175,6 +176,14 @@
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.1</version>
+                <configuration>
+                    <excludes>
+                        <exclude>META-INF/LICENSE</exclude>
+                        <exclude>META-INF/NOTICE</exclude>
+                        <exclude>META-INF/LICENSE.txt</exclude>
+                        <exclude>META-INF/NOTICE.txt</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -194,6 +203,11 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.9</version>
             </plugin>
         </plugins>
     </build>
@@ -337,6 +351,7 @@
             <version>3.0.1</version>
             <type>jar</type>
             <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 </project>
