@@ -13,7 +13,8 @@
         <version>7</version>
     </parent>
     <name>fluent-reflection</name>
-    <description>A library providing a neat interface to the Java language reflection facilites.</description>
+    <description>A library providing a neat interface to the Java
+        language reflection facilites.</description>
     <url>http://www.lexicalscope.com/fluent-reflection</url>
     <licenses>
         <license>
@@ -33,7 +34,8 @@
             <email>lexicalscope@gmail.com</email>
             <url>http://www.lexicalscope.com</url>
             <organization>lexicalscope</organization>
-            <organizationUrl>http://www.lexicalscope.com</organizationUrl>
+            <organizationUrl>http://www.lexicalscope.com
+            </organizationUrl>
             <roles>
                 <role>architect</role>
                 <role>developer</role>
@@ -43,23 +45,30 @@
     </developers>
     <ciManagement>
         <system>jenkins</system>
-        <url>https://lexicalscope.ci.cloudbees.com/job/fluent-reflection/</url>
+        <url>https://lexicalscope.ci.cloudbees.com/job/fluent-reflection/
+        </url>
     </ciManagement>
     <scm>
-        <connection>scm:git:git@github.com:lexicalscope/fluent-reflection.git</connection>
+        <connection>scm:git:git@github.com:lexicalscope/fluent-reflection.git
+        </connection>
         <url>https://github.com/lexicalscope/fluent-reflection</url>
-        <developerConnection>scm:git:git@github.com:lexicalscope/fluent-reflection.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:lexicalscope/fluent-reflection.git
+        </developerConnection>
     </scm>
     <distributionManagement>
         <site>
             <id>github-project-site</id>
-            <url>gitsite:git@github.com/lexicalscope/fluent-reflection.git</url>
+            <url>gitsite:git@github.com/lexicalscope/fluent-reflection.git
+            </url>
         </site>
     </distributionManagement>
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+        <project.build.sourceEncoding>UTF-8
+        </project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8
+        </project.reporting.outputEncoding>
+        <project.build.outputEncoding>UTF-8
+        </project.build.outputEncoding>
     </properties>
     <build>
         <extensions>
@@ -122,33 +131,43 @@
                     <overwrite>true</overwrite>
                     <includes>
                         <include>com.google.inject:guice</include>
-                        <include>com.googlecode.lambdaj:lambdaj</include>
-                        <include>org.apache.commons:commons-lang3</include>
+                        <include>com.googlecode.lambdaj:lambdaj
+                        </include>
+                        <include>org.apache.commons:commons-lang3
+                        </include>
                     </includes>
                     <rules>
                         <rule>
                             <pattern>com.google.inject.**.*</pattern>
-                            <result>com.lexicalscope.fluentreflection.internal.guice.@1.$@2</result>
+                            <result>com.lexicalscope.fluentreflection.internal.guice.@1.$@2
+                            </result>
                         </rule>
                         <rule>
                             <pattern>com.google.inject.*</pattern>
-                            <result>com.lexicalscope.fluentreflection.internal.guice.$@1</result>
+                            <result>com.lexicalscope.fluentreflection.internal.guice.$@1
+                            </result>
                         </rule>
                         <rule>
                             <pattern>ch.lambdaj.**.*</pattern>
-                            <result>com.lexicalscope.fluentreflection.internal.lamdaj.@1.$@2</result>
+                            <result>com.lexicalscope.fluentreflection.internal.lamdaj.@1.$@2
+                            </result>
                         </rule>
                         <rule>
                             <pattern>ch.lambdaj.*</pattern>
-                            <result>com.lexicalscope.fluentreflection.internal.lamdaj.$@1</result>
+                            <result>com.lexicalscope.fluentreflection.internal.lamdaj.$@1
+                            </result>
                         </rule>
                         <rule>
-                            <pattern>org.apache.commons.lang3.**.*</pattern>
-                            <result>com.lexicalscope.fluentreflection.internal.lang3.@1.$@2</result>
+                            <pattern>org.apache.commons.lang3.**.*
+                            </pattern>
+                            <result>com.lexicalscope.fluentreflection.internal.lang3.@1.$@2
+                            </result>
                         </rule>
                         <rule>
-                            <pattern>org.apache.commons.lang3.*</pattern>
-                            <result>com.lexicalscope.fluentreflection.internal.lang3.$@1</result>
+                            <pattern>org.apache.commons.lang3.*
+                            </pattern>
+                            <result>com.lexicalscope.fluentreflection.internal.lang3.$@1
+                            </result>
                         </rule>
                     </rules>
                 </configuration>
@@ -199,7 +218,8 @@
                             <goal>jar</goal>
                         </goals>
                         <configuration>
-                            <classesDirectory>${project.build.directory}/original-classes</classesDirectory>
+                            <classesDirectory>${project.build.directory}/original-classes
+                            </classesDirectory>
                             <classifier>no_deps</classifier>
                         </configuration>
                     </execution>
@@ -242,7 +262,8 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <artifactId>maven-project-info-reports-plugin
+                </artifactId>
                 <version>2.4</version>
                 <reportSets>
                     <reportSet>
@@ -309,7 +330,8 @@
                 <version>2.3.2</version>
                 <configuration>
                     <findbugsXmlOutput>true</findbugsXmlOutput>
-                    <findbugsXmlOutputDirectory>target/site</findbugsXmlOutputDirectory>
+                    <findbugsXmlOutputDirectory>target/site
+                    </findbugsXmlOutputDirectory>
                 </configuration>
             </plugin>
             <plugin>
@@ -381,4 +403,33 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
