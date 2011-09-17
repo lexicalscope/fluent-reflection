@@ -12,7 +12,8 @@
         <version>7</version>
     </parent>
     <name>fluent-reflection</name>
-    <description>A library providing a neat interface to the Java language reflection facilites.</description>
+    <description>A library providing a neat interface to the Java
+        language reflection facilites.</description>
     <url>http://www.lexicalscope.com/fluent-reflection</url>
     <licenses>
         <license>
@@ -101,55 +102,53 @@
                 <artifactId>maven-release-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>jarjar-maven-plugin</artifactId>
-                <version>1.5</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.4</version>
                 <executions>
                     <execution>
-                        <id>jarjar-classes</id>
                         <phase>process-test-classes</phase>
                         <goals>
-                            <goal>jarjar</goal>
+                            <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <input>{classes}</input>
+                            <shadedArtifactAttached>false
+                            </shadedArtifactAttached>
+                            <createDependencyReducedPom>true
+                            </createDependencyReducedPom>
+                            <createSourcesJar>true</createSourcesJar>
+                            <minimizeJar>true</minimizeJar>
+                            <artifactSet>
+                                <includes>
+                                    <include>com.google.inject:guice:no_aop
+                                    </include>
+                                    <include>com.googlecode.lambdaj:lambdaj
+                                    </include>
+                                    <include>org.apache.commons:commons-lang3
+                                    </include>
+                                </includes>
+                            </artifactSet>
+                            <relocations>
+                                <relocation>
+                                    <pattern>com.google.inject</pattern>
+                                    <shadedPattern>com.lexicalscope.fluentreflection.internal.guice
+                                    </shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>ch.lambdaj</pattern>
+                                    <shadedPattern>com.lexicalscope.fluentreflection.internal.lamdaj
+                                    </shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.apache.commons.lang3
+                                    </pattern>
+                                    <shadedPattern>com.lexicalscope.fluentreflection.internal.lang3
+                                    </shadedPattern>
+                                </relocation>
+                            </relocations>
                         </configuration>
                     </execution>
-                    <!-- 
-                    <execution>
-                        <id>jarjar-test-classes</id>
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>jarjar</goal>
-                        </goals>
-                        <configuration>
-                            <input>{test-classes}</input>
-                        </configuration>
-                    </execution>
-                     -->
                 </executions>
-                <configuration>
-                    <overwrite>true</overwrite>
-                    <includes>
-                        <include>com.google.inject:guice:no_aop</include>
-                        <include>com.googlecode.lambdaj:lambdaj</include>
-                        <include>org.apache.commons:commons-lang3</include>
-                    </includes>
-                    <rules>
-                        <rule>
-                            <pattern>com.google.inject.**</pattern>
-                            <result>com.lexicalscope.fluentreflection.internal.guice.@1</result>
-                        </rule>
-                        <rule>
-                            <pattern>ch.lambdaj.**</pattern>
-                            <result>com.lexicalscope.fluentreflection.internal.lamdaj.@1</result>
-                        </rule>
-                        <rule>
-                            <pattern>org.apache.commons.lang3.**</pattern>
-                            <result>com.lexicalscope.fluentreflection.internal.lang3.@1</result>
-                        </rule>
-                    </rules>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -182,15 +181,24 @@
                             <goal>test-jar</goal>
                         </goals>
                     </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+                <executions>
                     <execution>
-                        <id>no_deps</id>
-                        <phase>package</phase>
+                        <id>surefire-it</id>
+                        <phase>integration-test</phase>
                         <goals>
-                            <goal>jar</goal>
+                            <goal>test</goal>
                         </goals>
                         <configuration>
-                            <classesDirectory>${project.build.directory}/original-classes</classesDirectory>
-                            <classifier>no_deps</classifier>
+                            <skip>false</skip>
                         </configuration>
                     </execution>
                 </executions>
@@ -201,7 +209,8 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <artifactId>maven-project-info-reports-plugin
+                </artifactId>
                 <version>2.4</version>
                 <reportSets>
                     <reportSet>
@@ -268,7 +277,8 @@
                 <version>2.3.2</version>
                 <configuration>
                     <findbugsXmlOutput>true</findbugsXmlOutput>
-                    <findbugsXmlOutputDirectory>target/site</findbugsXmlOutputDirectory>
+                    <findbugsXmlOutputDirectory>target/site
+                    </findbugsXmlOutputDirectory>
                 </configuration>
             </plugin>
             <plugin>
