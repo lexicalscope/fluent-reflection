@@ -53,118 +53,141 @@
 <a name="43" href="#43">43</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherCallableHasNameContaining.html">MatcherCallableHasNameContaining</a>(substring);
 <a name="44" href="#44">44</a>      }
 <a name="45" href="#45">45</a>  
-<a name="46" href="#46">46</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; methodNamed(<strong class="jxr_keyword">final</strong> String name) {
+<a name="46" href="#46">46</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; methodHasName(<strong class="jxr_keyword">final</strong> String name) {
 <a name="47" href="#47">47</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherCallableNamed.html">MatcherCallableNamed</a>(name);
 <a name="48" href="#48">48</a>      }
 <a name="49" href="#49">49</a>  
-<a name="50" href="#50">50</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; methodWithArguments(<strong class="jxr_keyword">final</strong> Class&lt;?&gt;... expectedArgumentTypes) {
-<a name="51" href="#51">51</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherCallableWithArguments.html">MatcherCallableWithArguments</a>(expectedArgumentTypes);
+<a name="50" href="#50">50</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; methodDeclaredBy(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; declaringKlass) {
+<a name="51" href="#51">51</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherCallableDeclaredBy.html">MatcherCallableDeclaredBy</a>(declaringKlass);
 <a name="52" href="#52">52</a>      }
 <a name="53" href="#53">53</a>  
-<a name="54" href="#54">54</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; methodDeclaredBy(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; declaringKlass) {
-<a name="55" href="#55">55</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherCallableDeclaredBy.html">MatcherCallableDeclaredBy</a>(declaringKlass);
+<a name="54" href="#54">54</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; typeHasNoInterfaces() {
+<a name="55" href="#55">55</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherTypeHasNoInterfaces.html">MatcherTypeHasNoInterfaces</a>();
 <a name="56" href="#56">56</a>      }
 <a name="57" href="#57">57</a>  
-<a name="58" href="#58">58</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; typeHasNoInterfaces() {
-<a name="59" href="#59">59</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherTypeHasNoInterfaces.html">MatcherTypeHasNoInterfaces</a>();
+<a name="58" href="#58">58</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; typeHasNoSuperclasses() {
+<a name="59" href="#59">59</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherTypeHasNoSuperclasses.html">MatcherTypeHasNoSuperclasses</a>();
 <a name="60" href="#60">60</a>      }
 <a name="61" href="#61">61</a>  
-<a name="62" href="#62">62</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; typeHasNoSuperclasses() {
-<a name="63" href="#63">63</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherTypeHasNoSuperclasses.html">MatcherTypeHasNoSuperclasses</a>();
+<a name="62" href="#62">62</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; typeHasInterface(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; interfac3) {
+<a name="63" href="#63">63</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherTypeHasInterface.html">MatcherTypeHasInterface</a>(interfac3);
 <a name="64" href="#64">64</a>      }
 <a name="65" href="#65">65</a>  
-<a name="66" href="#66">66</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; typeHasInterface(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; interfac3) {
-<a name="67" href="#67">67</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherTypeHasInterface.html">MatcherTypeHasInterface</a>(interfac3);
+<a name="66" href="#66">66</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; typeIsInterface() {
+<a name="67" href="#67">67</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherTypeIsInterface.html">MatcherTypeIsInterface</a>();
 <a name="68" href="#68">68</a>      }
 <a name="69" href="#69">69</a>  
-<a name="70" href="#70">70</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; typeIsInterface() {
-<a name="71" href="#71">71</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherTypeIsInterface.html">MatcherTypeIsInterface</a>();
+<a name="70" href="#70">70</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; anyReflectedType() {
+<a name="71" href="#71">71</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherAnyReflectedType.html">MatcherAnyReflectedType</a>();
 <a name="72" href="#72">72</a>      }
 <a name="73" href="#73">73</a>  
-<a name="74" href="#74">74</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; anyReflectedType() {
-<a name="75" href="#75">75</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherAnyReflectedType.html">MatcherAnyReflectedType</a>();
+<a name="74" href="#74">74</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; reflectedTypeReflectingOn(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; klass) {
+<a name="75" href="#75">75</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherReflectedTypeReflectingOn.html">MatcherReflectedTypeReflectingOn</a>(klass);
 <a name="76" href="#76">76</a>      }
 <a name="77" href="#77">77</a>  
-<a name="78" href="#78">78</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; reflectedTypeReflectingOn(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; klass) {
-<a name="79" href="#79">79</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherReflectedTypeReflectingOn.html">MatcherReflectedTypeReflectingOn</a>(klass);
+<a name="78" href="#78">78</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; reflectedTypeReflectingOnAssignableFrom(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; klass) {
+<a name="79" href="#79">79</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherReflectedTypeReflectingOnAssignableFrom.html">MatcherReflectedTypeReflectingOnAssignableFrom</a>(klass);
 <a name="80" href="#80">80</a>      }
 <a name="81" href="#81">81</a>  
-<a name="82" href="#82">82</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; reflectedTypeReflectingOnAssignableFrom(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; klass) {
-<a name="83" href="#83">83</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherReflectedTypeReflectingOnAssignableFrom.html">MatcherReflectedTypeReflectingOnAssignableFrom</a>(klass);
-<a name="84" href="#84">84</a>      }
-<a name="85" href="#85">85</a>  
-<a name="86" href="#86">86</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; reflectedTypeReflectingOnAssignableFrom(
-<a name="87" href="#87">87</a>              <strong class="jxr_keyword">final</strong> ReflectedClass&lt;?&gt; klass) {
-<a name="88" href="#88">88</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherReflectedTypeReflectingOnAssignableFrom.html">MatcherReflectedTypeReflectingOnAssignableFrom</a>(klass);
-<a name="89" href="#89">89</a>      }
-<a name="90" href="#90">90</a>  
-<a name="91" href="#91">91</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedConstructor&lt;?&gt;&gt; reflectedConstructorReflectingOn(
-<a name="92" href="#92">92</a>              <strong class="jxr_keyword">final</strong> Constructor&lt;?&gt; constructor) {
-<a name="93" href="#93">93</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherConstructorReflectingOn.html">MatcherConstructorReflectingOn</a>(constructor);
+<a name="82" href="#82">82</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; reflectedTypeReflectingOnAssignableFrom(
+<a name="83" href="#83">83</a>              <strong class="jxr_keyword">final</strong> ReflectedClass&lt;?&gt; klass) {
+<a name="84" href="#84">84</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherReflectedTypeReflectingOnAssignableFrom.html">MatcherReflectedTypeReflectingOnAssignableFrom</a>(klass);
+<a name="85" href="#85">85</a>      }
+<a name="86" href="#86">86</a>  
+<a name="87" href="#87">87</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedConstructor&lt;?&gt;&gt; reflectedConstructorReflectingOn(
+<a name="88" href="#88">88</a>              <strong class="jxr_keyword">final</strong> Constructor&lt;?&gt; constructor) {
+<a name="89" href="#89">89</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherConstructorReflectingOn.html">MatcherConstructorReflectingOn</a>(constructor);
+<a name="90" href="#90">90</a>      }
+<a name="91" href="#91">91</a>  
+<a name="92" href="#92">92</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasThisManyArguments(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> argumentCount) {
+<a name="93" href="#93">93</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherArgumentCount.html">MatcherArgumentCount</a>(argumentCount);
 <a name="94" href="#94">94</a>      }
 <a name="95" href="#95">95</a>  
-<a name="96" href="#96">96</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasThisManyArguments(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> argumentCount) {
-<a name="97" href="#97">97</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherArgumentCount.html">MatcherArgumentCount</a>(argumentCount);
+<a name="96" href="#96">96</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasNoArguments() {
+<a name="97" href="#97">97</a>          <strong class="jxr_keyword">return</strong> callableHasArguments();
 <a name="98" href="#98">98</a>      }
 <a name="99" href="#99">99</a>  
 <a name="100" href="#100">100</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasArguments(<strong class="jxr_keyword">final</strong> Class&lt;?&gt;... argTypes) {
-<a name="101" href="#101">101</a>         <strong class="jxr_keyword">return</strong> callableHasArguments(asList(argTypes));
+<a name="101" href="#101">101</a>         <strong class="jxr_keyword">return</strong> callableHasArgumentList(asList(argTypes));
 <a name="102" href="#102">102</a>     }
 <a name="103" href="#103">103</a> 
-<a name="104" href="#104">104</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasArguments(<strong class="jxr_keyword">final</strong> List&lt;Class&lt;?&gt;&gt; argTypes) {
+<a name="104" href="#104">104</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasArgumentList(<strong class="jxr_keyword">final</strong> List&lt;Class&lt;?&gt;&gt; argTypes) {
 <a name="105" href="#105">105</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherArgumentTypes.html">MatcherArgumentTypes</a>(convert(argTypes, <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertClassToReflectedTypeAssignableMatcher.html">ConvertClassToReflectedTypeAssignableMatcher</a>()));
 <a name="106" href="#106">106</a>     }
 <a name="107" href="#107">107</a> 
-<a name="108" href="#108">108</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasReflectedArguments(
-<a name="109" href="#109">109</a>             <strong class="jxr_keyword">final</strong> ReflectedClass&lt;?&gt;... argTypes) {
-<a name="110" href="#110">110</a>         <strong class="jxr_keyword">return</strong> callableHasReflectedArguments(asList(argTypes));
+<a name="108" href="#108">108</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasArgumentsMatching(
+<a name="109" href="#109">109</a>             <strong class="jxr_keyword">final</strong> Matcher&lt;? <strong class="jxr_keyword">super</strong> ReflectedClass&lt;?&gt;&gt;... argTypes) {
+<a name="110" href="#110">110</a>         <strong class="jxr_keyword">return</strong> callableHasArgumentListMatching(asList(argTypes));
 <a name="111" href="#111">111</a>     }
 <a name="112" href="#112">112</a> 
-<a name="113" href="#113">113</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasReflectedArguments(
-<a name="114" href="#114">114</a>             <strong class="jxr_keyword">final</strong> List&lt;ReflectedClass&lt;?&gt;&gt; argTypes) {
-<a name="115" href="#115">115</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherArgumentTypes.html">MatcherArgumentTypes</a>(convert(argTypes, <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertReflectedTypeToReflectedTypeAssignableMatcher.html">ConvertReflectedTypeToReflectedTypeAssignableMatcher</a>()));
+<a name="113" href="#113">113</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasArgumentListMatching(
+<a name="114" href="#114">114</a>             <strong class="jxr_keyword">final</strong> List&lt;Matcher&lt;? <strong class="jxr_keyword">super</strong> ReflectedClass&lt;?&gt;&gt;&gt; argTypes) {
+<a name="115" href="#115">115</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherArgumentTypes.html">MatcherArgumentTypes</a>(argTypes);
 <a name="116" href="#116">116</a>     }
 <a name="117" href="#117">117</a> 
-<a name="118" href="#118">118</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasReturnType(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; returnType) {
-<a name="119" href="#119">119</a>         <strong class="jxr_keyword">if</strong> (returnType == <strong class="jxr_keyword">null</strong>) {
-<a name="120" href="#120">120</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherCallableHasVoidReturn.html">MatcherCallableHasVoidReturn</a>();
-<a name="121" href="#121">121</a>         }
-<a name="122" href="#122">122</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherReturnType.html">MatcherReturnType</a>(<strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertClassToReflectedTypeAssignableMatcher.html">ConvertClassToReflectedTypeAssignableMatcher</a>().convert(returnType));
-<a name="123" href="#123">123</a>     }
-<a name="124" href="#124">124</a> 
-<a name="125" href="#125">125</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasReturnType(<strong class="jxr_keyword">final</strong> ReflectedClass&lt;?&gt; returnType) {
-<a name="126" href="#126">126</a>         <strong class="jxr_keyword">if</strong> (returnType == <strong class="jxr_keyword">null</strong>) {
-<a name="127" href="#127">127</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherCallableHasVoidReturn.html">MatcherCallableHasVoidReturn</a>();
-<a name="128" href="#128">128</a>         }
-<a name="129" href="#129">129</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherReturnType.html">MatcherReturnType</a>(<strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertReflectedTypeToReflectedTypeAssignableMatcher.html">ConvertReflectedTypeToReflectedTypeAssignableMatcher</a>().convert(returnType));
-<a name="130" href="#130">130</a>     }
-<a name="131" href="#131">131</a> 
-<a name="132" href="#132">132</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Matcher&lt;ReflectedAnnotated&gt; annotatedWith(<strong class="jxr_keyword">final</strong> Class&lt;? <strong class="jxr_keyword">extends</strong> Annotation&gt; annotation) {
-<a name="133" href="#133">133</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherCallableAnnotatedWith.html">MatcherCallableAnnotatedWith</a>(annotation);
-<a name="134" href="#134">134</a>     }
-<a name="135" href="#135">135</a> 
-<a name="136" href="#136">136</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedMethod&gt; methodIsStatic() {
-<a name="137" href="#137">137</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherMethodIsStatic.html">MatcherMethodIsStatic</a>();
-<a name="138" href="#138">138</a>     }
-<a name="139" href="#139">139</a> 
-<a name="140" href="#140">140</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedMethod&gt; methodIsNotStatic() {
-<a name="141" href="#141">141</a>         <strong class="jxr_keyword">return</strong> not(methodIsStatic());
-<a name="142" href="#142">142</a>     }
-<a name="143" href="#143">143</a> 
-<a name="144" href="#144">144</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; ReflectionMatcher&lt;T&gt; not(<strong class="jxr_keyword">final</strong> ReflectionMatcher&lt;T&gt; matcher) {
-<a name="145" href="#145">145</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ReflectionMatcher&lt;T&gt;() {
-<a name="146" href="#146">146</a>             @Override
-<a name="147" href="#147">147</a>             <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> matchesSafely(<strong class="jxr_keyword">final</strong> T item) {
-<a name="148" href="#148">148</a>                 <strong class="jxr_keyword">return</strong> !matcher.matches(item);
-<a name="149" href="#149">149</a>             }
-<a name="150" href="#150">150</a> 
-<a name="151" href="#151">151</a>             @Override
-<a name="152" href="#152">152</a>             <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> describeTo(<strong class="jxr_keyword">final</strong> Description description) {
-<a name="153" href="#153">153</a>                 description.appendText(<span class="jxr_string">"not "</span>).appendDescriptionOf(matcher);
-<a name="154" href="#154">154</a>             }
-<a name="155" href="#155">155</a>         };
-<a name="156" href="#156">156</a>     }
-<a name="157" href="#157">157</a> }
+<a name="118" href="#118">118</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasReflectedArguments(
+<a name="119" href="#119">119</a>             <strong class="jxr_keyword">final</strong> ReflectedClass&lt;?&gt;... argTypes) {
+<a name="120" href="#120">120</a>         <strong class="jxr_keyword">return</strong> callableHasReflectedArgumentList(asList(argTypes));
+<a name="121" href="#121">121</a>     }
+<a name="122" href="#122">122</a> 
+<a name="123" href="#123">123</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasReflectedArgumentList(
+<a name="124" href="#124">124</a>             <strong class="jxr_keyword">final</strong> List&lt;ReflectedClass&lt;?&gt;&gt; argTypes) {
+<a name="125" href="#125">125</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherArgumentTypes.html">MatcherArgumentTypes</a>(convert(argTypes, <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertReflectedTypeToReflectedTypeAssignableMatcher.html">ConvertReflectedTypeToReflectedTypeAssignableMatcher</a>()));
+<a name="126" href="#126">126</a>     }
+<a name="127" href="#127">127</a> 
+<a name="128" href="#128">128</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasReturnType(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; returnType) {
+<a name="129" href="#129">129</a>         <strong class="jxr_keyword">if</strong> (returnType == <strong class="jxr_keyword">null</strong>) {
+<a name="130" href="#130">130</a>             <strong class="jxr_keyword">return</strong> callableHasVoidReturn();
+<a name="131" href="#131">131</a>         }
+<a name="132" href="#132">132</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherReturnType.html">MatcherReturnType</a>(<strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertClassToReflectedTypeAssignableMatcher.html">ConvertClassToReflectedTypeAssignableMatcher</a>().convert(returnType));
+<a name="133" href="#133">133</a>     }
+<a name="134" href="#134">134</a> 
+<a name="135" href="#135">135</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasVoidReturn() {
+<a name="136" href="#136">136</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherReturnType.html">MatcherReturnType</a>(reflectedTypeReflectingOn(<strong class="jxr_keyword">void</strong>.<strong class="jxr_keyword">class</strong>));
+<a name="137" href="#137">137</a>     }
+<a name="138" href="#138">138</a> 
+<a name="139" href="#139">139</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasNonVoidReturn() {
+<a name="140" href="#140">140</a>         <strong class="jxr_keyword">return</strong> not(callableHasVoidReturn());
+<a name="141" href="#141">141</a>     }
+<a name="142" href="#142">142</a> 
+<a name="143" href="#143">143</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasReturnType(<strong class="jxr_keyword">final</strong> ReflectedClass&lt;?&gt; returnType) {
+<a name="144" href="#144">144</a>         <strong class="jxr_keyword">if</strong> (returnType == <strong class="jxr_keyword">null</strong>) {
+<a name="145" href="#145">145</a>             <strong class="jxr_keyword">return</strong> callableHasVoidReturn();
+<a name="146" href="#146">146</a>         }
+<a name="147" href="#147">147</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherReturnType.html">MatcherReturnType</a>(<strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertReflectedTypeToReflectedTypeAssignableMatcher.html">ConvertReflectedTypeToReflectedTypeAssignableMatcher</a>().convert(returnType));
+<a name="148" href="#148">148</a>     }
+<a name="149" href="#149">149</a> 
+<a name="150" href="#150">150</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedCallable&gt; callableHasReturnType(
+<a name="151" href="#151">151</a>             <strong class="jxr_keyword">final</strong> Matcher&lt;? <strong class="jxr_keyword">super</strong> ReflectedClass&lt;?&gt;&gt; returnType) {
+<a name="152" href="#152">152</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherReturnType.html">MatcherReturnType</a>(returnType);
+<a name="153" href="#153">153</a>     }
+<a name="154" href="#154">154</a> 
+<a name="155" href="#155">155</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Matcher&lt;ReflectedAnnotated&gt; annotatedWith(<strong class="jxr_keyword">final</strong> Class&lt;? <strong class="jxr_keyword">extends</strong> Annotation&gt; annotation) {
+<a name="156" href="#156">156</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherCallableAnnotatedWith.html">MatcherCallableAnnotatedWith</a>(annotation);
+<a name="157" href="#157">157</a>     }
+<a name="158" href="#158">158</a> 
+<a name="159" href="#159">159</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedMethod&gt; methodIsStatic() {
+<a name="160" href="#160">160</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherMethodIsStatic.html">MatcherMethodIsStatic</a>();
+<a name="161" href="#161">161</a>     }
+<a name="162" href="#162">162</a> 
+<a name="163" href="#163">163</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ReflectionMatcher&lt;ReflectedMethod&gt; methodIsNotStatic() {
+<a name="164" href="#164">164</a>         <strong class="jxr_keyword">return</strong> not(methodIsStatic());
+<a name="165" href="#165">165</a>     }
+<a name="166" href="#166">166</a> 
+<a name="167" href="#167">167</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> &lt;T&gt; ReflectionMatcher&lt;T&gt; not(<strong class="jxr_keyword">final</strong> ReflectionMatcher&lt;T&gt; matcher) {
+<a name="168" href="#168">168</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ReflectionMatcher&lt;T&gt;() {
+<a name="169" href="#169">169</a>             @Override
+<a name="170" href="#170">170</a>             <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> matchesSafely(<strong class="jxr_keyword">final</strong> T item) {
+<a name="171" href="#171">171</a>                 <strong class="jxr_keyword">return</strong> !matcher.matches(item);
+<a name="172" href="#172">172</a>             }
+<a name="173" href="#173">173</a> 
+<a name="174" href="#174">174</a>             @Override
+<a name="175" href="#175">175</a>             <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> describeTo(<strong class="jxr_keyword">final</strong> Description description) {
+<a name="176" href="#176">176</a>                 description.appendText(<span class="jxr_string">"not "</span>).appendDescriptionOf(matcher);
+<a name="177" href="#177">177</a>             }
+<a name="178" href="#178">178</a>         };
+<a name="179" href="#179">179</a>     }
+<a name="180" href="#180">180</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>

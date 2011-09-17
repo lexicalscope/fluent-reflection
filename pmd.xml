@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2011-09-13T18:31:49.059">
+<pmd version="4.2.5" timestamp="2011-09-17T08:45:29.288">
 <file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/IllegalAccessRuntimeException.java">
 <violation beginline="24" endline="26" begincolumn="12" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.lexicalscope.fluentreflection" class="IllegalAccessRuntimeException" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
 Avoid unused constructor parameters such as 'e'.
@@ -25,10 +25,10 @@ Avoid unused constructor parameters such as 'member'.
 </violation>
 </file>
 <file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/MatcherArgumentTypes.java">
-<violation beginline="37" endline="44" begincolumn="18" endcolumn="5" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="com.lexicalscope.fluentreflection" class="MatcherArgumentTypes" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+<violation beginline="40" endline="47" begincolumn="18" endcolumn="5" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="com.lexicalscope.fluentreflection" class="MatcherArgumentTypes" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
-<violation beginline="47" endline="49" begincolumn="18" endcolumn="5" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="com.lexicalscope.fluentreflection" class="MatcherArgumentTypes" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+<violation beginline="50" endline="52" begincolumn="18" endcolumn="5" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="com.lexicalscope.fluentreflection" class="MatcherArgumentTypes" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
 </file>
@@ -41,15 +41,15 @@ Unnecessary final modifier in final class
 </violation>
 </file>
 <file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/MatcherReturnType.java">
-<violation beginline="30" endline="37" begincolumn="18" endcolumn="5" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="com.lexicalscope.fluentreflection" class="MatcherReturnType" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+<violation beginline="32" endline="39" begincolumn="18" endcolumn="5" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="com.lexicalscope.fluentreflection" class="MatcherReturnType" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
-<violation beginline="40" endline="42" begincolumn="18" endcolumn="5" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="com.lexicalscope.fluentreflection" class="MatcherReturnType" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+<violation beginline="42" endline="44" begincolumn="18" endcolumn="5" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="com.lexicalscope.fluentreflection" class="MatcherReturnType" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
 </file>
 <file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/ReflectedObjectImpl.java">
-<violation beginline="31" endline="37" begincolumn="12" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.lexicalscope.fluentreflection" class="ReflectedObjectImpl" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+<violation beginline="30" endline="36" begincolumn="12" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.lexicalscope.fluentreflection" class="ReflectedObjectImpl" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
 Avoid unused constructor parameters such as 'reflectedTypeFactoryImpl'.
 </violation>
 </file>

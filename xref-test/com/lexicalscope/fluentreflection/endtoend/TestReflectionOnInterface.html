@@ -48,36 +48,36 @@
 <a name="38" href="#38">38</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> methodsCanBeSelectedByPrefix() {
 <a name="39" href="#39">39</a>          assertThat(
 <a name="40" href="#40">40</a>                  type(ExampleInterface.<strong class="jxr_keyword">class</strong>).methods(methodHasNameStartingWith(<span class="jxr_string">"get"</span>)),
-<a name="41" href="#41">41</a>                  Matchers.&lt;ReflectedMethod&gt;hasItem(methodNamed(<span class="jxr_string">"getPropertyOne"</span>)));
+<a name="41" href="#41">41</a>                  Matchers.&lt;ReflectedMethod&gt;hasItem(methodHasName(<span class="jxr_string">"getPropertyOne"</span>)));
 <a name="42" href="#42">42</a>      }
 <a name="43" href="#43">43</a>  
 <a name="44" href="#44">44</a>      @Test
 <a name="45" href="#45">45</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> methodsCanBeSelectedBySuffix() {
 <a name="46" href="#46">46</a>          assertThat(
 <a name="47" href="#47">47</a>                  type(ExampleInterface.<strong class="jxr_keyword">class</strong>).methods(methodHasNameEndingWith(<span class="jxr_string">"One"</span>)),
-<a name="48" href="#48">48</a>                  Matchers.&lt;ReflectedMethod&gt;hasItem(methodNamed(<span class="jxr_string">"getPropertyOne"</span>)));
+<a name="48" href="#48">48</a>                  Matchers.&lt;ReflectedMethod&gt;hasItem(methodHasName(<span class="jxr_string">"getPropertyOne"</span>)));
 <a name="49" href="#49">49</a>      }
 <a name="50" href="#50">50</a>  
 <a name="51" href="#51">51</a>      @Test
 <a name="52" href="#52">52</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> methodsCanBeSelectedByRegularExpression() {
 <a name="53" href="#53">53</a>          assertThat(
 <a name="54" href="#54">54</a>                  type(ExampleInterface.<strong class="jxr_keyword">class</strong>).methods(methodHasNameMatching(<span class="jxr_string">".*Property.*"</span>)),
-<a name="55" href="#55">55</a>                  Matchers.&lt;ReflectedMethod&gt;hasItem(methodNamed(<span class="jxr_string">"getPropertyOne"</span>)));
+<a name="55" href="#55">55</a>                  Matchers.&lt;ReflectedMethod&gt;hasItem(methodHasName(<span class="jxr_string">"getPropertyOne"</span>)));
 <a name="56" href="#56">56</a>      }
 <a name="57" href="#57">57</a>  
 <a name="58" href="#58">58</a>      @Test
 <a name="59" href="#59">59</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> methodsWithNoArgumentsCanBeSelected() {
 <a name="60" href="#60">60</a>          assertThat(
 <a name="61" href="#61">61</a>                  type(ExampleInterface.<strong class="jxr_keyword">class</strong>).methods(
-<a name="62" href="#62">62</a>                          methodWithArguments(ExampleInterface.<strong class="jxr_keyword">class</strong>)),
-<a name="63" href="#63">63</a>                  Matchers.&lt;ReflectedMethod&gt;hasItem(methodNamed(<span class="jxr_string">"getPropertyOne"</span>)));
+<a name="62" href="#62">62</a>                          callableHasArguments(ExampleInterface.<strong class="jxr_keyword">class</strong>)),
+<a name="63" href="#63">63</a>                  Matchers.&lt;ReflectedMethod&gt;hasItem(methodHasName(<span class="jxr_string">"getPropertyOne"</span>)));
 <a name="64" href="#64">64</a>      }
 <a name="65" href="#65">65</a>  
 <a name="66" href="#66">66</a>      @Test
 <a name="67" href="#67">67</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> methodCanBeSelectedByArgument() {
 <a name="68" href="#68">68</a>          assertThat(
-<a name="69" href="#69">69</a>                  type(ExampleInterface.<strong class="jxr_keyword">class</strong>).methods(methodWithArguments(ExampleInterface.<strong class="jxr_keyword">class</strong>, String.<strong class="jxr_keyword">class</strong>)),
-<a name="70" href="#70">70</a>                  Matchers.&lt;ReflectedMethod&gt;hasItem(methodNamed(<span class="jxr_string">"setPropertyOne"</span>)));
+<a name="69" href="#69">69</a>                  type(ExampleInterface.<strong class="jxr_keyword">class</strong>).methods(callableHasArguments(ExampleInterface.<strong class="jxr_keyword">class</strong>, String.<strong class="jxr_keyword">class</strong>)),
+<a name="70" href="#70">70</a>                  Matchers.&lt;ReflectedMethod&gt;hasItem(methodHasName(<span class="jxr_string">"setPropertyOne"</span>)));
 <a name="71" href="#71">71</a>      }
 <a name="72" href="#72">72</a>  }
 </pre>
