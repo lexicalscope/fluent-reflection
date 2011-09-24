@@ -270,7 +270,7 @@
                             <ignore>com.lexicalscope.fluentreflection.internal.**</ignore>
                         </ignores>
                         <excludes>
-                            <exclude>com/lexicalscope/fluentreflection/internal/**/*.class</exclude>
+                            <exclude>com/lexicalscope/fluentreflection/internal/**</exclude>
                         </excludes>
                     </instrumentation>
                 </configuration>

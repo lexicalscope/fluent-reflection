@@ -2,7 +2,7 @@ package com.lexicalscope.fluentreflection.usecases;
 
 import static com.lexicalscope.fluentreflection.FluentReflection.object;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertThat;
 
 import org.hamcrest.Matcher;
@@ -57,9 +57,7 @@ public class TestFindAllBeanMethods {
 
     @Test public void canSelectAllGetters() throws Exception {
         assertThat(
-                object(new Bean()).methods(
-                        callableHasNameStartingWith("get").and(callableHasNoArguments()).and(
-                                not(callableHasVoidReturn()))),
+                object(new Bean()).methods(isGetter()),
                 containsInAnyOrder(
                         ListBuilder.<Matcher<? super ReflectedCallable>>
                                 list(callableHasName("getReadOnlyProperty")).add(
@@ -69,8 +67,7 @@ public class TestFindAllBeanMethods {
     @Test public void canSelectAllSetters() throws Exception {
         assertThat(
                 object(new Bean()).methods(
-                        callableHasNameStartingWith("set").and(callableHasArgumentsMatching(anything())).and(
-                                not(callableHasNonVoidReturn()))),
+                        isSetter()),
                 containsInAnyOrder(
                         ListBuilder.<Matcher<? super ReflectedCallable>>
                                 list(callableHasName("setWriteOnlyProperty")).add(

@@ -2,6 +2,7 @@ package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.convert;
 import static java.util.Arrays.asList;
+import static org.hamcrest.Matchers.anything;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -224,5 +225,15 @@ public class ReflectionMatchers {
                 description.appendText("not ").appendDescriptionOf(matcher);
             }
         };
+    }
+
+    public static ReflectionMatcher<ReflectedCallable> isGetter() {
+        return callableHasNameStartingWith("get").and(callableHasNoArguments()).and(
+                not(callableHasVoidReturn()));
+    }
+
+    public static ReflectionMatcher<ReflectedCallable> isSetter() {
+        return callableHasNameStartingWith("set").and(callableHasArgumentsMatching(anything())).and(
+                not(callableHasNonVoidReturn()));
     }
 }
