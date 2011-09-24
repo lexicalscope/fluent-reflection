@@ -40,13 +40,11 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
         this.method = method;
     }
 
-    @Override
-    public String getName() {
+    @Override public String getName() {
         return method.getName();
     }
 
-    @Override
-    public List<ReflectedClass<?>> argumentTypes() {
+    @Override public List<ReflectedClass<?>> argumentTypes() {
         final List<ReflectedClass<?>> result = new ArrayList<ReflectedClass<?>>();
         if (!isStatic()) {
             result.add(reflectedClass);
@@ -55,8 +53,7 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
         return result;
     }
 
-    @Override
-    public int argumentCount() {
+    @Override public int argumentCount() {
         final int parameterCount = method.getParameterTypes().length;
         if (isStatic()) {
             return parameterCount;
@@ -64,13 +61,11 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
         return parameterCount + 1;
     }
 
-    @Override
-    public ReflectedClass<?> declaringClass() {
+    @Override public ReflectedClass<?> declaringClass() {
         return reflectedTypeFactory.reflect(method.getDeclaringClass());
     }
 
-    @Override
-    public Object call(final Object... args) {
+    @Override public Object call(final Object... args) {
         if (isStatic()) {
             return invokeMethod(null, args);
         } else {
@@ -98,23 +93,19 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
         }
     }
 
-    @Override
-    public boolean isStatic() {
+    @Override public boolean isStatic() {
         return Modifier.isStatic(method.getModifiers());
     }
 
-    @Override
-    public <T> ReflectedQuery<T> returning(final Class<T> returnType) {
+    @Override public <T> ReflectedQuery<T> returning(final Class<T> returnType) {
         return new ReflectedQuery<T>() {
-            @Override
-            public T call(final Object... args) {
+            @Override public T call(final Object... args) {
                 return returnType.cast(ReflectedMethodImpl.this.call(args));
             }
         };
     }
 
-    @Override
-    public ReflectedClass<?> returnType() {
+    @Override public ReflectedClass<?> returnType() {
         final Class<?> returnType = method.getReturnType();
         if (returnType == null) {
             return null;
@@ -122,8 +113,27 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
         return reflectedTypeFactory.reflect(returnType);
     }
 
-    @Override
-    public String toString() {
+    @Override public String propertyName() {
+        final String name = getName();
+
+        if (name.length() > 2) {
+            if (name.length() > 3) {
+                if (name.startsWith("get") || name.startsWith("set")) {
+                    return initialLowerCase(name.substring(3));
+                }
+            }
+            if (name.startsWith("is")) {
+                return initialLowerCase(name.substring(2));
+            }
+        }
+        return method.getName();
+    }
+
+    private String initialLowerCase(final String substring) {
+        return substring.substring(0, 1).toLowerCase() + substring.substring(1);
+    }
+
+    @Override public String toString() {
         return format("%s %s(%s)", method.getReturnType().getSimpleName(), method.getName(), join(convert(
                 method.getParameterTypes(),
                 new ConvertClassToSimpleName())));

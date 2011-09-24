@@ -35,61 +35,54 @@ class BoundReflectedMethodImpl implements ReflectedMethod {
         this.instance = instance;
     }
 
-    @Override
-    public int argumentCount() {
+    @Override public int argumentCount() {
         return method.argumentCount() - 1;
     }
 
-    @Override
-    public List<ReflectedClass<?>> argumentTypes() {
+    @Override public List<ReflectedClass<?>> argumentTypes() {
         return new ArrayList<ReflectedClass<?>>(method.argumentTypes().subList(1, argumentCount() + 1));
     }
 
-    @Override
-    public Object call(final Object... args) {
+    @Override public Object call(final Object... args) {
         final Object[] argsWithInstance = new Object[args.length + 1];
         argsWithInstance[0] = instance;
         arraycopy(args, 0, argsWithInstance, 1, args.length);
         return method.call(argsWithInstance);
     }
 
-    @Override
-    public ReflectedClass<?> declaringClass() {
+    @Override public ReflectedClass<?> declaringClass() {
         return method.declaringClass();
     }
 
-    @Override
-    public String getName() {
+    @Override public String getName() {
         return method.getName();
     }
 
-    @Override
-    public boolean isStatic() {
+    @Override public boolean isStatic() {
         return false;
     }
 
-    @Override
-    public <T> ReflectedQuery<T> returning(final Class<T> returnType) {
+    @Override public <T> ReflectedQuery<T> returning(final Class<T> returnType) {
         return new ReflectedQuery<T>() {
-            @Override
-            public T call(final Object... args) {
+            @Override public T call(final Object... args) {
                 return returnType.cast(BoundReflectedMethodImpl.this.call(args));
             }
         };
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return String.format("%s in %s", method, instance);
     }
 
-    @Override
-    public ReflectedClass<?> returnType() {
+    @Override public ReflectedClass<?> returnType() {
         return method.returnType();
     }
 
-    @Override
-    public ReflectedClass<?> annotation(final ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher) {
+    @Override public ReflectedClass<?> annotation(final ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher) {
         return method.annotation(annotationMatcher);
+    }
+
+    @Override public String propertyName() {
+        return method.propertyName();
     }
 }

@@ -18,4 +18,13 @@ public interface ReflectedMethod extends ReflectedCallable {
     boolean isStatic();
 
     <T> ReflectedQuery<T> returning(Class<T> returnType);
+
+    /**
+     * The name of the method with any prefix of "get", "set" or "is" removed
+     * and the first subsequent character changed to lower case
+     * 
+     * @return The name of the method with any prefix of "get", "set" or "is"
+     *         removed and the first subsequent character changed to lower case
+     */
+    String propertyName();
 }

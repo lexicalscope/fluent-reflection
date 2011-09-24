@@ -55,6 +55,8 @@ public class TestFindAllBeanMethods {
         void getMethodReturningVoid() {}
     }
 
+    // TODO[tim]: test "is" prefix
+
     @Test public void canSelectAllGetters() throws Exception {
         assertThat(
                 object(new Bean()).methods(isGetter()),
