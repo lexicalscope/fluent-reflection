@@ -12,7 +12,7 @@
 <a name="2" href="#2">2</a>   
 <a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.FluentReflection.object;
 <a name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.ReflectionMatchers.*;
-<a name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.Matchers.*;
+<a name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.Matchers.containsInAnyOrder;
 <a name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.Assert.assertThat;
 <a name="7" href="#7">7</a>   
 <a name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> org.hamcrest.Matcher;
@@ -65,11 +65,11 @@
 <a name="55" href="#55">55</a>          <strong class="jxr_keyword">void</strong> getMethodReturningVoid() {}
 <a name="56" href="#56">56</a>      }
 <a name="57" href="#57">57</a>  
-<a name="58" href="#58">58</a>      @Test <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> canSelectAllGetters() <strong class="jxr_keyword">throws</strong> Exception {
-<a name="59" href="#59">59</a>          assertThat(
-<a name="60" href="#60">60</a>                  object(<strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/usecases/TestFindAllBeanMethods.html">Bean</a>()).methods(
-<a name="61" href="#61">61</a>                          callableHasNameStartingWith(<span class="jxr_string">"get"</span>).and(callableHasNoArguments()).and(
-<a name="62" href="#62">62</a>                                  not(callableHasVoidReturn()))),
+<a name="58" href="#58">58</a>      <em class="jxr_comment">// TODO[tim]: test "is" prefix</em>
+<a name="59" href="#59">59</a>  
+<a name="60" href="#60">60</a>      @Test <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> canSelectAllGetters() <strong class="jxr_keyword">throws</strong> Exception {
+<a name="61" href="#61">61</a>          assertThat(
+<a name="62" href="#62">62</a>                  object(<strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/usecases/TestFindAllBeanMethods.html">Bean</a>()).methods(isGetter()),
 <a name="63" href="#63">63</a>                  containsInAnyOrder(
 <a name="64" href="#64">64</a>                          ListBuilder.&lt;Matcher&lt;? <strong class="jxr_keyword">super</strong> ReflectedCallable&gt;&gt;
 <a name="65" href="#65">65</a>                                  list(callableHasName(<span class="jxr_string">"getReadOnlyProperty"</span>)).add(
@@ -79,14 +79,13 @@
 <a name="69" href="#69">69</a>      @Test <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> canSelectAllSetters() <strong class="jxr_keyword">throws</strong> Exception {
 <a name="70" href="#70">70</a>          assertThat(
 <a name="71" href="#71">71</a>                  object(<strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/usecases/TestFindAllBeanMethods.html">Bean</a>()).methods(
-<a name="72" href="#72">72</a>                          callableHasNameStartingWith(<span class="jxr_string">"set"</span>).and(callableHasArgumentsMatching(anything())).and(
-<a name="73" href="#73">73</a>                                  not(callableHasNonVoidReturn()))),
-<a name="74" href="#74">74</a>                  containsInAnyOrder(
-<a name="75" href="#75">75</a>                          ListBuilder.&lt;Matcher&lt;? <strong class="jxr_keyword">super</strong> ReflectedCallable&gt;&gt;
-<a name="76" href="#76">76</a>                                  list(callableHasName(<span class="jxr_string">"setWriteOnlyProperty"</span>)).add(
-<a name="77" href="#77">77</a>                                          callableHasName(<span class="jxr_string">"setReadWriteProperty"</span>)).$()));
-<a name="78" href="#78">78</a>      }
-<a name="79" href="#79">79</a>  }
+<a name="72" href="#72">72</a>                          isSetter()),
+<a name="73" href="#73">73</a>                  containsInAnyOrder(
+<a name="74" href="#74">74</a>                          ListBuilder.&lt;Matcher&lt;? <strong class="jxr_keyword">super</strong> ReflectedCallable&gt;&gt;
+<a name="75" href="#75">75</a>                                  list(callableHasName(<span class="jxr_string">"setWriteOnlyProperty"</span>)).add(
+<a name="76" href="#76">76</a>                                          callableHasName(<span class="jxr_string">"setReadWriteProperty"</span>)).$()));
+<a name="77" href="#77">77</a>      }
+<a name="78" href="#78">78</a>  }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>
