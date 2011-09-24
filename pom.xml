@@ -101,6 +101,28 @@
                 <artifactId>maven-release-plugin</artifactId>
             </plugin>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <instrumentation>
+                        <ignores>
+                            <ignore>com.lexicalscope.fluentreflection.internal.**</ignore>
+                        </ignores>
+                        <excludes>
+                            <exclude>com/lexicalscope/fluentreflection/internal/**/*.class</exclude>
+                        </excludes>
+                    </instrumentation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>            
+            <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>jarjar-maven-plugin</artifactId>
                 <version>1.5</version>
@@ -265,14 +287,6 @@
                         <format>xml</format>
                         <format>html</format>
                     </formats>
-                    <instrumentation>
-                        <ignores>
-                            <ignore>com.lexicalscope.fluentreflection.internal.**</ignore>
-                        </ignores>
-                        <excludes>
-                            <exclude>com/lexicalscope/fluentreflection/internal/**</exclude>
-                        </excludes>
-                    </instrumentation>
                 </configuration>
             </plugin>
             <plugin>
