@@ -27,28 +27,78 @@ import org.hamcrest.Matcher;
  */
 
 public class ReflectionMatchers {
-    public static ReflectionMatcher<ReflectedCallable> methodHasNameStartingWith(final String prefix) {
+    /**
+     * Matches a prefix of the name of a callable
+     * 
+     * @param prefix
+     *            the prefix
+     * 
+     * @return true iff the argument is a prefix of the name of the callable
+     */
+    public static ReflectionMatcher<ReflectedCallable> callableHasNameStartingWith(final String prefix) {
         return new MatcherCallableHasNameStartingWith(prefix);
     }
 
-    public static ReflectionMatcher<ReflectedCallable> methodHasNameEndingWith(final String suffix) {
+    /**
+     * Matches a suffix of the name of a callable
+     * 
+     * @param suffix
+     *            the suffix
+     * 
+     * @return true iff the argument is a suffix of the name of the callable
+     */
+    public static ReflectionMatcher<ReflectedCallable> callableHasNameEndingWith(final String suffix) {
         return new MatcherCallableHasNameEndingWith(suffix);
     }
 
-    public static ReflectionMatcher<ReflectedCallable> methodHasNameMatching(final String regex) {
+    /**
+     * Matches a regular expression against the name of a callable
+     * 
+     * @param regex
+     *            the regular expression
+     * 
+     * @return true iff the argument is a regular expression matching the name
+     *         of the callable
+     */
+    public static ReflectionMatcher<ReflectedCallable> callableHasNameMatching(final String regex) {
         return new MatcherCallableHasNameMatching(regex);
     }
 
-    public static ReflectionMatcher<ReflectedCallable> methodHasNameContaining(final CharSequence substring) {
+    /**
+     * Matches a substring of the name of a callable
+     * 
+     * @param substring
+     *            the substring
+     * 
+     * @return true iff the argument is contained within the name of the
+     *         callable
+     */
+    public static ReflectionMatcher<ReflectedCallable> callableHasNameContaining(final CharSequence substring) {
         return new MatcherCallableHasNameContaining(substring);
     }
 
-    public static ReflectionMatcher<ReflectedCallable> methodHasName(final String name) {
+    /**
+     * Matches the name of a callable
+     * 
+     * @param name
+     *            the name
+     * 
+     * @return true iff the argument is equal to the name of the callable
+     */
+    public static ReflectionMatcher<ReflectedCallable> callableHasName(final String name) {
         return new MatcherCallableNamed(name);
     }
 
-    public static ReflectionMatcher<ReflectedCallable> methodDeclaredBy(final Class<?> declaringKlass) {
-        return new MatcherCallableDeclaredBy(declaringKlass);
+    /**
+     * Matches the declaring class of a callable
+     * 
+     * @param declaringClass
+     *            the declaring class
+     * 
+     * @return true iff the callable is declared by the argument
+     */
+    public static ReflectionMatcher<ReflectedCallable> callableDeclaredBy(final Class<?> declaringClass) {
+        return new MatcherCallableDeclaredBy(declaringClass);
     }
 
     public static ReflectionMatcher<ReflectedClass<?>> typeHasNoInterfaces() {
@@ -166,13 +216,11 @@ public class ReflectionMatchers {
 
     public static <T> ReflectionMatcher<T> not(final ReflectionMatcher<T> matcher) {
         return new ReflectionMatcher<T>() {
-            @Override
-            protected boolean matchesSafely(final T item) {
+            @Override protected boolean matchesSafely(final T item) {
                 return !matcher.matches(item);
             }
 
-            @Override
-            public void describeTo(final Description description) {
+            @Override public void describeTo(final Description description) {
                 description.appendText("not ").appendDescriptionOf(matcher);
             }
         };

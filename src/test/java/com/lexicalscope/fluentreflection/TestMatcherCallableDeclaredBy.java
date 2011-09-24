@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.methodDeclaredBy;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableDeclaredBy;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -21,7 +21,7 @@ public class TestMatcherCallableDeclaredBy extends AbstractTestReflectionMatcher
 
     @Override
     protected ReflectionMatcher<ReflectedCallable> matcher() {
-        return methodDeclaredBy(DeclaringInterface.class);
+        return callableDeclaredBy(DeclaringInterface.class);
     }
 
     @Override

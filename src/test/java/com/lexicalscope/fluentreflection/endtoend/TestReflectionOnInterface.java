@@ -37,22 +37,22 @@ public class TestReflectionOnInterface {
     @Test
     public void methodsCanBeSelectedByPrefix() {
         assertThat(
-                type(ExampleInterface.class).methods(methodHasNameStartingWith("get")),
-                Matchers.<ReflectedMethod>hasItem(methodHasName("getPropertyOne")));
+                type(ExampleInterface.class).methods(callableHasNameStartingWith("get")),
+                Matchers.<ReflectedMethod>hasItem(callableHasName("getPropertyOne")));
     }
 
     @Test
     public void methodsCanBeSelectedBySuffix() {
         assertThat(
-                type(ExampleInterface.class).methods(methodHasNameEndingWith("One")),
-                Matchers.<ReflectedMethod>hasItem(methodHasName("getPropertyOne")));
+                type(ExampleInterface.class).methods(callableHasNameEndingWith("One")),
+                Matchers.<ReflectedMethod>hasItem(callableHasName("getPropertyOne")));
     }
 
     @Test
     public void methodsCanBeSelectedByRegularExpression() {
         assertThat(
-                type(ExampleInterface.class).methods(methodHasNameMatching(".*Property.*")),
-                Matchers.<ReflectedMethod>hasItem(methodHasName("getPropertyOne")));
+                type(ExampleInterface.class).methods(callableHasNameMatching(".*Property.*")),
+                Matchers.<ReflectedMethod>hasItem(callableHasName("getPropertyOne")));
     }
 
     @Test
@@ -60,13 +60,13 @@ public class TestReflectionOnInterface {
         assertThat(
                 type(ExampleInterface.class).methods(
                         callableHasArguments(ExampleInterface.class)),
-                Matchers.<ReflectedMethod>hasItem(methodHasName("getPropertyOne")));
+                Matchers.<ReflectedMethod>hasItem(callableHasName("getPropertyOne")));
     }
 
     @Test
     public void methodCanBeSelectedByArgument() {
         assertThat(
                 type(ExampleInterface.class).methods(callableHasArguments(ExampleInterface.class, String.class)),
-                Matchers.<ReflectedMethod>hasItem(methodHasName("setPropertyOne")));
+                Matchers.<ReflectedMethod>hasItem(callableHasName("setPropertyOne")));
     }
 }

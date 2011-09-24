@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.methodHasNameEndingWith;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasNameEndingWith;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -13,7 +13,7 @@ public class TestMatcherCallableHasNameEndingWith extends AbstractTestReflection
 
     @Override
     protected ReflectionMatcher<ReflectedCallable> matcher() {
-        return methodHasNameEndingWith("abc");
+        return callableHasNameEndingWith("abc");
     }
 
     @Override

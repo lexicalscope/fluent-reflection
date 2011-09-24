@@ -46,35 +46,35 @@ public class TestReflectedObject {
 
     @Test
     public void instanceMethodsCanBeCalled() throws Exception {
-        assertThat((Integer) reflectedInstance.method(methodHasName("method")).call(), equalTo(42));
+        assertThat((Integer) reflectedInstance.method(callableHasName("method")).call(), equalTo(42));
     }
 
     @Test
     public void instanceMethodsCanHaveReturnTypeBoundAndBeCalled() throws Exception {
-        assertThat(reflectedInstance.method(methodHasName("method")).returning(Integer.class).call(), equalTo(42));
+        assertThat(reflectedInstance.method(callableHasName("method")).returning(Integer.class).call(), equalTo(42));
     }
 
     @Test
     public void instanceMethodsWithArgumentsCanBeCalled() throws Exception {
-        assertThat((Integer) reflectedInstance.method(methodHasName("doubleIt")).call(42), equalTo(84));
+        assertThat((Integer) reflectedInstance.method(callableHasName("doubleIt")).call(42), equalTo(84));
     }
 
     @Test
     public void instanceMethodArgumentsCountIsCorrect() throws Exception {
-        assertThat(reflectedInstance.method(methodHasName("doubleIt")).argumentCount(), equalTo(1));
+        assertThat(reflectedInstance.method(callableHasName("doubleIt")).argumentCount(), equalTo(1));
     }
 
     @Test
     public void instanceMethodArgumentTypeIsCorrect() throws Exception {
         assertThat(
-                reflectedInstance.method(methodHasName("doubleIt")).argumentTypes(),
+                reflectedInstance.method(callableHasName("doubleIt")).argumentTypes(),
                 contains(reflectedTypeReflectingOn(int.class)));
     }
 
     @Test
     public void instanceMethodDeclaringTypeIsCorrect() throws Exception {
         assertThat(
-                reflectedInstance.method(methodHasName("doubleIt")).declaringClass(),
+                reflectedInstance.method(callableHasName("doubleIt")).declaringClass(),
                 reflectedTypeReflectingOn(ExampleObject.class));
     }
 
@@ -85,8 +85,8 @@ public class TestReflectedObject {
 
     @Test
     public void methodsAreFound() throws Exception {
-        assertThat(reflectedInstance.methods(), Matchers.<ReflectedMethod>hasItem(methodHasName("method")));
-        assertThat(reflectedInstance.methods(), Matchers.<ReflectedMethod>hasItem(methodHasName("doubleIt")));
+        assertThat(reflectedInstance.methods(), Matchers.<ReflectedMethod>hasItem(callableHasName("method")));
+        assertThat(reflectedInstance.methods(), Matchers.<ReflectedMethod>hasItem(callableHasName("doubleIt")));
     }
 
     @Test

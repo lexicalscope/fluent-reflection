@@ -45,38 +45,35 @@ public class TestFindAllBeanMethods {
         }
 
         void setWriteOnlyProperty(final Object writeOnlyProperty) {
-            // do something with it
+        // do something with it
         }
 
         int getMethodWithArgument(final int outOfPlace) {
             return outOfPlace;
         }
 
-        void getMethodReturningVoid() {
-        }
+        void getMethodReturningVoid() {}
     }
 
-    @Test
-    public void canSelectAllGetters() throws Exception {
+    @Test public void canSelectAllGetters() throws Exception {
         assertThat(
                 object(new Bean()).methods(
-                        methodHasNameStartingWith("get").and(callableHasNoArguments()).and(
+                        callableHasNameStartingWith("get").and(callableHasNoArguments()).and(
                                 not(callableHasVoidReturn()))),
                 containsInAnyOrder(
                         ListBuilder.<Matcher<? super ReflectedCallable>>
-                                list(methodHasName("getReadOnlyProperty")).add(
-                                        methodHasName("getReadWriteProperty")).$()));
+                                list(callableHasName("getReadOnlyProperty")).add(
+                                        callableHasName("getReadWriteProperty")).$()));
     }
 
-    @Test
-    public void canSelectAllSetters() throws Exception {
+    @Test public void canSelectAllSetters() throws Exception {
         assertThat(
                 object(new Bean()).methods(
-                        methodHasNameStartingWith("set").and(callableHasArgumentsMatching(anything())).and(
+                        callableHasNameStartingWith("set").and(callableHasArgumentsMatching(anything())).and(
                                 not(callableHasNonVoidReturn()))),
                 containsInAnyOrder(
                         ListBuilder.<Matcher<? super ReflectedCallable>>
-                                list(methodHasName("setWriteOnlyProperty")).add(
-                                        methodHasName("setReadWriteProperty")).$()));
+                                list(callableHasName("setWriteOnlyProperty")).add(
+                                        callableHasName("setReadWriteProperty")).$()));
     }
 }
