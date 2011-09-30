@@ -190,9 +190,15 @@
                 <configuration>
                     <signature>
                         <groupId>org.codehaus.mojo.signature</groupId>
+                        <artifactId>java16-sun</artifactId>
+                        <version>1.10</version>
+                    </signature>
+                    <!-- 
+                        unfortunately guava uses some internal sun APIs...
+                        <groupId>org.codehaus.mojo.signature</groupId>
                         <artifactId>java16</artifactId>
                         <version>1.0</version>
-                    </signature>
+                     -->
                 </configuration>
                 <executions>
                     <execution>
