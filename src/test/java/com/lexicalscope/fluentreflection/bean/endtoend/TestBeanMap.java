@@ -154,10 +154,10 @@ public class TestBeanMap {
         assertThat(map.containsValue("myValue"), equalTo(false));
     }
 
-    @Test public void valuesContainsReadableValues() {
+    @Test public void valuesContainsAllValues() {
         bean.setReadWriteProperty(14);
         bean.readOnlyProperty = "my value";
-        assertThat(map.values(), containsInAnyOrder((Object) 14, "my value"));
+        assertThat(map.values(), containsInAnyOrder((Object) 14, "my value", null));
     }
 
     @Test public void keySetContainsAllProperties() {

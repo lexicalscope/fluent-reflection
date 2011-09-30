@@ -1,13 +1,12 @@
 package com.lexicalscope.fluentreflection.bean;
 
+import static com.google.common.collect.Sets.*;
 import static com.lexicalscope.fluentreflection.FluentReflection.object;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
+import static java.util.Collections.unmodifiableSet;
 
 import java.util.AbstractSet;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -50,24 +49,24 @@ public class BeanMap {
         private final Map<String, ReflectedMethod> setters;
         private final Set<String> keySet;
 
-        public BeanMapImpl(final ReflectedObject<Object> object) {
-            getters = indexMethods(object, isGetter());
-            setters = indexMethods(object, isSetter());
-            final HashSet<String> keySet = new HashSet<String>(getters.keySet());
-            keySet.addAll(setters.keySet());
-            this.keySet = Collections.unmodifiableSet(keySet);
+        BeanMapImpl(
+                final ReflectedObject<Object> object,
+                final Converter<ReflectedMethod, String> propertyNameConvertor,
+                final ReflectionMatcher<ReflectedCallable> getterMatcher,
+                final ReflectionMatcher<ReflectedCallable> setterMatcher,
+                final KeySetCalculation keySetCalculation) {
+            this.getters = indexMethods(object, getterMatcher, propertyNameConvertor);
+            this.setters = indexMethods(object, setterMatcher, propertyNameConvertor);
+            this.keySet = unmodifiableSet(keySetCalculation.supportedKeys(getters, setters));
         }
 
         private Map<String, ReflectedMethod> indexMethods(
                 final ReflectedObject<Object> object,
-                final ReflectionMatcher<ReflectedCallable> matcher) {
+                final ReflectionMatcher<ReflectedCallable> matcher,
+                final Converter<ReflectedMethod, String> propertyNameConvertor) {
             return Lambda.map(
                     object.methods(matcher),
-                    new Converter<ReflectedMethod, String>() {
-                        @Override public String convert(final ReflectedMethod from) {
-                            return from.propertyName();
-                        }
-                    });
+                    propertyNameConvertor);
         }
 
         @Override public void clear() {
@@ -75,11 +74,11 @@ public class BeanMap {
         }
 
         @Override public boolean containsKey(final Object key) {
-            return getters.containsKey(key) || setters.containsKey(key);
+            return keySet.contains(key);
         }
 
         @Override public boolean containsValue(final Object value) {
-            for (final String string : getters.keySet()) {
+            for (final String string : keySet) {
                 final Object containedValue = get(string);
                 if (containedValue == value) {
                     return true;
@@ -138,8 +137,8 @@ public class BeanMap {
         }
 
         @Override public Collection<Object> values() {
-            final Collection<Object> result = new ArrayList<Object>(getters.size());
-            for (final String key : getters.keySet()) {
+            final Collection<Object> result = new ArrayList<Object>(keySet.size());
+            for (final String key : keySet) {
                 result.add(get(key));
             }
             return result;
@@ -206,6 +205,10 @@ public class BeanMap {
         }
     }
 
+    public static interface KeySetCalculation {
+        Set<String> supportedKeys(Map<String, ReflectedMethod> getters, Map<String, ReflectedMethod> setters);
+    }
+
     /**
      * A map of the properties in the bean. Putting values into the map will
      * update the underlying bean. Getting write only properties will return
@@ -220,6 +223,74 @@ public class BeanMap {
      * @return the bean wrapped in a map
      */
     public static Map<String, Object> map(final Object bean) {
-        return new BeanMapImpl(object(bean));
+        return beanMap().build(bean);
+    }
+
+    public static BeanMapBuilder beanMap() {
+        return new BeanMapBuilderImpl();
+    }
+
+    static Map<String, Object> map(
+            final Object bean,
+            final Converter<ReflectedMethod, String> propertyNameConvertor,
+            final ReflectionMatcher<ReflectedCallable> getterMatcher,
+            final ReflectionMatcher<ReflectedCallable> setterMatcher,
+            final KeySetCalculation keySetCalculation) {
+        return new BeanMapImpl(
+                object(bean),
+                propertyNameConvertor,
+                getterMatcher,
+                setterMatcher,
+                keySetCalculation);
+    }
+
+    public static KeySetCalculation onlyReadWriteProperties() {
+        return new KeySetCalculation() {
+            @Override public Set<String> supportedKeys(
+                        final Map<String, ReflectedMethod> getters,
+                        final Map<String, ReflectedMethod> setters) {
+                return intersection(getters.keySet(), setters.keySet());
+            }
+        };
+    }
+
+    public static KeySetCalculation allReadableProperties() {
+        return new KeySetCalculation() {
+            @Override public Set<String> supportedKeys(
+                        final Map<String, ReflectedMethod> getters,
+                        final Map<String, ReflectedMethod> setters) {
+                return getters.keySet();
+            }
+        };
+    }
+
+    public static KeySetCalculation allWriteableProperties() {
+        return new KeySetCalculation() {
+            @Override public Set<String> supportedKeys(
+                        final Map<String, ReflectedMethod> getters,
+                        final Map<String, ReflectedMethod> setters) {
+                return setters.keySet();
+            }
+        };
+    }
+
+    public static KeySetCalculation writeablePropertiesOnly() {
+        return new KeySetCalculation() {
+            @Override public Set<String> supportedKeys(
+                        final Map<String, ReflectedMethod> getters,
+                        final Map<String, ReflectedMethod> setters) {
+                return difference(setters.keySet(), getters.keySet());
+            }
+        };
+    }
+
+    public static KeySetCalculation readablePropertiesOnly() {
+        return new KeySetCalculation() {
+            @Override public Set<String> supportedKeys(
+                        final Map<String, ReflectedMethod> getters,
+                        final Map<String, ReflectedMethod> setters) {
+                return difference(getters.keySet(), setters.keySet());
+            }
+        };
     }
 }

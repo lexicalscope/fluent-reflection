@@ -148,6 +148,14 @@
                     </includes>
                     <rules>
                         <rule>
+                            <pattern>com.google.common.**.*</pattern>
+                            <result>com.lexicalscope.fluentreflection.internal.guava.@1.$@2</result>
+                        </rule>
+                        <rule>
+                            <pattern>com.google.common.*</pattern>
+                            <result>com.lexicalscope.fluentreflection.internal.guava.$@1</result>
+                        </rule>
+                        <rule>
                             <pattern>com.google.inject.**.*</pattern>
                             <result>com.lexicalscope.fluentreflection.internal.guice.@1.$@2</result>
                         </rule>
@@ -400,6 +408,11 @@
             <type>jar</type>
             <scope>compile</scope>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>10.0</version>
         </dependency>
     </dependencies>
     <profiles>
