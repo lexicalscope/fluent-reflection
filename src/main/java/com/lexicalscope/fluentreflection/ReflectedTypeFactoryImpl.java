@@ -19,18 +19,19 @@ import java.lang.reflect.Method;
  */
 
 class ReflectedTypeFactoryImpl implements ReflectedTypeFactory {
-    @Override
-    public <T> ReflectedClass<T> reflect(final Class<T> klass) {
+    @Override public <T> ReflectedClass<T> reflect(final Class<T> klass) {
         return new ReflectedClassImpl<T>(this, klass, new ReflectedMembersImpl<T>(this, klass));
     }
 
-    @Override
-    public <T> ReflectedObject<T> reflect(final Class<T> klass, final T instance) {
+    @Override public <T> ReflectedObject<T> reflect(final Class<T> klass, final T instance) {
         return new ReflectedObjectImpl<T>(this, reflect(klass), instance);
     }
 
-    @Override
-    public ReflectedMethod method(final Method method) {
+    @Override public ReflectedMethod method(final Method method) {
         return new ReflectedMethodImpl(this, reflect(method.getDeclaringClass()), method);
+    }
+
+    public ReflectedMethod method(final Method method, final Object instance) {
+        return new BoundReflectedMethodImpl(method(method), instance);
     }
 }

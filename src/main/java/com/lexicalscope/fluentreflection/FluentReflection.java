@@ -22,8 +22,7 @@ import java.lang.reflect.Method;
  * Main entry point for the reflection library
  */
 public final class FluentReflection {
-    private FluentReflection() {
-    }
+    private FluentReflection() {}
 
     public static <T> ReflectedClass<T> type(final Class<T> klass) {
         return new ReflectedTypeFactoryImpl().reflect(klass);
@@ -35,5 +34,9 @@ public final class FluentReflection {
 
     public static <T> ReflectedObject<T> object(final T object) {
         return new ReflectedTypeFactoryImpl().reflect((Class<T>) object.getClass(), object);
+    }
+
+    public static ReflectedMethod method(final Method method, final Object instance) {
+        return new ReflectedTypeFactoryImpl().method(method, instance);
     }
 }

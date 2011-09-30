@@ -27,12 +27,12 @@ import com.lexicalscope.fluentreflection.SecurityException;
 
 public abstract class Implementing<T> implements ProxyImplementation<T> {
     private static class MethodInvokationContext {
-        private final Method method;
+        private final ReflectedMethod method;
         private final Object[] args;
         public Object result;
 
-        public MethodInvokationContext(final Method method, final Object[] args) {
-            this.method = method;
+        public MethodInvokationContext(final Object proxy, final Method method, final Object[] args) {
+            this.method = FluentReflection.method(method, proxy);
             this.args = args == null ? new Object[] {} : args;
         }
     }
@@ -48,6 +48,10 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         typeLiteral = TypeLiteral.get(getSuperclassTypeParameter(getClass()));
     }
 
+    public Implementing(final Class<?> klass) {
+        typeLiteral = TypeLiteral.get(klass);
+    }
+
     private static Type getSuperclassTypeParameter(final Class<?> subclass) {
         final Type superclass = subclass.getGenericSuperclass();
         if (superclass instanceof Class<?>) {
@@ -56,13 +60,12 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         return ((ParameterizedType) superclass).getActualTypeArguments()[0];
     }
 
-    @Override
-    public final Object invoke(final Object proxy, final Method method, final Object[] args) throws Throwable {
-        methodInvokationContext.set(new MethodInvokationContext(method, args));
+    @Override public final Object invoke(final Object proxy, final Method method, final Object[] args) throws Throwable {
+        methodInvokationContext.set(new MethodInvokationContext(proxy, method, args));
         try {
             for (final Entry<Matcher<? super ReflectedMethod>, MethodBody> registeredMethodHandler : registeredMethodHandlers
                     .entrySet()) {
-                if (registeredMethodHandler.getKey().matches(FluentReflection.method(method))) {
+                if (registeredMethodHandler.getKey().matches(methodInvokationContext.get().method)) {
                     final MethodBody registeredImplementation = registeredMethodHandler.getValue();
 
                     registeredImplementation.body();
@@ -76,23 +79,19 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         }
     }
 
-    @Override
-    public final Class<?> proxiedInterface() {
+    @Override public final Class<?> proxiedInterface() {
         return typeLiteral.getRawType();
     }
 
     public final MethodBinding<T> matching(final Matcher<? super ReflectedMethod> methodMatcher) {
         return new MethodBinding<T>() {
-            @Override
-            public void execute(final MethodBody methodBody) {
+            @Override public void execute(final MethodBody methodBody) {
                 registeredMethodHandlers.put(methodMatcher, methodBody);
             }
 
-            @Override
-            public void execute(final QueryMethod queryMethod) {
+            @Override public void execute(final QueryMethod queryMethod) {
                 execute(new MethodBody() {
-                    @Override
-                    public void body() throws Exception {
+                    @Override public void body() throws Exception {
                         try {
                             final Method method = queryMethod.getClass().getDeclaredMethods()[0];
                             method.setAccessible(true);
@@ -117,7 +116,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
 
         final List<ReflectedClass<?>> argumentTypes =
                 new ArrayList<ReflectedClass<?>>(userDefinedMethod.argumentTypes());
-        argumentTypes.set(0, FluentReflection.type(typeLiteral.getRawType()));
+        argumentTypes.remove(0);
 
         final ReflectionMatcher<ReflectedCallable> matchArguments =
                 callableHasReflectedArgumentList(argumentTypes);
@@ -130,6 +129,10 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
 
     public final String methodName() {
         return methodInvokationContext.get().method.getName();
+    }
+
+    public final ReflectedMethod method() {
+        return methodInvokationContext.get().method;
     }
 
     public final void returnValue(final Object value) {
