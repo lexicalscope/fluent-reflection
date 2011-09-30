@@ -2,7 +2,11 @@ package com.lexicalscope.fluentreflection.bean;
 
 import java.util.Map;
 
+import org.hamcrest.Matcher;
+
+import com.lexicalscope.fluentreflection.ReflectedCallable;
 import com.lexicalscope.fluentreflection.bean.BeanMap.KeySetCalculation;
+import com.lexicalscope.fluentreflection.bean.BeanMap.PropertyNameConvertor;
 
 /*
  * Copyright 2011 Tim Wood
@@ -24,4 +28,10 @@ public interface BeanMapBuilder {
     Map<String, Object> build(Object bean);
 
     BeanMapBuilder keys(KeySetCalculation onlyReadWriteProperties);
+
+    BeanMapBuilder getters(Matcher<ReflectedCallable> getterMatcher);
+
+    BeanMapBuilder setters(Matcher<ReflectedCallable> setterMatcher);
+
+    BeanMapBuilder propertyNames(PropertyNameConvertor propertyNameConvertor);
 }

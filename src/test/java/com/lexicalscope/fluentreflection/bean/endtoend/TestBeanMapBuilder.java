@@ -2,7 +2,7 @@ package com.lexicalscope.fluentreflection.bean.endtoend;
 
 import static com.lexicalscope.fluentreflection.bean.BeanMap.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.*;
 
 import java.util.Map;
 
@@ -77,5 +77,17 @@ public class TestBeanMapBuilder {
         final Map<String, Object> map = beanMap().keys(readablePropertiesOnly()).build(bean);
 
         assertThat(map.keySet(), containsInAnyOrder("readOnlyProperty"));
+    }
+
+    @Test public void canLowercaseProperties() {
+        final Map<String, Object> map = beanMap().propertyNames(lowercasePropertyName()).build(bean);
+
+        assertThat(map.keySet(), containsInAnyOrder("readonlyproperty", "readwriteproperty", "writeonlyproperty"));
+
+        map.put("writeonlyproperty", "my value");
+        assertThat(bean.writeOnlyProperty, equalTo((Object) "my value"));
+
+        map.put("readwriteproperty", 14);
+        assertThat(map.get("readwriteproperty"), equalTo((Object) 14));
     }
 }

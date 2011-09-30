@@ -1,18 +1,16 @@
 package com.lexicalscope.fluentreflection.bean;
 
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
-import static com.lexicalscope.fluentreflection.bean.BeanMap.map;
+import static com.lexicalscope.fluentreflection.bean.BeanMap.allProperties;
 
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
-import ch.lambdaj.function.convert.Converter;
+import org.hamcrest.Matcher;
 
 import com.lexicalscope.fluentreflection.ReflectedCallable;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
-import com.lexicalscope.fluentreflection.ReflectionMatcher;
 import com.lexicalscope.fluentreflection.bean.BeanMap.KeySetCalculation;
+import com.lexicalscope.fluentreflection.bean.BeanMap.PropertyNameConvertor;
 
 /*
  * Copyright 2011 Tim Wood
@@ -30,18 +28,18 @@ import com.lexicalscope.fluentreflection.bean.BeanMap.KeySetCalculation;
  * limitations under the License. 
  */
 
-public class BeanMapBuilderImpl implements BeanMapBuilder {
-    private final Converter<ReflectedMethod, String> propertyNameConvertor = new Converter<ReflectedMethod, String>() {
-        @Override public String convert(final ReflectedMethod from) {
+class BeanMapBuilderImpl implements BeanMapBuilder {
+    private PropertyNameConvertor propertyNameConvertor = new PropertyNameConvertor() {
+        @Override public String propertyName(final ReflectedMethod from) {
             return from.propertyName();
         }
     };
-    private final ReflectionMatcher<ReflectedCallable> getterMatcher = isGetter();
-    private final ReflectionMatcher<ReflectedCallable> setterMatcher = isSetter();
-    private KeySetCalculation keySetCalculation = new GettersAndSettersKeySet();
+    private Matcher<ReflectedCallable> getterMatcher = isGetter();
+    private Matcher<ReflectedCallable> setterMatcher = isSetter();
+    private KeySetCalculation keySetCalculation = allProperties();
 
     @Override public Map<String, Object> build(final Object bean) {
-        return map(bean, propertyNameConvertor, getterMatcher, setterMatcher, keySetCalculation);
+        return BeanMap.map(bean, propertyNameConvertor, getterMatcher, setterMatcher, keySetCalculation);
     }
 
     @Override public BeanMapBuilder keys(final KeySetCalculation keySetCalculation) {
@@ -49,13 +47,18 @@ public class BeanMapBuilderImpl implements BeanMapBuilder {
         return this;
     }
 
-    private static final class GettersAndSettersKeySet implements KeySetCalculation {
-        @Override public Set<String> supportedKeys(
-                final Map<String, ReflectedMethod> getters,
-                final Map<String, ReflectedMethod> setters) {
-            final HashSet<String> keySet = new HashSet<String>(getters.keySet());
-            keySet.addAll(setters.keySet());
-            return keySet;
-        }
+    @Override public BeanMapBuilder getters(final Matcher<ReflectedCallable> getterMatcher) {
+        this.getterMatcher = getterMatcher;
+        return this;
+    }
+
+    @Override public BeanMapBuilder setters(final Matcher<ReflectedCallable> setterMatcher) {
+        this.setterMatcher = setterMatcher;
+        return this;
+    }
+
+    @Override public BeanMapBuilder propertyNames(final PropertyNameConvertor propertyNameConvertor) {
+        this.propertyNameConvertor = propertyNameConvertor;
+        return this;
     }
 }

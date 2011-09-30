@@ -11,13 +11,14 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.hamcrest.Matcher;
+
 import ch.lambdaj.Lambda;
 import ch.lambdaj.function.convert.Converter;
 
 import com.lexicalscope.fluentreflection.ReflectedCallable;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
 import com.lexicalscope.fluentreflection.ReflectedObject;
-import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
 /*
  * Copyright 2011 Tim Wood
@@ -51,9 +52,9 @@ public class BeanMap {
 
         BeanMapImpl(
                 final ReflectedObject<Object> object,
-                final Converter<ReflectedMethod, String> propertyNameConvertor,
-                final ReflectionMatcher<ReflectedCallable> getterMatcher,
-                final ReflectionMatcher<ReflectedCallable> setterMatcher,
+                final PropertyNameConvertor propertyNameConvertor,
+                final Matcher<ReflectedCallable> getterMatcher,
+                final Matcher<ReflectedCallable> setterMatcher,
                 final KeySetCalculation keySetCalculation) {
             this.getters = indexMethods(object, getterMatcher, propertyNameConvertor);
             this.setters = indexMethods(object, setterMatcher, propertyNameConvertor);
@@ -62,11 +63,15 @@ public class BeanMap {
 
         private Map<String, ReflectedMethod> indexMethods(
                 final ReflectedObject<Object> object,
-                final ReflectionMatcher<ReflectedCallable> matcher,
-                final Converter<ReflectedMethod, String> propertyNameConvertor) {
+                final Matcher<ReflectedCallable> matcher,
+                final PropertyNameConvertor propertyNameConvertor) {
             return Lambda.map(
                     object.methods(matcher),
-                    propertyNameConvertor);
+                    new Converter<ReflectedMethod, String>() {
+                        @Override public String convert(final ReflectedMethod from) {
+                            return propertyNameConvertor.propertyName(from);
+                        }
+                    });
         }
 
         @Override public void clear() {
@@ -209,6 +214,10 @@ public class BeanMap {
         Set<String> supportedKeys(Map<String, ReflectedMethod> getters, Map<String, ReflectedMethod> setters);
     }
 
+    public static interface PropertyNameConvertor {
+        String propertyName(ReflectedMethod method);
+    }
+
     /**
      * A map of the properties in the bean. Putting values into the map will
      * update the underlying bean. Getting write only properties will return
@@ -232,9 +241,9 @@ public class BeanMap {
 
     static Map<String, Object> map(
             final Object bean,
-            final Converter<ReflectedMethod, String> propertyNameConvertor,
-            final ReflectionMatcher<ReflectedCallable> getterMatcher,
-            final ReflectionMatcher<ReflectedCallable> setterMatcher,
+            final PropertyNameConvertor propertyNameConvertor,
+            final Matcher<ReflectedCallable> getterMatcher,
+            final Matcher<ReflectedCallable> setterMatcher,
             final KeySetCalculation keySetCalculation) {
         return new BeanMapImpl(
                 object(bean),
@@ -290,6 +299,24 @@ public class BeanMap {
                         final Map<String, ReflectedMethod> getters,
                         final Map<String, ReflectedMethod> setters) {
                 return difference(getters.keySet(), setters.keySet());
+            }
+        };
+    }
+
+    public static KeySetCalculation allProperties() {
+        return new KeySetCalculation() {
+            @Override public Set<String> supportedKeys(
+                        final Map<String, ReflectedMethod> getters,
+                        final Map<String, ReflectedMethod> setters) {
+                return union(getters.keySet(), setters.keySet());
+            }
+        };
+    }
+
+    public static PropertyNameConvertor lowercasePropertyName() {
+        return new PropertyNameConvertor() {
+            @Override public String propertyName(final ReflectedMethod method) {
+                return method.propertyName().toLowerCase();
             }
         };
     }
