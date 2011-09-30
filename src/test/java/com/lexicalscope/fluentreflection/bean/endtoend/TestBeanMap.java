@@ -1,6 +1,8 @@
 package com.lexicalscope.fluentreflection.bean.endtoend;
 
+import static ch.lambdaj.Lambda.selectFirst;
 import static com.lexicalscope.fluentreflection.bean.BeanMap.map;
+import static com.lexicalscope.fluentreflection.bean.endtoend.MapEntryMatcher.mapEntry;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -132,6 +134,10 @@ public class TestBeanMap {
         map.clear();
     }
 
+    @Test(expected = UnsupportedOperationException.class) public void removeIsUnsupported() {
+        map.remove("writeOnlyProperty");
+    }
+
     @Test public void containsInitialReadableValues() {
         assertThat(map.containsValue(0), equalTo(true));
         assertThat(map.containsValue(null), equalTo(true));
@@ -146,6 +152,12 @@ public class TestBeanMap {
     @Test public void doesNotContainsWriteOnlyValues() {
         bean.setWriteOnlyProperty("myValue");
         assertThat(map.containsValue("myValue"), equalTo(false));
+    }
+
+    @Test public void valuesContainsReadableValues() {
+        bean.setReadWriteProperty(14);
+        bean.readOnlyProperty = "my value";
+        assertThat(map.values(), containsInAnyOrder((Object) 14, "my value"));
     }
 
     @Test public void keySetContainsAllProperties() {
@@ -195,5 +207,34 @@ public class TestBeanMap {
         newMap.put("notAProperty", 14);
 
         map.putAll(newMap);
+    }
+
+    @Test public void entrySetContainsAllPropertiesAndReadableValues() {
+        bean.setReadWriteProperty(14);
+        bean.readOnlyProperty = "my value";
+        assertThat(map.entrySet(), hasItem(mapEntry("readWriteProperty", (Object) 14)));
+        assertThat(map.entrySet(), hasItem(mapEntry("readOnlyProperty", (Object) "my value")));
+    }
+
+    @Test public void entrySetAllowsValuesToBeChanged() {
+        final Map.Entry<String, Object> entry = selectFirst(map.entrySet(), mapEntry("readWriteProperty"));
+        entry.setValue(14);
+        assertThat(bean.getReadWriteProperty(), equalTo(14));
+    }
+
+    @Test(expected = UnsupportedOperationException.class) public void cannotRemoveFromKeySet() {
+        map.keySet().remove("readWriteProperty");
+    }
+
+    @Test(expected = UnsupportedOperationException.class) public void cannotRemoveFromKeySetIterator() {
+        map.keySet().iterator().remove();
+    }
+
+    @Test(expected = UnsupportedOperationException.class) public void cannotRemoveFromEntrySet() {
+        map.entrySet().remove(map.entrySet().iterator().next());
+    }
+
+    @Test(expected = UnsupportedOperationException.class) public void cannotRemoveFromEntrySetIterator() {
+        map.entrySet().iterator().remove();
     }
 }
