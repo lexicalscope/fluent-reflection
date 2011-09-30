@@ -30,6 +30,10 @@ public class TestMapBean {
         String getProperty();
 
         void setProperty(String value);
+
+        Boolean isProperty();
+
+        Boolean hasProperty();
     }
 
     private final Map<String, Object> map = new HashMap<String, Object>();
@@ -43,5 +47,13 @@ public class TestMapBean {
     @Test public void mapCanBeSetViaInterface() throws Exception {
         bean.setProperty("my value");
         assertThat(map.get("property"), equalTo((Object) "my value"));
+    }
+
+    @Test public void mapCanBeQueriedViaInterface() throws Exception {
+        assertThat(bean.isProperty(), equalTo(false));
+
+        bean.setProperty("my value");
+
+        assertThat(bean.isProperty(), equalTo(true));
     }
 }

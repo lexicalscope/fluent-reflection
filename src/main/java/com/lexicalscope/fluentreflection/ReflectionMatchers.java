@@ -243,4 +243,8 @@ public class ReflectionMatchers {
     public static ReflectionMatcher<ReflectedCallable> isSetter() {
         return callableHasNameStartingWith("set").and(isMutator());
     }
+
+    public static ReflectionMatcher<ReflectedCallable> isExistence() {
+        return callableHasNameStartingWith("is").or(callableHasNameStartingWith("has")).and(isQuery());
+    }
 }

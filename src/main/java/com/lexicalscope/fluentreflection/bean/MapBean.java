@@ -39,6 +39,12 @@ public class MapBean {
                         map.put(method().propertyName(), args()[0]);
                     }
                 });
+
+                matching(isExistence()).execute(new MethodBody() {
+                    @Override public void body() {
+                        returnValue(map.containsKey(method().propertyName()));
+                    }
+                });
             }
         });
     }
