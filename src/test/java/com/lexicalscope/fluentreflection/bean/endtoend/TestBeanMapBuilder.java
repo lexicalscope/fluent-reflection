@@ -1,5 +1,6 @@
 package com.lexicalscope.fluentreflection.bean.endtoend;
 
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static com.lexicalscope.fluentreflection.bean.BeanMap.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -47,6 +48,28 @@ public class TestBeanMapBuilder {
         }
     }
 
+    static class NoPrefixBean {
+        private int readWriteProperty;
+        private String readOnlyProperty;
+        private Object writeOnlyProperty;
+
+        String readOnlyProperty() {
+            return readOnlyProperty;
+        }
+
+        int readWriteProperty() {
+            return readWriteProperty;
+        }
+
+        void readWriteProperty(final int readWriteProperty) {
+            this.readWriteProperty = readWriteProperty;
+        }
+
+        void writeOnlyProperty(final Object writeOnlyProperty) {
+            this.writeOnlyProperty = writeOnlyProperty;
+        }
+    }
+
     private final Bean bean = new Bean();
 
     @Test public void canSelectOnlyReadWriteProperties() {
@@ -89,5 +112,18 @@ public class TestBeanMapBuilder {
 
         map.put("readwriteproperty", 14);
         assertThat(map.get("readwriteproperty"), equalTo((Object) 14));
+    }
+
+    @Test public void beanDoesNotNeedGetAndSetPrefixes() {
+        final NoPrefixBean noPrefixBean = new NoPrefixBean();
+        final Map<String, Object> map = beanMap().getters(isQuery()).setters(isMutator()).build(noPrefixBean);
+
+        assertThat(map.keySet(), containsInAnyOrder("readOnlyProperty", "readWriteProperty", "writeOnlyProperty"));
+
+        map.put("writeOnlyProperty", "my value");
+        assertThat(noPrefixBean.writeOnlyProperty, equalTo((Object) "my value"));
+
+        map.put("readWriteProperty", 14);
+        assertThat(map.get("readWriteProperty"), equalTo((Object) 14));
     }
 }

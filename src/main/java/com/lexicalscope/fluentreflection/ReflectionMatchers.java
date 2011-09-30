@@ -227,13 +227,20 @@ public class ReflectionMatchers {
         };
     }
 
+    public static ReflectionMatcher<ReflectedCallable> isQuery() {
+        return callableHasNoArguments().and(not(callableHasVoidReturn()));
+    }
+
     public static ReflectionMatcher<ReflectedCallable> isGetter() {
-        return callableHasNameStartingWith("get").and(callableHasNoArguments()).and(
-                not(callableHasVoidReturn()));
+        return callableHasNameStartingWith("get").and(isQuery());
+    }
+
+    public static ReflectionMatcher<ReflectedCallable> isMutator() {
+        return callableHasArgumentsMatching(anything()).and(
+                not(callableHasNonVoidReturn()));
     }
 
     public static ReflectionMatcher<ReflectedCallable> isSetter() {
-        return callableHasNameStartingWith("set").and(callableHasArgumentsMatching(anything())).and(
-                not(callableHasNonVoidReturn()));
+        return callableHasNameStartingWith("set").and(isMutator());
     }
 }
