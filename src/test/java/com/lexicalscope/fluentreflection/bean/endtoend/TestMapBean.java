@@ -54,6 +54,7 @@ public class TestMapBean {
 
     @Test public void mapCanBeSetViaInterface() throws Exception {
         bean.setProperty("my value");
+
         assertThat(map.get("property"), equalTo((Object) "my value"));
     }
 

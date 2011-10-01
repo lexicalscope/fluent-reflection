@@ -86,8 +86,34 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
      */
     ReflectedMethod staticMethod(Matcher<? super ReflectedMethod> methodNamed);
 
+    /**
+     * True if the given object can be assigned to a variable of the type
+     * represented by this class
+     * 
+     * @param value
+     *            the value that might be assigned
+     * 
+     * @return true iff the value can be assigned to variables of this type
+     */
     boolean assignableFromObject(Object value);
 
-    T getInstanceFrom(Object value);
-
+    /**
+     * If T is assignable from value, then return the value. Otherwise tries to
+     * create an instance of this type using the provided argument.
+     * 
+     * Will first attempt to find a static method called "valueOf" which returns
+     * this type and takes a single argument compatible with the type of the
+     * value given. If that is not found, tries to find a constructor which
+     * takes an argument of the type of the given value. Otherwise throws a
+     * ClassCastException
+     * 
+     * @param value
+     *            the value to be converted
+     * 
+     * @throws ClassCastException
+     *             if the types cannot be converted
+     * 
+     * @return
+     */
+    T convertType(Object value);
 }

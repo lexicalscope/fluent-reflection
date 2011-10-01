@@ -30,12 +30,7 @@ public class MapBean {
             {
                 matching(isGetter()).execute(new MethodBody() {
                     @Override public void body() {
-                        final Object value = map.get(method().propertyName());
-                        if (method().returnType().assignableFromObject(value)) {
-                            returnValue(value);
-                        } else {
-                            returnValue(method().returnType().getInstanceFrom(value));
-                        }
+                        returnValue(map.get(method().propertyName()));
                     }
                 });
 

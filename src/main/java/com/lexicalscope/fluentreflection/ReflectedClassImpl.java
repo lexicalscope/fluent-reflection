@@ -24,6 +24,8 @@ import java.util.List;
 
 import org.hamcrest.Matcher;
 
+import com.google.common.primitives.Primitives;
+
 /**
  * Not thread safe
  * 
@@ -118,25 +120,42 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
     }
 
     @Override public boolean assignableFromObject(final Object value) {
-        return value == null || klass.isAssignableFrom(value.getClass());
+        return value == null
+                || klass.isAssignableFrom(value.getClass())
+                || canBeBoxed(value)
+                || canBeUnboxed(value);
     }
 
-    @Override public T getInstanceFrom(final Object value) {
-        if (value == null) {
-            return null;
+    private boolean canBeBoxed(final Object value) {
+        return Primitives.isWrapperType(klass)
+                && Primitives.unwrap(klass).isAssignableFrom(value.getClass());
+    }
+
+    private boolean canBeUnboxed(final Object value) {
+        return klass.isPrimitive()
+                && Primitives.wrap(klass).isAssignableFrom(value.getClass());
+    }
+
+    @Override public T convertType(final Object value) {
+        if (assignableFromObject(value)) {
+            return (T) value;
+        } else if (canBeUnboxed(value)) {
+            return (T) value;
+        } else if (canBeBoxed(value)) {
+            return (T) value;
         }
 
-        final ReflectedMethod valueOfMethod =
-                method(callableHasName("valueOf").and(callableHasArguments(value.getClass())).and(
+        final List<ReflectedMethod> valueOfMethods =
+                methods(callableHasName("valueOf").and(callableHasArguments(value.getClass())).and(
                         callableHasReturnType(klass)));
-        if (valueOfMethod != null) {
-            return klass.cast(valueOfMethod.call(value));
+        if (!valueOfMethods.isEmpty()) {
+            return klass.cast(valueOfMethods.get(0).call(value));
         }
 
-        final ReflectedConstructor<T> constructor =
-                constructor(callableHasArguments(value.getClass()));
-        if (constructor != null) {
-            return constructor.call(value);
+        final List<ReflectedConstructor<T>> constructors =
+                constructors(callableHasArguments(value.getClass()));
+        if (!constructors.isEmpty()) {
+            return constructors.get(0).call(value);
         }
 
         throw new ClassCastException(String.format("cannot convert %s to %s", value.getClass(), klass));
