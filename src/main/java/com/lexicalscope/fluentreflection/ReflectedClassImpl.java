@@ -44,48 +44,39 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
         this.members = members;
     }
 
-    @Override
-    public Class<T> classUnderReflection() {
+    @Override public Class<T> classUnderReflection() {
         return klass;
     }
 
-    @Override
-    public List<ReflectedMethod> methods(final Matcher<? super ReflectedMethod> methodMatcher) {
+    @Override public List<ReflectedMethod> methods(final Matcher<? super ReflectedMethod> methodMatcher) {
         return members.methods(methodMatcher);
     }
 
-    @Override
-    public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
+    @Override public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
         return members.method(methodMatcher);
     }
 
-    @Override
-    public ReflectedMethod staticMethod(final Matcher<? super ReflectedMethod> methodMatcher) {
+    @Override public ReflectedMethod staticMethod(final Matcher<? super ReflectedMethod> methodMatcher) {
         return method(ReflectionMatchers.methodIsStatic().and(methodMatcher));
     }
 
-    @Override
-    public List<ReflectedMethod> methods() {
+    @Override public List<ReflectedMethod> methods() {
         return members.methods();
     }
 
-    @Override
-    public List<ReflectedClass<?>> interfaces() {
+    @Override public List<ReflectedClass<?>> interfaces() {
         return members.superclassesAndInterfaces(typeIsInterface());
     }
 
-    @Override
-    public List<ReflectedClass<?>> superclasses() {
+    @Override public List<ReflectedClass<?>> superclasses() {
         return members.superclassesAndInterfaces(not(typeIsInterface()));
     }
 
-    @Override
-    public boolean isInterface() {
+    @Override public boolean isInterface() {
         return klass.isInterface();
     }
 
-    @Override
-    public T constructRaw(final Object... args) {
+    @Override public T constructRaw(final Object... args) {
         final ReflectedConstructor<T> constructor =
                 constructor(callableHasArgumentList(convert(args, new ConvertObjectToClass())));
 
@@ -96,39 +87,58 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
         return constructor.call(args);
     }
 
-    @Override
-    public ReflectedObject<T> construct(final Object... args) {
+    @Override public ReflectedObject<T> construct(final Object... args) {
         final T newInstance = constructRaw(args);
         return reflectedTypeFactory.reflect(klass, newInstance);
     }
 
-    @Override
-    public List<ReflectedConstructor<T>> constructors(
+    @Override public List<ReflectedConstructor<T>> constructors(
             final Matcher<? super ReflectedConstructor<?>> constructorMatcher) {
         return members.constructors(constructorMatcher);
     }
 
-    @Override
-    public ReflectedConstructor<T> constructor(
+    @Override public ReflectedConstructor<T> constructor(
             final Matcher<? super ReflectedConstructor<?>> constructorMatcher) {
         return members.constructor(constructorMatcher);
     }
 
-    @Override
-    public boolean equals(final Object that) {
+    @Override public boolean equals(final Object that) {
         if (that != null && that.getClass().equals(this.getClass())) {
             return klass.equals(((ReflectedClassImpl<?>) that).klass);
         }
         return false;
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         return klass.hashCode();
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return "ReflectedType<" + klass.getName() + ">";
+    }
+
+    @Override public boolean assignableFromObject(final Object value) {
+        return value == null || klass.isAssignableFrom(value.getClass());
+    }
+
+    @Override public T getInstanceFrom(final Object value) {
+        if (value == null) {
+            return null;
+        }
+
+        final ReflectedMethod valueOfMethod =
+                method(callableHasName("valueOf").and(callableHasArguments(value.getClass())).and(
+                        callableHasReturnType(klass)));
+        if (valueOfMethod != null) {
+            return klass.cast(valueOfMethod.call(value));
+        }
+
+        final ReflectedConstructor<T> constructor =
+                constructor(callableHasArguments(value.getClass()));
+        if (constructor != null) {
+            return constructor.call(value);
+        }
+
+        throw new ClassCastException(String.format("cannot convert %s to %s", value.getClass(), klass));
     }
 }

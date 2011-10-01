@@ -28,16 +28,24 @@ import org.junit.Test;
 public class TestMapBean {
     interface Bean {
         String getProperty();
-
+        Boolean hasProperty();
+        Boolean isProperty();
         void setProperty(String value);
 
-        Boolean isProperty();
-
-        Boolean hasProperty();
+        Integer getInteger();
+        void setInteger(Integer integer);
     }
 
     private final Map<String, Object> map = new HashMap<String, Object>();
     private final Bean bean = bean(Bean.class, map);
+
+    @Test public void mapCanBeQueriedViaInterface() throws Exception {
+        assertThat(bean.isProperty(), equalTo(false));
+
+        bean.setProperty("my value");
+
+        assertThat(bean.isProperty(), equalTo(true));
+    }
 
     @Test public void mapCanBeReadViaInterface() throws Exception {
         map.put("property", "my value");
@@ -49,11 +57,9 @@ public class TestMapBean {
         assertThat(map.get("property"), equalTo((Object) "my value"));
     }
 
-    @Test public void mapCanBeQueriedViaInterface() throws Exception {
-        assertThat(bean.isProperty(), equalTo(false));
+    @Test public void argumentConversionTakesPlaceOnGet() throws Exception {
+        map.put("integer", "14");
 
-        bean.setProperty("my value");
-
-        assertThat(bean.isProperty(), equalTo(true));
+        assertThat(bean.getInteger(), equalTo(14));
     }
 }

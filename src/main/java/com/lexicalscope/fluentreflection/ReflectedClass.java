@@ -86,4 +86,8 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
      */
     ReflectedMethod staticMethod(Matcher<? super ReflectedMethod> methodNamed);
 
+    boolean assignableFromObject(Object value);
+
+    T getInstanceFrom(Object value);
+
 }
