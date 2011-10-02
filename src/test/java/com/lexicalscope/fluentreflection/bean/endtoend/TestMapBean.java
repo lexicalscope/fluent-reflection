@@ -5,10 +5,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Test;
+
+import com.google.common.collect.Sets;
 
 /*
  * Copyright 2011 Tim Wood
@@ -36,8 +41,17 @@ public class TestMapBean {
         Integer getInteger();
         void setInteger(Integer integer);
 
-        Iterable<Integer> getCollection();
-        void setCollection(Iterable<Integer> integer);
+        Iterable<Integer> getIterable();
+        void setIterable(Iterable<Integer> integer);
+
+        Collection<Integer> getCollection();
+        void setCollection(Collection<Integer> integer);
+
+        Set<Integer> getSet();
+        void setCollection(Set<Integer> integer);
+
+        List<Integer> getList();
+        void setCollection(List<Integer> integer);
     }
 
     private final Map<String, Object> map = new HashMap<String, Object>();
@@ -68,9 +82,27 @@ public class TestMapBean {
         assertThat(bean.getInteger(), equalTo(14));
     }
 
+    @Test public void argumentConversionTakesPlaceOnGetOfIterable() throws Exception {
+        map.put("iterable", Arrays.asList("14", "15", "16"));
+
+        assertThat(bean.getIterable(), contains(14, 15, 16));
+    }
+
     @Test public void argumentConversionTakesPlaceOnGetOfCollection() throws Exception {
         map.put("collection", Arrays.asList("14", "15", "16"));
 
         assertThat(bean.getCollection(), contains(14, 15, 16));
+    }
+
+    @Test public void argumentConversionTakesPlaceOnGetOfList() throws Exception {
+        map.put("list", Arrays.asList("14", "15", "16"));
+
+        assertThat(bean.getList(), contains(14, 15, 16));
+    }
+
+    @Test public void argumentConversionTakesPlaceOnGetOfSet() throws Exception {
+        map.put("set", Sets.newHashSet("14", "15", "16"));
+
+        assertThat(bean.getSet(), contains(14, 15, 16));
     }
 }

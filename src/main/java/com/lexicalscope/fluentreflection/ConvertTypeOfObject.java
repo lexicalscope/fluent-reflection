@@ -2,7 +2,10 @@ package com.lexicalscope.fluentreflection;
 
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import ch.lambdaj.Lambda;
 import ch.lambdaj.function.convert.Converter;
@@ -40,13 +43,7 @@ class ConvertTypeOfObject<T> implements Converter<Object, T> {
         if (value == null) {
             return null;
         } else if (isIterable() && Iterable.class.isAssignableFrom(value.getClass())) {
-            final ReflectedClass<?> desiredCollectionReflectedType =
-                    reflectedKlass.asType(reflectedTypeReflectingOn(Iterable.class)).typeArgument(0);
-
-            return (T) Lambda.convert(value,
-                    new ConvertTypeOfObject<Object>(
-                            reflectedTypeFactory,
-                            (ReflectedClass<Object>) desiredCollectionReflectedType));
+            return convertIterable(value);
         } else if (reflectedKlass.assignableFromObject(value)) {
             return (T) value;
         } else if (reflectedKlass.canBeUnboxed(value.getClass())) {
@@ -71,6 +68,24 @@ class ConvertTypeOfObject<T> implements Converter<Object, T> {
         }
 
         throw new ClassCastException(String.format("cannot convert %s to %s", value.getClass(), klass));
+    }
+
+    private T convertIterable(final Object value) {
+        final ReflectedClass<?> desiredCollectionReflectedType =
+                reflectedKlass.asType(reflectedTypeReflectingOn(Iterable.class)).typeArgument(0);
+
+        final List<Object> convertedTypes = Lambda.convert(value,
+                new ConvertTypeOfObject<Object>(
+                        reflectedTypeFactory,
+                        (ReflectedClass<Object>) desiredCollectionReflectedType));
+
+        if (List.class.isAssignableFrom(klass) && Collection.class.isAssignableFrom(klass)) {
+            return (T) convertedTypes;
+        } else if (Set.class.isAssignableFrom(klass)) {
+            return (T) new LinkedHashSet<Object>(convertedTypes);
+        }
+
+        return (T) convertedTypes;
     }
 
     private boolean isIterable() {
