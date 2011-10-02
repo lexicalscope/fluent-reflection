@@ -5,6 +5,7 @@ import java.util.List;
 import org.hamcrest.Matcher;
 
 interface ReflectedMembers<T> {
+    List<ReflectedMethod> declaredMethods();
     List<ReflectedMethod> methods();
 
     List<ReflectedClass<?>> superclassesAndInterfaces();
@@ -20,4 +21,5 @@ interface ReflectedMembers<T> {
     ReflectedConstructor<T> constructor(Matcher<? super ReflectedConstructor<?>> constructorMatcher);
 
     List<ReflectedClass<?>> superclassesAndInterfaces(Matcher<? super ReflectedClass<?>> supertypeMatcher);
+
 }

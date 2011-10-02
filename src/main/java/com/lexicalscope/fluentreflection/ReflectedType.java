@@ -36,6 +36,13 @@ public interface ReflectedType<T> {
     List<ReflectedMethod> methods();
 
     /**
+     * All methods declared by this type
+     * 
+     * @return methods declared by this type
+     */
+    List<ReflectedMethod> declaredMethods();
+
+    /**
      * Find all methods matching the supplied matcher
      * 
      * @param methodMatcher

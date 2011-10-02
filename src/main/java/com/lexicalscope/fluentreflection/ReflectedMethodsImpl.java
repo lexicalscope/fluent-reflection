@@ -14,6 +14,7 @@ class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
     private final ReflectedSuperclassesAndInterfaces<T> allTypes;
     private final TypeLiteral<T> typeLiteral;
 
+    private List<ReflectedMethod> declaredMethods;
     private List<ReflectedMethod> reflectedMethods;
 
     ReflectedMethodsImpl(
@@ -29,9 +30,9 @@ class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
         if (reflectedMethods == null) {
             final List<ReflectedMethod> result = new ArrayList<ReflectedMethod>();
 
-            result.addAll(getDeclaredMethodsOfClass(typeLiteral));
+            result.addAll(declaredMethods());
             for (final ReflectedClass<?> klassToReflect : allTypes.superclassesAndInterfaces()) {
-                result.addAll(getDeclaredMethodsOfClass(klassToReflect.typeLiteralUnderReflection()));
+                result.addAll(klassToReflect.declaredMethods());
             }
 
             Collections.reverse(result);
@@ -47,5 +48,12 @@ class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
             result.add(reflectedTypeFactory.method(typeLiteralToReflect, method));
         }
         return result;
+    }
+
+    @Override public List<ReflectedMethod> declaredMethods() {
+        if (declaredMethods == null) {
+            declaredMethods = unmodifiableList(getDeclaredMethodsOfClass(typeLiteral));
+        }
+        return declaredMethods;
     }
 }

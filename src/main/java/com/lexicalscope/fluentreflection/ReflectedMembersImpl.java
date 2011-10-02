@@ -30,6 +30,10 @@ class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
         return methods.methods();
     }
 
+    @Override public List<ReflectedMethod> declaredMethods() {
+        return methods.declaredMethods();
+    }
+
     @Override public List<ReflectedClass<?>> superclassesAndInterfaces() {
         return superclassesAndInterfaces.superclassesAndInterfaces();
     }

@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface ReflectedMethods<T> {
     List<ReflectedMethod> methods();
+    List<ReflectedMethod> declaredMethods();
 }

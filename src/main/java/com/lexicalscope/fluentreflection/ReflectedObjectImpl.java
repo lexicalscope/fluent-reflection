@@ -35,34 +35,41 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
         this.instance = instance;
     }
 
-    @Override
-    public Class<T> classUnderReflection() {
+    @Override public Class<T> classUnderReflection() {
         return reflect.classUnderReflection();
     }
 
-    @Override
-    public ReflectedClass<T> reflectedClass() {
+    @Override public ReflectedClass<T> reflectedClass() {
         return reflect;
     }
 
-    @Override
-    public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
+    @Override public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
         return selectFirst(boundMethods(), methodIsNotStatic().and(methodMatcher));
     }
 
-    @Override
-    public List<ReflectedMethod> methods() {
+    @Override public List<ReflectedMethod> methods() {
         return boundMethods();
     }
 
-    @Override
-    public List<ReflectedMethod> methods(final Matcher<? super ReflectedMethod> methodMatcher) {
+    @Override public List<ReflectedMethod> declaredMethods() {
+        return boundDeclaredMethods();
+    }
+
+    @Override public List<ReflectedMethod> methods(final Matcher<? super ReflectedMethod> methodMatcher) {
         return select(boundMethods(), methodMatcher);
     }
 
     private List<ReflectedMethod> boundMethods() {
+        return bind(reflect.methods());
+    }
+
+    private List<ReflectedMethod> bind(final List<ReflectedMethod> methods) {
         return convert(
-                select(reflect.methods(), methodIsNotStatic()),
+                select(methods, methodIsNotStatic()),
                 new ConvertReflectedMethodToBoundReflectedMethod(instance));
+    }
+
+    private List<ReflectedMethod> boundDeclaredMethods() {
+        return bind(reflect.declaredMethods());
     }
 }

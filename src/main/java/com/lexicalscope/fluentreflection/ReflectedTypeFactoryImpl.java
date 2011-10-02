@@ -42,7 +42,7 @@ class ReflectedTypeFactoryImpl implements ReflectedTypeFactory {
     }
 
     @Override public ReflectedMethod method(final TypeLiteral<?> klass, final Method method) {
-        return new ReflectedMethodImpl(this, reflect(klass), method);
+        return new ReflectedMethodImpl(this, reflect(klass), klass, method);
     }
 
     public ReflectedMethod method(final Method method, final Object instance) {

@@ -31,14 +31,17 @@ import com.google.inject.TypeLiteral;
 class ReflectedMethodImpl extends AbstractReflectedCallable implements ReflectedMethod {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final ReflectedClass<?> reflectedClass;
+    private final TypeLiteral<?> typeLiteral;
     private final Method method;
 
     public ReflectedMethodImpl(final ReflectedTypeFactory reflectedTypeFactory,
                                final ReflectedClass<?> reflectedClass,
+                               final TypeLiteral<?> typeLiteral,
                                final Method method) {
         super(reflectedTypeFactory, method);
         this.reflectedTypeFactory = reflectedTypeFactory;
         this.reflectedClass = reflectedClass;
+        this.typeLiteral = typeLiteral;
         this.method = method;
     }
 
@@ -52,7 +55,7 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
             result.add(reflectedClass);
         }
         result.addAll(convert(
-                reflectedClass.typeLiteralUnderReflection().getParameterTypes(method),
+                typeLiteral.getParameterTypes(method),
                 new ConvertTypeLiteralToReflectedType(reflectedTypeFactory)));
         return result;
     }
@@ -66,7 +69,7 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
     }
 
     @Override public ReflectedClass<?> declaringClass() {
-        return reflectedTypeFactory.reflect(reflectedClass.typeLiteralUnderReflection());
+        return reflectedTypeFactory.reflect(typeLiteral);
     }
 
     @Override public Object call(final Object... args) {
@@ -110,7 +113,7 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
     }
 
     @Override public ReflectedClass<?> returnType() {
-        final TypeLiteral<?> returnType = reflectedClass.typeLiteralUnderReflection().getReturnType(method);
+        final TypeLiteral<?> returnType = typeLiteral.getReturnType(method);
         if (returnType == null) {
             return null;
         }

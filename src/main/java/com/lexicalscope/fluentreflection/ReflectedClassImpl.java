@@ -71,6 +71,10 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
         return members.methods();
     }
 
+    @Override public List<ReflectedMethod> declaredMethods() {
+        return members.declaredMethods();
+    }
+
     @Override public List<ReflectedClass<?>> interfaces() {
         return members.superclassesAndInterfaces(typeIsInterface());
     }
@@ -188,9 +192,5 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
 
     private boolean isIterable() {
         return Iterable.class.isAssignableFrom(klass);
-    }
-
-    @Override public TypeLiteral<?> typeLiteralUnderReflection() {
-        return typeLiteral;
     }
 }
