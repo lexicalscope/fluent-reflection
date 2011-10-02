@@ -2,11 +2,13 @@ package com.lexicalscope.fluentreflection.bean.endtoend;
 
 import static com.lexicalscope.fluentreflection.bean.MapBean.bean;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /*
@@ -34,6 +36,9 @@ public class TestMapBean {
 
         Integer getInteger();
         void setInteger(Integer integer);
+
+        Iterable<Integer> getCollection();
+        void setCollection(Iterable<Integer> integer);
     }
 
     private final Map<String, Object> map = new HashMap<String, Object>();
@@ -62,5 +67,11 @@ public class TestMapBean {
         map.put("integer", "14");
 
         assertThat(bean.getInteger(), equalTo(14));
+    }
+
+    @Ignore @Test public void argumentConversionTakesPlaceOnGetOfCollection() throws Exception {
+        map.put("collection", Arrays.asList("14", "15", "16"));
+
+        assertThat(bean.getCollection(), contains(14, 15, 16));
     }
 }

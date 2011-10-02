@@ -20,18 +20,20 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.google.inject.TypeLiteral;
+
 class TypeHierarchyCalculation {
-    private final List<Class<?>> done = new ArrayList<Class<?>>();
+    private final List<TypeLiteral<?>> done = new ArrayList<TypeLiteral<?>>();
     private final List<ReflectedClass<?>> result = new ArrayList<ReflectedClass<?>>();
-    private final List<Class<?>> pending = new LinkedList<Class<?>>();
+    private final List<TypeLiteral<?>> pending = new LinkedList<TypeLiteral<?>>();
     private final ReflectedTypeFactory reflectedTypeFactory;
 
     public TypeHierarchyCalculation(final ReflectedTypeFactory reflectedTypeFactory) {
         this.reflectedTypeFactory = reflectedTypeFactory;
     }
 
-    List<ReflectedClass<?>> interfacesAndSuperClass(final Class<?> klassToReflect) {
-        queueSuperclassAndInterfaces(klassToReflect);
+    List<ReflectedClass<?>> interfacesAndSuperClass(final TypeLiteral<?> typeLiteral) {
+        queueSuperclassAndInterfaces(typeLiteral);
         processesPendingTypes();
         return result;
     }
@@ -42,7 +44,7 @@ class TypeHierarchyCalculation {
         }
     }
 
-    private void processClass(final Class<?> klassToReflect) {
+    private void processClass(final TypeLiteral<?> klassToReflect) {
         queueSuperclassAndInterfaces(klassToReflect);
         if (done.contains(klassToReflect)) {
             return;
@@ -51,13 +53,14 @@ class TypeHierarchyCalculation {
         result.add(reflectedTypeFactory.reflect(klassToReflect));
     }
 
-    private void queueSuperclassAndInterfaces(final Class<?> klassToReflect) {
-        if (klassToReflect.getSuperclass() != null && !klassToReflect.getSuperclass().equals(Object.class)) {
-            pending.add(klassToReflect.getSuperclass());
+    private void queueSuperclassAndInterfaces(final TypeLiteral<?> typeLiteralToReflect) {
+        final Class<?> rawSuperclass = typeLiteralToReflect.getRawType().getSuperclass();
+        if (rawSuperclass != null && !rawSuperclass.equals(Object.class)) {
+            pending.add(typeLiteralToReflect.getSupertype(rawSuperclass));
         }
-        final Class<?>[] interfaces = klassToReflect.getInterfaces();
+        final Class<?>[] interfaces = typeLiteralToReflect.getRawType().getInterfaces();
         for (final Class<?> interfac3 : interfaces) {
-            pending.add(interfac3);
+            pending.add(typeLiteralToReflect.getSupertype(interfac3));
         }
     }
 }

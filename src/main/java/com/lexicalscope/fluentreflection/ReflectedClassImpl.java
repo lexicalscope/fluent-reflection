@@ -20,11 +20,14 @@ import static ch.lambdaj.Lambda.convert;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static org.hamcrest.Matchers.not;
 
+import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hamcrest.Matcher;
 
 import com.google.common.primitives.Primitives;
+import com.google.inject.TypeLiteral;
 
 /**
  * Not thread safe
@@ -37,12 +40,14 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final Class<T> klass;
     private final ReflectedMembers<T> members;
+    private final TypeLiteral<T> typeLiteral;
 
-    public ReflectedClassImpl(final ReflectedTypeFactory reflectedTypeFactory,
-                             final Class<T> klass,
-                             final ReflectedMembers<T> members) {
+    ReflectedClassImpl(final ReflectedTypeFactory reflectedTypeFactory,
+                       final TypeLiteral<T> typeLiteral,
+                       final ReflectedMembers<T> members) {
         this.reflectedTypeFactory = reflectedTypeFactory;
-        this.klass = klass;
+        this.klass = (Class<T>) typeLiteral.getRawType();
+        this.typeLiteral = typeLiteral;
         this.members = members;
     }
 
@@ -91,7 +96,7 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
 
     @Override public ReflectedObject<T> construct(final Object... args) {
         final T newInstance = constructRaw(args);
-        return reflectedTypeFactory.reflect(klass, newInstance);
+        return reflectedTypeFactory.reflect(typeLiteral, newInstance);
     }
 
     @Override public List<ReflectedConstructor<T>> constructors(
@@ -137,7 +142,25 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
     }
 
     @Override public T convertType(final Object value) {
-        if (assignableFromObject(value)) {
+        if (value == null) {
+            return null;
+        } else if (isIterable() && Iterable.class.isAssignableFrom(value.getClass())) {
+            final ArrayList<Object> result = new ArrayList<Object>();
+
+            final TypeLiteral<?> desiredCollectionType =
+                    TypeLiteral.get(((ParameterizedType) typeLiteral.getSupertype(Iterable.class).getType())
+                            .getActualTypeArguments()[0]);
+
+            final ReflectedClass<?> desiredCollectionReflectedType =
+                    reflectedTypeFactory.reflect(desiredCollectionType);
+
+            final Iterable<Object> values = (Iterable<Object>) value;
+            for (final Object listItem : values) {
+                result.add(desiredCollectionReflectedType.convertType(listItem));
+            }
+
+            return (T) result;
+        } else if (assignableFromObject(value)) {
             return (T) value;
         } else if (canBeUnboxed(value)) {
             return (T) value;
@@ -148,16 +171,25 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
         final List<ReflectedMethod> valueOfMethods =
                 methods(callableHasName("valueOf").and(callableHasArguments(value.getClass())).and(
                         callableHasReturnType(klass)));
+
         if (!valueOfMethods.isEmpty()) {
             return klass.cast(valueOfMethods.get(0).call(value));
         }
 
         final List<ReflectedConstructor<T>> constructors =
                 constructors(callableHasArguments(value.getClass()));
+
         if (!constructors.isEmpty()) {
             return constructors.get(0).call(value);
         }
 
         throw new ClassCastException(String.format("cannot convert %s to %s", value.getClass(), klass));
+    }
+    private boolean isIterable() {
+        return Iterable.class.isAssignableFrom(klass);
+    }
+
+    @Override public TypeLiteral<?> typeLiteralUnderReflection() {
+        return typeLiteral;
     }
 }

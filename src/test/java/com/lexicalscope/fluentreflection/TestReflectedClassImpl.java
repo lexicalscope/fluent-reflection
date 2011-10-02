@@ -27,21 +27,20 @@ import com.google.inject.TypeLiteral;
  */
 
 public class TestReflectedClassImpl {
-    @Rule
-    public JUnitRuleMockery context = new JUnitRuleMockery();
+    @Rule public JUnitRuleMockery context = new JUnitRuleMockery();
 
     private final ReflectedTypeFactory reflectedTypeFactory = context.mock(ReflectedTypeFactory.class);
     private final ReflectedMembers<ExampleClass> members =
             context.mock(new TypeLiteral<ReflectedMembers<ExampleClass>>() {
-            });
+                    });
 
     private final ReflectedConstructor<ExampleClass> reflectedConstructor =
             context.mock(new TypeLiteral<ReflectedConstructor<ExampleClass>>() {
-            });
+                    });
 
     private final ReflectedObject<ExampleClass> reflectedInstance =
             context.mock(new TypeLiteral<ReflectedObject<ExampleClass>>() {
-            });
+                    });
 
     class ExampleClass {
         int method() {
@@ -51,8 +50,7 @@ public class TestReflectedClassImpl {
 
     private final ExampleClass instance = new ExampleClass();
 
-    @Test
-    public void constructFindsConstructorAndBindsReflectedResult() throws Exception {
+    @Test public void constructFindsConstructorAndBindsReflectedResult() throws Exception {
         context.checking(new Expectations() {
             {
                 oneOf(members).constructor(callableHasArguments());
@@ -61,13 +59,13 @@ public class TestReflectedClassImpl {
                 oneOf(reflectedConstructor).call();
                 will(returnValue(instance));
 
-                oneOf(reflectedTypeFactory).reflect(ExampleClass.class, instance);
+                oneOf(reflectedTypeFactory).reflect(TypeLiteral.get(ExampleClass.class), instance);
                 will(returnValue(reflectedInstance));
             }
         });
 
         final ReflectedClassImpl<ExampleClass> reflectedTypeImpl =
-                new ReflectedClassImpl<ExampleClass>(reflectedTypeFactory, ExampleClass.class, members);
+                new ReflectedClassImpl<ExampleClass>(reflectedTypeFactory, TypeLiteral.get(ExampleClass.class), members);
 
         assertThat(reflectedTypeImpl.construct(), Matchers.equalTo(reflectedInstance));
     }

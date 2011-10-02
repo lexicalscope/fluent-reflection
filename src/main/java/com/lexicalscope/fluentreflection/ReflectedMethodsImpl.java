@@ -7,30 +7,31 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.google.inject.TypeLiteral;
+
 class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
-    private final Class<T> klass;
     private final ReflectedSuperclassesAndInterfaces<T> allTypes;
+    private final TypeLiteral<T> typeLiteral;
 
     private List<ReflectedMethod> reflectedMethods;
 
     ReflectedMethodsImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
-            final Class<T> klass,
+            final TypeLiteral<T> typeLiteral,
             final ReflectedSuperclassesAndInterfaces<T> allTypes) {
         this.reflectedTypeFactory = reflectedTypeFactory;
-        this.klass = klass;
+        this.typeLiteral = typeLiteral;
         this.allTypes = allTypes;
     }
 
-    @Override
-    public List<ReflectedMethod> methods() {
+    @Override public List<ReflectedMethod> methods() {
         if (reflectedMethods == null) {
             final List<ReflectedMethod> result = new ArrayList<ReflectedMethod>();
 
-            result.addAll(getDeclaredMethodsOfClass(klass));
+            result.addAll(getDeclaredMethodsOfClass(typeLiteral));
             for (final ReflectedClass<?> klassToReflect : allTypes.superclassesAndInterfaces()) {
-                result.addAll(getDeclaredMethodsOfClass(klassToReflect.classUnderReflection()));
+                result.addAll(getDeclaredMethodsOfClass(klassToReflect.typeLiteralUnderReflection()));
             }
 
             Collections.reverse(result);
@@ -39,11 +40,11 @@ class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
         return reflectedMethods;
     }
 
-    private List<ReflectedMethod> getDeclaredMethodsOfClass(final Class<?> klassToReflect) {
+    private List<ReflectedMethod> getDeclaredMethodsOfClass(final TypeLiteral<?> typeLiteralToReflect) {
         final List<ReflectedMethod> result = new ArrayList<ReflectedMethod>();
-        final Method[] declaredMethods = klassToReflect.getDeclaredMethods();
+        final Method[] declaredMethods = typeLiteralToReflect.getRawType().getDeclaredMethods();
         for (final Method method : declaredMethods) {
-            result.add(reflectedTypeFactory.method(method));
+            result.add(reflectedTypeFactory.method(typeLiteralToReflect, method));
         }
         return result;
     }

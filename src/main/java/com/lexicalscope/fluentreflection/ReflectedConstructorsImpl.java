@@ -5,18 +5,21 @@ import static java.util.Collections.unmodifiableList;
 
 import java.util.List;
 
+import com.google.inject.TypeLiteral;
+
 class ReflectedConstructorsImpl<T> implements ReflectedConstructors<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
-    private final Class<T> klass;
+    private final TypeLiteral<T> typeLiteral;
 
-    public ReflectedConstructorsImpl(final ReflectedTypeFactory reflectedTypeFactory, final Class<T> klass) {
+    public ReflectedConstructorsImpl(final ReflectedTypeFactory reflectedTypeFactory, final TypeLiteral<T> typeLiteral) {
         this.reflectedTypeFactory = reflectedTypeFactory;
-        this.klass = klass;
+        this.typeLiteral = typeLiteral;
     }
 
-    @Override
-    public List<ReflectedConstructor<T>> constructors() {
-        return unmodifiableList(convert(klass.getConstructors(), new ConvertConstructorToReflectedConstructor<T>(
-                reflectedTypeFactory)));
+    @Override public List<ReflectedConstructor<T>> constructors() {
+        return unmodifiableList(convert(
+                typeLiteral.getRawType().getConstructors(),
+                new ConvertConstructorToReflectedConstructor<T>(
+                        reflectedTypeFactory, typeLiteral)));
     }
 }

@@ -20,6 +20,8 @@ import java.util.List;
 
 import org.hamcrest.Matcher;
 
+import com.google.inject.TypeLiteral;
+
 public interface ReflectedClass<T> extends ReflectedType<T> {
     /**
      * True iff the type is an interface
@@ -116,4 +118,6 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
      * @return
      */
     T convertType(Object value);
+
+    @Deprecated TypeLiteral<?> typeLiteralUnderReflection();
 }

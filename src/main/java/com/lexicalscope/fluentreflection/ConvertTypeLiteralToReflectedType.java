@@ -1,9 +1,5 @@
 package com.lexicalscope.fluentreflection;
 
-import java.lang.reflect.Method;
-
-import com.google.inject.TypeLiteral;
-
 /*
  * Copyright 2011 Tim Wood
  *
@@ -20,16 +16,18 @@ import com.google.inject.TypeLiteral;
  * limitations under the License. 
  */
 
-interface ReflectedTypeFactory {
-    <T> ReflectedClass<T> reflect(Class<T> klass);
+import ch.lambdaj.function.convert.Converter;
 
-    <T> ReflectedClass<T> reflect(TypeLiteral<T> typeLiteral);
+import com.google.inject.TypeLiteral;
 
-    <T> ReflectedObject<T> reflect(Class<T> klass, T instance);
+class ConvertTypeLiteralToReflectedType implements Converter<TypeLiteral<?>, ReflectedClass<?>> {
+    private final ReflectedTypeFactory reflectedTypeFactory;
 
-    <T> ReflectedObject<T> reflect(TypeLiteral<T> klass, T instance);
+    public ConvertTypeLiteralToReflectedType(final ReflectedTypeFactory reflectedTypeFactory) {
+        this.reflectedTypeFactory = reflectedTypeFactory;
+    }
 
-    ReflectedMethod method(Method method);
-
-    ReflectedMethod method(TypeLiteral<?> klass, Method method);
+    @Override public ReflectedClass<?> convert(final TypeLiteral<?> from) {
+        return reflectedTypeFactory.reflect(from);
+    }
 }

@@ -4,21 +4,25 @@ import static java.util.Collections.unmodifiableList;
 
 import java.util.List;
 
+import com.google.inject.TypeLiteral;
+
 class ReflectedSuperclassesAndInterfacesImpl<T> implements ReflectedSuperclassesAndInterfaces<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
-    private final Class<T> klass;
     private List<ReflectedClass<?>> interfacesAndSuperClass;
+    private final TypeLiteral<T> typeLiteral;
 
-    ReflectedSuperclassesAndInterfacesImpl(final ReflectedTypeFactory reflectedTypeFactory, final Class<T> klass) {
+    ReflectedSuperclassesAndInterfacesImpl(
+            final ReflectedTypeFactory reflectedTypeFactory,
+            final TypeLiteral<T> typeLiteral) {
         this.reflectedTypeFactory = reflectedTypeFactory;
-        this.klass = klass;
+        this.typeLiteral = typeLiteral;
     }
 
-    @Override
-    public List<ReflectedClass<?>> superclassesAndInterfaces() {
+    @Override public List<ReflectedClass<?>> superclassesAndInterfaces() {
         if (interfacesAndSuperClass == null) {
             interfacesAndSuperClass =
-                    unmodifiableList(new TypeHierarchyCalculation(reflectedTypeFactory).interfacesAndSuperClass(klass));
+                    unmodifiableList(new TypeHierarchyCalculation(reflectedTypeFactory)
+                            .interfacesAndSuperClass(typeLiteral));
         }
         return interfacesAndSuperClass;
     }
