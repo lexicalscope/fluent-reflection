@@ -28,7 +28,7 @@
 <a name="18" href="#18">18</a>  
 <a name="19" href="#19">19</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> ch.lambdaj.Lambda.convert;
 <a name="20" href="#20">20</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.ReflectionMatchers.*;
-<a name="21" href="#21">21</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.Matchers.not;
+<a name="21" href="#21">21</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.Matchers.hasItem;
 <a name="22" href="#22">22</a>  
 <a name="23" href="#23">23</a>  <strong class="jxr_keyword">import</strong> java.lang.reflect.ParameterizedType;
 <a name="24" href="#24">24</a>  <strong class="jxr_keyword">import</strong> java.util.List;
@@ -101,77 +101,84 @@
 <a name="91" href="#91">91</a>          <strong class="jxr_keyword">return</strong> Lambda.selectFirst(members.superclassesAndInterfaces(), typeMatcher);
 <a name="92" href="#92">92</a>      }
 <a name="93" href="#93">93</a>  
-<a name="94" href="#94">94</a>      @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isInterface() {
-<a name="95" href="#95">95</a>          <strong class="jxr_keyword">return</strong> typeLiteral.getRawType().isInterface();
-<a name="96" href="#96">96</a>      }
-<a name="97" href="#97">97</a>  
-<a name="98" href="#98">98</a>      @Override <strong class="jxr_keyword">public</strong> T constructRaw(<strong class="jxr_keyword">final</strong> Object... args) {
-<a name="99" href="#99">99</a>          <strong class="jxr_keyword">final</strong> ReflectedConstructor&lt;T&gt; constructor =
-<a name="100" href="#100">100</a>                 constructor(callableHasArgumentList(convert(args, <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertObjectToClass.html">ConvertObjectToClass</a>())));
-<a name="101" href="#101">101</a> 
-<a name="102" href="#102">102</a>         <strong class="jxr_keyword">if</strong> (constructor == <strong class="jxr_keyword">null</strong>) {
-<a name="103" href="#103">103</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ConstructorNotFoundRuntimeException.html">ConstructorNotFoundRuntimeException</a>(typeLiteral.getRawType());
-<a name="104" href="#104">104</a>         }
-<a name="105" href="#105">105</a> 
-<a name="106" href="#106">106</a>         <strong class="jxr_keyword">return</strong> constructor.call(args);
-<a name="107" href="#107">107</a>     }
+<a name="94" href="#94">94</a>      @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isType(<strong class="jxr_keyword">final</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; typeMatcher) {
+<a name="95" href="#95">95</a>          <strong class="jxr_keyword">if</strong> (typeMatcher.matches(<strong class="jxr_keyword">this</strong>)) {
+<a name="96" href="#96">96</a>              <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
+<a name="97" href="#97">97</a>          }
+<a name="98" href="#98">98</a>          <strong class="jxr_keyword">return</strong> hasItem(typeMatcher).matches(members.superclassesAndInterfaces());
+<a name="99" href="#99">99</a>      }
+<a name="100" href="#100">100</a> 
+<a name="101" href="#101">101</a>     @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isInterface() {
+<a name="102" href="#102">102</a>         <strong class="jxr_keyword">return</strong> typeLiteral.getRawType().isInterface();
+<a name="103" href="#103">103</a>     }
+<a name="104" href="#104">104</a> 
+<a name="105" href="#105">105</a>     @Override <strong class="jxr_keyword">public</strong> T constructRaw(<strong class="jxr_keyword">final</strong> Object... args) {
+<a name="106" href="#106">106</a>         <strong class="jxr_keyword">final</strong> ReflectedConstructor&lt;T&gt; constructor =
+<a name="107" href="#107">107</a>                 constructor(callableHasArgumentList(convert(args, <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertObjectToClass.html">ConvertObjectToClass</a>())));
 <a name="108" href="#108">108</a> 
-<a name="109" href="#109">109</a>     @Override <strong class="jxr_keyword">public</strong> ReflectedObject&lt;T&gt; construct(<strong class="jxr_keyword">final</strong> Object... args) {
-<a name="110" href="#110">110</a>         <strong class="jxr_keyword">final</strong> T newInstance = constructRaw(args);
-<a name="111" href="#111">111</a>         <strong class="jxr_keyword">return</strong> reflectedTypeFactory.reflect(typeLiteral, newInstance);
-<a name="112" href="#112">112</a>     }
-<a name="113" href="#113">113</a> 
-<a name="114" href="#114">114</a>     @Override <strong class="jxr_keyword">public</strong> List&lt;ReflectedConstructor&lt;T&gt;&gt; constructors(
-<a name="115" href="#115">115</a>             <strong class="jxr_keyword">final</strong> Matcher&lt;? <strong class="jxr_keyword">super</strong> ReflectedConstructor&lt;?&gt;&gt; constructorMatcher) {
-<a name="116" href="#116">116</a>         <strong class="jxr_keyword">return</strong> members.constructors(constructorMatcher);
-<a name="117" href="#117">117</a>     }
-<a name="118" href="#118">118</a> 
-<a name="119" href="#119">119</a>     @Override <strong class="jxr_keyword">public</strong> ReflectedConstructor&lt;T&gt; constructor(
-<a name="120" href="#120">120</a>             <strong class="jxr_keyword">final</strong> Matcher&lt;? <strong class="jxr_keyword">super</strong> ReflectedConstructor&lt;?&gt;&gt; constructorMatcher) {
-<a name="121" href="#121">121</a>         <strong class="jxr_keyword">return</strong> members.constructor(constructorMatcher);
-<a name="122" href="#122">122</a>     }
-<a name="123" href="#123">123</a> 
-<a name="124" href="#124">124</a>     @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> equals(<strong class="jxr_keyword">final</strong> Object that) {
-<a name="125" href="#125">125</a>         <strong class="jxr_keyword">if</strong> (that != <strong class="jxr_keyword">null</strong> &amp;&amp; that.getClass().equals(<strong class="jxr_keyword">this</strong>.getClass())) {
-<a name="126" href="#126">126</a>             <strong class="jxr_keyword">return</strong> typeLiteral.equals(((ReflectedClassImpl&lt;?&gt;) that).typeLiteral);
-<a name="127" href="#127">127</a>         }
-<a name="128" href="#128">128</a>         <strong class="jxr_keyword">return</strong> false;
+<a name="109" href="#109">109</a>         <strong class="jxr_keyword">if</strong> (constructor == <strong class="jxr_keyword">null</strong>) {
+<a name="110" href="#110">110</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ConstructorNotFoundRuntimeException.html">ConstructorNotFoundRuntimeException</a>(typeLiteral.getRawType());
+<a name="111" href="#111">111</a>         }
+<a name="112" href="#112">112</a> 
+<a name="113" href="#113">113</a>         <strong class="jxr_keyword">return</strong> constructor.call(args);
+<a name="114" href="#114">114</a>     }
+<a name="115" href="#115">115</a> 
+<a name="116" href="#116">116</a>     @Override <strong class="jxr_keyword">public</strong> ReflectedObject&lt;T&gt; construct(<strong class="jxr_keyword">final</strong> Object... args) {
+<a name="117" href="#117">117</a>         <strong class="jxr_keyword">final</strong> T newInstance = constructRaw(args);
+<a name="118" href="#118">118</a>         <strong class="jxr_keyword">return</strong> reflectedTypeFactory.reflect(typeLiteral, newInstance);
+<a name="119" href="#119">119</a>     }
+<a name="120" href="#120">120</a> 
+<a name="121" href="#121">121</a>     @Override <strong class="jxr_keyword">public</strong> List&lt;ReflectedConstructor&lt;T&gt;&gt; constructors(
+<a name="122" href="#122">122</a>             <strong class="jxr_keyword">final</strong> Matcher&lt;? <strong class="jxr_keyword">super</strong> ReflectedConstructor&lt;?&gt;&gt; constructorMatcher) {
+<a name="123" href="#123">123</a>         <strong class="jxr_keyword">return</strong> members.constructors(constructorMatcher);
+<a name="124" href="#124">124</a>     }
+<a name="125" href="#125">125</a> 
+<a name="126" href="#126">126</a>     @Override <strong class="jxr_keyword">public</strong> ReflectedConstructor&lt;T&gt; constructor(
+<a name="127" href="#127">127</a>             <strong class="jxr_keyword">final</strong> Matcher&lt;? <strong class="jxr_keyword">super</strong> ReflectedConstructor&lt;?&gt;&gt; constructorMatcher) {
+<a name="128" href="#128">128</a>         <strong class="jxr_keyword">return</strong> members.constructor(constructorMatcher);
 <a name="129" href="#129">129</a>     }
 <a name="130" href="#130">130</a> 
-<a name="131" href="#131">131</a>     @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> hashCode() {
-<a name="132" href="#132">132</a>         <strong class="jxr_keyword">return</strong> typeLiteral.hashCode();
-<a name="133" href="#133">133</a>     }
-<a name="134" href="#134">134</a> 
-<a name="135" href="#135">135</a>     @Override <strong class="jxr_keyword">public</strong> String toString() {
-<a name="136" href="#136">136</a>         <strong class="jxr_keyword">return</strong> <span class="jxr_string">"ReflectedType&lt;"</span> + typeLiteral + <span class="jxr_string">"&gt;"</span>;
-<a name="137" href="#137">137</a>     }
-<a name="138" href="#138">138</a> 
-<a name="139" href="#139">139</a>     @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> assignableFromObject(<strong class="jxr_keyword">final</strong> Object value) {
-<a name="140" href="#140">140</a>         <strong class="jxr_keyword">return</strong> value == <strong class="jxr_keyword">null</strong>
-<a name="141" href="#141">141</a>                 || klass.isAssignableFrom(value.getClass())
-<a name="142" href="#142">142</a>                 || canBeBoxed(value.getClass())
-<a name="143" href="#143">143</a>                 || canBeUnboxed(value.getClass());
+<a name="131" href="#131">131</a>     @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> equals(<strong class="jxr_keyword">final</strong> Object that) {
+<a name="132" href="#132">132</a>         <strong class="jxr_keyword">if</strong> (that != <strong class="jxr_keyword">null</strong> &amp;&amp; that.getClass().equals(<strong class="jxr_keyword">this</strong>.getClass())) {
+<a name="133" href="#133">133</a>             <strong class="jxr_keyword">return</strong> typeLiteral.equals(((ReflectedClassImpl&lt;?&gt;) that).typeLiteral);
+<a name="134" href="#134">134</a>         }
+<a name="135" href="#135">135</a>         <strong class="jxr_keyword">return</strong> false;
+<a name="136" href="#136">136</a>     }
+<a name="137" href="#137">137</a> 
+<a name="138" href="#138">138</a>     @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> hashCode() {
+<a name="139" href="#139">139</a>         <strong class="jxr_keyword">return</strong> typeLiteral.hashCode();
+<a name="140" href="#140">140</a>     }
+<a name="141" href="#141">141</a> 
+<a name="142" href="#142">142</a>     @Override <strong class="jxr_keyword">public</strong> String toString() {
+<a name="143" href="#143">143</a>         <strong class="jxr_keyword">return</strong> <span class="jxr_string">"ReflectedType&lt;"</span> + typeLiteral + <span class="jxr_string">"&gt;"</span>;
 <a name="144" href="#144">144</a>     }
 <a name="145" href="#145">145</a> 
-<a name="146" href="#146">146</a>     @Override <strong class="jxr_keyword">public</strong> T convertType(<strong class="jxr_keyword">final</strong> Object value) {
-<a name="147" href="#147">147</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ConvertTypeOfObject&lt;T&gt;(reflectedTypeFactory, <strong class="jxr_keyword">this</strong>).convert(value);
-<a name="148" href="#148">148</a>     }
-<a name="149" href="#149">149</a> 
-<a name="150" href="#150">150</a>     @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> canBeBoxed(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; from) {
-<a name="151" href="#151">151</a>         <strong class="jxr_keyword">return</strong> Primitives.isWrapperType(klass)
-<a name="152" href="#152">152</a>                 &amp;&amp; Primitives.unwrap(klass).isAssignableFrom(from);
-<a name="153" href="#153">153</a>     }
-<a name="154" href="#154">154</a> 
-<a name="155" href="#155">155</a>     @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> canBeUnboxed(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; from) {
-<a name="156" href="#156">156</a>         <strong class="jxr_keyword">return</strong> klass.isPrimitive()
-<a name="157" href="#157">157</a>                 &amp;&amp; Primitives.wrap(klass).isAssignableFrom(from);
-<a name="158" href="#158">158</a>     }
-<a name="159" href="#159">159</a> 
-<a name="160" href="#160">160</a>     @Override <strong class="jxr_keyword">public</strong> ReflectedClass&lt;?&gt; typeArgument(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> typeParameter) {
-<a name="161" href="#161">161</a>         <strong class="jxr_keyword">return</strong> reflectedTypeFactory.reflect(TypeLiteral.get(((ParameterizedType) typeLiteral.getType())
-<a name="162" href="#162">162</a>                 .getActualTypeArguments()[0]));
-<a name="163" href="#163">163</a>     }
-<a name="164" href="#164">164</a> }
+<a name="146" href="#146">146</a>     @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> assignableFromObject(<strong class="jxr_keyword">final</strong> Object value) {
+<a name="147" href="#147">147</a>         <strong class="jxr_keyword">return</strong> value == <strong class="jxr_keyword">null</strong>
+<a name="148" href="#148">148</a>                 || klass.isAssignableFrom(value.getClass())
+<a name="149" href="#149">149</a>                 || canBeBoxed(value.getClass())
+<a name="150" href="#150">150</a>                 || canBeUnboxed(value.getClass());
+<a name="151" href="#151">151</a>     }
+<a name="152" href="#152">152</a> 
+<a name="153" href="#153">153</a>     @Override <strong class="jxr_keyword">public</strong> T convertType(<strong class="jxr_keyword">final</strong> Object value) {
+<a name="154" href="#154">154</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ConvertTypeOfObject&lt;T&gt;(reflectedTypeFactory, <strong class="jxr_keyword">this</strong>).convert(value);
+<a name="155" href="#155">155</a>     }
+<a name="156" href="#156">156</a> 
+<a name="157" href="#157">157</a>     @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> canBeBoxed(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; from) {
+<a name="158" href="#158">158</a>         <strong class="jxr_keyword">return</strong> Primitives.isWrapperType(klass)
+<a name="159" href="#159">159</a>                 &amp;&amp; Primitives.unwrap(klass).isAssignableFrom(from);
+<a name="160" href="#160">160</a>     }
+<a name="161" href="#161">161</a> 
+<a name="162" href="#162">162</a>     @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> canBeUnboxed(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; from) {
+<a name="163" href="#163">163</a>         <strong class="jxr_keyword">return</strong> klass.isPrimitive()
+<a name="164" href="#164">164</a>                 &amp;&amp; Primitives.wrap(klass).isAssignableFrom(from);
+<a name="165" href="#165">165</a>     }
+<a name="166" href="#166">166</a> 
+<a name="167" href="#167">167</a>     @Override <strong class="jxr_keyword">public</strong> ReflectedClass&lt;?&gt; typeArgument(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> typeParameter) {
+<a name="168" href="#168">168</a>         <strong class="jxr_keyword">return</strong> reflectedTypeFactory.reflect(TypeLiteral.get(((ParameterizedType) typeLiteral.getType())
+<a name="169" href="#169">169</a>                 .getActualTypeArguments()[typeParameter]));
+<a name="170" href="#170">170</a>     }
+<a name="171" href="#171">171</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>
