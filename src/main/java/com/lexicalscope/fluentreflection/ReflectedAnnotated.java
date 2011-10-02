@@ -1,5 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
+import java.lang.annotation.Annotation;
+
 /*
  * Copyright 2011 Tim Wood
  *
@@ -18,4 +20,7 @@ package com.lexicalscope.fluentreflection;
 
 public interface ReflectedAnnotated {
     ReflectedClass<?> annotation(ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher);
+
+    boolean annotatedWith(Class<? extends Annotation> annotationClass);
+    <A extends Annotation> A annotation(Class<A> annotationClass);
 }

@@ -54,6 +54,16 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
     ReflectedClass<?> asType(Matcher<ReflectedClass<?>> typeMatcher);
 
     /**
+     * Does this type or any of its implemented types match the given matcher?
+     * 
+     * @param typeMatcher
+     *            matcher on the required type
+     * 
+     * @return does the type or any of its supertypes match the given matcher
+     */
+    boolean isType(ReflectionMatcher<ReflectedClass<?>> typeMatcher);
+
+    /**
      * Construct an object of the type under reflection
      * 
      * @return the constructed object

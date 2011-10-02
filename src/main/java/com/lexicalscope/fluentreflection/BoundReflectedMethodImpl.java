@@ -2,6 +2,7 @@ package com.lexicalscope.fluentreflection;
 
 import static java.lang.System.arraycopy;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +82,14 @@ class BoundReflectedMethodImpl implements ReflectedMethod {
 
     @Override public ReflectedClass<?> annotation(final ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher) {
         return method.annotation(annotationMatcher);
+    }
+
+    @Override public boolean annotatedWith(final Class<? extends Annotation> annotationClass) {
+        return method.annotatedWith(annotationClass);
+    }
+
+    @Override public <A extends Annotation> A annotation(final Class<A> annotationClass) {
+        return method.annotation(annotationClass);
     }
 
     @Override public String propertyName() {

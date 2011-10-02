@@ -1,7 +1,10 @@
 package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.*;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectedTypeReflectingOn;
+import static org.hamcrest.Matchers.hasItem;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 import java.util.List;
 
@@ -32,9 +35,16 @@ abstract class AbstractReflectedCallable implements ReflectedCallable {
         this.annotatedElement = annotatedElement;
     }
 
-    @Override
-    public ReflectedClass<?> annotation(final ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher) {
+    @Override public ReflectedClass<?> annotation(final ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher) {
         return selectFirst(annotations(), annotationMatcher);
+    }
+
+    @Override public boolean annotatedWith(final Class<? extends Annotation> annotationClass) {
+        return hasItem(reflectedTypeReflectingOn(annotationClass)).matches(annotations());
+    }
+
+    @Override public <A extends Annotation> A annotation(final Class<A> annotationClass) {
+        return annotatedElement.getAnnotation(annotationClass);
     }
 
     private List<ReflectedClass<?>> annotations() {

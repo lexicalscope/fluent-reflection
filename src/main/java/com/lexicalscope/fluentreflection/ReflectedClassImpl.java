@@ -18,7 +18,7 @@ package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.convert;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
-import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.hasItem;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -91,6 +91,13 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
         return Lambda.selectFirst(members.superclassesAndInterfaces(), typeMatcher);
     }
 
+    @Override public boolean isType(final ReflectionMatcher<ReflectedClass<?>> typeMatcher) {
+        if (typeMatcher.matches(this)) {
+            return true;
+        }
+        return hasItem(typeMatcher).matches(members.superclassesAndInterfaces());
+    }
+
     @Override public boolean isInterface() {
         return typeLiteral.getRawType().isInterface();
     }
@@ -159,6 +166,6 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
 
     @Override public ReflectedClass<?> typeArgument(final int typeParameter) {
         return reflectedTypeFactory.reflect(TypeLiteral.get(((ParameterizedType) typeLiteral.getType())
-                .getActualTypeArguments()[0]));
+                .getActualTypeArguments()[typeParameter]));
     }
 }

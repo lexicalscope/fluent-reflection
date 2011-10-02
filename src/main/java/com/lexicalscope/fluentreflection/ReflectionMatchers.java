@@ -245,6 +245,7 @@ public class ReflectionMatchers {
     }
 
     public static ReflectionMatcher<ReflectedCallable> isExistence() {
-        return callableHasNameStartingWith("is").or(callableHasNameStartingWith("has")).and(isQuery());
+        return callableHasNameStartingWith("is").or(callableHasNameStartingWith("has")).and(isQuery()).and(
+                callableHasReturnType(boolean.class).or(callableHasReturnType(Boolean.class)));
     }
 }
