@@ -121,7 +121,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>            
+            </plugin>
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>jarjar-maven-plugin</artifactId>
@@ -204,12 +204,10 @@
                         <artifactId>java16-sun</artifactId>
                         <version>1.10</version>
                     </signature>
-                    <!-- 
-                        unfortunately guava uses some internal sun APIs...
-                        <groupId>org.codehaus.mojo.signature</groupId>
-                        <artifactId>java16</artifactId>
+                    <!--
+                        unfortunately guava uses some internal sun APIs... <groupId>org.codehaus.mojo.signature</groupId> <artifactId>java16</artifactId>
                         <version>1.0</version>
-                     -->
+                    -->
                 </configuration>
                 <executions>
                     <execution>
@@ -294,12 +292,15 @@
                 <reportSets>
                     <reportSet>
                         <reports>
+                            <report>index</report>
                             <report>dependencies</report>
                             <report>project-team</report>
                             <report>mailing-list</report>
                             <report>cim</report>
                             <report>issue-tracking</report>
+                            <report>scm</report>
                             <report>license</report>
+                            <report>summary</report>
                         </reports>
                     </reportSet>
                 </reportSets>
@@ -433,7 +434,7 @@
             <version>10.0</version>
             <type>jar</type>
             <scope>compile</scope>
-            <optional>true</optional>            
+            <optional>true</optional>
         </dependency>
     </dependencies>
     <profiles>
