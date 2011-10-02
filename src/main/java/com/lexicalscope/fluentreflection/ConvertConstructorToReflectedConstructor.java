@@ -17,6 +17,12 @@ class ConvertConstructorToReflectedConstructor<T> implements Converter<Construct
         this.typeLiteral = typeLiteral;
     }
 
+    public ConvertConstructorToReflectedConstructor(
+            final ReflectedTypeFactory reflectedTypeFactory,
+            final Class<T> klass) {
+        this(reflectedTypeFactory, TypeLiteral.get(klass));
+    }
+
     @SuppressWarnings("unchecked") @Override public ReflectedConstructor<T> convert(final Constructor<?> from) {
         return new ReflectedConstructorImpl<T>(reflectedTypeFactory, typeLiteral, (Constructor<T>) from);
     }

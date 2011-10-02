@@ -2,8 +2,8 @@ package com.lexicalscope.fluentreflection;
 
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasArguments;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
-import org.hamcrest.Matchers;
 import org.jmock.Expectations;
 import org.junit.Rule;
 import org.junit.Test;
@@ -67,6 +67,6 @@ public class TestReflectedClassImpl {
         final ReflectedClassImpl<ExampleClass> reflectedTypeImpl =
                 new ReflectedClassImpl<ExampleClass>(reflectedTypeFactory, TypeLiteral.get(ExampleClass.class), members);
 
-        assertThat(reflectedTypeImpl.construct(), Matchers.equalTo(reflectedInstance));
+        assertThat(reflectedTypeImpl.construct(), equalTo(reflectedInstance));
     }
 }

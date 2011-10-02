@@ -138,6 +138,17 @@
                             <input>{classes}</input>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>jarjar-testclasses</id>
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>jarjar</goal>
+                        </goals>
+                        <configuration>
+                            <overwrite>true</overwrite>
+                            <input>{test-classes}</input>
+                        </configuration>
+                    </execution>
                 </executions>
                 <configuration>
                     <overwrite>true</overwrite>
