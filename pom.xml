@@ -12,7 +12,8 @@
     </parent>
     <name>fluent-reflection</name>
     <description>A library providing a neat interface to the Java
-        language reflection facilites.</description>
+        language reflection facilities.</description>
+        <inceptionYear>2011</inceptionYear>
     <url>http://fluent-reflection.lexicalscope.com/</url>
     <licenses>
         <license>
