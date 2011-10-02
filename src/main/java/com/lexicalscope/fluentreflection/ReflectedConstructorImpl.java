@@ -50,7 +50,7 @@ class ReflectedConstructorImpl<T> extends AbstractReflectedCallable implements R
     }
 
     @Override public ReflectedClass<?> declaringClass() {
-        return reflectedTypeFactory.reflect(constructor.getDeclaringClass());
+        return reflectedTypeFactory.reflect(typeLiteral);
     }
 
     @Override public String getName() {

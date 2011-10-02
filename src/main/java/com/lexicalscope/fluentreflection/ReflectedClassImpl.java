@@ -185,6 +185,7 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
 
         throw new ClassCastException(String.format("cannot convert %s to %s", value.getClass(), klass));
     }
+
     private boolean isIterable() {
         return Iterable.class.isAssignableFrom(klass);
     }

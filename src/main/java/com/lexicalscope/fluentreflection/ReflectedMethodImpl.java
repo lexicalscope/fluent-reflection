@@ -26,6 +26,8 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.inject.TypeLiteral;
+
 class ReflectedMethodImpl extends AbstractReflectedCallable implements ReflectedMethod {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final ReflectedClass<?> reflectedClass;
@@ -49,7 +51,9 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
         if (!isStatic()) {
             result.add(reflectedClass);
         }
-        result.addAll(convert(method.getParameterTypes(), new ConvertClassToReflectedType(reflectedTypeFactory)));
+        result.addAll(convert(
+                reflectedClass.typeLiteralUnderReflection().getParameterTypes(method),
+                new ConvertTypeLiteralToReflectedType(reflectedTypeFactory)));
         return result;
     }
 
@@ -62,7 +66,7 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
     }
 
     @Override public ReflectedClass<?> declaringClass() {
-        return reflectedTypeFactory.reflect(method.getDeclaringClass());
+        return reflectedTypeFactory.reflect(reflectedClass.typeLiteralUnderReflection());
     }
 
     @Override public Object call(final Object... args) {
@@ -106,7 +110,7 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
     }
 
     @Override public ReflectedClass<?> returnType() {
-        final Class<?> returnType = method.getReturnType();
+        final TypeLiteral<?> returnType = reflectedClass.typeLiteralUnderReflection().getReturnType(method);
         if (returnType == null) {
             return null;
         }

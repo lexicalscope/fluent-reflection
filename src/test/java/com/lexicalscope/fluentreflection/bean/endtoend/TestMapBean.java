@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 /*
@@ -69,7 +68,7 @@ public class TestMapBean {
         assertThat(bean.getInteger(), equalTo(14));
     }
 
-    @Ignore @Test public void argumentConversionTakesPlaceOnGetOfCollection() throws Exception {
+    @Test public void argumentConversionTakesPlaceOnGetOfCollection() throws Exception {
         map.put("collection", Arrays.asList("14", "15", "16"));
 
         assertThat(bean.getCollection(), contains(14, 15, 16));
