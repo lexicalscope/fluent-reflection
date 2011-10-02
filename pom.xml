@@ -229,6 +229,7 @@
                         <exclude>META-INF/NOTICE</exclude>
                         <exclude>META-INF/LICENSE.txt</exclude>
                         <exclude>META-INF/NOTICE.txt</exclude>
+                        <exclude>com/google/common/**</exclude>
                     </excludes>
                 </configuration>
                 <executions>
