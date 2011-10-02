@@ -12,8 +12,8 @@
 <a name="2" href="#2">2</a>   
 <a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasArguments;
 <a name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.MatcherAssert.assertThat;
-<a name="5" href="#5">5</a>   
-<a name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> org.hamcrest.Matchers;
+<a name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.Matchers.equalTo;
+<a name="6" href="#6">6</a>   
 <a name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> org.jmock.Expectations;
 <a name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> org.junit.Rule;
 <a name="9" href="#9">9</a>   <strong class="jxr_keyword">import</strong> org.junit.Test;
@@ -77,7 +77,7 @@
 <a name="67" href="#67">67</a>          <strong class="jxr_keyword">final</strong> ReflectedClassImpl&lt;ExampleClass&gt; reflectedTypeImpl =
 <a name="68" href="#68">68</a>                  <strong class="jxr_keyword">new</strong> ReflectedClassImpl&lt;ExampleClass&gt;(reflectedTypeFactory, TypeLiteral.get(ExampleClass.<strong class="jxr_keyword">class</strong>), members);
 <a name="69" href="#69">69</a>  
-<a name="70" href="#70">70</a>          assertThat(reflectedTypeImpl.construct(), Matchers.equalTo(reflectedInstance));
+<a name="70" href="#70">70</a>          assertThat(reflectedTypeImpl.construct(), equalTo(reflectedInstance));
 <a name="71" href="#71">71</a>      }
 <a name="72" href="#72">72</a>  }
 </pre>
