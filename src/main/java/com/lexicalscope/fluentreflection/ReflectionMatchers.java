@@ -203,7 +203,7 @@ public class ReflectionMatchers {
         return new MatcherReturnType(returnType);
     }
 
-    public static Matcher<ReflectedAnnotated> annotatedWith(final Class<? extends Annotation> annotation) {
+    public static ReflectionMatcher<ReflectedAnnotated> annotatedWith(final Class<? extends Annotation> annotation) {
         return new MatcherCallableAnnotatedWith(annotation);
     }
 

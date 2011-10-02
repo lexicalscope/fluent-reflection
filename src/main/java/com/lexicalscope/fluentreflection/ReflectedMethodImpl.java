@@ -51,9 +51,6 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
 
     @Override public List<ReflectedClass<?>> argumentTypes() {
         final List<ReflectedClass<?>> result = new ArrayList<ReflectedClass<?>>();
-        if (!isStatic()) {
-            result.add(reflectedClass);
-        }
         result.addAll(convert(
                 typeLiteral.getParameterTypes(method),
                 new ConvertTypeLiteralToReflectedType(reflectedTypeFactory)));
@@ -65,7 +62,7 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
         if (isStatic()) {
             return parameterCount;
         }
-        return parameterCount + 1;
+        return parameterCount;
     }
 
     @Override public ReflectedClass<?> declaringClass() {
@@ -138,6 +135,10 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
 
     private String initialLowerCase(final String substring) {
         return substring.substring(0, 1).toLowerCase() + substring.substring(1);
+    }
+
+    @Override public Method methodUnderReflection() {
+        return method;
     }
 
     @Override public String toString() {

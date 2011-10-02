@@ -1,5 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
+import java.lang.reflect.Method;
+
 // Copyright 2011 Tim Wood
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,4 +29,6 @@ public interface ReflectedMethod extends ReflectedCallable {
      *         removed and the first subsequent character changed to lower case
      */
     String propertyName();
+
+    Method methodUnderReflection();
 }

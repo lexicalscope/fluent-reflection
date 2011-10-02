@@ -2,6 +2,7 @@ package com.lexicalscope.fluentreflection;
 
 import static java.lang.System.arraycopy;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,11 +37,11 @@ class BoundReflectedMethodImpl implements ReflectedMethod {
     }
 
     @Override public int argumentCount() {
-        return method.argumentCount() - 1;
+        return method.argumentCount();
     }
 
     @Override public List<ReflectedClass<?>> argumentTypes() {
-        return new ArrayList<ReflectedClass<?>>(method.argumentTypes().subList(1, argumentCount() + 1));
+        return new ArrayList<ReflectedClass<?>>(method.argumentTypes());
     }
 
     @Override public Object call(final Object... args) {
@@ -84,5 +85,9 @@ class BoundReflectedMethodImpl implements ReflectedMethod {
 
     @Override public String propertyName() {
         return method.propertyName();
+    }
+
+    @Override public Method methodUnderReflection() {
+        return method.methodUnderReflection();
     }
 }

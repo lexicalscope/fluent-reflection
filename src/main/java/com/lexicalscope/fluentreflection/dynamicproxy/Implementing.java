@@ -116,7 +116,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
 
         final List<ReflectedClass<?>> argumentTypes =
                 new ArrayList<ReflectedClass<?>>(userDefinedMethod.argumentTypes());
-        argumentTypes.remove(0);
+        //        argumentTypes.remove(0);
 
         final ReflectionMatcher<ReflectedCallable> matchArguments =
                 callableHasReflectedArgumentList(argumentTypes);

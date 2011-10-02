@@ -10,8 +10,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 public class TestReflectedClassInstanceMethod {
-    @Rule
-    public final ExpectedException exception = ExpectedException.none();
+    @Rule public final ExpectedException exception = ExpectedException.none();
 
     public static class ClassWithInstanceMethods {
         private boolean called;
@@ -42,15 +41,13 @@ public class TestReflectedClassInstanceMethod {
 
     private final ClassWithInstanceMethods instance = new ClassWithInstanceMethods();
 
-    @Test
-    public void simpleMethodCanBeCalled() {
+    @Test public void simpleMethodCanBeCalled() {
         type(ClassWithInstanceMethods.class).method(callableHasName("simpleMethod")).call(instance);
 
         assertThat(instance.called, equalTo(true));
     }
 
-    @Test
-    public void callingMethodWithReturnValueReturnsValue() {
+    @Test public void callingMethodWithReturnValueReturnsValue() {
         final Integer result =
                 (Integer) type(ClassWithInstanceMethods.class)
                         .method(callableHasName("methodWithReturnValue"))
@@ -59,48 +56,43 @@ public class TestReflectedClassInstanceMethod {
         assertThat(result, equalTo(42));
     }
 
-    @Test
-    public void canCallMethodWithOneArgumentIfMultipleMatches() {
+    @Test public void canCallMethodWithOneArgumentIfMultipleMatches() {
         type(ClassWithInstanceMethods.class).method(callableHasName("methodWithOneArgument")).call(instance, "string");
 
         assertThat(instance.stringCalled || instance.objectCalled, equalTo(true));
     }
 
-    @Test
-    public void methodWithTwoArgumentsCanBeCalled() {
-        type(ClassWithInstanceMethods.class).method(callableHasName("methodWithTwoArguments")).call(instance, "string", 42);
+    @Test public void methodWithTwoArgumentsCanBeCalled() {
+        type(ClassWithInstanceMethods.class).method(callableHasName("methodWithTwoArguments")).call(
+                instance,
+                "string",
+                42);
 
         assertThat(instance.stringAndIntegerCalled, equalTo(true));
     }
 
-    @Test
-    public void methodWithTwoArgumentsHasCorrectArgumentCount() {
+    @Test public void methodWithTwoArgumentsHasCorrectArgumentCount() {
         assertThat(
                 type(ClassWithInstanceMethods.class).method(callableHasName("methodWithTwoArguments")).argumentCount(),
-                equalTo(3));
+                equalTo(2));
     }
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void instanceMethodArgumentTypeIsCorrect() throws Exception {
+    @SuppressWarnings("unchecked") @Test public void instanceMethodArgumentTypeIsCorrect() throws Exception {
         assertThat(
                 type(ClassWithInstanceMethods.class).method(callableHasName("methodWithTwoArguments")).argumentTypes(),
                 contains(
-                        reflectedTypeReflectingOn(ClassWithInstanceMethods.class),
                         reflectedTypeReflectingOn(String.class),
                         reflectedTypeReflectingOn(Integer.class)));
     }
 
-    @Test
-    public void callingInstanceMethodWithoutInstanceFails() {
+    @Test public void callingInstanceMethodWithoutInstanceFails() {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("target instance must be specified");
 
         type(ClassWithInstanceMethods.class).method(callableHasName("simpleMethod")).call();
     }
 
-    @Test
-    public void callingInstanceMethodWithWrongInstanceType() {
+    @Test public void callingInstanceMethodWithWrongInstanceType() {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("not an instance of declaring class");
 

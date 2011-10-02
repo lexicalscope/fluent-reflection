@@ -27,46 +27,40 @@ import org.junit.Test;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
 
 public class TestReflectionOnInterface {
-    @Test
-    public void classUnderReflectionReturnsClassUnderReflection() {
+    @Test public void classUnderReflectionReturnsClassUnderReflection() {
         assertThat(
                 type(ExampleInterface.class).classUnderReflection(),
                 equalTo(ExampleInterface.class));
     }
 
-    @Test
-    public void methodsCanBeSelectedByPrefix() {
+    @Test public void methodsCanBeSelectedByPrefix() {
         assertThat(
                 type(ExampleInterface.class).methods(callableHasNameStartingWith("get")),
                 Matchers.<ReflectedMethod>hasItem(callableHasName("getPropertyOne")));
     }
 
-    @Test
-    public void methodsCanBeSelectedBySuffix() {
+    @Test public void methodsCanBeSelectedBySuffix() {
         assertThat(
                 type(ExampleInterface.class).methods(callableHasNameEndingWith("One")),
                 Matchers.<ReflectedMethod>hasItem(callableHasName("getPropertyOne")));
     }
 
-    @Test
-    public void methodsCanBeSelectedByRegularExpression() {
+    @Test public void methodsCanBeSelectedByRegularExpression() {
         assertThat(
                 type(ExampleInterface.class).methods(callableHasNameMatching(".*Property.*")),
                 Matchers.<ReflectedMethod>hasItem(callableHasName("getPropertyOne")));
     }
 
-    @Test
-    public void methodsWithNoArgumentsCanBeSelected() {
+    @Test public void methodsWithNoArgumentsCanBeSelected() {
         assertThat(
                 type(ExampleInterface.class).methods(
-                        callableHasArguments(ExampleInterface.class)),
+                        callableHasArguments()),
                 Matchers.<ReflectedMethod>hasItem(callableHasName("getPropertyOne")));
     }
 
-    @Test
-    public void methodCanBeSelectedByArgument() {
+    @Test public void methodCanBeSelectedByArgument() {
         assertThat(
-                type(ExampleInterface.class).methods(callableHasArguments(ExampleInterface.class, String.class)),
+                type(ExampleInterface.class).methods(callableHasArguments(String.class)),
                 Matchers.<ReflectedMethod>hasItem(callableHasName("setPropertyOne")));
     }
 }
