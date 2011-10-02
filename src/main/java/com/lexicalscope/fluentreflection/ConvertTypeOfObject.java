@@ -2,13 +2,10 @@ package com.lexicalscope.fluentreflection;
 
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import ch.lambdaj.Lambda;
 import ch.lambdaj.function.convert.Converter;
-
-import com.google.inject.TypeLiteral;
 
 /*
  * Copyright 2011 Tim Wood
@@ -29,34 +26,27 @@ import com.google.inject.TypeLiteral;
 class ConvertTypeOfObject<T> implements Converter<Object, T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final ReflectedClass<T> reflectedKlass;
-    private final TypeLiteral<T> typeLiteral;
     private final Class<?> klass;
 
     public ConvertTypeOfObject(
             final ReflectedTypeFactory reflectedTypeFactory,
-            final ReflectedClass<T> reflectedKlass,
-            final TypeLiteral<T> typeLiteral) {
+            final ReflectedClass<T> reflectedKlass) {
         this.reflectedTypeFactory = reflectedTypeFactory;
         this.reflectedKlass = reflectedKlass;
-        this.typeLiteral = typeLiteral;
-        klass = typeLiteral.getRawType();
+        klass = reflectedKlass.classUnderReflection();
     }
 
     @Override public T convert(final Object value) {
         if (value == null) {
             return null;
         } else if (isIterable() && Iterable.class.isAssignableFrom(value.getClass())) {
-            final TypeLiteral<?> desiredCollectionType =
-                    TypeLiteral.get(((ParameterizedType) typeLiteral.getSupertype(Iterable.class).getType())
-                            .getActualTypeArguments()[0]);
-
             final ReflectedClass<?> desiredCollectionReflectedType =
-                    reflectedTypeFactory.reflect(desiredCollectionType);
+                    reflectedKlass.asType(reflectedTypeReflectingOn(Iterable.class)).typeArgument(0);
 
-            return (T) Lambda.convert(value, new ConvertTypeOfObject<Object>(
-                    reflectedTypeFactory,
-                    (ReflectedClass<Object>) desiredCollectionReflectedType,
-                    (TypeLiteral<Object>) desiredCollectionType));
+            return (T) Lambda.convert(value,
+                    new ConvertTypeOfObject<Object>(
+                            reflectedTypeFactory,
+                            (ReflectedClass<Object>) desiredCollectionReflectedType));
         } else if (reflectedKlass.assignableFromObject(value)) {
             return (T) value;
         } else if (reflectedKlass.canBeUnboxed(value.getClass())) {
@@ -80,7 +70,7 @@ class ConvertTypeOfObject<T> implements Converter<Object, T> {
             return constructors.get(0).call(value);
         }
 
-        throw new ClassCastException(String.format("cannot convert %s to %s", value.getClass(), typeLiteral));
+        throw new ClassCastException(String.format("cannot convert %s to %s", value.getClass(), klass));
     }
 
     private boolean isIterable() {

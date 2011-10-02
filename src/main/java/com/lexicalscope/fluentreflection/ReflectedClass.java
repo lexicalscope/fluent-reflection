@@ -43,6 +43,17 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
     List<ReflectedClass<?>> superclasses();
 
     /**
+     * Get this type as the first matching the supplied matcher. This type and
+     * then the supertypes are searched
+     * 
+     * @param typeMatcher
+     *            matcher on the required type
+     * 
+     * @return first matching the matcher
+     */
+    ReflectedClass<?> asType(Matcher<ReflectedClass<?>> typeMatcher);
+
+    /**
      * Construct an object of the type under reflection
      * 
      * @return the constructed object
@@ -116,4 +127,6 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
      * @return
      */
     T convertType(Object value);
+
+    ReflectedClass<?> typeArgument(int typeParameter);
 }

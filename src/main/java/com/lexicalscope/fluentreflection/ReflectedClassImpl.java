@@ -20,9 +20,12 @@ import static ch.lambdaj.Lambda.convert;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static org.hamcrest.Matchers.not;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.hamcrest.Matcher;
+
+import ch.lambdaj.Lambda;
 
 import com.google.common.primitives.Primitives;
 import com.google.inject.TypeLiteral;
@@ -81,6 +84,13 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
         return members.superclassesAndInterfaces(not(typeIsInterface()));
     }
 
+    @Override public ReflectedClass<?> asType(final Matcher<ReflectedClass<?>> typeMatcher) {
+        if (typeMatcher.matches(this)) {
+            return this;
+        }
+        return Lambda.selectFirst(members.superclassesAndInterfaces(), typeMatcher);
+    }
+
     @Override public boolean isInterface() {
         return typeLiteral.getRawType().isInterface();
     }
@@ -134,7 +144,7 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
     }
 
     @Override public T convertType(final Object value) {
-        return new ConvertTypeOfObject<T>(reflectedTypeFactory, this, typeLiteral).convert(value);
+        return new ConvertTypeOfObject<T>(reflectedTypeFactory, this).convert(value);
     }
 
     @Override public boolean canBeBoxed(final Class<?> from) {
@@ -145,5 +155,10 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
     @Override public boolean canBeUnboxed(final Class<?> from) {
         return klass.isPrimitive()
                 && Primitives.wrap(klass).isAssignableFrom(from);
+    }
+
+    @Override public ReflectedClass<?> typeArgument(final int typeParameter) {
+        return reflectedTypeFactory.reflect(TypeLiteral.get(((ParameterizedType) typeLiteral.getType())
+                .getActualTypeArguments()[0]));
     }
 }
