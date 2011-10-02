@@ -14,25 +14,29 @@
 <a name="4" href="#4">4</a>   
 <a name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> java.util.List;
 <a name="6" href="#6">6</a>   
-<a name="7" href="#7">7</a>   <strong class="jxr_keyword">class</strong> ReflectedSuperclassesAndInterfacesImpl&lt;T&gt; implements ReflectedSuperclassesAndInterfaces&lt;T&gt; {
-<a name="8" href="#8">8</a>       <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedTypeFactory.html">ReflectedTypeFactory</a> reflectedTypeFactory;
-<a name="9" href="#9">9</a>       <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Class&lt;T&gt; klass;
-<a name="10" href="#10">10</a>      <strong class="jxr_keyword">private</strong> List&lt;ReflectedClass&lt;?&gt;&gt; interfacesAndSuperClass;
-<a name="11" href="#11">11</a>  
-<a name="12" href="#12">12</a>      <a href="../../../com/lexicalscope/fluentreflection/ReflectedSuperclassesAndInterfacesImpl.html">ReflectedSuperclassesAndInterfacesImpl</a>(<strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedTypeFactory.html">ReflectedTypeFactory</a> reflectedTypeFactory, <strong class="jxr_keyword">final</strong> Class&lt;T&gt; klass) {
-<a name="13" href="#13">13</a>          <strong class="jxr_keyword">this</strong>.reflectedTypeFactory = reflectedTypeFactory;
-<a name="14" href="#14">14</a>          <strong class="jxr_keyword">this</strong>.klass = klass;
-<a name="15" href="#15">15</a>      }
-<a name="16" href="#16">16</a>  
-<a name="17" href="#17">17</a>      @Override
-<a name="18" href="#18">18</a>      <strong class="jxr_keyword">public</strong> List&lt;ReflectedClass&lt;?&gt;&gt; superclassesAndInterfaces() {
-<a name="19" href="#19">19</a>          <strong class="jxr_keyword">if</strong> (interfacesAndSuperClass == <strong class="jxr_keyword">null</strong>) {
-<a name="20" href="#20">20</a>              interfacesAndSuperClass =
-<a name="21" href="#21">21</a>                      unmodifiableList(<strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/TypeHierarchyCalculation.html">TypeHierarchyCalculation</a>(reflectedTypeFactory).interfacesAndSuperClass(klass));
-<a name="22" href="#22">22</a>          }
-<a name="23" href="#23">23</a>          <strong class="jxr_keyword">return</strong> interfacesAndSuperClass;
-<a name="24" href="#24">24</a>      }
-<a name="25" href="#25">25</a>  }
+<a name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> com.google.inject.TypeLiteral;
+<a name="8" href="#8">8</a>   
+<a name="9" href="#9">9</a>   <strong class="jxr_keyword">class</strong> ReflectedSuperclassesAndInterfacesImpl&lt;T&gt; implements ReflectedSuperclassesAndInterfaces&lt;T&gt; {
+<a name="10" href="#10">10</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedTypeFactory.html">ReflectedTypeFactory</a> reflectedTypeFactory;
+<a name="11" href="#11">11</a>      <strong class="jxr_keyword">private</strong> List&lt;ReflectedClass&lt;?&gt;&gt; interfacesAndSuperClass;
+<a name="12" href="#12">12</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> TypeLiteral&lt;T&gt; typeLiteral;
+<a name="13" href="#13">13</a>  
+<a name="14" href="#14">14</a>      <a href="../../../com/lexicalscope/fluentreflection/ReflectedSuperclassesAndInterfacesImpl.html">ReflectedSuperclassesAndInterfacesImpl</a>(
+<a name="15" href="#15">15</a>              <strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedTypeFactory.html">ReflectedTypeFactory</a> reflectedTypeFactory,
+<a name="16" href="#16">16</a>              <strong class="jxr_keyword">final</strong> TypeLiteral&lt;T&gt; typeLiteral) {
+<a name="17" href="#17">17</a>          <strong class="jxr_keyword">this</strong>.reflectedTypeFactory = reflectedTypeFactory;
+<a name="18" href="#18">18</a>          <strong class="jxr_keyword">this</strong>.typeLiteral = typeLiteral;
+<a name="19" href="#19">19</a>      }
+<a name="20" href="#20">20</a>  
+<a name="21" href="#21">21</a>      @Override <strong class="jxr_keyword">public</strong> List&lt;ReflectedClass&lt;?&gt;&gt; superclassesAndInterfaces() {
+<a name="22" href="#22">22</a>          <strong class="jxr_keyword">if</strong> (interfacesAndSuperClass == <strong class="jxr_keyword">null</strong>) {
+<a name="23" href="#23">23</a>              interfacesAndSuperClass =
+<a name="24" href="#24">24</a>                      unmodifiableList(<strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/TypeHierarchyCalculation.html">TypeHierarchyCalculation</a>(reflectedTypeFactory)
+<a name="25" href="#25">25</a>                              .interfacesAndSuperClass(typeLiteral));
+<a name="26" href="#26">26</a>          }
+<a name="27" href="#27">27</a>          <strong class="jxr_keyword">return</strong> interfacesAndSuperClass;
+<a name="28" href="#28">28</a>      }
+<a name="29" href="#29">29</a>  }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>

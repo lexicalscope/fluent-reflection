@@ -45,37 +45,44 @@
 <a name="35" href="#35">35</a>          <strong class="jxr_keyword">this</strong>.instance = instance;
 <a name="36" href="#36">36</a>      }
 <a name="37" href="#37">37</a>  
-<a name="38" href="#38">38</a>      @Override
-<a name="39" href="#39">39</a>      <strong class="jxr_keyword">public</strong> Class&lt;T&gt; classUnderReflection() {
-<a name="40" href="#40">40</a>          <strong class="jxr_keyword">return</strong> reflect.classUnderReflection();
-<a name="41" href="#41">41</a>      }
-<a name="42" href="#42">42</a>  
-<a name="43" href="#43">43</a>      @Override
-<a name="44" href="#44">44</a>      <strong class="jxr_keyword">public</strong> ReflectedClass&lt;T&gt; reflectedClass() {
-<a name="45" href="#45">45</a>          <strong class="jxr_keyword">return</strong> reflect;
-<a name="46" href="#46">46</a>      }
-<a name="47" href="#47">47</a>  
-<a name="48" href="#48">48</a>      @Override
-<a name="49" href="#49">49</a>      <strong class="jxr_keyword">public</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedMethod.html">ReflectedMethod</a> method(<strong class="jxr_keyword">final</strong> Matcher&lt;? <strong class="jxr_keyword">super</strong> ReflectedMethod&gt; methodMatcher) {
-<a name="50" href="#50">50</a>          <strong class="jxr_keyword">return</strong> selectFirst(boundMethods(), methodIsNotStatic().and(methodMatcher));
-<a name="51" href="#51">51</a>      }
-<a name="52" href="#52">52</a>  
-<a name="53" href="#53">53</a>      @Override
-<a name="54" href="#54">54</a>      <strong class="jxr_keyword">public</strong> List&lt;ReflectedMethod&gt; methods() {
-<a name="55" href="#55">55</a>          <strong class="jxr_keyword">return</strong> boundMethods();
+<a name="38" href="#38">38</a>      @Override <strong class="jxr_keyword">public</strong> Class&lt;T&gt; classUnderReflection() {
+<a name="39" href="#39">39</a>          <strong class="jxr_keyword">return</strong> reflect.classUnderReflection();
+<a name="40" href="#40">40</a>      }
+<a name="41" href="#41">41</a>  
+<a name="42" href="#42">42</a>      @Override <strong class="jxr_keyword">public</strong> ReflectedClass&lt;T&gt; reflectedClass() {
+<a name="43" href="#43">43</a>          <strong class="jxr_keyword">return</strong> reflect;
+<a name="44" href="#44">44</a>      }
+<a name="45" href="#45">45</a>  
+<a name="46" href="#46">46</a>      @Override <strong class="jxr_keyword">public</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedMethod.html">ReflectedMethod</a> method(<strong class="jxr_keyword">final</strong> Matcher&lt;? <strong class="jxr_keyword">super</strong> ReflectedMethod&gt; methodMatcher) {
+<a name="47" href="#47">47</a>          <strong class="jxr_keyword">return</strong> selectFirst(boundMethods(), methodIsNotStatic().and(methodMatcher));
+<a name="48" href="#48">48</a>      }
+<a name="49" href="#49">49</a>  
+<a name="50" href="#50">50</a>      @Override <strong class="jxr_keyword">public</strong> List&lt;ReflectedMethod&gt; methods() {
+<a name="51" href="#51">51</a>          <strong class="jxr_keyword">return</strong> boundMethods();
+<a name="52" href="#52">52</a>      }
+<a name="53" href="#53">53</a>  
+<a name="54" href="#54">54</a>      @Override <strong class="jxr_keyword">public</strong> List&lt;ReflectedMethod&gt; declaredMethods() {
+<a name="55" href="#55">55</a>          <strong class="jxr_keyword">return</strong> boundDeclaredMethods();
 <a name="56" href="#56">56</a>      }
 <a name="57" href="#57">57</a>  
-<a name="58" href="#58">58</a>      @Override
-<a name="59" href="#59">59</a>      <strong class="jxr_keyword">public</strong> List&lt;ReflectedMethod&gt; methods(<strong class="jxr_keyword">final</strong> Matcher&lt;? <strong class="jxr_keyword">super</strong> ReflectedMethod&gt; methodMatcher) {
-<a name="60" href="#60">60</a>          <strong class="jxr_keyword">return</strong> select(boundMethods(), methodMatcher);
-<a name="61" href="#61">61</a>      }
-<a name="62" href="#62">62</a>  
-<a name="63" href="#63">63</a>      <strong class="jxr_keyword">private</strong> List&lt;ReflectedMethod&gt; boundMethods() {
-<a name="64" href="#64">64</a>          <strong class="jxr_keyword">return</strong> convert(
-<a name="65" href="#65">65</a>                  select(reflect.methods(), methodIsNotStatic()),
-<a name="66" href="#66">66</a>                  <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertReflectedMethodToBoundReflectedMethod.html">ConvertReflectedMethodToBoundReflectedMethod</a>(instance));
-<a name="67" href="#67">67</a>      }
-<a name="68" href="#68">68</a>  }
+<a name="58" href="#58">58</a>      @Override <strong class="jxr_keyword">public</strong> List&lt;ReflectedMethod&gt; methods(<strong class="jxr_keyword">final</strong> Matcher&lt;? <strong class="jxr_keyword">super</strong> ReflectedMethod&gt; methodMatcher) {
+<a name="59" href="#59">59</a>          <strong class="jxr_keyword">return</strong> select(boundMethods(), methodMatcher);
+<a name="60" href="#60">60</a>      }
+<a name="61" href="#61">61</a>  
+<a name="62" href="#62">62</a>      <strong class="jxr_keyword">private</strong> List&lt;ReflectedMethod&gt; boundMethods() {
+<a name="63" href="#63">63</a>          <strong class="jxr_keyword">return</strong> bind(reflect.methods());
+<a name="64" href="#64">64</a>      }
+<a name="65" href="#65">65</a>  
+<a name="66" href="#66">66</a>      <strong class="jxr_keyword">private</strong> List&lt;ReflectedMethod&gt; bind(<strong class="jxr_keyword">final</strong> List&lt;ReflectedMethod&gt; methods) {
+<a name="67" href="#67">67</a>          <strong class="jxr_keyword">return</strong> convert(
+<a name="68" href="#68">68</a>                  select(methods, methodIsNotStatic()),
+<a name="69" href="#69">69</a>                  <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertReflectedMethodToBoundReflectedMethod.html">ConvertReflectedMethodToBoundReflectedMethod</a>(instance));
+<a name="70" href="#70">70</a>      }
+<a name="71" href="#71">71</a>  
+<a name="72" href="#72">72</a>      <strong class="jxr_keyword">private</strong> List&lt;ReflectedMethod&gt; boundDeclaredMethods() {
+<a name="73" href="#73">73</a>          <strong class="jxr_keyword">return</strong> bind(reflect.declaredMethods());
+<a name="74" href="#74">74</a>      }
+<a name="75" href="#75">75</a>  }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>

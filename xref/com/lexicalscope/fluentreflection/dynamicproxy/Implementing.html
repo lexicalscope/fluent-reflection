@@ -146,7 +146,7 @@
 <a name="136" href="#136">136</a>     }
 <a name="137" href="#137">137</a> 
 <a name="138" href="#138">138</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> returnValue(<strong class="jxr_keyword">final</strong> Object value) {
-<a name="139" href="#139">139</a>         methodInvokationContext.get().result = value;
+<a name="139" href="#139">139</a>         methodInvokationContext.get().result = method().returnType().convertType(value);
 <a name="140" href="#140">140</a>     }
 <a name="141" href="#141">141</a> 
 <a name="142" href="#142">142</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> Object[] args() {
