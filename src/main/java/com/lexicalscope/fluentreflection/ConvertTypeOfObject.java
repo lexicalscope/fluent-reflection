@@ -3,7 +3,6 @@ package com.lexicalscope.fluentreflection;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
 import java.util.List;
 
 import ch.lambdaj.Lambda;
@@ -47,8 +46,6 @@ class ConvertTypeOfObject<T> implements Converter<Object, T> {
         if (value == null) {
             return null;
         } else if (isIterable() && Iterable.class.isAssignableFrom(value.getClass())) {
-            final ArrayList<Object> result = new ArrayList<Object>();
-
             final TypeLiteral<?> desiredCollectionType =
                     TypeLiteral.get(((ParameterizedType) typeLiteral.getSupertype(Iterable.class).getType())
                             .getActualTypeArguments()[0]);
@@ -56,12 +53,7 @@ class ConvertTypeOfObject<T> implements Converter<Object, T> {
             final ReflectedClass<?> desiredCollectionReflectedType =
                     reflectedTypeFactory.reflect(desiredCollectionType);
 
-            final Iterable<Object> values = (Iterable<Object>) value;
-            for (final Object listItem : values) {
-                result.add(desiredCollectionReflectedType.convertType(listItem));
-            }
-
-            return (T) Lambda.convert(values, new ConvertTypeOfObject<Object>(
+            return (T) Lambda.convert(value, new ConvertTypeOfObject<Object>(
                     reflectedTypeFactory,
                     (ReflectedClass<Object>) desiredCollectionReflectedType,
                     (TypeLiteral<Object>) desiredCollectionType));
