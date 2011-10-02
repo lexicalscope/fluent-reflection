@@ -1,5 +1,5 @@
-com.lexicalscope.fluentreflection.dynamicproxy.endtoend
-com.lexicalscope.fluentreflection.endtoend
-com.lexicalscope.fluentreflection.usecases
 com.lexicalscope.fluentreflection
+com.lexicalscope.fluentreflection.endtoend
+com.lexicalscope.fluentreflection.dynamicproxy.endtoend
+com.lexicalscope.fluentreflection.usecases
 com.lexicalscope.fluentreflection.bean.endtoend
