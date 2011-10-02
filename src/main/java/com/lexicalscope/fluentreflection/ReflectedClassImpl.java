@@ -20,8 +20,6 @@ import static ch.lambdaj.Lambda.convert;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static org.hamcrest.Matchers.not;
 
-import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hamcrest.Matcher;
@@ -84,7 +82,7 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
     }
 
     @Override public boolean isInterface() {
-        return klass.isInterface();
+        return typeLiteral.getRawType().isInterface();
     }
 
     @Override public T constructRaw(final Object... args) {
@@ -92,7 +90,7 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
                 constructor(callableHasArgumentList(convert(args, new ConvertObjectToClass())));
 
         if (constructor == null) {
-            throw new ConstructorNotFoundRuntimeException(klass);
+            throw new ConstructorNotFoundRuntimeException(typeLiteral.getRawType());
         }
 
         return constructor.call(args);
@@ -115,82 +113,37 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
 
     @Override public boolean equals(final Object that) {
         if (that != null && that.getClass().equals(this.getClass())) {
-            return klass.equals(((ReflectedClassImpl<?>) that).klass);
+            return typeLiteral.equals(((ReflectedClassImpl<?>) that).typeLiteral);
         }
         return false;
     }
 
     @Override public int hashCode() {
-        return klass.hashCode();
+        return typeLiteral.hashCode();
     }
 
     @Override public String toString() {
-        return "ReflectedType<" + klass.getName() + ">";
+        return "ReflectedType<" + typeLiteral + ">";
     }
 
     @Override public boolean assignableFromObject(final Object value) {
         return value == null
                 || klass.isAssignableFrom(value.getClass())
-                || canBeBoxed(value)
-                || canBeUnboxed(value);
-    }
-
-    private boolean canBeBoxed(final Object value) {
-        return Primitives.isWrapperType(klass)
-                && Primitives.unwrap(klass).isAssignableFrom(value.getClass());
-    }
-
-    private boolean canBeUnboxed(final Object value) {
-        return klass.isPrimitive()
-                && Primitives.wrap(klass).isAssignableFrom(value.getClass());
+                || canBeBoxed(value.getClass())
+                || canBeUnboxed(value.getClass());
     }
 
     @Override public T convertType(final Object value) {
-        if (value == null) {
-            return null;
-        } else if (isIterable() && Iterable.class.isAssignableFrom(value.getClass())) {
-            final ArrayList<Object> result = new ArrayList<Object>();
-
-            final TypeLiteral<?> desiredCollectionType =
-                    TypeLiteral.get(((ParameterizedType) typeLiteral.getSupertype(Iterable.class).getType())
-                            .getActualTypeArguments()[0]);
-
-            final ReflectedClass<?> desiredCollectionReflectedType =
-                    reflectedTypeFactory.reflect(desiredCollectionType);
-
-            final Iterable<Object> values = (Iterable<Object>) value;
-            for (final Object listItem : values) {
-                result.add(desiredCollectionReflectedType.convertType(listItem));
-            }
-
-            return (T) result;
-        } else if (assignableFromObject(value)) {
-            return (T) value;
-        } else if (canBeUnboxed(value)) {
-            return (T) value;
-        } else if (canBeBoxed(value)) {
-            return (T) value;
-        }
-
-        final List<ReflectedMethod> valueOfMethods =
-                methods(callableHasName("valueOf").and(callableHasArguments(value.getClass())).and(
-                        callableHasReturnType(klass)));
-
-        if (!valueOfMethods.isEmpty()) {
-            return klass.cast(valueOfMethods.get(0).call(value));
-        }
-
-        final List<ReflectedConstructor<T>> constructors =
-                constructors(callableHasArguments(value.getClass()));
-
-        if (!constructors.isEmpty()) {
-            return constructors.get(0).call(value);
-        }
-
-        throw new ClassCastException(String.format("cannot convert %s to %s", value.getClass(), klass));
+        return new ConvertTypeOfObject<T>(reflectedTypeFactory, this, typeLiteral).convert(value);
     }
 
-    private boolean isIterable() {
-        return Iterable.class.isAssignableFrom(klass);
+    @Override public boolean canBeBoxed(final Class<?> from) {
+        return Primitives.isWrapperType(klass)
+                && Primitives.unwrap(klass).isAssignableFrom(from);
+    }
+
+    @Override public boolean canBeUnboxed(final Class<?> from) {
+        return klass.isPrimitive()
+                && Primitives.wrap(klass).isAssignableFrom(from);
     }
 }

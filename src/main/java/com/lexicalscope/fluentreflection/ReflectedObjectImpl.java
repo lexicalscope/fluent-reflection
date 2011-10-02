@@ -72,4 +72,12 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
     private List<ReflectedMethod> boundDeclaredMethods() {
         return bind(reflect.declaredMethods());
     }
+
+    @Override public boolean canBeBoxed(final Class<?> from) {
+        return reflect.canBeBoxed(from);
+    }
+
+    @Override public boolean canBeUnboxed(final Class<?> from) {
+        return reflect.canBeUnboxed(from);
+    }
 }

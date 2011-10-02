@@ -61,4 +61,8 @@ public interface ReflectedType<T> {
      * @return The method matching the supplied matcher
      */
     ReflectedMethod method(Matcher<? super ReflectedMethod> methodMatcher);
+
+    boolean canBeBoxed(Class<?> from);
+
+    boolean canBeUnboxed(Class<?> from);
 }
