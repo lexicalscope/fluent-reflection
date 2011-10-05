@@ -30,10 +30,12 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         private final ReflectedMethod method;
         private final Object[] args;
         public Object result;
+        private final Object proxy;
 
         public MethodInvokationContext(final Object proxy, final Method method, final Object[] args) {
             this.method = FluentReflection.method(method, proxy);
             this.args = args == null ? new Object[] {} : args;
+            this.proxy = proxy;
         }
     }
 
@@ -141,5 +143,9 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
 
     public final Object[] args() {
         return methodInvokationContext.get().args;
+    }
+
+    public final Object proxy() {
+        return methodInvokationContext.get().proxy;
     }
 }

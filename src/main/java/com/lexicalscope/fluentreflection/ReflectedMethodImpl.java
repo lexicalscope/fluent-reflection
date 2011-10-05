@@ -26,6 +26,9 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import com.google.inject.TypeLiteral;
 
 class ReflectedMethodImpl extends AbstractReflectedCallable implements ReflectedMethod {
@@ -156,5 +159,20 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
             separator = ", ";
         }
         return result.toString();
+    }
+
+    @Override public boolean equals(final Object obj) {
+        if (obj != null && this.getClass().equals(obj.getClass())) {
+            final ReflectedMethodImpl that = (ReflectedMethodImpl) obj;
+            return new EqualsBuilder()
+                    .append(this.method, that.method)
+                    .append(this.typeLiteral, that.typeLiteral)
+                    .isEquals();
+        }
+        return false;
+    }
+
+    @Override public int hashCode() {
+        return new HashCodeBuilder().append(method).append(typeLiteral).toHashCode();
     }
 }
