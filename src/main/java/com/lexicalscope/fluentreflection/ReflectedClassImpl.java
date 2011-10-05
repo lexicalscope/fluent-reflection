@@ -160,8 +160,19 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
     }
 
     @Override public boolean canBeUnboxed(final Class<?> from) {
-        return klass.isPrimitive()
+        return isPrimitive()
                 && Primitives.wrap(klass).isAssignableFrom(from);
+    }
+
+    @Override public ReflectedClass<T> boxedType() {
+        if (isPrimitive()) {
+            return reflectedTypeFactory.reflect(Primitives.wrap(klass));
+        }
+        return this;
+    }
+
+    @Override public boolean isPrimitive() {
+        return klass.isPrimitive();
     }
 
     @Override public ReflectedClass<?> typeArgument(final int typeParameter) {

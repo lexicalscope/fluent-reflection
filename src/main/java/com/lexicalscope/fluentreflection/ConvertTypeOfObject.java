@@ -52,19 +52,38 @@ class ConvertTypeOfObject<T> implements Converter<Object, T> {
             return (T) value;
         }
 
+        ReflectedClass<?> klassToCreate;
+        if (reflectedKlass.isPrimitive()) {
+            klassToCreate = reflectedKlass.boxedType();
+        } else {
+            klassToCreate = reflectedKlass;
+        }
+
+        return (T) convertValueTo(value, klassToCreate);
+    }
+
+    private <S> S convertValueTo(final Object value, final ReflectedClass<S> klassToCreate) {
         final List<ReflectedMethod> valueOfMethods =
-                reflectedKlass.methods(callableHasName("valueOf").and(callableHasArguments(value.getClass())).and(
+                klassToCreate.methods(callableHasName("valueOf").and(callableHasArguments(value.getClass())).and(
                         callableHasReturnType(klass)));
 
         if (!valueOfMethods.isEmpty()) {
-            return (T) valueOfMethods.get(0).call(value);
+            return (S) valueOfMethods.get(0).call(value);
         }
 
-        final List<ReflectedConstructor<T>> constructors =
-                reflectedKlass.constructors(callableHasArguments(value.getClass()));
+        final List<ReflectedConstructor<S>> constructors =
+                klassToCreate.constructors(callableHasArguments(value.getClass()));
 
         if (!constructors.isEmpty()) {
             return constructors.get(0).call(value);
+        }
+
+        if (klassToCreate.classUnderReflection().equals(Character.class) && value.getClass().equals(String.class)) {
+            // special case for characters from string
+            final String stringValue = (String) value;
+            if (stringValue.length() == 1) {
+                return (S) Character.valueOf(stringValue.charAt(0));
+            }
         }
 
         throw new ClassCastException(String.format("cannot convert %s to %s", value.getClass(), klass));

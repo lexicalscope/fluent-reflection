@@ -38,6 +38,12 @@ public class TestMapBean {
         Boolean isProperty();
         void setProperty(String value);
 
+        int getInt();
+        void setInt(int integer);
+
+        char getChar();
+        void setChar(char character);
+
         Integer getInteger();
         void setInteger(Integer integer);
 
@@ -82,6 +88,18 @@ public class TestMapBean {
         assertThat(bean.getInteger(), equalTo(14));
     }
 
+    @Test public void argumentConversionCanConvertFromStringToPrimitive() throws Exception {
+        map.put("int", "14");
+
+        assertThat(bean.getInt(), equalTo(14));
+    }
+
+    @Test public void argumentConversionCanConvertFromStringToChar() throws Exception {
+        map.put("char", "c");
+
+        assertThat(bean.getChar(), equalTo('c'));
+    }
+
     @Test public void argumentConversionTakesPlaceOnGetOfIterable() throws Exception {
         map.put("iterable", Arrays.asList("14", "15", "16"));
 
@@ -104,5 +122,14 @@ public class TestMapBean {
         map.put("set", Sets.newHashSet("14", "15", "16"));
 
         assertThat(bean.getSet(), contains(14, 15, 16));
+    }
+
+    @Test public void mapBeanEqualToItself() throws Exception {
+        assertThat(bean, equalTo(bean));
+        assertThat(bean.hashCode(), equalTo(bean.hashCode()));
+    }
+
+    @Test public void mapBeanNotEqualToSecondBeanOnTheSameMap() throws Exception {
+        assertThat(bean, not(equalTo(bean(Bean.class, map))));
     }
 }

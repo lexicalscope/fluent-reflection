@@ -248,4 +248,19 @@ public class ReflectionMatchers {
         return callableHasNameStartingWith("is").or(callableHasNameStartingWith("has")).and(isQuery()).and(
                 callableHasReturnType(boolean.class).or(callableHasReturnType(Boolean.class)));
     }
+
+    public static ReflectionMatcher<ReflectedCallable> hashCodeMethod() {
+        return callableHasName("hashCode").and(callableHasNoArguments()).and(callableHasReturnType(int.class));
+    }
+
+    public static ReflectionMatcher<ReflectedCallable> equalsMethod() {
+        return callableHasName("equals")
+                .and(callableHasArguments(Object.class))
+                .and(callableHasReturnType(boolean.class));
+    }
+
+    public static ReflectionMatcher<ReflectedCallable> toStringMethod() {
+        return callableHasName("toString").and(callableHasNoArguments()).and(
+                callableHasReturnType(String.class));
+    }
 }

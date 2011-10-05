@@ -139,4 +139,8 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
     T convertType(Object value);
 
     ReflectedClass<?> typeArgument(int typeParameter);
+
+    boolean isPrimitive();
+
+    ReflectedClass<T> boxedType();
 }

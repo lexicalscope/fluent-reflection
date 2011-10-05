@@ -3,6 +3,7 @@ package com.lexicalscope.fluentreflection.bean;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static com.lexicalscope.fluentreflection.dynamicproxy.FluentProxy.dynamicProxy;
 
+import java.lang.reflect.Proxy;
 import java.util.Map;
 
 import com.lexicalscope.fluentreflection.dynamicproxy.Implementing;
@@ -27,7 +28,33 @@ import com.lexicalscope.fluentreflection.dynamicproxy.MethodBody;
 public class MapBean {
     public static <T> T bean(final Class<T> klass, final Map<String, Object> map) {
         return dynamicProxy(new Implementing<T>(klass) {
+            private final Object identity = new Object();
             {
+                matching(hashCodeMethod())
+                        .execute(new MethodBody() {
+                            @Override public void body() throws Throwable {
+                                returnValue(identity.hashCode());
+                            }
+                        });
+
+                matching(equalsMethod())
+                        .execute(new MethodBody() {
+                            @Override public void body() throws Throwable {
+                                final Object that = args()[0];
+                                returnValue(Proxy.isProxyClass(that.getClass())
+                                        && that == proxy());
+                            }
+                        });
+
+                matching(
+                        isGetter().and(
+                                callableHasReturnType(boolean.class).or(
+                                        callableHasReturnType(Boolean.class)))).execute(new MethodBody() {
+                    @Override public void body() {
+                        returnValue(map.get(method().propertyName()) != null);
+                    }
+                });
+
                 matching(isGetter()).execute(new MethodBody() {
                     @Override public void body() {
                         returnValue(map.get(method().propertyName()));
@@ -42,7 +69,7 @@ public class MapBean {
 
                 matching(isExistence()).execute(new MethodBody() {
                     @Override public void body() {
-                        returnValue(map.containsKey(method().propertyName()));
+                        returnValue(map.get(method().propertyName()) != null);
                     }
                 });
             }
