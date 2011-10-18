@@ -44,8 +44,8 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
     private final TypeLiteral<T> typeLiteral;
 
     ReflectedClassImpl(final ReflectedTypeFactory reflectedTypeFactory,
-                       final TypeLiteral<T> typeLiteral,
-                       final ReflectedMembers<T> members) {
+            final TypeLiteral<T> typeLiteral,
+            final ReflectedMembers<T> members) {
         this.reflectedTypeFactory = reflectedTypeFactory;
         this.klass = (Class<T>) typeLiteral.getRawType();
         this.typeLiteral = typeLiteral;
@@ -148,6 +148,10 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
                 || klass.isAssignableFrom(value.getClass())
                 || canBeBoxed(value.getClass())
                 || canBeUnboxed(value.getClass());
+    }
+
+    @Override public boolean assignableTo(final Class<?> otherKlass) {
+        return otherKlass.isAssignableFrom(klass);
     }
 
     @Override public T convertType(final Object value) {

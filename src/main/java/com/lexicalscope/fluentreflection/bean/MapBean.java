@@ -51,7 +51,7 @@ public class MapBean {
                                 callableHasReturnType(boolean.class).or(
                                         callableHasReturnType(Boolean.class)))).execute(new MethodBody() {
                     @Override public void body() {
-                        returnValue(map.get(method().propertyName()) != null);
+                        returnValue(map.containsKey(method().propertyName()));
                     }
                 });
 
@@ -69,7 +69,13 @@ public class MapBean {
 
                 matching(isExistence()).execute(new MethodBody() {
                     @Override public void body() {
-                        returnValue(map.get(method().propertyName()) != null);
+                        returnValue(map.containsKey(method().propertyName()));
+                    }
+                });
+
+                matching(toStringMethod()).execute(new MethodBody() {
+                    @Override public void body() throws Throwable {
+                        returnValue(klass.getName() + " " + map.toString());
                     }
                 });
             }
