@@ -22,7 +22,7 @@ public class InvocationTargetRuntimeException extends ReflectionRuntimeException
         super(cause);
     }
 
-    public InvocationTargetRuntimeException(final InvocationTargetException e, final Member member) {
-        // TODO Auto-generated constructor stub
+    public InvocationTargetRuntimeException(final InvocationTargetException cause, final Member member) {
+        this("Exception while invoking " + member, cause);
     }
 }
