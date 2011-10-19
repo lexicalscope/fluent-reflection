@@ -20,6 +20,7 @@ import static ch.lambdaj.Lambda.convert;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static org.hamcrest.Matchers.hasItem;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -42,6 +43,7 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
     private final Class<T> klass;
     private final ReflectedMembers<T> members;
     private final TypeLiteral<T> typeLiteral;
+    private final ReflectedAnnotatedImpl annotatedElement;
 
     ReflectedClassImpl(final ReflectedTypeFactory reflectedTypeFactory,
             final TypeLiteral<T> typeLiteral,
@@ -50,6 +52,7 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
         this.klass = (Class<T>) typeLiteral.getRawType();
         this.typeLiteral = typeLiteral;
         this.members = members;
+        this.annotatedElement = new ReflectedAnnotatedImpl(reflectedTypeFactory, klass);
     }
 
     @Override public Class<T> classUnderReflection() {
@@ -167,6 +170,18 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
 
     @Override public String name() {
         return klass.getName();
+    }
+
+    @Override public ReflectedClass<?> annotation(final ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher) {
+        return annotatedElement.annotation(annotationMatcher);
+    }
+
+    @Override public boolean annotatedWith(final Class<? extends Annotation> annotationClass) {
+        return annotatedElement.annotatedWith(annotationClass);
+    }
+
+    @Override public <A extends Annotation> A annotation(final Class<A> annotationClass) {
+        return annotatedElement.annotation(annotationClass);
     }
 
     @Override public boolean equals(final Object that) {

@@ -1,7 +1,12 @@
 package com.lexicalscope.fluentreflection;
 
+import static ch.lambdaj.Lambda.*;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectedTypeReflectingOn;
+import static org.hamcrest.Matchers.hasItem;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
+import java.util.List;
 
 /*
  * Copyright 2011 Tim Wood
@@ -19,23 +24,32 @@ import java.lang.reflect.AnnotatedElement;
  * limitations under the License. 
  */
 
-abstract class AbstractReflectedCallable implements ReflectedCallable {
-    private final ReflectedAnnotated annotatedElement;
+class ReflectedAnnotatedImpl implements ReflectedAnnotated {
+    private final ReflectedTypeFactory reflectedTypeFactory;
+    private final AnnotatedElement annotatedElement;
 
-    public AbstractReflectedCallable(
+    public ReflectedAnnotatedImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
             final AnnotatedElement annotatedElement) {
-        this.annotatedElement = new ReflectedAnnotatedImpl(reflectedTypeFactory, annotatedElement);
+        this.reflectedTypeFactory = reflectedTypeFactory;
+        this.annotatedElement = annotatedElement;
     }
+
     @Override public ReflectedClass<?> annotation(final ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher) {
-        return annotatedElement.annotation(annotationMatcher);
+        return selectFirst(annotations(), annotationMatcher);
     }
 
     @Override public boolean annotatedWith(final Class<? extends Annotation> annotationClass) {
-        return annotatedElement.annotatedWith(annotationClass);
+        return hasItem(reflectedTypeReflectingOn(annotationClass)).matches(annotations());
     }
 
     @Override public <A extends Annotation> A annotation(final Class<A> annotationClass) {
-        return annotatedElement.annotation(annotationClass);
+        return annotatedElement.getAnnotation(annotationClass);
+    }
+
+    private List<ReflectedClass<?>> annotations() {
+        return convert(
+                convert(annotatedElement.getAnnotations(), new ConvertAnnotationToClass()),
+                new ConvertClassToReflectedType(reflectedTypeFactory));
     }
 }

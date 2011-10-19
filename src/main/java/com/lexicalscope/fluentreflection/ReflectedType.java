@@ -20,7 +20,7 @@ import org.hamcrest.Matcher;
  * limitations under the License. 
  */
 
-public interface ReflectedType<T> {
+public interface ReflectedType<T> extends ReflectedAnnotated {
     /**
      * Obtain the class being reflected
      * 

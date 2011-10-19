@@ -3,6 +3,7 @@ package com.lexicalscope.fluentreflection;
 import static ch.lambdaj.Lambda.*;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.methodIsNotStatic;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 
 import org.hamcrest.Matcher;
@@ -79,5 +80,17 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
 
     @Override public boolean canBeUnboxed(final Class<?> from) {
         return reflect.canBeUnboxed(from);
+    }
+
+    @Override public ReflectedClass<?> annotation(final ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher) {
+        return reflect.annotation(annotationMatcher);
+    }
+
+    @Override public boolean annotatedWith(final Class<? extends Annotation> annotationClass) {
+        return reflect.annotatedWith(annotationClass);
+    }
+
+    @Override public <A extends Annotation> A annotation(final Class<A> annotationClass) {
+        return reflect.annotation(annotationClass);
     }
 }
