@@ -128,21 +128,6 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
         return members.constructor(constructorMatcher);
     }
 
-    @Override public boolean equals(final Object that) {
-        if (that != null && that.getClass().equals(this.getClass())) {
-            return typeLiteral.equals(((ReflectedClassImpl<?>) that).typeLiteral);
-        }
-        return false;
-    }
-
-    @Override public int hashCode() {
-        return typeLiteral.hashCode();
-    }
-
-    @Override public String toString() {
-        return "ReflectedType<" + typeLiteral + ">";
-    }
-
     @Override public boolean assignableFromObject(final Object value) {
         return value == null
                 || klass.isAssignableFrom(value.getClass())
@@ -178,5 +163,24 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
     @Override public ReflectedClass<?> typeArgument(final int typeParameter) {
         return reflectedTypeFactory.reflect(TypeLiteral.get(((ParameterizedType) typeLiteral.getType())
                 .getActualTypeArguments()[typeParameter]));
+    }
+
+    @Override public String name() {
+        return klass.getName();
+    }
+
+    @Override public boolean equals(final Object that) {
+        if (that != null && that.getClass().equals(this.getClass())) {
+            return typeLiteral.equals(((ReflectedClassImpl<?>) that).typeLiteral);
+        }
+        return false;
+    }
+
+    @Override public int hashCode() {
+        return typeLiteral.hashCode();
+    }
+
+    @Override public String toString() {
+        return "ReflectedType<" + typeLiteral + ">";
     }
 }

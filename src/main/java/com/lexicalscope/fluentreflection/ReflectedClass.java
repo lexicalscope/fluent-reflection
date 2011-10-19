@@ -125,4 +125,9 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
     boolean isPrimitive();
 
     ReflectedClass<T> boxedType();
+
+    /**
+     * @return the name of the class under reflection
+     */
+    String name();
 }
