@@ -94,8 +94,8 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
             @Override public void execute(final QueryMethod queryMethod) {
                 execute(new MethodBody() {
                     @Override public void body() throws Exception {
+                        final Method method = queryMethod.getClass().getDeclaredMethods()[0];
                         try {
-                            final Method method = queryMethod.getClass().getDeclaredMethods()[0];
                             method.setAccessible(true);
                             returnValue(method.invoke(queryMethod, args()));
                         } catch (final SecurityException e) {
@@ -104,8 +104,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
                             throw new IllegalAccessRuntimeException("unable to invoke method in "
                                     + queryMethod.getClass(), e);
                         } catch (final InvocationTargetException e) {
-                            throw new InvocationTargetRuntimeException("exception propogated by "
-                                    + queryMethod.getClass(), e);
+                            throw new InvocationTargetRuntimeException(e, method);
                         }
                     }
                 });
