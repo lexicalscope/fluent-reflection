@@ -22,6 +22,7 @@ import static org.hamcrest.Matchers.hasItem;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
 
 import org.hamcrest.Matcher;
@@ -45,7 +46,8 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
     private final TypeLiteral<T> typeLiteral;
     private final ReflectedAnnotatedImpl annotatedElement;
 
-    ReflectedClassImpl(final ReflectedTypeFactory reflectedTypeFactory,
+    ReflectedClassImpl(
+            final ReflectedTypeFactory reflectedTypeFactory,
             final TypeLiteral<T> typeLiteral,
             final ReflectedMembers<T> members) {
         this.reflectedTypeFactory = reflectedTypeFactory;
@@ -182,6 +184,10 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
 
     @Override public <A extends Annotation> A annotation(final Class<A> annotationClass) {
         return annotatedElement.annotation(annotationClass);
+    }
+
+    @Override public Type type() {
+        return typeLiteral.getType();
     }
 
     @Override public boolean equals(final Object that) {

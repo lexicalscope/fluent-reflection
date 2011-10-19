@@ -54,6 +54,10 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         typeLiteral = TypeLiteral.get(klass);
     }
 
+    public Implementing(final ReflectedClass<?> klass) {
+        typeLiteral = TypeLiteral.get(klass.type());
+    }
+
     private static Type getSuperclassTypeParameter(final Class<?> subclass) {
         final Type superclass = subclass.getGenericSuperclass();
         if (superclass instanceof Class<?>) {

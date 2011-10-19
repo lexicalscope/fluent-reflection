@@ -1,11 +1,13 @@
 package com.lexicalscope.fluentreflection.bean;
 
+import static com.lexicalscope.fluentreflection.FluentReflection.type;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static com.lexicalscope.fluentreflection.dynamicproxy.FluentProxy.dynamicProxy;
 
 import java.lang.reflect.Proxy;
 import java.util.Map;
 
+import com.lexicalscope.fluentreflection.ReflectedClass;
 import com.lexicalscope.fluentreflection.dynamicproxy.Implementing;
 import com.lexicalscope.fluentreflection.dynamicproxy.MethodBody;
 
@@ -27,6 +29,10 @@ import com.lexicalscope.fluentreflection.dynamicproxy.MethodBody;
 
 public class MapBean {
     public static <T> T bean(final Class<T> klass, final Map<String, Object> map) {
+        return bean(type(klass), map);
+    }
+
+    public static <T> T bean(final ReflectedClass<T> klass, final Map<String, Object> map) {
         return dynamicProxy(new Implementing<T>(klass) {
             private final Object identity = new Object();
             {
@@ -75,7 +81,7 @@ public class MapBean {
 
                 matching(toStringMethod()).execute(new MethodBody() {
                     @Override public void body() throws Throwable {
-                        returnValue(klass.getName() + " " + map.toString());
+                        returnValue(klass.name() + " " + map.toString());
                     }
                 });
             }

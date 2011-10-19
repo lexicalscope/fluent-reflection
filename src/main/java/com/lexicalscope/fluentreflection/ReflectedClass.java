@@ -16,6 +16,7 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import org.hamcrest.Matcher;
@@ -130,4 +131,9 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
      * @return the name of the class under reflection
      */
     String name();
+
+    /**
+     * @return the underlying type instance
+     */
+    Type type();
 }
