@@ -38,9 +38,9 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
     private final Method method;
 
     public ReflectedMethodImpl(final ReflectedTypeFactory reflectedTypeFactory,
-                               final ReflectedClass<?> reflectedClass,
-                               final TypeLiteral<?> typeLiteral,
-                               final Method method) {
+            final ReflectedClass<?> reflectedClass,
+            final TypeLiteral<?> typeLiteral,
+            final Method method) {
         super(reflectedTypeFactory, method);
         this.reflectedTypeFactory = reflectedTypeFactory;
         this.reflectedClass = reflectedClass;
