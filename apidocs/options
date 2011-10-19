@@ -15,10 +15,10 @@
 -docencoding
 'UTF-8'
 -doctitle
-'fluent-reflection 0.0.3 API'
+'fluent-reflection 0.0.5 API'
 -linkoffline
 'http://download.oracle.com/javase/6/docs/api' '/home/tim/workspace/fluent-reflection/target/checkout/target/javadoc-bundle-options'
 -use
 -version
 -windowtitle
-'fluent-reflection 0.0.3 API'
+'fluent-reflection 0.0.5 API'
