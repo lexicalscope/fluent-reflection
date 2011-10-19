@@ -4,7 +4,6 @@ import static com.lexicalscope.fluentreflection.bean.MapBean.bean;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -12,8 +11,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
-
-import com.google.common.collect.Sets;
 
 /*
  * Copyright 2011 Tim Wood
@@ -80,48 +77,6 @@ public class TestMapBean {
         bean.setProperty("my value");
 
         assertThat(map.get("property"), equalTo((Object) "my value"));
-    }
-
-    @Test public void argumentConversionTakesPlaceOnGet() throws Exception {
-        map.put("integer", "14");
-
-        assertThat(bean.getInteger(), equalTo(14));
-    }
-
-    @Test public void argumentConversionCanConvertFromStringToPrimitive() throws Exception {
-        map.put("int", "14");
-
-        assertThat(bean.getInt(), equalTo(14));
-    }
-
-    @Test public void argumentConversionCanConvertFromStringToChar() throws Exception {
-        map.put("char", "c");
-
-        assertThat(bean.getChar(), equalTo('c'));
-    }
-
-    @Test public void argumentConversionTakesPlaceOnGetOfIterable() throws Exception {
-        map.put("iterable", Arrays.asList("14", "15", "16"));
-
-        assertThat(bean.getIterable(), contains(14, 15, 16));
-    }
-
-    @Test public void argumentConversionTakesPlaceOnGetOfCollection() throws Exception {
-        map.put("collection", Arrays.asList("14", "15", "16"));
-
-        assertThat(bean.getCollection(), contains(14, 15, 16));
-    }
-
-    @Test public void argumentConversionTakesPlaceOnGetOfList() throws Exception {
-        map.put("list", Arrays.asList("14", "15", "16"));
-
-        assertThat(bean.getList(), contains(14, 15, 16));
-    }
-
-    @Test public void argumentConversionTakesPlaceOnGetOfSet() throws Exception {
-        map.put("set", Sets.newHashSet("14", "15", "16"));
-
-        assertThat(bean.getSet(), contains(14, 15, 16));
     }
 
     @Test public void mapBeanEqualToItself() throws Exception {

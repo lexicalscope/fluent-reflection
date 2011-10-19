@@ -138,7 +138,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
     }
 
     public final void returnValue(final Object value) {
-        methodInvokationContext.get().result = method().returnType().convertType(value);
+        methodInvokationContext.get().result = value;
     }
 
     public final Object[] args() {

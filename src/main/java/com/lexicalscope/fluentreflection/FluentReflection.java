@@ -2,6 +2,8 @@ package com.lexicalscope.fluentreflection;
 
 import java.lang.reflect.Method;
 
+import com.google.inject.TypeLiteral;
+
 /*
  * Copyright 2011 Tim Wood
  *
@@ -28,6 +30,10 @@ public final class FluentReflection {
         return new ReflectedTypeFactoryImpl().reflect(klass);
     }
 
+    public static <T> ReflectedClass<T> type(final TypeToken<T> token) {
+        return (ReflectedClass<T>) new ReflectedTypeFactoryImpl().reflect(TypeLiteral.get(token
+                .getSuperclassTypeParameter()));
+    }
     public static ReflectedMethod method(final Method method) {
         return new ReflectedTypeFactoryImpl().method(method);
     }

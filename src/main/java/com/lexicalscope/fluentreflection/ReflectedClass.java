@@ -119,26 +119,6 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
     boolean assignableFromObject(Object value);
 
     boolean assignableTo(Class<?> klass);
-    
-    /**
-     * If T is assignable from value, then return the value. Otherwise tries to
-     * create an instance of this type using the provided argument.
-     * 
-     * Will first attempt to find a static method called "valueOf" which returns
-     * this type and takes a single argument compatible with the type of the
-     * value given. If that is not found, tries to find a constructor which
-     * takes an argument of the type of the given value. Otherwise throws a
-     * ClassCastException
-     * 
-     * @param value
-     *            the value to be converted
-     * 
-     * @throws ClassCastException
-     *             if the types cannot be converted
-     * 
-     * @return
-     */
-    T convertType(Object value);
 
     ReflectedClass<?> typeArgument(int typeParameter);
 

@@ -154,10 +154,6 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
         return otherKlass.isAssignableFrom(klass);
     }
 
-    @Override public T convertType(final Object value) {
-        return new ConvertTypeOfObject<T>(reflectedTypeFactory, this).convert(value);
-    }
-
     @Override public boolean canBeBoxed(final Class<?> from) {
         return Primitives.isWrapperType(klass)
                 && Primitives.unwrap(klass).isAssignableFrom(from);
