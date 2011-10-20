@@ -17,11 +17,17 @@ import java.lang.reflect.Method;
 // limitations under the License.
 
 public interface ReflectedMethod extends ReflectedCallable {
+    /**
+     * @return true iff the method is static
+     */
     boolean isStatic();
 
+    /**
+     * @return true iff the method is final
+     */
     boolean isFinal();
 
-    <T> ReflectedQuery<T> returning(Class<T> returnType);
+    <T> ReflectedQuery<T> castResultTo(Class<T> returnType);
 
     /**
      * The name of the method with any prefix of "get", "set" or "is" removed

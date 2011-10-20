@@ -14,30 +14,27 @@ import org.junit.Rule;
 import org.junit.Test;
 
 public abstract class AbstractTestReflectionMatcher<T> {
-    @Rule
-    public final JUnitRuleMockery context = new JUnitRuleMockery();
+    @Rule public final JUnitRuleMockery context = new JUnitRuleMockery();
 
     protected final ReflectedMethod method = context.mock(ReflectedMethod.class);
+    protected final ReflectedConstructor<?> constructor = context.mock(ReflectedConstructor.class);
     protected final ReflectedClass<?> type = context.mock(ReflectedClass.class);
     protected final ReflectedCallable callable = context.mock(ReflectedCallable.class);
     private final Description description = new StringDescription();
 
-    @Test
-    public void matcherCanMatch() {
+    @Test public final void matcherCanMatch() throws Throwable {
         setupMatchingCase();
 
         assertThat(target(), matcher());
     }
 
-    @Test
-    public void matcherCanFailToMatch() {
+    @Test public final void matcherCanFailToMatch() throws Throwable {
         setupFailingCase();
 
         assertThat(failingTarget(), not(matcher()));
     }
 
-    @Test
-    public void matcherDescriptionMakesSense() {
+    @Test public final void matcherDescriptionMakesSense() throws Throwable {
         assertHasDescription(matcher(), hasDescription());
     }
 
@@ -45,14 +42,11 @@ public abstract class AbstractTestReflectionMatcher<T> {
 
     protected abstract Matcher<String> hasDescription();
 
-    protected void setupMatchingCase() {
-    }
+    protected void setupMatchingCase() throws Throwable {}
 
-    protected void setupFailingCase() {
+    protected void setupFailingCase() throws Throwable {}
 
-    }
-
-    protected abstract ReflectionMatcher<T> matcher();
+    protected abstract ReflectionMatcher<T> matcher() throws Throwable;
 
     protected T failingTarget() {
         return target();

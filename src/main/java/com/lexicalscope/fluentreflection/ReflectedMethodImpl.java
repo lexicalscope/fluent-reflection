@@ -111,7 +111,7 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
         return Modifier.isFinal(method.getModifiers());
     }
 
-    @Override public <T> ReflectedQuery<T> returning(final Class<T> returnType) {
+    @Override public <T> ReflectedQuery<T> castResultTo(final Class<T> returnType) {
         return new ReflectedQuery<T>() {
             @Override public T call(final Object... args) {
                 return returnType.cast(ReflectedMethodImpl.this.call(args));

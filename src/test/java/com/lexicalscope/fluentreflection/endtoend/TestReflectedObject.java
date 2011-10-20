@@ -44,53 +44,44 @@ public class TestReflectedObject {
 
     private final ReflectedObject<ExampleObject> reflectedInstance = object(new ExampleObject());
 
-    @Test
-    public void instanceMethodsCanBeCalled() throws Exception {
-        assertThat((Integer) reflectedInstance.method(callableHasName("method")).call(), equalTo(42));
+    @Test public void instanceMethodsCanBeCalled() throws Exception {
+        assertThat((Integer) reflectedInstance.method("method").call(), equalTo(42));
     }
 
-    @Test
-    public void instanceMethodsCanHaveReturnTypeBoundAndBeCalled() throws Exception {
-        assertThat(reflectedInstance.method(callableHasName("method")).returning(Integer.class).call(), equalTo(42));
+    @Test public void instanceMethodsCanHaveReturnTypeBoundAndBeCalled() throws Exception {
+        assertThat(reflectedInstance.method("method").castResultTo(Integer.class).call(), equalTo(42));
     }
 
-    @Test
-    public void instanceMethodsWithArgumentsCanBeCalled() throws Exception {
-        assertThat((Integer) reflectedInstance.method(callableHasName("doubleIt")).call(42), equalTo(84));
+    @Test public void instanceMethodsWithArgumentsCanBeCalled() throws Exception {
+        assertThat((Integer) reflectedInstance.method("doubleIt").call(42), equalTo(84));
     }
 
-    @Test
-    public void instanceMethodArgumentsCountIsCorrect() throws Exception {
-        assertThat(reflectedInstance.method(callableHasName("doubleIt")).argumentCount(), equalTo(1));
+    @Test public void instanceMethodArgumentsCountIsCorrect() throws Exception {
+        assertThat(reflectedInstance.method("doubleIt").argumentCount(), equalTo(1));
     }
 
-    @Test
-    public void instanceMethodArgumentTypeIsCorrect() throws Exception {
+    @Test public void instanceMethodArgumentTypeIsCorrect() throws Exception {
         assertThat(
-                reflectedInstance.method(callableHasName("doubleIt")).argumentTypes(),
+                reflectedInstance.method("doubleIt").argumentTypes(),
                 contains(reflectedTypeReflectingOn(int.class)));
     }
 
-    @Test
-    public void instanceMethodDeclaringTypeIsCorrect() throws Exception {
+    @Test public void instanceMethodDeclaringTypeIsCorrect() throws Exception {
         assertThat(
-                reflectedInstance.method(callableHasName("doubleIt")).declaringClass(),
+                reflectedInstance.method("doubleIt").declaringClass(),
                 reflectedTypeReflectingOn(ExampleObject.class));
     }
 
-    @Test
-    public void staticMethodsAreNotFound() throws Exception {
+    @Test public void staticMethodsAreNotFound() throws Exception {
         assertThat(reflectedInstance.methods(), not(hasItem(methodIsStatic())));
     }
 
-    @Test
-    public void methodsAreFound() throws Exception {
+    @Test public void methodsAreFound() throws Exception {
         assertThat(reflectedInstance.methods(), Matchers.<ReflectedMethod>hasItem(callableHasName("method")));
         assertThat(reflectedInstance.methods(), Matchers.<ReflectedMethod>hasItem(callableHasName("doubleIt")));
     }
 
-    @Test
-    public void classUnderReflectionIsCorrect() throws Exception {
+    @Test public void classUnderReflectionIsCorrect() throws Exception {
         assertThat(reflectedInstance.classUnderReflection(), equalTo(ExampleObject.class));
         assertThat(reflectedInstance.reflectedClass().classUnderReflection(), equalTo(ExampleObject.class));
     }

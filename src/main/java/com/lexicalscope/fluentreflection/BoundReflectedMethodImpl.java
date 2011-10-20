@@ -74,7 +74,7 @@ class BoundReflectedMethodImpl implements ReflectedMethod {
         return method.isFinal();
     }
 
-    @Override public <T> ReflectedQuery<T> returning(final Class<T> returnType) {
+    @Override public <T> ReflectedQuery<T> castResultTo(final Class<T> returnType) {
         return new ReflectedQuery<T>() {
             @Override public T call(final Object... args) {
                 return returnType.cast(BoundReflectedMethodImpl.this.call(args));
