@@ -1,6 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.convert;
+import static com.lexicalscope.fluentreflection.Visibility.visibilityFromModifiers;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -59,5 +60,9 @@ class ReflectedConstructorImpl<T> extends AbstractReflectedCallable implements R
 
     @Override public ReflectedClass<?> returnType() {
         return declaringClass();
+    }
+
+    @Override public Visibility visibility() {
+        return visibilityFromModifiers(constructor.getModifiers());
     }
 }

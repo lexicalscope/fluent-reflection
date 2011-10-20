@@ -39,7 +39,7 @@ import com.google.inject.TypeLiteral;
  * 
  * @param <T>
  */
-final class ReflectedClassImpl<T> implements ReflectedClass<T> {
+class ReflectedClassImpl<T> implements ReflectedClass<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final Class<T> klass;
     private final ReflectedMembers<T> members;
@@ -67,6 +67,10 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
 
     @Override public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
         return members.method(methodMatcher);
+    }
+
+    @Override public ReflectedMethod method(final String name) {
+        return members.method(callableHasName(name));
     }
 
     @Override public ReflectedMethod staticMethod(final Matcher<? super ReflectedMethod> methodMatcher) {
@@ -206,6 +210,6 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
     }
 
     @Override public String toString() {
-        return "ReflectedType<" + typeLiteral + ">";
+        return typeLiteral.toString();
     }
 }

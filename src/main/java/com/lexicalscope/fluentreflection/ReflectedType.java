@@ -62,6 +62,16 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
      */
     ReflectedMethod method(Matcher<? super ReflectedMethod> methodMatcher);
 
+    /**
+     * Find the first method with the given name
+     * 
+     * @param name
+     *            the name of the method
+     * 
+     * @return The method matching the name
+     */
+    ReflectedMethod method(String name);
+
     boolean canBeBoxed(Class<?> from);
 
     boolean canBeUnboxed(Class<?> from);

@@ -34,21 +34,21 @@ public class TestReflectionOnAnnotatedMethods {
         String value();
     }
 
-    class InterfaceWithAnnotatedMethod {
+    class ClassWithAnnotatedMethod {
         @MyAnnotation(value = "my value") void myAnnotatedMethod() {};
         void myNonAnnotatedMethod() {};
     }
 
-    private final ReflectedMethod annotatedMethod = type(InterfaceWithAnnotatedMethod.class).method(
+    private final ReflectedMethod annotatedMethod = type(ClassWithAnnotatedMethod.class).method(
             callableHasName("myAnnotatedMethod"));
 
-    private final ReflectedMethod boundAnnotatedMethod = object(new InterfaceWithAnnotatedMethod()).method(
+    private final ReflectedMethod boundAnnotatedMethod = object(new ClassWithAnnotatedMethod()).method(
             callableHasName("myAnnotatedMethod"));
 
-    private final ReflectedMethod nonAnnotatedMethod = type(InterfaceWithAnnotatedMethod.class).method(
+    private final ReflectedMethod nonAnnotatedMethod = type(ClassWithAnnotatedMethod.class).method(
             callableHasName("myNonAnnotatedMethod"));
 
-    private final ReflectedMethod boundNonAnnotatedMethod = type(InterfaceWithAnnotatedMethod.class).method(
+    private final ReflectedMethod boundNonAnnotatedMethod = type(ClassWithAnnotatedMethod.class).method(
             callableHasName("myNonAnnotatedMethod"));
 
     @Test public void canReadAnnotationOnMethod() throws Exception {

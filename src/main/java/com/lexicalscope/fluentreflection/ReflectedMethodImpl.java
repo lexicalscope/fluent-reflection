@@ -16,14 +16,17 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-import static ch.lambdaj.Lambda.convert;
+import static ch.lambdaj.Lambda.*;
+import static com.lexicalscope.fluentreflection.Visibility.visibilityFromModifiers;
 import static java.lang.String.format;
 import static java.lang.System.arraycopy;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -104,6 +107,10 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
         return Modifier.isStatic(method.getModifiers());
     }
 
+    @Override public boolean isFinal() {
+        return Modifier.isFinal(method.getModifiers());
+    }
+
     @Override public <T> ReflectedQuery<T> returning(final Class<T> returnType) {
         return new ReflectedQuery<T>() {
             @Override public T call(final Object... args) {
@@ -144,21 +151,72 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
         return method;
     }
 
-    @Override public String toString() {
-        return format("%s %s(%s)", method.getReturnType().getSimpleName(), method.getName(), join(convert(
-                method.getParameterTypes(),
-                new ConvertClassToSimpleName())));
+    @Override public Visibility visibility() {
+        return visibilityFromModifiers(method.getModifiers());
     }
 
-    private static String join(final List<String> strings) {
-        final StringBuilder result = new StringBuilder();
-        String separator = "";
-        for (final String string : strings) {
-            result.append(separator);
-            result.append(string);
-            separator = ", ";
+    private List<TypeVariable<Method>> typeParameters()
+    {
+        return Arrays.asList(method.getTypeParameters());
+    }
+
+    @Override public String toString() {
+        final String visibility;
+        if (visibility().toString().isEmpty())
+        {
+            visibility = visibility().toString();
         }
-        return result.toString();
+        else
+        {
+            visibility = visibility().toString() + " ";
+        }
+
+        final String staticModifier;
+        if (isStatic())
+        {
+            staticModifier = "static ";
+        }
+        else
+        {
+            staticModifier = "";
+        }
+
+        final String finalModifier;
+        if (isFinal())
+        {
+            finalModifier = "final ";
+        }
+        else
+        {
+            finalModifier = "";
+        }
+
+        final String typeParameters;
+        if (typeParameters().isEmpty())
+        {
+            typeParameters = "";
+        }
+        else
+        {
+            typeParameters = "<" + joinFrom(typeParameters(), ", ").toString() + "> ";
+        }
+
+        final String arguments;
+        if (argumentCount() > 0) {
+            arguments = joinFrom(argumentTypes(), ", ").toString();
+        } else {
+            arguments = "";
+        }
+
+        return format(
+                "%s%s%s%s%s %s(%s)",
+                visibility,
+                staticModifier,
+                finalModifier,
+                typeParameters,
+                returnType(),
+                method.getName(),
+                arguments);
     }
 
     @Override public boolean equals(final Object obj) {

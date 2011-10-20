@@ -19,6 +19,8 @@ import java.lang.reflect.Method;
 public interface ReflectedMethod extends ReflectedCallable {
     boolean isStatic();
 
+    boolean isFinal();
+
     <T> ReflectedQuery<T> returning(Class<T> returnType);
 
     /**

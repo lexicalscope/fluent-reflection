@@ -14,4 +14,6 @@ public interface ReflectedCallable extends ReflectedAnnotated {
     ReflectedClass<?> returnType();
 
     Object call(Object... args);
+
+    Visibility visibility();
 }

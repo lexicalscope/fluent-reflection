@@ -1,7 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.*;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.methodIsNotStatic;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 
 import java.lang.annotation.Annotation;
 import java.util.List;
@@ -46,6 +46,10 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
 
     @Override public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
         return selectFirst(boundMethods(), methodIsNotStatic().and(methodMatcher));
+    }
+
+    @Override public ReflectedMethod method(final String name) {
+        return method(callableHasName(name));
     }
 
     @Override public List<ReflectedMethod> methods() {
