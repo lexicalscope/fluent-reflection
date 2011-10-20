@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection.endtoend;
 
-import static com.lexicalscope.fluentreflection.FluentReflection.type;
+import static com.lexicalscope.fluentreflection.FluentReflection.*;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -10,6 +10,8 @@ import java.lang.annotation.Retention;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
+
+import com.lexicalscope.fluentreflection.ReflectedMethod;
 
 /*
  * Copyright 2011 Tim Wood
@@ -28,36 +30,44 @@ import org.junit.Test;
  */
 
 public class TestReflectionOnAnnotatedMethods {
-    @Retention(RUNTIME) public @interface MyAnnotation {
+    @Retention(RUNTIME) @interface MyAnnotation {
         String value();
     }
 
-    public interface InterfaceWithAnnotatedMethod {
-        @MyAnnotation(value = "my value") void myAnnotatedMethod();
-        void myNonAnnotatedMethod();
+    class InterfaceWithAnnotatedMethod {
+        @MyAnnotation(value = "my value") void myAnnotatedMethod() {};
+        void myNonAnnotatedMethod() {};
     }
 
+    private final ReflectedMethod annotatedMethod = type(InterfaceWithAnnotatedMethod.class).method(
+            callableHasName("myAnnotatedMethod"));
+
+    private final ReflectedMethod boundAnnotatedMethod = object(new InterfaceWithAnnotatedMethod()).method(
+            callableHasName("myAnnotatedMethod"));
+
+    private final ReflectedMethod nonAnnotatedMethod = type(InterfaceWithAnnotatedMethod.class).method(
+            callableHasName("myNonAnnotatedMethod"));
+
+    private final ReflectedMethod boundNonAnnotatedMethod = type(InterfaceWithAnnotatedMethod.class).method(
+            callableHasName("myNonAnnotatedMethod"));
+
     @Test public void canReadAnnotationOnMethod() throws Exception {
-        assertThat(type(InterfaceWithAnnotatedMethod.class)
-                .method(callableHasName("myAnnotatedMethod"))
-                .annotation(MyAnnotation.class).value(), equalTo("my value"));
+        assertThat(annotatedMethod.annotation(MyAnnotation.class).value(), equalTo("my value"));
+        assertThat(boundAnnotatedMethod.annotation(MyAnnotation.class).value(), equalTo("my value"));
     }
 
     @Test public void whenMethodHasAnnotationAnnotatedWithReturnsTrue() {
-        assertThat(type(InterfaceWithAnnotatedMethod.class)
-                .method(callableHasName("myAnnotatedMethod"))
-                .annotatedWith(MyAnnotation.class), equalTo(true));
+        assertThat(annotatedMethod.annotatedWith(MyAnnotation.class), equalTo(true));
+        assertThat(boundAnnotatedMethod.annotatedWith(MyAnnotation.class), equalTo(true));
     }
 
     @Test public void whenMethodDoesNotHaveAnnotationAnnotatedWithReturnsFalse() {
-        assertThat(type(InterfaceWithAnnotatedMethod.class)
-                .method(callableHasName("myNonAnnotatedMethod"))
-                .annotatedWith(MyAnnotation.class), equalTo(false));
+        assertThat(nonAnnotatedMethod.annotatedWith(MyAnnotation.class), equalTo(false));
+        assertThat(boundNonAnnotatedMethod.annotatedWith(MyAnnotation.class), equalTo(false));
     }
 
     @Test public void matchingAnnotationIsReflectedOn() {
-        assertThat(type(InterfaceWithAnnotatedMethod.class)
-                .method(callableHasName("myAnnotatedMethod"))
-                .annotation(Matchers.anything()), typeHasSimpleName("MyAnnotation"));
+        assertThat(annotatedMethod.annotation(Matchers.anything()), typeHasSimpleName("MyAnnotation"));
+        assertThat(boundAnnotatedMethod.annotation(Matchers.anything()), typeHasSimpleName("MyAnnotation"));
     }
 }
