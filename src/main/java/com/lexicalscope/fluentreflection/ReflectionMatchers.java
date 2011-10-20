@@ -2,7 +2,7 @@ package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.convert;
 import static java.util.Arrays.asList;
-import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.*;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -116,6 +116,10 @@ public class ReflectionMatchers {
 
     public static ReflectionMatcher<ReflectedClass<?>> typeIsInterface() {
         return new MatcherTypeIsInterface();
+    }
+
+    public static ReflectionMatcher<ReflectedClass<?>> typeHasSimpleName(final String simpleName) {
+        return new MatcherTypeHasSimpleName(equalTo(simpleName));
     }
 
     public static ReflectionMatcher<ReflectedClass<?>> anyReflectedType() {

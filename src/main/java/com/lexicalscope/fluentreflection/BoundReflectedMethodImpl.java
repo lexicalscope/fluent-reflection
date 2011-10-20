@@ -7,6 +7,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hamcrest.Matcher;
+
 /*
  * Copyright 2011 Tim Wood
  *
@@ -80,7 +82,7 @@ class BoundReflectedMethodImpl implements ReflectedMethod {
         return method.returnType();
     }
 
-    @Override public ReflectedClass<?> annotation(final ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher) {
+    @Override public ReflectedClass<?> annotation(final Matcher<? super ReflectedClass<?>> annotationMatcher) {
         return method.annotation(annotationMatcher);
     }
 

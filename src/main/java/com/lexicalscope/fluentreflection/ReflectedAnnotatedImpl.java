@@ -8,6 +8,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 import java.util.List;
 
+import org.hamcrest.Matcher;
+
 /*
  * Copyright 2011 Tim Wood
  *
@@ -35,7 +37,7 @@ class ReflectedAnnotatedImpl implements ReflectedAnnotated {
         this.annotatedElement = annotatedElement;
     }
 
-    @Override public ReflectedClass<?> annotation(final ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher) {
+    @Override public ReflectedClass<?> annotation(final Matcher<? super ReflectedClass<?>> annotationMatcher) {
         return selectFirst(annotations(), annotationMatcher);
     }
 

@@ -174,7 +174,11 @@ final class ReflectedClassImpl<T> implements ReflectedClass<T> {
         return klass.getName();
     }
 
-    @Override public ReflectedClass<?> annotation(final ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher) {
+    @Override public String simpleName() {
+        return klass.getSimpleName();
+    }
+
+    @Override public ReflectedClass<?> annotation(final Matcher<? super ReflectedClass<?>> annotationMatcher) {
         return annotatedElement.annotation(annotationMatcher);
     }
 

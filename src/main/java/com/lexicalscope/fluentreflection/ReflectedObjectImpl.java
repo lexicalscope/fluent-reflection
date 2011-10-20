@@ -82,7 +82,7 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
         return reflect.canBeUnboxed(from);
     }
 
-    @Override public ReflectedClass<?> annotation(final ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher) {
+    @Override public ReflectedClass<?> annotation(final Matcher<? super ReflectedClass<?>> annotationMatcher) {
         return reflect.annotation(annotationMatcher);
     }
 

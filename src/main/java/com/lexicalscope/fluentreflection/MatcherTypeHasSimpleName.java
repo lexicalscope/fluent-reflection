@@ -1,7 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import java.lang.annotation.Annotation;
-
+import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
 /*
@@ -20,9 +19,18 @@ import org.hamcrest.Matcher;
  * limitations under the License. 
  */
 
-public interface ReflectedAnnotated {
-    ReflectedClass<?> annotation(Matcher<? super ReflectedClass<?>> annotationMatcher);
+class MatcherTypeHasSimpleName extends ReflectionMatcher<ReflectedClass<?>> {
+    private final Matcher<? super String> simpleNameMatcher;
 
-    boolean annotatedWith(Class<? extends Annotation> annotationClass);
-    <A extends Annotation> A annotation(Class<A> annotationClass);
+    public MatcherTypeHasSimpleName(final Matcher<? super String> simpleNameMatcher) {
+        this.simpleNameMatcher = simpleNameMatcher;
+    }
+
+    @Override public void describeTo(final Description description) {
+        description.appendText("type that has simple name ").appendDescriptionOf(simpleNameMatcher);
+    }
+
+    @Override protected boolean matchesSafely(final ReflectedClass<?> item) {
+        return simpleNameMatcher.matches(item.simpleName());
+    }
 }

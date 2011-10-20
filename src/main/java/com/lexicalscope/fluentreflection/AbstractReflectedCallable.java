@@ -3,6 +3,8 @@ package com.lexicalscope.fluentreflection;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 
+import org.hamcrest.Matcher;
+
 /*
  * Copyright 2011 Tim Wood
  *
@@ -27,7 +29,8 @@ abstract class AbstractReflectedCallable implements ReflectedCallable {
             final AnnotatedElement annotatedElement) {
         this.annotatedElement = new ReflectedAnnotatedImpl(reflectedTypeFactory, annotatedElement);
     }
-    @Override public ReflectedClass<?> annotation(final ReflectionMatcher<? super ReflectedClass<?>> annotationMatcher) {
+
+    @Override public ReflectedClass<?> annotation(final Matcher<? super ReflectedClass<?>> annotationMatcher) {
         return annotatedElement.annotation(annotationMatcher);
     }
 

@@ -132,6 +132,8 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
      */
     String name();
 
+    String simpleName();
+
     /**
      * @return the underlying type instance
      */
