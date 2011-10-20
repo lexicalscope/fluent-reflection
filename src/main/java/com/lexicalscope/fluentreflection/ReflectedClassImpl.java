@@ -16,7 +16,7 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License. 
  */
 
-import static ch.lambdaj.Lambda.convert;
+import static ch.lambdaj.Lambda.*;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static org.hamcrest.Matchers.hasItem;
 
@@ -26,8 +26,6 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import org.hamcrest.Matcher;
-
-import ch.lambdaj.Lambda;
 
 import com.google.common.primitives.Primitives;
 import com.google.inject.TypeLiteral;
@@ -97,7 +95,7 @@ class ReflectedClassImpl<T> implements ReflectedClass<T> {
         if (typeMatcher.matches(this)) {
             return this;
         }
-        return Lambda.selectFirst(members.superclassesAndInterfaces(), typeMatcher);
+        return selectFirst(members.superclassesAndInterfaces(), typeMatcher);
     }
 
     @Override public boolean isType(final ReflectionMatcher<ReflectedClass<?>> typeMatcher) {
