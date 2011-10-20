@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.7552693208430913" branch-rate="0.5927835051546392" lines-covered="645" lines-valid="854" branches-covered="115" branches-valid="194" complexity="1.3259423503325942" version="1.9.4.1" timestamp="1319060326012">
+<coverage line-rate="0.761744966442953" branch-rate="0.5913461538461539" lines-covered="681" lines-valid="894" branches-covered="123" branches-valid="208" complexity="1.3340425531914895" version="1.9.4.1" timestamp="1319144672168">
 	<sources>
 		<source>--source</source>
 		<source>/scratch/hudson/workspace/fluent-reflection/src/main/java</source>
@@ -77,178 +77,190 @@
 				</class>
 			</classes>
 		</package>
-		<package name="com.lexicalscope.fluentreflection" line-rate="0.7134052388289677" branch-rate="0.5616438356164384" complexity="1.3021978021978022">
+		<package name="com.lexicalscope.fluentreflection" line-rate="0.7242380261248186" branch-rate="0.5625" complexity="1.3133159268929504">
 			<classes>
-				<class name="com.lexicalscope.fluentreflection.AbstractReflectedCallable" filename="com/lexicalscope/fluentreflection/AbstractReflectedCallable.java" line-rate="0.6666666666666666" branch-rate="1.0" complexity="1.0">
+				<class name="com.lexicalscope.fluentreflection.AbstractReflectedCallable" filename="com/lexicalscope/fluentreflection/AbstractReflectedCallable.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectedTypeFactory;Ljava/lang/reflect/AnnotatedElement;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="27" hits="540" branch="false"/>
-								<line number="28" hits="540" branch="false"/>
-								<line number="29" hits="540" branch="false"/>
+								<line number="29" hits="572" branch="false"/>
+								<line number="30" hits="572" branch="false"/>
+								<line number="31" hits="572" branch="false"/>
 							</lines>
 						</method>
-						<method name="annotatedWith" signature="(Ljava/lang/Class;)Z" line-rate="0.0" branch-rate="1.0">
+						<method name="annotatedWith" signature="(Ljava/lang/Class;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="35" hits="0" branch="false"/>
+								<line number="38" hits="4" branch="false"/>
 							</lines>
 						</method>
-						<method name="annotation" signature="(Lcom/lexicalscope/fluentreflection/ReflectionMatcher;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
+						<method name="annotation" signature="(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="31" hits="12" branch="false"/>
+								<line number="42" hits="2" branch="false"/>
 							</lines>
 						</method>
-						<method name="annotation" signature="(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;" line-rate="0.0" branch-rate="1.0">
+						<method name="annotation" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="39" hits="0" branch="false"/>
+								<line number="34" hits="14" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="27" hits="540" branch="false"/>
-						<line number="28" hits="540" branch="false"/>
-						<line number="29" hits="540" branch="false"/>
-						<line number="31" hits="12" branch="false"/>
-						<line number="35" hits="0" branch="false"/>
-						<line number="39" hits="0" branch="false"/>
+						<line number="29" hits="572" branch="false"/>
+						<line number="30" hits="572" branch="false"/>
+						<line number="31" hits="572" branch="false"/>
+						<line number="34" hits="14" branch="false"/>
+						<line number="38" hits="4" branch="false"/>
+						<line number="42" hits="2" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.BoundReflectedMethodImpl" filename="com/lexicalscope/fluentreflection/BoundReflectedMethodImpl.java" line-rate="0.8695652173913043" branch-rate="1.0" complexity="1.125">
+				<class name="com.lexicalscope.fluentreflection.BoundReflectedMethodImpl" filename="com/lexicalscope/fluentreflection/BoundReflectedMethodImpl.java" line-rate="0.88" branch-rate="1.0" complexity="1.1111111111111112">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectedMethod;Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="32" hits="418" branch="false"/>
-								<line number="33" hits="418" branch="true" condition-coverage="100% (2/2)">
+								<line number="34" hits="426" branch="false"/>
+								<line number="35" hits="426" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="34" hits="1" branch="false"/>
-								<line number="36" hits="417" branch="false"/>
-								<line number="37" hits="417" branch="false"/>
-								<line number="38" hits="417" branch="false"/>
+								<line number="36" hits="1" branch="false"/>
+								<line number="38" hits="425" branch="false"/>
+								<line number="39" hits="425" branch="false"/>
+								<line number="40" hits="425" branch="false"/>
 							</lines>
 						</method>
-						<method name="annotatedWith" signature="(Ljava/lang/Class;)Z" line-rate="0.0" branch-rate="1.0">
+						<method name="annotatedWith" signature="(Ljava/lang/Class;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="88" hits="0" branch="false"/>
+								<line number="98" hits="1" branch="false"/>
 							</lines>
 						</method>
-						<method name="annotation" signature="(Lcom/lexicalscope/fluentreflection/ReflectionMatcher;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
+						<method name="annotation" signature="(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="84" hits="12" branch="false"/>
+								<line number="102" hits="1" branch="false"/>
 							</lines>
 						</method>
-						<method name="annotation" signature="(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;" line-rate="0.0" branch-rate="1.0">
+						<method name="annotation" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="92" hits="0" branch="false"/>
+								<line number="94" hits="13" branch="false"/>
 							</lines>
 						</method>
 						<method name="argumentCount" signature="()I" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="41" hits="198" branch="false"/>
+								<line number="43" hits="198" branch="false"/>
 							</lines>
 						</method>
 						<method name="argumentTypes" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="45" hits="96" branch="false"/>
+								<line number="47" hits="96" branch="false"/>
 							</lines>
 						</method>
 						<method name="call" signature="([Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="49" hits="49" branch="false"/>
-								<line number="50" hits="49" branch="false"/>
 								<line number="51" hits="49" branch="false"/>
 								<line number="52" hits="49" branch="false"/>
+								<line number="53" hits="49" branch="false"/>
+								<line number="54" hits="49" branch="false"/>
 							</lines>
 						</method>
 						<method name="declaringClass" signature="()Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="56" hits="1" branch="false"/>
+								<line number="58" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="getName" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="60" hits="414" branch="false"/>
+								<line number="62" hits="422" branch="false"/>
+							</lines>
+						</method>
+						<method name="isFinal" signature="()Z" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="74" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="isStatic" signature="()Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="64" hits="12" branch="false"/>
+								<line number="66" hits="20" branch="false"/>
 							</lines>
 						</method>
 						<method name="methodUnderReflection" signature="()Ljava/lang/reflect/Method;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="100" hits="0" branch="false"/>
+								<line number="110" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="propertyName" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="96" hits="181" branch="false"/>
+								<line number="106" hits="181" branch="false"/>
 							</lines>
 						</method>
 						<method name="returnType" signature="()Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="80" hits="199" branch="false"/>
+								<line number="90" hits="199" branch="false"/>
 							</lines>
 						</method>
 						<method name="returning" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectedQuery;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="68" hits="1" branch="false"/>
+								<line number="78" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="76" hits="1" branch="false"/>
+								<line number="86" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="visibility" signature="()Lcom/lexicalscope/fluentreflection/Visibility;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="70" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="32" hits="418" branch="false"/>
-						<line number="33" hits="418" branch="true" condition-coverage="100% (2/2)">
+						<line number="34" hits="426" branch="false"/>
+						<line number="35" hits="426" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="34" hits="1" branch="false"/>
-						<line number="36" hits="417" branch="false"/>
-						<line number="37" hits="417" branch="false"/>
-						<line number="38" hits="417" branch="false"/>
-						<line number="41" hits="198" branch="false"/>
-						<line number="45" hits="96" branch="false"/>
-						<line number="49" hits="49" branch="false"/>
-						<line number="50" hits="49" branch="false"/>
+						<line number="36" hits="1" branch="false"/>
+						<line number="38" hits="425" branch="false"/>
+						<line number="39" hits="425" branch="false"/>
+						<line number="40" hits="425" branch="false"/>
+						<line number="43" hits="198" branch="false"/>
+						<line number="47" hits="96" branch="false"/>
 						<line number="51" hits="49" branch="false"/>
 						<line number="52" hits="49" branch="false"/>
-						<line number="56" hits="1" branch="false"/>
-						<line number="60" hits="414" branch="false"/>
-						<line number="64" hits="12" branch="false"/>
-						<line number="68" hits="1" branch="false"/>
-						<line number="76" hits="1" branch="false"/>
-						<line number="80" hits="199" branch="false"/>
-						<line number="84" hits="12" branch="false"/>
-						<line number="88" hits="0" branch="false"/>
-						<line number="92" hits="0" branch="false"/>
-						<line number="96" hits="181" branch="false"/>
-						<line number="100" hits="0" branch="false"/>
+						<line number="53" hits="49" branch="false"/>
+						<line number="54" hits="49" branch="false"/>
+						<line number="58" hits="1" branch="false"/>
+						<line number="62" hits="422" branch="false"/>
+						<line number="66" hits="20" branch="false"/>
+						<line number="70" hits="0" branch="false"/>
+						<line number="74" hits="0" branch="false"/>
+						<line number="78" hits="1" branch="false"/>
+						<line number="86" hits="1" branch="false"/>
+						<line number="90" hits="199" branch="false"/>
+						<line number="94" hits="13" branch="false"/>
+						<line number="98" hits="1" branch="false"/>
+						<line number="102" hits="1" branch="false"/>
+						<line number="106" hits="181" branch="false"/>
+						<line number="110" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.BoundReflectedMethodImpl$1" filename="com/lexicalscope/fluentreflection/BoundReflectedMethodImpl.java" line-rate="1.0" branch-rate="1.0" complexity="1.125">
+				<class name="com.lexicalscope.fluentreflection.BoundReflectedMethodImpl$1" filename="com/lexicalscope/fluentreflection/BoundReflectedMethodImpl.java" line-rate="1.0" branch-rate="1.0" complexity="1.1111111111111112">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/BoundReflectedMethodImpl;Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="68" hits="1" branch="false"/>
+								<line number="78" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="call" signature="([Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="70" hits="1" branch="false"/>
+								<line number="80" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="68" hits="1" branch="false"/>
-						<line number="70" hits="1" branch="false"/>
+						<line number="78" hits="1" branch="false"/>
+						<line number="80" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.ConstructorNotFoundRuntimeException" filename="com/lexicalscope/fluentreflection/ConstructorNotFoundRuntimeException.java" line-rate="0.0" branch-rate="1.0" complexity="1.0">
@@ -305,46 +317,46 @@
 						</method>
 						<method name="convert" signature="(Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="23" hits="20" branch="false"/>
+								<line number="23" hits="30" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Ljava/lang/annotation/Annotation;)Ljava/lang/Class;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="26" hits="8" branch="false"/>
+								<line number="26" hits="12" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="23" hits="20" branch="false"/>
-						<line number="26" hits="8" branch="false"/>
+						<line number="23" hits="30" branch="false"/>
+						<line number="26" hits="12" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.ConvertClassToReflectedType" filename="com/lexicalscope/fluentreflection/ConvertClassToReflectedType.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectedTypeFactory;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="24" hits="13" branch="false"/>
-								<line number="25" hits="13" branch="false"/>
-								<line number="26" hits="13" branch="false"/>
+								<line number="24" hits="19" branch="false"/>
+								<line number="25" hits="19" branch="false"/>
+								<line number="26" hits="19" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="30" hits="9" branch="false"/>
+								<line number="30" hits="13" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="21" hits="8" branch="false"/>
+								<line number="21" hits="12" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="21" hits="8" branch="false"/>
-						<line number="24" hits="13" branch="false"/>
-						<line number="25" hits="13" branch="false"/>
-						<line number="26" hits="13" branch="false"/>
-						<line number="30" hits="9" branch="false"/>
+						<line number="21" hits="12" branch="false"/>
+						<line number="24" hits="19" branch="false"/>
+						<line number="25" hits="19" branch="false"/>
+						<line number="26" hits="19" branch="false"/>
+						<line number="30" hits="13" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.ConvertClassToReflectedTypeAssignableMatcher" filename="com/lexicalscope/fluentreflection/ConvertClassToReflectedTypeAssignableMatcher.java" line-rate="1.0" branch-rate="1.0" complexity="3.0">
@@ -403,7 +415,7 @@
 						<line number="12" hits="1" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.ConvertClassToSimpleName" filename="com/lexicalscope/fluentreflection/ConvertClassToSimpleName.java" line-rate="0.25" branch-rate="0.0" complexity="3.0">
+				<class name="com.lexicalscope.fluentreflection.ConvertClassToSimpleName" filename="com/lexicalscope/fluentreflection/ConvertClassToSimpleName.java" line-rate="0.0" branch-rate="0.0" complexity="3.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -420,14 +432,14 @@
 								<line number="11" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="convert" signature="(Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
+						<method name="convert" signature="(Ljava/lang/Object;)Ljava/lang/Object;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="5" hits="2" branch="false"/>
+								<line number="5" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="5" hits="2" branch="false"/>
+						<line number="5" hits="0" branch="false"/>
 						<line number="8" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
@@ -513,40 +525,40 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="24" hits="105" branch="false"/>
-								<line number="25" hits="105" branch="false"/>
-								<line number="26" hits="105" branch="false"/>
+								<line number="24" hits="109" branch="false"/>
+								<line number="25" hits="109" branch="false"/>
+								<line number="26" hits="109" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Lcom/lexicalscope/fluentreflection/ReflectedMethod;)Lcom/lexicalscope/fluentreflection/ReflectedMethod;" line-rate="0.6666666666666666" branch-rate="0.5">
 							<lines>
-								<line number="30" hits="394" branch="true" condition-coverage="50% (1/2)">
+								<line number="30" hits="402" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
 								<line number="31" hits="0" branch="false"/>
-								<line number="33" hits="394" branch="false"/>
+								<line number="33" hits="402" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="21" hits="394" branch="false"/>
+								<line number="21" hits="402" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="21" hits="394" branch="false"/>
-						<line number="24" hits="105" branch="false"/>
-						<line number="25" hits="105" branch="false"/>
-						<line number="26" hits="105" branch="false"/>
-						<line number="30" hits="394" branch="true" condition-coverage="50% (1/2)">
+						<line number="21" hits="402" branch="false"/>
+						<line number="24" hits="109" branch="false"/>
+						<line number="25" hits="109" branch="false"/>
+						<line number="26" hits="109" branch="false"/>
+						<line number="30" hits="402" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
 						<line number="31" hits="0" branch="false"/>
-						<line number="33" hits="394" branch="false"/>
+						<line number="33" hits="402" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.ConvertReflectedTypeToClass" filename="com/lexicalscope/fluentreflection/ConvertReflectedTypeToClass.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -652,7 +664,7 @@
 						</method>
 						<method name="object" signature="(Ljava/lang/Object;)Lcom/lexicalscope/fluentreflection/ReflectedObject;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="42" hits="59" branch="false"/>
+								<line number="42" hits="63" branch="false"/>
 							</lines>
 						</method>
 						<method name="type" signature="(Lcom/lexicalscope/fluentreflection/TypeToken;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="0.0" branch-rate="1.0">
@@ -662,16 +674,16 @@
 						</method>
 						<method name="type" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="30" hits="53" branch="false"/>
+								<line number="30" hits="65" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
 						<line number="27" hits="0" branch="false"/>
-						<line number="30" hits="53" branch="false"/>
+						<line number="30" hits="65" branch="false"/>
 						<line number="34" hits="0" branch="false"/>
 						<line number="38" hits="4" branch="false"/>
-						<line number="42" hits="59" branch="false"/>
+						<line number="42" hits="63" branch="false"/>
 						<line number="46" hits="20" branch="false"/>
 					</lines>
 				</class>
@@ -839,14 +851,14 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/util/List;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="34" hits="302" branch="false"/>
-								<line number="35" hits="302" branch="false"/>
-								<line number="36" hits="302" branch="false"/>
+								<line number="34" hits="306" branch="false"/>
+								<line number="35" hits="306" branch="false"/>
+								<line number="36" hits="306" branch="false"/>
 							</lines>
 						</method>
 						<method name="andOf" signature="(Ljava/util/List;)Lcom/lexicalscope/fluentreflection/MatcherAnd;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="69" hits="302" branch="false"/>
+								<line number="69" hits="306" branch="false"/>
 							</lines>
 						</method>
 						<method name="describeTo" signature="(Lorg/hamcrest/Description;)V" line-rate="1.0" branch-rate="1.0">
@@ -868,39 +880,39 @@
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="43" hits="661" branch="true" condition-coverage="100% (2/2)">
+								<line number="43" hits="669" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="44" hits="1100" branch="true" condition-coverage="100% (2/2)">
+								<line number="44" hits="1116" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="45" hits="271" branch="false"/>
-								<line number="47" hits="829" branch="false"/>
-								<line number="48" hits="390" branch="false"/>
+								<line number="45" hits="275" branch="false"/>
+								<line number="47" hits="841" branch="false"/>
+								<line number="48" hits="394" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="34" hits="302" branch="false"/>
-						<line number="35" hits="302" branch="false"/>
-						<line number="36" hits="302" branch="false"/>
-						<line number="43" hits="661" branch="true" condition-coverage="100% (2/2)">
+						<line number="34" hits="306" branch="false"/>
+						<line number="35" hits="306" branch="false"/>
+						<line number="36" hits="306" branch="false"/>
+						<line number="43" hits="669" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="44" hits="1100" branch="true" condition-coverage="100% (2/2)">
+						<line number="44" hits="1116" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="45" hits="271" branch="false"/>
-						<line number="47" hits="829" branch="false"/>
-						<line number="48" hits="390" branch="false"/>
+						<line number="45" hits="275" branch="false"/>
+						<line number="47" hits="841" branch="false"/>
+						<line number="48" hits="394" branch="false"/>
 						<line number="53" hits="5" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
@@ -914,7 +926,7 @@
 						</line>
 						<line number="56" hits="1" branch="false"/>
 						<line number="59" hits="2" branch="false"/>
-						<line number="69" hits="302" branch="false"/>
+						<line number="69" hits="306" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.MatcherAnyReflectedType" filename="com/lexicalscope/fluentreflection/MatcherAnyReflectedType.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -1313,36 +1325,36 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="24" hits="65" branch="false"/>
-								<line number="25" hits="65" branch="false"/>
-								<line number="26" hits="65" branch="false"/>
+								<line number="24" hits="81" branch="false"/>
+								<line number="25" hits="81" branch="false"/>
+								<line number="26" hits="81" branch="false"/>
 							</lines>
 						</method>
 						<method name="describeTo" signature="(Lorg/hamcrest/Description;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="35" hits="1" branch="false"/>
-								<line number="36" hits="1" branch="false"/>
+								<line number="33" hits="1" branch="false"/>
+								<line number="34" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedCallable;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="30" hits="172" branch="false"/>
+								<line number="29" hits="196" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="21" hits="172" branch="false"/>
+								<line number="21" hits="196" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="21" hits="172" branch="false"/>
-						<line number="24" hits="65" branch="false"/>
-						<line number="25" hits="65" branch="false"/>
-						<line number="26" hits="65" branch="false"/>
-						<line number="30" hits="172" branch="false"/>
-						<line number="35" hits="1" branch="false"/>
-						<line number="36" hits="1" branch="false"/>
+						<line number="21" hits="196" branch="false"/>
+						<line number="24" hits="81" branch="false"/>
+						<line number="25" hits="81" branch="false"/>
+						<line number="26" hits="81" branch="false"/>
+						<line number="29" hits="196" branch="false"/>
+						<line number="33" hits="1" branch="false"/>
+						<line number="34" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.MatcherCallableWithArguments" filename="com/lexicalscope/fluentreflection/MatcherCallableWithArguments.java" line-rate="0.0" branch-rate="0.0" complexity="2.25">
@@ -1475,18 +1487,18 @@
 						</method>
 						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="8" hits="621" branch="false"/>
+								<line number="8" hits="637" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="5" hits="737" branch="false"/>
+								<line number="5" hits="761" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="5" hits="737" branch="false"/>
-						<line number="8" hits="621" branch="false"/>
+						<line number="5" hits="761" branch="false"/>
+						<line number="8" hits="637" branch="false"/>
 						<line number="13" hits="0" branch="false"/>
 						<line number="14" hits="0" branch="false"/>
 					</lines>
@@ -1577,9 +1589,9 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="12" hits="148" branch="false"/>
-								<line number="13" hits="148" branch="false"/>
-								<line number="14" hits="148" branch="false"/>
+								<line number="12" hits="152" branch="false"/>
+								<line number="13" hits="152" branch="false"/>
+								<line number="14" hits="152" branch="false"/>
 							</lines>
 						</method>
 						<method name="describeTo" signature="(Lorg/hamcrest/Description;)V" line-rate="1.0" branch-rate="1.0">
@@ -1607,21 +1619,21 @@
 						</method>
 						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedClass;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="18" hits="209" branch="false"/>
+								<line number="18" hits="211" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="9" hits="209" branch="false"/>
+								<line number="9" hits="211" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="9" hits="209" branch="false"/>
-						<line number="12" hits="148" branch="false"/>
-						<line number="13" hits="148" branch="false"/>
-						<line number="14" hits="148" branch="false"/>
-						<line number="18" hits="209" branch="false"/>
+						<line number="9" hits="211" branch="false"/>
+						<line number="12" hits="152" branch="false"/>
+						<line number="13" hits="152" branch="false"/>
+						<line number="14" hits="152" branch="false"/>
+						<line number="18" hits="211" branch="false"/>
 						<line number="23" hits="2" branch="false"/>
 						<line number="24" hits="2" branch="false"/>
 						<line number="28" hits="0" branch="true" condition-coverage="0% (0/4)">
@@ -1859,6 +1871,42 @@
 						<line number="18" hits="1" branch="false"/>
 					</lines>
 				</class>
+				<class name="com.lexicalscope.fluentreflection.MatcherTypeHasSimpleName" filename="com/lexicalscope/fluentreflection/MatcherTypeHasSimpleName.java" line-rate="0.7142857142857143" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Lorg/hamcrest/Matcher;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="25" hits="2" branch="false"/>
+								<line number="26" hits="2" branch="false"/>
+								<line number="27" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="describeTo" signature="(Lorg/hamcrest/Description;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="30" hits="0" branch="false"/>
+								<line number="31" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedClass;)Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="34" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="22" hits="2" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="22" hits="2" branch="false"/>
+						<line number="25" hits="2" branch="false"/>
+						<line number="26" hits="2" branch="false"/>
+						<line number="27" hits="2" branch="false"/>
+						<line number="30" hits="0" branch="false"/>
+						<line number="31" hits="0" branch="false"/>
+						<line number="34" hits="2" branch="false"/>
+					</lines>
+				</class>
 				<class name="com.lexicalscope.fluentreflection.MatcherTypeIsInterface" filename="com/lexicalscope/fluentreflection/MatcherTypeIsInterface.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
@@ -1957,46 +2005,46 @@
 					<lines>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.ReflectedAnnotatedImpl" filename="com/lexicalscope/fluentreflection/ReflectedAnnotatedImpl.java" line-rate="0.75" branch-rate="1.0" complexity="1.0">
+				<class name="com.lexicalscope.fluentreflection.ReflectedAnnotatedImpl" filename="com/lexicalscope/fluentreflection/ReflectedAnnotatedImpl.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectedTypeFactory;Ljava/lang/reflect/AnnotatedElement;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="33" hits="1545" branch="false"/>
-								<line number="34" hits="1545" branch="false"/>
-								<line number="35" hits="1545" branch="false"/>
-								<line number="36" hits="1545" branch="false"/>
+								<line number="35" hits="1631" branch="false"/>
+								<line number="36" hits="1631" branch="false"/>
+								<line number="37" hits="1631" branch="false"/>
+								<line number="38" hits="1631" branch="false"/>
 							</lines>
 						</method>
-						<method name="annotatedWith" signature="(Ljava/lang/Class;)Z" line-rate="0.0" branch-rate="1.0">
+						<method name="annotatedWith" signature="(Ljava/lang/Class;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="43" hits="0" branch="false"/>
+								<line number="45" hits="4" branch="false"/>
 							</lines>
 						</method>
-						<method name="annotation" signature="(Lcom/lexicalscope/fluentreflection/ReflectionMatcher;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
+						<method name="annotation" signature="(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="39" hits="12" branch="false"/>
+								<line number="49" hits="2" branch="false"/>
 							</lines>
 						</method>
-						<method name="annotation" signature="(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;" line-rate="0.0" branch-rate="1.0">
+						<method name="annotation" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="47" hits="0" branch="false"/>
+								<line number="41" hits="14" branch="false"/>
 							</lines>
 						</method>
 						<method name="annotations" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="51" hits="12" branch="false"/>
+								<line number="53" hits="18" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="33" hits="1545" branch="false"/>
-						<line number="34" hits="1545" branch="false"/>
-						<line number="35" hits="1545" branch="false"/>
-						<line number="36" hits="1545" branch="false"/>
-						<line number="39" hits="12" branch="false"/>
-						<line number="43" hits="0" branch="false"/>
-						<line number="47" hits="0" branch="false"/>
-						<line number="51" hits="12" branch="false"/>
+						<line number="35" hits="1631" branch="false"/>
+						<line number="36" hits="1631" branch="false"/>
+						<line number="37" hits="1631" branch="false"/>
+						<line number="38" hits="1631" branch="false"/>
+						<line number="41" hits="14" branch="false"/>
+						<line number="45" hits="4" branch="false"/>
+						<line number="49" hits="2" branch="false"/>
+						<line number="53" hits="18" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.ReflectedCallable" filename="com/lexicalscope/fluentreflection/ReflectedCallable.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -2011,48 +2059,48 @@
 					<lines>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.ReflectedClassImpl" filename="com/lexicalscope/fluentreflection/ReflectedClassImpl.java" line-rate="0.5306122448979592" branch-rate="0.10714285714285714" complexity="1.5161290322580645">
+				<class name="com.lexicalscope.fluentreflection.ReflectedClassImpl" filename="com/lexicalscope/fluentreflection/ReflectedClassImpl.java" line-rate="0.5490196078431373" branch-rate="0.10714285714285714" complexity="1.4848484848484849">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectedTypeFactory;Lcom/lexicalscope/fluentreflection/internal/guice/$TypeLiteral;Lcom/lexicalscope/fluentreflection/ReflectedMembers;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="52" hits="1005" branch="false"/>
-								<line number="53" hits="1005" branch="false"/>
-								<line number="54" hits="1005" branch="false"/>
-								<line number="55" hits="1005" branch="false"/>
-								<line number="56" hits="1005" branch="false"/>
-								<line number="57" hits="1005" branch="false"/>
-								<line number="58" hits="1005" branch="false"/>
+								<line number="52" hits="1059" branch="false"/>
+								<line number="53" hits="1059" branch="false"/>
+								<line number="54" hits="1059" branch="false"/>
+								<line number="55" hits="1059" branch="false"/>
+								<line number="56" hits="1059" branch="false"/>
+								<line number="57" hits="1059" branch="false"/>
+								<line number="58" hits="1059" branch="false"/>
 							</lines>
 						</method>
 						<method name="annotatedWith" signature="(Ljava/lang/Class;)Z" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="182" hits="0" branch="false"/>
-							</lines>
-						</method>
-						<method name="annotation" signature="(Lcom/lexicalscope/fluentreflection/ReflectionMatcher;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="178" hits="0" branch="false"/>
+								<line number="190" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="annotation" signature="(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="194" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="annotation" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="0.0" branch-rate="1.0">
 							<lines>
 								<line number="186" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="asType" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="0.0" branch-rate="0.0">
 							<lines>
-								<line number="93" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="97" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="94" hits="0" branch="false"/>
-								<line number="96" hits="0" branch="false"/>
+								<line number="98" hits="0" branch="false"/>
+								<line number="100" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="assignableFromObject" signature="(Ljava/lang/Object;)Z" line-rate="0.0" branch-rate="0.0">
 							<lines>
-								<line number="137" hits="0" branch="true" condition-coverage="0% (0/8)">
+								<line number="141" hits="0" branch="true" condition-coverage="0% (0/8)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 										<condition number="1" type="jump" coverage="0%"/>
@@ -2064,23 +2112,23 @@
 						</method>
 						<method name="assignableTo" signature="(Ljava/lang/Class;)Z" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="144" hits="0" branch="false"/>
+								<line number="148" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="boxedType" signature="()Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="0.0" branch-rate="0.0">
 							<lines>
-								<line number="158" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="162" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="159" hits="0" branch="false"/>
-								<line number="161" hits="0" branch="false"/>
+								<line number="163" hits="0" branch="false"/>
+								<line number="165" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="canBeBoxed" signature="(Ljava/lang/Class;)Z" line-rate="0.0" branch-rate="0.0">
 							<lines>
-								<line number="148" hits="0" branch="true" condition-coverage="0% (0/4)">
+								<line number="152" hits="0" branch="true" condition-coverage="0% (0/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 										<condition number="1" type="jump" coverage="0%"/>
@@ -2090,7 +2138,7 @@
 						</method>
 						<method name="canBeUnboxed" signature="(Ljava/lang/Class;)Z" line-rate="0.0" branch-rate="0.0">
 							<lines>
-								<line number="153" hits="0" branch="true" condition-coverage="0% (0/4)">
+								<line number="157" hits="0" branch="true" condition-coverage="0% (0/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 										<condition number="1" type="jump" coverage="0%"/>
@@ -2100,93 +2148,98 @@
 						</method>
 						<method name="classUnderReflection" signature="()Ljava/lang/Class;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="61" hits="245" branch="false"/>
+								<line number="61" hits="247" branch="false"/>
 							</lines>
 						</method>
 						<method name="construct" signature="([Ljava/lang/Object;)Lcom/lexicalscope/fluentreflection/ReflectedObject;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="122" hits="1" branch="false"/>
-								<line number="123" hits="1" branch="false"/>
+								<line number="126" hits="1" branch="false"/>
+								<line number="127" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="constructRaw" signature="([Ljava/lang/Object;)Ljava/lang/Object;" line-rate="0.75" branch-rate="0.5">
 							<lines>
-								<line number="111" hits="8" branch="false"/>
-								<line number="114" hits="8" branch="true" condition-coverage="50% (1/2)">
+								<line number="115" hits="8" branch="false"/>
+								<line number="118" hits="8" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="115" hits="0" branch="false"/>
-								<line number="118" hits="8" branch="false"/>
+								<line number="119" hits="0" branch="false"/>
+								<line number="122" hits="8" branch="false"/>
 							</lines>
 						</method>
 						<method name="constructor" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectedConstructor;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="133" hits="8" branch="false"/>
+								<line number="137" hits="8" branch="false"/>
 							</lines>
 						</method>
 						<method name="constructors" signature="(Lorg/hamcrest/Matcher;)Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="128" hits="1" branch="false"/>
+								<line number="132" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="declaredMethods" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="81" hits="29" branch="false"/>
+								<line number="85" hits="29" branch="false"/>
 							</lines>
 						</method>
 						<method name="equals" signature="(Ljava/lang/Object;)Z" line-rate="0.6666666666666666" branch-rate="0.5">
 							<lines>
-								<line number="194" hits="2" branch="true" condition-coverage="50% (2/4)">
+								<line number="202" hits="2" branch="true" condition-coverage="50% (2/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 										<condition number="1" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="195" hits="2" branch="false"/>
-								<line number="197" hits="0" branch="false"/>
+								<line number="203" hits="2" branch="false"/>
+								<line number="205" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="hashCode" signature="()I" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="201" hits="0" branch="false"/>
+								<line number="209" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="interfaces" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="85" hits="4" branch="false"/>
+								<line number="89" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="isInterface" signature="()Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="107" hits="6" branch="false"/>
+								<line number="111" hits="6" branch="false"/>
 							</lines>
 						</method>
 						<method name="isPrimitive" signature="()Z" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="165" hits="0" branch="false"/>
+								<line number="169" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="isType" signature="(Lcom/lexicalscope/fluentreflection/ReflectionMatcher;)Z" line-rate="0.0" branch-rate="0.0">
 							<lines>
-								<line number="100" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="104" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="101" hits="0" branch="false"/>
-								<line number="103" hits="0" branch="false"/>
+								<line number="105" hits="0" branch="false"/>
+								<line number="107" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="method" signature="(Ljava/lang/String;)Lcom/lexicalscope/fluentreflection/ReflectedMethod;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="73" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="method" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectedMethod;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="69" hits="13" branch="false"/>
+								<line number="69" hits="25" branch="false"/>
 							</lines>
 						</method>
 						<method name="methods" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="77" hits="106" branch="false"/>
+								<line number="81" hits="110" branch="false"/>
 							</lines>
 						</method>
 						<method name="methods" signature="(Lorg/hamcrest/Matcher;)Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
@@ -2196,79 +2249,85 @@
 						</method>
 						<method name="name" signature="()Ljava/lang/String;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="174" hits="0" branch="false"/>
+								<line number="178" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="simpleName" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="182" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="staticMethod" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectedMethod;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="73" hits="4" branch="false"/>
+								<line number="77" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="superclasses" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="89" hits="1" branch="false"/>
+								<line number="93" hits="1" branch="false"/>
 							</lines>
 						</method>
-						<method name="toString" signature="()Ljava/lang/String;" line-rate="0.0" branch-rate="1.0">
+						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="205" hits="0" branch="false"/>
+								<line number="213" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="type" signature="()Ljava/lang/reflect/Type;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="190" hits="6" branch="false"/>
+								<line number="198" hits="6" branch="false"/>
 							</lines>
 						</method>
 						<method name="typeArgument" signature="(I)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="169" hits="0" branch="false"/>
+								<line number="173" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="52" hits="1005" branch="false"/>
-						<line number="53" hits="1005" branch="false"/>
-						<line number="54" hits="1005" branch="false"/>
-						<line number="55" hits="1005" branch="false"/>
-						<line number="56" hits="1005" branch="false"/>
-						<line number="57" hits="1005" branch="false"/>
-						<line number="58" hits="1005" branch="false"/>
-						<line number="61" hits="245" branch="false"/>
+						<line number="52" hits="1059" branch="false"/>
+						<line number="53" hits="1059" branch="false"/>
+						<line number="54" hits="1059" branch="false"/>
+						<line number="55" hits="1059" branch="false"/>
+						<line number="56" hits="1059" branch="false"/>
+						<line number="57" hits="1059" branch="false"/>
+						<line number="58" hits="1059" branch="false"/>
+						<line number="61" hits="247" branch="false"/>
 						<line number="65" hits="14" branch="false"/>
-						<line number="69" hits="13" branch="false"/>
-						<line number="73" hits="4" branch="false"/>
-						<line number="77" hits="106" branch="false"/>
-						<line number="81" hits="29" branch="false"/>
-						<line number="85" hits="4" branch="false"/>
-						<line number="89" hits="1" branch="false"/>
-						<line number="93" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="69" hits="25" branch="false"/>
+						<line number="73" hits="0" branch="false"/>
+						<line number="77" hits="4" branch="false"/>
+						<line number="81" hits="110" branch="false"/>
+						<line number="85" hits="29" branch="false"/>
+						<line number="89" hits="4" branch="false"/>
+						<line number="93" hits="1" branch="false"/>
+						<line number="97" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="94" hits="0" branch="false"/>
-						<line number="96" hits="0" branch="false"/>
-						<line number="100" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="98" hits="0" branch="false"/>
+						<line number="100" hits="0" branch="false"/>
+						<line number="104" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="101" hits="0" branch="false"/>
-						<line number="103" hits="0" branch="false"/>
-						<line number="107" hits="6" branch="false"/>
-						<line number="111" hits="8" branch="false"/>
-						<line number="114" hits="8" branch="true" condition-coverage="50% (1/2)">
+						<line number="105" hits="0" branch="false"/>
+						<line number="107" hits="0" branch="false"/>
+						<line number="111" hits="6" branch="false"/>
+						<line number="115" hits="8" branch="false"/>
+						<line number="118" hits="8" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="115" hits="0" branch="false"/>
-						<line number="118" hits="8" branch="false"/>
-						<line number="122" hits="1" branch="false"/>
-						<line number="123" hits="1" branch="false"/>
-						<line number="128" hits="1" branch="false"/>
-						<line number="133" hits="8" branch="false"/>
-						<line number="137" hits="0" branch="true" condition-coverage="0% (0/8)">
+						<line number="119" hits="0" branch="false"/>
+						<line number="122" hits="8" branch="false"/>
+						<line number="126" hits="1" branch="false"/>
+						<line number="127" hits="1" branch="false"/>
+						<line number="132" hits="1" branch="false"/>
+						<line number="137" hits="8" branch="false"/>
+						<line number="141" hits="0" branch="true" condition-coverage="0% (0/8)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 								<condition number="1" type="jump" coverage="0%"/>
@@ -2276,43 +2335,44 @@
 								<condition number="3" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="144" hits="0" branch="false"/>
-						<line number="148" hits="0" branch="true" condition-coverage="0% (0/4)">
+						<line number="148" hits="0" branch="false"/>
+						<line number="152" hits="0" branch="true" condition-coverage="0% (0/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 								<condition number="1" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="153" hits="0" branch="true" condition-coverage="0% (0/4)">
+						<line number="157" hits="0" branch="true" condition-coverage="0% (0/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 								<condition number="1" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="158" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="162" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="159" hits="0" branch="false"/>
-						<line number="161" hits="0" branch="false"/>
+						<line number="163" hits="0" branch="false"/>
 						<line number="165" hits="0" branch="false"/>
 						<line number="169" hits="0" branch="false"/>
-						<line number="174" hits="0" branch="false"/>
+						<line number="173" hits="0" branch="false"/>
 						<line number="178" hits="0" branch="false"/>
-						<line number="182" hits="0" branch="false"/>
+						<line number="182" hits="2" branch="false"/>
 						<line number="186" hits="0" branch="false"/>
-						<line number="190" hits="6" branch="false"/>
-						<line number="194" hits="2" branch="true" condition-coverage="50% (2/4)">
+						<line number="190" hits="0" branch="false"/>
+						<line number="194" hits="0" branch="false"/>
+						<line number="198" hits="6" branch="false"/>
+						<line number="202" hits="2" branch="true" condition-coverage="50% (2/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 								<condition number="1" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="195" hits="2" branch="false"/>
-						<line number="197" hits="0" branch="false"/>
-						<line number="201" hits="0" branch="false"/>
+						<line number="203" hits="2" branch="false"/>
 						<line number="205" hits="0" branch="false"/>
+						<line number="209" hits="0" branch="false"/>
+						<line number="213" hits="2" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.ReflectedConstructor" filename="com/lexicalscope/fluentreflection/ReflectedConstructor.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -2321,78 +2381,84 @@
 					<lines>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.ReflectedConstructorImpl" filename="com/lexicalscope/fluentreflection/ReflectedConstructorImpl.java" line-rate="0.5" branch-rate="1.0" complexity="1.875">
+				<class name="com.lexicalscope.fluentreflection.ReflectedConstructorImpl" filename="com/lexicalscope/fluentreflection/ReflectedConstructorImpl.java" line-rate="0.47368421052631576" branch-rate="1.0" complexity="1.7777777777777777">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectedTypeFactory;Lcom/lexicalscope/fluentreflection/internal/guice/$TypeLiteral;Ljava/lang/reflect/Constructor;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="20" hits="16" branch="false"/>
 								<line number="21" hits="16" branch="false"/>
 								<line number="22" hits="16" branch="false"/>
 								<line number="23" hits="16" branch="false"/>
 								<line number="24" hits="16" branch="false"/>
+								<line number="25" hits="16" branch="false"/>
 							</lines>
 						</method>
 						<method name="argumentCount" signature="()I" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="27" hits="13" branch="false"/>
+								<line number="28" hits="13" branch="false"/>
 							</lines>
 						</method>
 						<method name="argumentTypes" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="31" hits="7" branch="false"/>
+								<line number="32" hits="7" branch="false"/>
 							</lines>
 						</method>
 						<method name="call" signature="([Ljava/lang/Object;)Ljava/lang/Object;" line-rate="0.14285714285714285" branch-rate="1.0">
 							<lines>
-								<line number="42" hits="7" branch="false"/>
-								<line number="43" hits="0" branch="false"/>
+								<line number="43" hits="7" branch="false"/>
 								<line number="44" hits="0" branch="false"/>
 								<line number="45" hits="0" branch="false"/>
 								<line number="46" hits="0" branch="false"/>
 								<line number="47" hits="0" branch="false"/>
 								<line number="48" hits="0" branch="false"/>
+								<line number="49" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="constructorUnderReflection" signature="()Ljava/lang/reflect/Constructor;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="37" hits="1" branch="false"/>
+								<line number="38" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="declaringClass" signature="()Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="53" hits="0" branch="false"/>
+								<line number="54" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="getName" signature="()Ljava/lang/String;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="57" hits="0" branch="false"/>
+								<line number="58" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="returnType" signature="()Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="61" hits="0" branch="false"/>
+								<line number="62" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="visibility" signature="()Lcom/lexicalscope/fluentreflection/Visibility;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="66" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="20" hits="16" branch="false"/>
 						<line number="21" hits="16" branch="false"/>
 						<line number="22" hits="16" branch="false"/>
 						<line number="23" hits="16" branch="false"/>
 						<line number="24" hits="16" branch="false"/>
-						<line number="27" hits="13" branch="false"/>
-						<line number="31" hits="7" branch="false"/>
-						<line number="37" hits="1" branch="false"/>
-						<line number="42" hits="7" branch="false"/>
-						<line number="43" hits="0" branch="false"/>
+						<line number="25" hits="16" branch="false"/>
+						<line number="28" hits="13" branch="false"/>
+						<line number="32" hits="7" branch="false"/>
+						<line number="38" hits="1" branch="false"/>
+						<line number="43" hits="7" branch="false"/>
 						<line number="44" hits="0" branch="false"/>
 						<line number="45" hits="0" branch="false"/>
 						<line number="46" hits="0" branch="false"/>
 						<line number="47" hits="0" branch="false"/>
 						<line number="48" hits="0" branch="false"/>
-						<line number="53" hits="0" branch="false"/>
-						<line number="57" hits="0" branch="false"/>
-						<line number="61" hits="0" branch="false"/>
+						<line number="49" hits="0" branch="false"/>
+						<line number="54" hits="0" branch="false"/>
+						<line number="58" hits="0" branch="false"/>
+						<line number="62" hits="0" branch="false"/>
+						<line number="66" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.ReflectedConstructors" filename="com/lexicalscope/fluentreflection/ReflectedConstructors.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -2405,10 +2471,10 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectedTypeFactory;Lcom/lexicalscope/fluentreflection/internal/guice/$TypeLiteral;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="14" hits="1004" branch="false"/>
-								<line number="15" hits="1004" branch="false"/>
-								<line number="16" hits="1004" branch="false"/>
-								<line number="17" hits="1004" branch="false"/>
+								<line number="14" hits="1058" branch="false"/>
+								<line number="15" hits="1058" branch="false"/>
+								<line number="16" hits="1058" branch="false"/>
+								<line number="17" hits="1058" branch="false"/>
 							</lines>
 						</method>
 						<method name="constructors" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
@@ -2418,10 +2484,10 @@
 						</method>
 					</methods>
 					<lines>
-						<line number="14" hits="1004" branch="false"/>
-						<line number="15" hits="1004" branch="false"/>
-						<line number="16" hits="1004" branch="false"/>
-						<line number="17" hits="1004" branch="false"/>
+						<line number="14" hits="1058" branch="false"/>
+						<line number="15" hits="1058" branch="false"/>
+						<line number="16" hits="1058" branch="false"/>
+						<line number="17" hits="1058" branch="false"/>
 						<line number="20" hits="8" branch="false"/>
 					</lines>
 				</class>
@@ -2435,12 +2501,12 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectedTypeFactory;Lcom/lexicalscope/fluentreflection/internal/guice/$TypeLiteral;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="17" hits="1004" branch="false"/>
-								<line number="18" hits="1004" branch="false"/>
-								<line number="19" hits="1004" branch="false"/>
-								<line number="21" hits="1004" branch="false"/>
-								<line number="22" hits="1004" branch="false"/>
-								<line number="23" hits="1004" branch="false"/>
+								<line number="17" hits="1058" branch="false"/>
+								<line number="18" hits="1058" branch="false"/>
+								<line number="19" hits="1058" branch="false"/>
+								<line number="21" hits="1058" branch="false"/>
+								<line number="22" hits="1058" branch="false"/>
+								<line number="23" hits="1058" branch="false"/>
 							</lines>
 						</method>
 						<method name="constructor" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectedConstructor;" line-rate="1.0" branch-rate="1.0">
@@ -2465,19 +2531,19 @@
 						</method>
 						<method name="method" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectedMethod;" line-rate="0.75" branch-rate="0.5">
 							<lines>
-								<line number="46" hits="13" branch="false"/>
-								<line number="47" hits="13" branch="true" condition-coverage="50% (1/2)">
+								<line number="46" hits="25" branch="false"/>
+								<line number="47" hits="25" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
 								<line number="48" hits="0" branch="false"/>
-								<line number="50" hits="13" branch="false"/>
+								<line number="50" hits="25" branch="false"/>
 							</lines>
 						</method>
 						<method name="methods" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="30" hits="133" branch="false"/>
+								<line number="30" hits="149" branch="false"/>
 							</lines>
 						</method>
 						<method name="methods" signature="(Lorg/hamcrest/Matcher;)Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
@@ -2497,25 +2563,25 @@
 						</method>
 					</methods>
 					<lines>
-						<line number="17" hits="1004" branch="false"/>
-						<line number="18" hits="1004" branch="false"/>
-						<line number="19" hits="1004" branch="false"/>
-						<line number="21" hits="1004" branch="false"/>
-						<line number="22" hits="1004" branch="false"/>
-						<line number="23" hits="1004" branch="false"/>
+						<line number="17" hits="1058" branch="false"/>
+						<line number="18" hits="1058" branch="false"/>
+						<line number="19" hits="1058" branch="false"/>
+						<line number="21" hits="1058" branch="false"/>
+						<line number="22" hits="1058" branch="false"/>
+						<line number="23" hits="1058" branch="false"/>
 						<line number="26" hits="8" branch="false"/>
-						<line number="30" hits="133" branch="false"/>
+						<line number="30" hits="149" branch="false"/>
 						<line number="34" hits="29" branch="false"/>
 						<line number="38" hits="5" branch="false"/>
 						<line number="42" hits="14" branch="false"/>
-						<line number="46" hits="13" branch="false"/>
-						<line number="47" hits="13" branch="true" condition-coverage="50% (1/2)">
+						<line number="46" hits="25" branch="false"/>
+						<line number="47" hits="25" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
 						<line number="48" hits="0" branch="false"/>
-						<line number="50" hits="13" branch="false"/>
+						<line number="50" hits="25" branch="false"/>
 						<line number="55" hits="1" branch="false"/>
 						<line number="60" hits="7" branch="false"/>
 						<line number="65" hits="5" branch="false"/>
@@ -2527,306 +2593,366 @@
 					<lines>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.ReflectedMethodImpl" filename="com/lexicalscope/fluentreflection/ReflectedMethodImpl.java" line-rate="0.7288135593220338" branch-rate="0.6923076923076923" complexity="2.388888888888889">
+				<class name="com.lexicalscope.fluentreflection.ReflectedMethodImpl" filename="com/lexicalscope/fluentreflection/ReflectedMethodImpl.java" line-rate="0.7681159420289855" branch-rate="0.6764705882352942" complexity="2.45">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectedTypeFactory;Lcom/lexicalscope/fluentreflection/ReflectedClass;Lcom/lexicalscope/fluentreflection/internal/guice/$TypeLiteral;Ljava/lang/reflect/Method;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="44" hits="524" branch="false"/>
-								<line number="45" hits="524" branch="false"/>
-								<line number="46" hits="524" branch="false"/>
-								<line number="47" hits="524" branch="false"/>
-								<line number="48" hits="524" branch="false"/>
-								<line number="49" hits="524" branch="false"/>
+								<line number="47" hits="556" branch="false"/>
+								<line number="48" hits="556" branch="false"/>
+								<line number="49" hits="556" branch="false"/>
+								<line number="50" hits="556" branch="false"/>
+								<line number="51" hits="556" branch="false"/>
+								<line number="52" hits="556" branch="false"/>
 							</lines>
 						</method>
 						<method name="argumentCount" signature="()I" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="64" hits="204" branch="false"/>
-								<line number="65" hits="204" branch="true" condition-coverage="100% (2/2)">
+								<line number="67" hits="206" branch="false"/>
+								<line number="68" hits="206" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="66" hits="1" branch="false"/>
-								<line number="68" hits="203" branch="false"/>
+								<line number="69" hits="2" branch="false"/>
+								<line number="71" hits="204" branch="false"/>
 							</lines>
 						</method>
 						<method name="argumentTypes" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="56" hits="99" branch="false"/>
-								<line number="57" hits="99" branch="false"/>
+								<line number="59" hits="99" branch="false"/>
 								<line number="60" hits="99" branch="false"/>
+								<line number="63" hits="99" branch="false"/>
 							</lines>
 						</method>
 						<method name="call" signature="([Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="76" hits="59" branch="true" condition-coverage="100% (2/2)">
+								<line number="79" hits="59" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="77" hits="4" branch="false"/>
-								<line number="79" hits="55" branch="true" condition-coverage="100% (2/2)">
+								<line number="80" hits="4" branch="false"/>
+								<line number="82" hits="55" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="80" hits="1" branch="false"/>
-								<line number="84" hits="54" branch="false"/>
-								<line number="85" hits="54" branch="false"/>
-								<line number="86" hits="54" branch="false"/>
+								<line number="83" hits="1" branch="false"/>
+								<line number="87" hits="54" branch="false"/>
+								<line number="88" hits="54" branch="false"/>
+								<line number="89" hits="54" branch="false"/>
 							</lines>
 						</method>
 						<method name="declaringClass" signature="()Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="72" hits="13" branch="false"/>
+								<line number="75" hits="13" branch="false"/>
 							</lines>
 						</method>
 						<method name="equals" signature="(Ljava/lang/Object;)Z" line-rate="0.0" branch-rate="0.0">
 							<lines>
-								<line number="165" hits="0" branch="true" condition-coverage="0% (0/4)">
+								<line number="223" hits="0" branch="true" condition-coverage="0% (0/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 										<condition number="1" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="166" hits="0" branch="false"/>
-								<line number="167" hits="0" branch="false"/>
-								<line number="172" hits="0" branch="false"/>
+								<line number="224" hits="0" branch="false"/>
+								<line number="225" hits="0" branch="false"/>
+								<line number="230" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="getName" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="52" hits="766" branch="false"/>
+								<line number="55" hits="790" branch="false"/>
 							</lines>
 						</method>
 						<method name="hashCode" signature="()I" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="176" hits="0" branch="false"/>
+								<line number="234" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="initialLowerCase" signature="(Ljava/lang/String;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="140" hits="177" branch="false"/>
+								<line number="147" hits="177" branch="false"/>
 							</lines>
 						</method>
 						<method name="invokeMethod" signature="(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="0.42857142857142855" branch-rate="1.0">
 							<lines>
-								<line number="92" hits="58" branch="true" condition-coverage="100% (2/2)">
+								<line number="95" hits="58" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="93" hits="51" branch="false"/>
-								<line number="95" hits="58" branch="false"/>
-								<line number="96" hits="0" branch="false"/>
-								<line number="97" hits="0" branch="false"/>
-								<line number="98" hits="0" branch="false"/>
+								<line number="96" hits="51" branch="false"/>
+								<line number="98" hits="58" branch="false"/>
 								<line number="99" hits="0" branch="false"/>
+								<line number="100" hits="0" branch="false"/>
+								<line number="101" hits="0" branch="false"/>
+								<line number="102" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="isFinal" signature="()Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="111" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="isStatic" signature="()Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="104" hits="1684" branch="false"/>
-							</lines>
-						</method>
-						<method name="join" signature="(Ljava/util/List;)Ljava/lang/String;" line-rate="0.5" branch-rate="0.5">
-							<lines>
-								<line number="154" hits="2" branch="false"/>
-								<line number="155" hits="2" branch="false"/>
-								<line number="156" hits="2" branch="true" condition-coverage="50% (1/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="50%"/>
-									</conditions>
-								</line>
-								<line number="157" hits="0" branch="false"/>
-								<line number="158" hits="0" branch="false"/>
-								<line number="159" hits="0" branch="false"/>
-								<line number="160" hits="0" branch="false"/>
-								<line number="161" hits="2" branch="false"/>
+								<line number="107" hits="1712" branch="false"/>
 							</lines>
 						</method>
 						<method name="methodUnderReflection" signature="()Ljava/lang/reflect/Method;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="144" hits="0" branch="false"/>
+								<line number="151" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="propertyName" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="0.8">
 							<lines>
-								<line number="124" hits="181" branch="false"/>
-								<line number="126" hits="181" branch="true" condition-coverage="50% (1/2)">
+								<line number="131" hits="181" branch="false"/>
+								<line number="133" hits="181" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="127" hits="181" branch="true" condition-coverage="50% (1/2)">
+								<line number="134" hits="181" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="128" hits="181" branch="true" condition-coverage="100% (4/4)">
+								<line number="135" hits="181" branch="true" condition-coverage="100% (4/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 										<condition number="1" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="129" hits="175" branch="false"/>
-								<line number="132" hits="6" branch="true" condition-coverage="100% (2/2)">
+								<line number="136" hits="175" branch="false"/>
+								<line number="139" hits="6" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="133" hits="2" branch="false"/>
-								<line number="136" hits="4" branch="false"/>
+								<line number="140" hits="2" branch="false"/>
+								<line number="143" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="returnType" signature="()Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="0.75" branch-rate="0.5">
 							<lines>
-								<line number="116" hits="200" branch="false"/>
-								<line number="117" hits="200" branch="true" condition-coverage="50% (1/2)">
+								<line number="123" hits="202" branch="false"/>
+								<line number="124" hits="202" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="118" hits="0" branch="false"/>
-								<line number="120" hits="200" branch="false"/>
+								<line number="125" hits="0" branch="false"/>
+								<line number="127" hits="202" branch="false"/>
 							</lines>
 						</method>
 						<method name="returning" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectedQuery;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="108" hits="0" branch="false"/>
+								<line number="115" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+						<method name="toString" signature="()Ljava/lang/String;" line-rate="0.75" branch-rate="0.6">
 							<lines>
-								<line number="148" hits="2" branch="false"/>
+								<line number="165" hits="2" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="167" hits="2" branch="false"/>
+								<line number="171" hits="0" branch="false"/>
+								<line number="175" hits="2" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="177" hits="1" branch="false"/>
+								<line number="181" hits="1" branch="false"/>
+								<line number="185" hits="2" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="187" hits="0" branch="false"/>
+								<line number="191" hits="2" branch="false"/>
+								<line number="195" hits="2" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="197" hits="2" branch="false"/>
+								<line number="201" hits="0" branch="false"/>
+								<line number="205" hits="2" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="206" hits="0" branch="false"/>
+								<line number="208" hits="2" branch="false"/>
+								<line number="211" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="typeParameters" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="160" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="visibility" signature="()Lcom/lexicalscope/fluentreflection/Visibility;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="155" hits="4" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="44" hits="524" branch="false"/>
-						<line number="45" hits="524" branch="false"/>
-						<line number="46" hits="524" branch="false"/>
-						<line number="47" hits="524" branch="false"/>
-						<line number="48" hits="524" branch="false"/>
-						<line number="49" hits="524" branch="false"/>
-						<line number="52" hits="766" branch="false"/>
-						<line number="56" hits="99" branch="false"/>
-						<line number="57" hits="99" branch="false"/>
+						<line number="47" hits="556" branch="false"/>
+						<line number="48" hits="556" branch="false"/>
+						<line number="49" hits="556" branch="false"/>
+						<line number="50" hits="556" branch="false"/>
+						<line number="51" hits="556" branch="false"/>
+						<line number="52" hits="556" branch="false"/>
+						<line number="55" hits="790" branch="false"/>
+						<line number="59" hits="99" branch="false"/>
 						<line number="60" hits="99" branch="false"/>
-						<line number="64" hits="204" branch="false"/>
-						<line number="65" hits="204" branch="true" condition-coverage="100% (2/2)">
+						<line number="63" hits="99" branch="false"/>
+						<line number="67" hits="206" branch="false"/>
+						<line number="68" hits="206" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="66" hits="1" branch="false"/>
-						<line number="68" hits="203" branch="false"/>
-						<line number="72" hits="13" branch="false"/>
-						<line number="76" hits="59" branch="true" condition-coverage="100% (2/2)">
+						<line number="69" hits="2" branch="false"/>
+						<line number="71" hits="204" branch="false"/>
+						<line number="75" hits="13" branch="false"/>
+						<line number="79" hits="59" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="77" hits="4" branch="false"/>
-						<line number="79" hits="55" branch="true" condition-coverage="100% (2/2)">
+						<line number="80" hits="4" branch="false"/>
+						<line number="82" hits="55" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="80" hits="1" branch="false"/>
-						<line number="84" hits="54" branch="false"/>
-						<line number="85" hits="54" branch="false"/>
-						<line number="86" hits="54" branch="false"/>
-						<line number="92" hits="58" branch="true" condition-coverage="100% (2/2)">
+						<line number="83" hits="1" branch="false"/>
+						<line number="87" hits="54" branch="false"/>
+						<line number="88" hits="54" branch="false"/>
+						<line number="89" hits="54" branch="false"/>
+						<line number="95" hits="58" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="93" hits="51" branch="false"/>
-						<line number="95" hits="58" branch="false"/>
-						<line number="96" hits="0" branch="false"/>
-						<line number="97" hits="0" branch="false"/>
-						<line number="98" hits="0" branch="false"/>
+						<line number="96" hits="51" branch="false"/>
+						<line number="98" hits="58" branch="false"/>
 						<line number="99" hits="0" branch="false"/>
-						<line number="104" hits="1684" branch="false"/>
-						<line number="108" hits="0" branch="false"/>
-						<line number="116" hits="200" branch="false"/>
-						<line number="117" hits="200" branch="true" condition-coverage="50% (1/2)">
+						<line number="100" hits="0" branch="false"/>
+						<line number="101" hits="0" branch="false"/>
+						<line number="102" hits="0" branch="false"/>
+						<line number="107" hits="1712" branch="false"/>
+						<line number="111" hits="2" branch="false"/>
+						<line number="115" hits="0" branch="false"/>
+						<line number="123" hits="202" branch="false"/>
+						<line number="124" hits="202" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="118" hits="0" branch="false"/>
-						<line number="120" hits="200" branch="false"/>
-						<line number="124" hits="181" branch="false"/>
-						<line number="126" hits="181" branch="true" condition-coverage="50% (1/2)">
+						<line number="125" hits="0" branch="false"/>
+						<line number="127" hits="202" branch="false"/>
+						<line number="131" hits="181" branch="false"/>
+						<line number="133" hits="181" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="127" hits="181" branch="true" condition-coverage="50% (1/2)">
+						<line number="134" hits="181" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="128" hits="181" branch="true" condition-coverage="100% (4/4)">
+						<line number="135" hits="181" branch="true" condition-coverage="100% (4/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 								<condition number="1" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="129" hits="175" branch="false"/>
-						<line number="132" hits="6" branch="true" condition-coverage="100% (2/2)">
+						<line number="136" hits="175" branch="false"/>
+						<line number="139" hits="6" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="133" hits="2" branch="false"/>
-						<line number="136" hits="4" branch="false"/>
-						<line number="140" hits="177" branch="false"/>
-						<line number="144" hits="0" branch="false"/>
-						<line number="148" hits="2" branch="false"/>
-						<line number="154" hits="2" branch="false"/>
-						<line number="155" hits="2" branch="false"/>
-						<line number="156" hits="2" branch="true" condition-coverage="50% (1/2)">
+						<line number="140" hits="2" branch="false"/>
+						<line number="143" hits="4" branch="false"/>
+						<line number="147" hits="177" branch="false"/>
+						<line number="151" hits="0" branch="false"/>
+						<line number="155" hits="4" branch="false"/>
+						<line number="160" hits="2" branch="false"/>
+						<line number="165" hits="2" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="157" hits="0" branch="false"/>
-						<line number="158" hits="0" branch="false"/>
-						<line number="159" hits="0" branch="false"/>
-						<line number="160" hits="0" branch="false"/>
-						<line number="161" hits="2" branch="false"/>
-						<line number="165" hits="0" branch="true" condition-coverage="0% (0/4)">
+						<line number="167" hits="2" branch="false"/>
+						<line number="171" hits="0" branch="false"/>
+						<line number="175" hits="2" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="177" hits="1" branch="false"/>
+						<line number="181" hits="1" branch="false"/>
+						<line number="185" hits="2" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="187" hits="0" branch="false"/>
+						<line number="191" hits="2" branch="false"/>
+						<line number="195" hits="2" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="197" hits="2" branch="false"/>
+						<line number="201" hits="0" branch="false"/>
+						<line number="205" hits="2" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="206" hits="0" branch="false"/>
+						<line number="208" hits="2" branch="false"/>
+						<line number="211" hits="2" branch="false"/>
+						<line number="223" hits="0" branch="true" condition-coverage="0% (0/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 								<condition number="1" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="166" hits="0" branch="false"/>
-						<line number="167" hits="0" branch="false"/>
-						<line number="172" hits="0" branch="false"/>
-						<line number="176" hits="0" branch="false"/>
+						<line number="224" hits="0" branch="false"/>
+						<line number="225" hits="0" branch="false"/>
+						<line number="230" hits="0" branch="false"/>
+						<line number="234" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.ReflectedMethodImpl$1" filename="com/lexicalscope/fluentreflection/ReflectedMethodImpl.java" line-rate="0.0" branch-rate="1.0" complexity="2.388888888888889">
+				<class name="com.lexicalscope.fluentreflection.ReflectedMethodImpl$1" filename="com/lexicalscope/fluentreflection/ReflectedMethodImpl.java" line-rate="0.0" branch-rate="1.0" complexity="2.45">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectedMethodImpl;Ljava/lang/Class;)V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="108" hits="0" branch="false"/>
+								<line number="115" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="call" signature="([Ljava/lang/Object;)Ljava/lang/Object;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="110" hits="0" branch="false"/>
+								<line number="117" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="108" hits="0" branch="false"/>
-						<line number="110" hits="0" branch="false"/>
+						<line number="115" hits="0" branch="false"/>
+						<line number="117" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.ReflectedMethods" filename="com/lexicalscope/fluentreflection/ReflectedMethods.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -2839,98 +2965,98 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectedTypeFactory;Lcom/lexicalscope/fluentreflection/internal/guice/$TypeLiteral;Lcom/lexicalscope/fluentreflection/ReflectedSuperclassesAndInterfaces;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="23" hits="1004" branch="false"/>
-								<line number="24" hits="1004" branch="false"/>
-								<line number="25" hits="1004" branch="false"/>
-								<line number="26" hits="1004" branch="false"/>
-								<line number="27" hits="1004" branch="false"/>
+								<line number="23" hits="1058" branch="false"/>
+								<line number="24" hits="1058" branch="false"/>
+								<line number="25" hits="1058" branch="false"/>
+								<line number="26" hits="1058" branch="false"/>
+								<line number="27" hits="1058" branch="false"/>
 							</lines>
 						</method>
 						<method name="declaredMethods" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="0.5">
 							<lines>
-								<line number="54" hits="115" branch="true" condition-coverage="50% (1/2)">
+								<line number="54" hits="131" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="55" hits="115" branch="false"/>
-								<line number="57" hits="115" branch="false"/>
+								<line number="55" hits="131" branch="false"/>
+								<line number="57" hits="131" branch="false"/>
 							</lines>
 						</method>
 						<method name="getDeclaredMethodsOfClass" signature="(Lcom/lexicalscope/fluentreflection/internal/guice/$TypeLiteral;)Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="45" hits="115" branch="false"/>
-								<line number="46" hits="115" branch="false"/>
-								<line number="47" hits="615" branch="true" condition-coverage="100% (2/2)">
+								<line number="45" hits="131" branch="false"/>
+								<line number="46" hits="131" branch="false"/>
+								<line number="47" hits="663" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="48" hits="500" branch="false"/>
-								<line number="50" hits="115" branch="false"/>
+								<line number="48" hits="532" branch="false"/>
+								<line number="50" hits="131" branch="false"/>
 							</lines>
 						</method>
 						<method name="methods" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="30" hits="133" branch="true" condition-coverage="100% (2/2)">
+								<line number="30" hits="149" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="31" hits="86" branch="false"/>
-								<line number="33" hits="86" branch="false"/>
-								<line number="34" hits="86" branch="true" condition-coverage="100% (2/2)">
+								<line number="31" hits="102" branch="false"/>
+								<line number="33" hits="102" branch="false"/>
+								<line number="34" hits="102" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
 								<line number="35" hits="29" branch="false"/>
 								<line number="36" hits="29" branch="false"/>
-								<line number="38" hits="86" branch="false"/>
-								<line number="39" hits="86" branch="false"/>
-								<line number="41" hits="133" branch="false"/>
+								<line number="38" hits="102" branch="false"/>
+								<line number="39" hits="102" branch="false"/>
+								<line number="41" hits="149" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="23" hits="1004" branch="false"/>
-						<line number="24" hits="1004" branch="false"/>
-						<line number="25" hits="1004" branch="false"/>
-						<line number="26" hits="1004" branch="false"/>
-						<line number="27" hits="1004" branch="false"/>
-						<line number="30" hits="133" branch="true" condition-coverage="100% (2/2)">
+						<line number="23" hits="1058" branch="false"/>
+						<line number="24" hits="1058" branch="false"/>
+						<line number="25" hits="1058" branch="false"/>
+						<line number="26" hits="1058" branch="false"/>
+						<line number="27" hits="1058" branch="false"/>
+						<line number="30" hits="149" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="31" hits="86" branch="false"/>
-						<line number="33" hits="86" branch="false"/>
-						<line number="34" hits="86" branch="true" condition-coverage="100% (2/2)">
+						<line number="31" hits="102" branch="false"/>
+						<line number="33" hits="102" branch="false"/>
+						<line number="34" hits="102" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
 						<line number="35" hits="29" branch="false"/>
 						<line number="36" hits="29" branch="false"/>
-						<line number="38" hits="86" branch="false"/>
-						<line number="39" hits="86" branch="false"/>
-						<line number="41" hits="133" branch="false"/>
-						<line number="45" hits="115" branch="false"/>
-						<line number="46" hits="115" branch="false"/>
-						<line number="47" hits="615" branch="true" condition-coverage="100% (2/2)">
+						<line number="38" hits="102" branch="false"/>
+						<line number="39" hits="102" branch="false"/>
+						<line number="41" hits="149" branch="false"/>
+						<line number="45" hits="131" branch="false"/>
+						<line number="46" hits="131" branch="false"/>
+						<line number="47" hits="663" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="48" hits="500" branch="false"/>
-						<line number="50" hits="115" branch="false"/>
-						<line number="54" hits="115" branch="true" condition-coverage="50% (1/2)">
+						<line number="48" hits="532" branch="false"/>
+						<line number="50" hits="131" branch="false"/>
+						<line number="54" hits="131" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="55" hits="115" branch="false"/>
-						<line number="57" hits="115" branch="false"/>
+						<line number="55" hits="131" branch="false"/>
+						<line number="57" hits="131" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.ReflectedObject" filename="com/lexicalscope/fluentreflection/ReflectedObject.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -2939,54 +3065,54 @@
 					<lines>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.ReflectedObjectImpl" filename="com/lexicalscope/fluentreflection/ReflectedObjectImpl.java" line-rate="0.6111111111111112" branch-rate="1.0" complexity="1.0">
+				<class name="com.lexicalscope.fluentreflection.ReflectedObjectImpl" filename="com/lexicalscope/fluentreflection/ReflectedObjectImpl.java" line-rate="0.5789473684210527" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectedTypeFactoryImpl;Lcom/lexicalscope/fluentreflection/ReflectedClass;Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="34" hits="59" branch="false"/>
-								<line number="35" hits="59" branch="false"/>
-								<line number="36" hits="59" branch="false"/>
-								<line number="37" hits="59" branch="false"/>
+								<line number="34" hits="63" branch="false"/>
+								<line number="35" hits="63" branch="false"/>
+								<line number="36" hits="63" branch="false"/>
+								<line number="37" hits="63" branch="false"/>
 							</lines>
 						</method>
 						<method name="annotatedWith" signature="(Ljava/lang/Class;)Z" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="90" hits="0" branch="false"/>
-							</lines>
-						</method>
-						<method name="annotation" signature="(Lcom/lexicalscope/fluentreflection/ReflectionMatcher;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="86" hits="0" branch="false"/>
+								<line number="94" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="annotation" signature="(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="94" hits="0" branch="false"/>
+								<line number="98" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="annotation" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="90" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="bind" signature="(Ljava/util/List;)Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="68" hits="105" branch="false"/>
+								<line number="72" hits="109" branch="false"/>
 							</lines>
 						</method>
 						<method name="boundDeclaredMethods" signature="()Ljava/util/List;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="74" hits="0" branch="false"/>
+								<line number="78" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="boundMethods" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="64" hits="105" branch="false"/>
+								<line number="68" hits="109" branch="false"/>
 							</lines>
 						</method>
 						<method name="canBeBoxed" signature="(Ljava/lang/Class;)Z" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="78" hits="0" branch="false"/>
+								<line number="82" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="canBeUnboxed" signature="(Ljava/lang/Class;)Z" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="82" hits="0" branch="false"/>
+								<line number="86" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="classUnderReflection" signature="()Ljava/lang/Class;" line-rate="1.0" branch-rate="1.0">
@@ -2996,22 +3122,27 @@
 						</method>
 						<method name="declaredMethods" signature="()Ljava/util/List;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="56" hits="0" branch="false"/>
+								<line number="60" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="method" signature="(Ljava/lang/String;)Lcom/lexicalscope/fluentreflection/ReflectedMethod;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="52" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="method" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectedMethod;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="48" hits="6" branch="false"/>
+								<line number="48" hits="10" branch="false"/>
 							</lines>
 						</method>
 						<method name="methods" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="52" hits="3" branch="false"/>
+								<line number="56" hits="3" branch="false"/>
 							</lines>
 						</method>
 						<method name="methods" signature="(Lorg/hamcrest/Matcher;)Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="60" hits="96" branch="false"/>
+								<line number="64" hits="96" branch="false"/>
 							</lines>
 						</method>
 						<method name="reflectedClass" signature="()Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
@@ -3021,24 +3152,25 @@
 						</method>
 					</methods>
 					<lines>
-						<line number="34" hits="59" branch="false"/>
-						<line number="35" hits="59" branch="false"/>
-						<line number="36" hits="59" branch="false"/>
-						<line number="37" hits="59" branch="false"/>
+						<line number="34" hits="63" branch="false"/>
+						<line number="35" hits="63" branch="false"/>
+						<line number="36" hits="63" branch="false"/>
+						<line number="37" hits="63" branch="false"/>
 						<line number="40" hits="1" branch="false"/>
 						<line number="44" hits="1" branch="false"/>
-						<line number="48" hits="6" branch="false"/>
-						<line number="52" hits="3" branch="false"/>
-						<line number="56" hits="0" branch="false"/>
-						<line number="60" hits="96" branch="false"/>
-						<line number="64" hits="105" branch="false"/>
-						<line number="68" hits="105" branch="false"/>
-						<line number="74" hits="0" branch="false"/>
+						<line number="48" hits="10" branch="false"/>
+						<line number="52" hits="0" branch="false"/>
+						<line number="56" hits="3" branch="false"/>
+						<line number="60" hits="0" branch="false"/>
+						<line number="64" hits="96" branch="false"/>
+						<line number="68" hits="109" branch="false"/>
+						<line number="72" hits="109" branch="false"/>
 						<line number="78" hits="0" branch="false"/>
 						<line number="82" hits="0" branch="false"/>
 						<line number="86" hits="0" branch="false"/>
 						<line number="90" hits="0" branch="false"/>
 						<line number="94" hits="0" branch="false"/>
+						<line number="98" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.ReflectedQuery" filename="com/lexicalscope/fluentreflection/ReflectedQuery.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -3057,36 +3189,36 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectedTypeFactory;Lcom/lexicalscope/fluentreflection/internal/guice/$TypeLiteral;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="16" hits="1004" branch="false"/>
-								<line number="17" hits="1004" branch="false"/>
-								<line number="18" hits="1004" branch="false"/>
-								<line number="19" hits="1004" branch="false"/>
+								<line number="16" hits="1058" branch="false"/>
+								<line number="17" hits="1058" branch="false"/>
+								<line number="18" hits="1058" branch="false"/>
+								<line number="19" hits="1058" branch="false"/>
 							</lines>
 						</method>
 						<method name="superclassesAndInterfaces" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="0.5">
 							<lines>
-								<line number="22" hits="91" branch="true" condition-coverage="50% (1/2)">
+								<line number="22" hits="107" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="23" hits="91" branch="false"/>
-								<line number="27" hits="91" branch="false"/>
+								<line number="23" hits="107" branch="false"/>
+								<line number="27" hits="107" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="16" hits="1004" branch="false"/>
-						<line number="17" hits="1004" branch="false"/>
-						<line number="18" hits="1004" branch="false"/>
-						<line number="19" hits="1004" branch="false"/>
-						<line number="22" hits="91" branch="true" condition-coverage="50% (1/2)">
+						<line number="16" hits="1058" branch="false"/>
+						<line number="17" hits="1058" branch="false"/>
+						<line number="18" hits="1058" branch="false"/>
+						<line number="19" hits="1058" branch="false"/>
+						<line number="22" hits="107" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="23" hits="91" branch="false"/>
-						<line number="27" hits="91" branch="false"/>
+						<line number="23" hits="107" branch="false"/>
+						<line number="27" hits="107" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.ReflectedType" filename="com/lexicalscope/fluentreflection/ReflectedType.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -3105,12 +3237,12 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="23" hits="138" branch="false"/>
+								<line number="23" hits="154" branch="false"/>
 							</lines>
 						</method>
 						<method name="method" signature="(Lcom/lexicalscope/fluentreflection/internal/guice/$TypeLiteral;Ljava/lang/reflect/Method;)Lcom/lexicalscope/fluentreflection/ReflectedMethod;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="45" hits="524" branch="false"/>
+								<line number="45" hits="556" branch="false"/>
 							</lines>
 						</method>
 						<method name="method" signature="(Ljava/lang/reflect/Method;)Lcom/lexicalscope/fluentreflection/ReflectedMethod;" line-rate="1.0" branch-rate="1.0">
@@ -3125,33 +3257,33 @@
 						</method>
 						<method name="reflect" signature="(Lcom/lexicalscope/fluentreflection/internal/guice/$TypeLiteral;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="29" hits="1004" branch="false"/>
+								<line number="29" hits="1058" branch="false"/>
 							</lines>
 						</method>
 						<method name="reflect" signature="(Lcom/lexicalscope/fluentreflection/internal/guice/$TypeLiteral;Ljava/lang/Object;)Lcom/lexicalscope/fluentreflection/ReflectedObject;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="37" hits="59" branch="false"/>
+								<line number="37" hits="63" branch="false"/>
 							</lines>
 						</method>
 						<method name="reflect" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectedClass;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="25" hits="62" branch="false"/>
+								<line number="25" hits="78" branch="false"/>
 							</lines>
 						</method>
 						<method name="reflect" signature="(Ljava/lang/Class;Ljava/lang/Object;)Lcom/lexicalscope/fluentreflection/ReflectedObject;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="33" hits="59" branch="false"/>
+								<line number="33" hits="63" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="23" hits="138" branch="false"/>
-						<line number="25" hits="62" branch="false"/>
-						<line number="29" hits="1004" branch="false"/>
-						<line number="33" hits="59" branch="false"/>
-						<line number="37" hits="59" branch="false"/>
+						<line number="23" hits="154" branch="false"/>
+						<line number="25" hits="78" branch="false"/>
+						<line number="29" hits="1058" branch="false"/>
+						<line number="33" hits="63" branch="false"/>
+						<line number="37" hits="63" branch="false"/>
 						<line number="41" hits="24" branch="false"/>
-						<line number="45" hits="524" branch="false"/>
+						<line number="45" hits="556" branch="false"/>
 						<line number="49" hits="20" branch="false"/>
 					</lines>
 				</class>
@@ -3159,15 +3291,15 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="28" hits="1509" branch="false"/>
+								<line number="28" hits="1551" branch="false"/>
 							</lines>
 						</method>
 						<method name="and" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="38" hits="297" branch="false"/>
-								<line number="39" hits="297" branch="false"/>
-								<line number="40" hits="297" branch="false"/>
-								<line number="41" hits="297" branch="false"/>
+								<line number="38" hits="301" branch="false"/>
+								<line number="39" hits="301" branch="false"/>
+								<line number="40" hits="301" branch="false"/>
+								<line number="41" hits="301" branch="false"/>
 							</lines>
 						</method>
 						<method name="or" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
@@ -3180,18 +3312,18 @@
 						</method>
 					</methods>
 					<lines>
-						<line number="28" hits="1509" branch="false"/>
-						<line number="38" hits="297" branch="false"/>
-						<line number="39" hits="297" branch="false"/>
-						<line number="40" hits="297" branch="false"/>
-						<line number="41" hits="297" branch="false"/>
+						<line number="28" hits="1551" branch="false"/>
+						<line number="38" hits="301" branch="false"/>
+						<line number="39" hits="301" branch="false"/>
+						<line number="40" hits="301" branch="false"/>
+						<line number="41" hits="301" branch="false"/>
 						<line number="53" hits="18" branch="false"/>
 						<line number="54" hits="18" branch="false"/>
 						<line number="55" hits="18" branch="false"/>
 						<line number="56" hits="18" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.9111111111111111" branch-rate="0.75" complexity="1.0952380952380953">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.9130434782608695" branch-rate="0.75" complexity="1.0930232558139534">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
 							<lines>
@@ -3200,12 +3332,12 @@
 						</method>
 						<method name="annotatedWith" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="207" hits="2" branch="false"/>
+								<line number="211" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="anyReflectedType" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="122" hits="7" branch="false"/>
+								<line number="126" hits="7" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableDeclaredBy" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
@@ -3215,27 +3347,27 @@
 						</method>
 						<method name="callableHasArgumentList" signature="(Ljava/util/List;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="156" hits="99" branch="false"/>
+								<line number="160" hits="99" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableHasArgumentListMatching" signature="(Ljava/util/List;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="166" hits="54" branch="false"/>
+								<line number="170" hits="54" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableHasArguments" signature="([Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="152" hits="91" branch="false"/>
+								<line number="156" hits="91" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableHasArgumentsMatching" signature="([Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="161" hits="54" branch="false"/>
+								<line number="165" hits="54" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableHasName" signature="(Ljava/lang/String;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="90" hits="65" branch="false"/>
+								<line number="90" hits="81" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableHasNameContaining" signature="(Ljava/lang/CharSequence;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
@@ -3260,134 +3392,134 @@
 						</method>
 						<method name="callableHasNoArguments" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="148" hits="78" branch="false"/>
+								<line number="152" hits="78" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableHasNonVoidReturn" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="191" hits="54" branch="false"/>
+								<line number="195" hits="54" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableHasReflectedArgumentList" signature="(Ljava/util/List;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="176" hits="1" branch="false"/>
+								<line number="180" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableHasReflectedArguments" signature="([Lcom/lexicalscope/fluentreflection/ReflectedClass;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="171" hits="0" branch="false"/>
+								<line number="175" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableHasReturnType" signature="(Lcom/lexicalscope/fluentreflection/ReflectedClass;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="0.6666666666666666" branch-rate="0.5">
 							<lines>
-								<line number="195" hits="1" branch="true" condition-coverage="50% (1/2)">
+								<line number="199" hits="1" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="196" hits="0" branch="false"/>
-								<line number="198" hits="1" branch="false"/>
+								<line number="200" hits="0" branch="false"/>
+								<line number="202" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableHasReturnType" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="180" hits="45" branch="true" condition-coverage="100% (2/2)">
+								<line number="184" hits="45" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="181" hits="3" branch="false"/>
-								<line number="183" hits="42" branch="false"/>
+								<line number="185" hits="3" branch="false"/>
+								<line number="187" hits="42" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableHasReturnType" signature="(Lorg/hamcrest/Matcher;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="203" hits="0" branch="false"/>
+								<line number="207" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableHasThisManyArguments" signature="(I)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="144" hits="4" branch="false"/>
+								<line number="148" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="callableHasVoidReturn" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="187" hits="123" branch="false"/>
+								<line number="191" hits="123" branch="false"/>
 							</lines>
 						</method>
 						<method name="equalsMethod" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="257" hits="6" branch="false"/>
+								<line number="261" hits="6" branch="false"/>
 							</lines>
 						</method>
 						<method name="hashCodeMethod" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="253" hits="6" branch="false"/>
+								<line number="257" hits="6" branch="false"/>
 							</lines>
 						</method>
 						<method name="isExistence" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="248" hits="6" branch="false"/>
+								<line number="252" hits="6" branch="false"/>
 							</lines>
 						</method>
 						<method name="isGetter" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="235" hits="59" branch="false"/>
+								<line number="239" hits="59" branch="false"/>
 							</lines>
 						</method>
 						<method name="isMutator" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="239" hits="54" branch="false"/>
+								<line number="243" hits="54" branch="false"/>
 							</lines>
 						</method>
 						<method name="isQuery" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="231" hits="66" branch="false"/>
+								<line number="235" hits="66" branch="false"/>
 							</lines>
 						</method>
 						<method name="isSetter" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="244" hits="53" branch="false"/>
+								<line number="248" hits="53" branch="false"/>
 							</lines>
 						</method>
 						<method name="methodIsNotStatic" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="215" hits="111" branch="false"/>
+								<line number="219" hits="119" branch="false"/>
 							</lines>
 						</method>
 						<method name="methodIsStatic" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="211" hits="116" branch="false"/>
+								<line number="215" hits="124" branch="false"/>
 							</lines>
 						</method>
 						<method name="not" signature="(Lcom/lexicalscope/fluentreflection/ReflectionMatcher;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="219" hits="286" branch="false"/>
+								<line number="223" hits="294" branch="false"/>
 							</lines>
 						</method>
 						<method name="reflectedConstructorReflectingOn" signature="(Ljava/lang/reflect/Constructor;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="140" hits="1" branch="false"/>
+								<line number="144" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="reflectedTypeReflectingOn" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="126" hits="148" branch="false"/>
+								<line number="130" hits="152" branch="false"/>
 							</lines>
 						</method>
 						<method name="reflectedTypeReflectingOnAssignableFrom" signature="(Lcom/lexicalscope/fluentreflection/ReflectedClass;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="135" hits="2" branch="false"/>
+								<line number="139" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="reflectedTypeReflectingOnAssignableFrom" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="130" hits="59" branch="false"/>
+								<line number="134" hits="59" branch="false"/>
 							</lines>
 						</method>
 						<method name="toStringMethod" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="263" hits="6" branch="false"/>
+								<line number="267" hits="6" branch="false"/>
 							</lines>
 						</method>
 						<method name="typeHasInterface" signature="(Ljava/lang/Class;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
@@ -3405,6 +3537,11 @@
 								<line number="110" hits="3" branch="false"/>
 							</lines>
 						</method>
+						<method name="typeHasSimpleName" signature="(Ljava/lang/String;)Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="122" hits="2" branch="false"/>
+							</lines>
+						</method>
 						<method name="typeIsInterface" signature="()Lcom/lexicalscope/fluentreflection/ReflectionMatcher;" line-rate="1.0" branch-rate="1.0">
 							<lines>
 								<line number="118" hits="8" branch="false"/>
@@ -3417,72 +3554,73 @@
 						<line number="52" hits="4" branch="false"/>
 						<line number="65" hits="4" branch="false"/>
 						<line number="78" hits="10" branch="false"/>
-						<line number="90" hits="65" branch="false"/>
+						<line number="90" hits="81" branch="false"/>
 						<line number="102" hits="5" branch="false"/>
 						<line number="106" hits="6" branch="false"/>
 						<line number="110" hits="3" branch="false"/>
 						<line number="114" hits="4" branch="false"/>
 						<line number="118" hits="8" branch="false"/>
-						<line number="122" hits="7" branch="false"/>
-						<line number="126" hits="148" branch="false"/>
-						<line number="130" hits="59" branch="false"/>
-						<line number="135" hits="2" branch="false"/>
-						<line number="140" hits="1" branch="false"/>
-						<line number="144" hits="4" branch="false"/>
-						<line number="148" hits="78" branch="false"/>
-						<line number="152" hits="91" branch="false"/>
-						<line number="156" hits="99" branch="false"/>
-						<line number="161" hits="54" branch="false"/>
-						<line number="166" hits="54" branch="false"/>
-						<line number="171" hits="0" branch="false"/>
-						<line number="176" hits="1" branch="false"/>
-						<line number="180" hits="45" branch="true" condition-coverage="100% (2/2)">
+						<line number="122" hits="2" branch="false"/>
+						<line number="126" hits="7" branch="false"/>
+						<line number="130" hits="152" branch="false"/>
+						<line number="134" hits="59" branch="false"/>
+						<line number="139" hits="2" branch="false"/>
+						<line number="144" hits="1" branch="false"/>
+						<line number="148" hits="4" branch="false"/>
+						<line number="152" hits="78" branch="false"/>
+						<line number="156" hits="91" branch="false"/>
+						<line number="160" hits="99" branch="false"/>
+						<line number="165" hits="54" branch="false"/>
+						<line number="170" hits="54" branch="false"/>
+						<line number="175" hits="0" branch="false"/>
+						<line number="180" hits="1" branch="false"/>
+						<line number="184" hits="45" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="181" hits="3" branch="false"/>
-						<line number="183" hits="42" branch="false"/>
-						<line number="187" hits="123" branch="false"/>
-						<line number="191" hits="54" branch="false"/>
-						<line number="195" hits="1" branch="true" condition-coverage="50% (1/2)">
+						<line number="185" hits="3" branch="false"/>
+						<line number="187" hits="42" branch="false"/>
+						<line number="191" hits="123" branch="false"/>
+						<line number="195" hits="54" branch="false"/>
+						<line number="199" hits="1" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="196" hits="0" branch="false"/>
-						<line number="198" hits="1" branch="false"/>
-						<line number="203" hits="0" branch="false"/>
-						<line number="207" hits="2" branch="false"/>
-						<line number="211" hits="116" branch="false"/>
-						<line number="215" hits="111" branch="false"/>
-						<line number="219" hits="286" branch="false"/>
-						<line number="231" hits="66" branch="false"/>
-						<line number="235" hits="59" branch="false"/>
-						<line number="239" hits="54" branch="false"/>
-						<line number="244" hits="53" branch="false"/>
-						<line number="248" hits="6" branch="false"/>
-						<line number="253" hits="6" branch="false"/>
+						<line number="200" hits="0" branch="false"/>
+						<line number="202" hits="1" branch="false"/>
+						<line number="207" hits="0" branch="false"/>
+						<line number="211" hits="2" branch="false"/>
+						<line number="215" hits="124" branch="false"/>
+						<line number="219" hits="119" branch="false"/>
+						<line number="223" hits="294" branch="false"/>
+						<line number="235" hits="66" branch="false"/>
+						<line number="239" hits="59" branch="false"/>
+						<line number="243" hits="54" branch="false"/>
+						<line number="248" hits="53" branch="false"/>
+						<line number="252" hits="6" branch="false"/>
 						<line number="257" hits="6" branch="false"/>
-						<line number="263" hits="6" branch="false"/>
+						<line number="261" hits="6" branch="false"/>
+						<line number="267" hits="6" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers$1" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.0952380952380953">
+				<class name="com.lexicalscope.fluentreflection.ReflectionMatchers$1" filename="com/lexicalscope/fluentreflection/ReflectionMatchers.java" line-rate="0.5" branch-rate="1.0" complexity="1.0930232558139534">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectionMatcher;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="219" hits="286" branch="false"/>
+								<line number="223" hits="294" branch="false"/>
 							</lines>
 						</method>
 						<method name="describeTo" signature="(Lorg/hamcrest/Description;)V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="225" hits="0" branch="false"/>
-								<line number="226" hits="0" branch="false"/>
+								<line number="229" hits="0" branch="false"/>
+								<line number="230" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="221" hits="858" branch="true" condition-coverage="100% (2/2)">
+								<line number="225" hits="874" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
@@ -3491,14 +3629,14 @@
 						</method>
 					</methods>
 					<lines>
-						<line number="219" hits="286" branch="false"/>
-						<line number="221" hits="858" branch="true" condition-coverage="100% (2/2)">
+						<line number="223" hits="294" branch="false"/>
+						<line number="225" hits="874" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="225" hits="0" branch="false"/>
-						<line number="226" hits="0" branch="false"/>
+						<line number="229" hits="0" branch="false"/>
+						<line number="230" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.ReflectionRuntimeException" filename="com/lexicalscope/fluentreflection/ReflectionRuntimeException.java" line-rate="0.0" branch-rate="1.0" complexity="1.0">
@@ -3611,19 +3749,19 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/lexicalscope/fluentreflection/ReflectedTypeFactory;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="26" hits="91" branch="false"/>
-								<line number="27" hits="91" branch="false"/>
-								<line number="28" hits="91" branch="false"/>
-								<line number="31" hits="91" branch="false"/>
-								<line number="32" hits="91" branch="false"/>
-								<line number="33" hits="91" branch="false"/>
+								<line number="26" hits="107" branch="false"/>
+								<line number="27" hits="107" branch="false"/>
+								<line number="28" hits="107" branch="false"/>
+								<line number="31" hits="107" branch="false"/>
+								<line number="32" hits="107" branch="false"/>
+								<line number="33" hits="107" branch="false"/>
 							</lines>
 						</method>
 						<method name="interfacesAndSuperClass" signature="(Lcom/lexicalscope/fluentreflection/internal/guice/$TypeLiteral;)Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="91" branch="false"/>
-								<line number="37" hits="91" branch="false"/>
-								<line number="38" hits="91" branch="false"/>
+								<line number="36" hits="107" branch="false"/>
+								<line number="37" hits="107" branch="false"/>
+								<line number="38" hits="107" branch="false"/>
 							</lines>
 						</method>
 						<method name="processClass" signature="(Lcom/lexicalscope/fluentreflection/internal/guice/$TypeLiteral;)V" line-rate="0.8333333333333334" branch-rate="0.5">
@@ -3642,53 +3780,53 @@
 						</method>
 						<method name="processesPendingTypes" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="42" hits="126" branch="true" condition-coverage="100% (2/2)">
+								<line number="42" hits="142" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
 								<line number="43" hits="35" branch="false"/>
-								<line number="45" hits="91" branch="false"/>
+								<line number="45" hits="107" branch="false"/>
 							</lines>
 						</method>
 						<method name="queueSuperclassAndInterfaces" signature="(Lcom/lexicalscope/fluentreflection/internal/guice/$TypeLiteral;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="57" hits="126" branch="false"/>
-								<line number="58" hits="126" branch="true" condition-coverage="100% (4/4)">
+								<line number="57" hits="142" branch="false"/>
+								<line number="58" hits="142" branch="true" condition-coverage="100% (4/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 										<condition number="1" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
 								<line number="59" hits="12" branch="false"/>
-								<line number="61" hits="126" branch="false"/>
-								<line number="62" hits="149" branch="true" condition-coverage="100% (2/2)">
+								<line number="61" hits="142" branch="false"/>
+								<line number="62" hits="165" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
 								<line number="63" hits="23" branch="false"/>
-								<line number="65" hits="126" branch="false"/>
+								<line number="65" hits="142" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="26" hits="91" branch="false"/>
-						<line number="27" hits="91" branch="false"/>
-						<line number="28" hits="91" branch="false"/>
-						<line number="31" hits="91" branch="false"/>
-						<line number="32" hits="91" branch="false"/>
-						<line number="33" hits="91" branch="false"/>
-						<line number="36" hits="91" branch="false"/>
-						<line number="37" hits="91" branch="false"/>
-						<line number="38" hits="91" branch="false"/>
-						<line number="42" hits="126" branch="true" condition-coverage="100% (2/2)">
+						<line number="26" hits="107" branch="false"/>
+						<line number="27" hits="107" branch="false"/>
+						<line number="28" hits="107" branch="false"/>
+						<line number="31" hits="107" branch="false"/>
+						<line number="32" hits="107" branch="false"/>
+						<line number="33" hits="107" branch="false"/>
+						<line number="36" hits="107" branch="false"/>
+						<line number="37" hits="107" branch="false"/>
+						<line number="38" hits="107" branch="false"/>
+						<line number="42" hits="142" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
 						<line number="43" hits="35" branch="false"/>
-						<line number="45" hits="91" branch="false"/>
+						<line number="45" hits="107" branch="false"/>
 						<line number="48" hits="35" branch="false"/>
 						<line number="49" hits="35" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
@@ -3699,22 +3837,22 @@
 						<line number="52" hits="35" branch="false"/>
 						<line number="53" hits="35" branch="false"/>
 						<line number="54" hits="35" branch="false"/>
-						<line number="57" hits="126" branch="false"/>
-						<line number="58" hits="126" branch="true" condition-coverage="100% (4/4)">
+						<line number="57" hits="142" branch="false"/>
+						<line number="58" hits="142" branch="true" condition-coverage="100% (4/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 								<condition number="1" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
 						<line number="59" hits="12" branch="false"/>
-						<line number="61" hits="126" branch="false"/>
-						<line number="62" hits="149" branch="true" condition-coverage="100% (2/2)">
+						<line number="61" hits="142" branch="false"/>
+						<line number="62" hits="165" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
 						<line number="63" hits="23" branch="false"/>
-						<line number="65" hits="126" branch="false"/>
+						<line number="65" hits="142" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.lexicalscope.fluentreflection.TypeToken" filename="com/lexicalscope/fluentreflection/TypeToken.java" line-rate="0.0" branch-rate="0.0" complexity="3.0">
@@ -3749,6 +3887,92 @@
 						<line number="28" hits="0" branch="false"/>
 						<line number="30" hits="0" branch="false"/>
 						<line number="31" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="com.lexicalscope.fluentreflection.Visibility" filename="com/lexicalscope/fluentreflection/Visibility.java" line-rate="0.8125" branch-rate="0.5" complexity="3.0">
+					<methods>
+						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="21" hits="1" branch="false"/>
+								<line number="22" hits="1" branch="false"/>
+								<line number="23" hits="1" branch="false"/>
+								<line number="24" hits="1" branch="false"/>
+								<line number="25" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;ILjava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="29" hits="4" branch="false"/>
+								<line number="30" hits="4" branch="false"/>
+								<line number="31" hits="4" branch="false"/>
+							</lines>
+						</method>
+						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="34" hits="4" branch="false"/>
+							</lines>
+						</method>
+						<method name="valueOf" signature="(Ljava/lang/String;)Lcom/lexicalscope/fluentreflection/Visibility;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="values" signature="()[Lcom/lexicalscope/fluentreflection/Visibility;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="visibilityFromModifiers" signature="(I)Lcom/lexicalscope/fluentreflection/Visibility;" line-rate="0.5714285714285714" branch-rate="0.5">
+							<lines>
+								<line number="38" hits="4" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="40" hits="0" branch="false"/>
+								<line number="42" hits="4" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="44" hits="0" branch="false"/>
+								<line number="46" hits="4" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="48" hits="0" branch="false"/>
+								<line number="50" hits="4" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="21" hits="1" branch="false"/>
+						<line number="22" hits="1" branch="false"/>
+						<line number="23" hits="1" branch="false"/>
+						<line number="24" hits="1" branch="false"/>
+						<line number="25" hits="1" branch="false"/>
+						<line number="29" hits="4" branch="false"/>
+						<line number="30" hits="4" branch="false"/>
+						<line number="31" hits="4" branch="false"/>
+						<line number="34" hits="4" branch="false"/>
+						<line number="38" hits="4" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="40" hits="0" branch="false"/>
+						<line number="42" hits="4" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="44" hits="0" branch="false"/>
+						<line number="46" hits="4" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="48" hits="0" branch="false"/>
+						<line number="50" hits="4" branch="false"/>
 					</lines>
 				</class>
 			</classes>
