@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2011-10-21T16:27:41.713">
-<file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/IllegalAccessRuntimeException.java">
+<pmd version="4.2.5" timestamp="2011-10-21T22:54:34.855">
+<file name="/home/tim/workspace/fluent-reflection/target/checkout/src/main/java/com/lexicalscope/fluentreflection/IllegalAccessRuntimeException.java">
 <violation beginline="24" endline="26" begincolumn="12" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.lexicalscope.fluentreflection" class="IllegalAccessRuntimeException" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
 Avoid unused constructor parameters such as 'e'.
 </violation>
@@ -8,7 +8,7 @@ Avoid unused constructor parameters such as 'e'.
 Avoid unused constructor parameters such as 'member'.
 </violation>
 </file>
-<file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/InstantiationRuntimeException.java">
+<file name="/home/tim/workspace/fluent-reflection/target/checkout/src/main/java/com/lexicalscope/fluentreflection/InstantiationRuntimeException.java">
 <violation beginline="24" endline="26" begincolumn="12" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.lexicalscope.fluentreflection" class="InstantiationRuntimeException" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
 Avoid unused constructor parameters such as 'constructor'.
 </violation>
@@ -16,7 +16,7 @@ Avoid unused constructor parameters such as 'constructor'.
 Avoid unused constructor parameters such as 'e'.
 </violation>
 </file>
-<file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/MatcherArgumentTypes.java">
+<file name="/home/tim/workspace/fluent-reflection/target/checkout/src/main/java/com/lexicalscope/fluentreflection/MatcherArgumentTypes.java">
 <violation beginline="40" endline="47" begincolumn="18" endcolumn="5" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="com.lexicalscope.fluentreflection" class="MatcherArgumentTypes" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
@@ -24,7 +24,7 @@ Unnecessary final modifier in final class
 Unnecessary final modifier in final class
 </violation>
 </file>
-<file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/MatcherReflectedTypeReflectingOn.java">
+<file name="/home/tim/workspace/fluent-reflection/target/checkout/src/main/java/com/lexicalscope/fluentreflection/MatcherReflectedTypeReflectingOn.java">
 <violation beginline="24" endline="31" begincolumn="28" endcolumn="5" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="com.lexicalscope.fluentreflection" class="MatcherReflectedTypeReflectingOn" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
@@ -32,7 +32,7 @@ Unnecessary final modifier in final class
 Unnecessary final modifier in final class
 </violation>
 </file>
-<file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/MatcherReturnType.java">
+<file name="/home/tim/workspace/fluent-reflection/target/checkout/src/main/java/com/lexicalscope/fluentreflection/MatcherReturnType.java">
 <violation beginline="32" endline="39" begincolumn="18" endcolumn="5" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="com.lexicalscope.fluentreflection" class="MatcherReturnType" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
@@ -40,7 +40,7 @@ Unnecessary final modifier in final class
 Unnecessary final modifier in final class
 </violation>
 </file>
-<file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/ReflectedMethodImpl.java">
+<file name="/home/tim/workspace/fluent-reflection/target/checkout/src/main/java/com/lexicalscope/fluentreflection/ReflectedMethodImpl.java">
 <violation beginline="39" endline="39" begincolumn="37" endcolumn="50" rule="UnusedPrivateField" ruleset="Unused Code Rules" package="com.lexicalscope.fluentreflection" class="ReflectedMethodImpl" variable="reflectedClass" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateField" priority="3">
 Avoid unused private fields such as 'reflectedClass'.
 </violation>
@@ -48,7 +48,7 @@ Avoid unused private fields such as 'reflectedClass'.
 These nested if statements could be combined
 </violation>
 </file>
-<file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/ReflectedObjectImpl.java">
+<file name="/home/tim/workspace/fluent-reflection/target/checkout/src/main/java/com/lexicalscope/fluentreflection/ReflectedObjectImpl.java">
 <violation beginline="31" endline="37" begincolumn="12" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.lexicalscope.fluentreflection" class="ReflectedObjectImpl" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
 Avoid unused constructor parameters such as 'reflectedTypeFactoryImpl'.
 </violation>

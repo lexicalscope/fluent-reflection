@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.7959641255605381" branch-rate="0.665" lines-covered="710" lines-valid="892" branches-covered="133" branches-valid="200" complexity="1.326963906581741" version="1.9.4.1" timestamp="1319228819454">
+<coverage line-rate="0.7945823927765236" branch-rate="0.665" lines-covered="704" lines-valid="886" branches-covered="133" branches-valid="200" complexity="1.326963906581741" version="1.9.4.1" timestamp="1319234057203">
 	<sources>
 		<source>--source</source>
-		<source>/scratch/hudson/workspace/fluent-reflection/src/main/java</source>
+		<source>/home/tim/workspace/fluent-reflection/target/checkout/src/main/java</source>
 	</sources>
 	<packages>
 		<package name="com.google.common.base" line-rate="1.0" branch-rate="1.0" complexity="0.0">
@@ -77,7 +77,7 @@
 				</class>
 			</classes>
 		</package>
-		<package name="com.lexicalscope.fluentreflection" line-rate="0.7685589519650655" branch-rate="0.6578947368421053" complexity="1.3046875">
+		<package name="com.lexicalscope.fluentreflection" line-rate="0.7675438596491229" branch-rate="0.6578947368421053" complexity="1.3046875">
 			<classes>
 				<class name="com.lexicalscope.fluentreflection.AbstractReflectedCallable" filename="com/lexicalscope/fluentreflection/AbstractReflectedCallable.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
@@ -174,7 +174,7 @@
 						</method>
 						<method name="getName" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="62" hits="422" branch="false"/>
+								<line number="62" hits="420" branch="false"/>
 							</lines>
 						</method>
 						<method name="isFinal" signature="()Z" line-rate="0.0" branch-rate="1.0">
@@ -184,7 +184,7 @@
 						</method>
 						<method name="isStatic" signature="()Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="66" hits="20" branch="false"/>
+								<line number="66" hits="18" branch="false"/>
 							</lines>
 						</method>
 						<method name="methodUnderReflection" signature="()Ljava/lang/reflect/Method;" line-rate="0.0" branch-rate="1.0">
@@ -231,8 +231,8 @@
 						<line number="53" hits="49" branch="false"/>
 						<line number="54" hits="49" branch="false"/>
 						<line number="58" hits="1" branch="false"/>
-						<line number="62" hits="422" branch="false"/>
-						<line number="66" hits="20" branch="false"/>
+						<line number="62" hits="420" branch="false"/>
+						<line number="66" hits="18" branch="false"/>
 						<line number="70" hits="0" branch="false"/>
 						<line number="74" hits="0" branch="false"/>
 						<line number="78" hits="1" branch="false"/>
@@ -926,18 +926,17 @@
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="43" hits="669" branch="true" condition-coverage="100% (2/2)">
+								<line number="43" hits="635" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="44" hits="1116" branch="true" condition-coverage="100% (2/2)">
+								<line number="44" hits="1048" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="45" hits="275" branch="false"/>
-								<line number="47" hits="841" branch="false"/>
+								<line number="45" hits="241" branch="false"/>
 								<line number="48" hits="394" branch="false"/>
 							</lines>
 						</method>
@@ -946,18 +945,17 @@
 						<line number="34" hits="306" branch="false"/>
 						<line number="35" hits="306" branch="false"/>
 						<line number="36" hits="306" branch="false"/>
-						<line number="43" hits="669" branch="true" condition-coverage="100% (2/2)">
+						<line number="43" hits="635" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="44" hits="1116" branch="true" condition-coverage="100% (2/2)">
+						<line number="44" hits="1048" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="45" hits="275" branch="false"/>
-						<line number="47" hits="841" branch="false"/>
+						<line number="45" hits="241" branch="false"/>
 						<line number="48" hits="394" branch="false"/>
 						<line number="53" hits="5" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
@@ -1384,21 +1382,21 @@
 						</method>
 						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedCallable;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="29" hits="306" branch="false"/>
+								<line number="29" hits="236" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="21" hits="306" branch="false"/>
+								<line number="21" hits="236" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="21" hits="306" branch="false"/>
+						<line number="21" hits="236" branch="false"/>
 						<line number="24" hits="97" branch="false"/>
 						<line number="25" hits="97" branch="false"/>
 						<line number="26" hits="97" branch="false"/>
-						<line number="29" hits="306" branch="false"/>
+						<line number="29" hits="236" branch="false"/>
 						<line number="33" hits="1" branch="false"/>
 						<line number="34" hits="1" branch="false"/>
 					</lines>
@@ -1453,18 +1451,18 @@
 						</method>
 						<method name="matchesSafely" signature="(Lcom/lexicalscope/fluentreflection/ReflectedMethod;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="8" hits="637" branch="false"/>
+								<line number="8" hits="603" branch="false"/>
 							</lines>
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="5" hits="761" branch="false"/>
+								<line number="5" hits="727" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="5" hits="761" branch="false"/>
-						<line number="8" hits="637" branch="false"/>
+						<line number="5" hits="727" branch="false"/>
+						<line number="8" hits="603" branch="false"/>
 						<line number="13" hits="0" branch="false"/>
 						<line number="14" hits="0" branch="false"/>
 					</lines>
@@ -1508,7 +1506,6 @@
 									</conditions>
 								</line>
 								<line number="46" hits="7" branch="false"/>
-								<line number="48" hits="7" branch="false"/>
 								<line number="49" hits="2" branch="false"/>
 							</lines>
 						</method>
@@ -1533,7 +1530,6 @@
 							</conditions>
 						</line>
 						<line number="46" hits="7" branch="false"/>
-						<line number="48" hits="7" branch="false"/>
 						<line number="49" hits="2" branch="false"/>
 						<line number="54" hits="5" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
@@ -2634,7 +2630,7 @@
 						</method>
 						<method name="getName" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="55" hits="900" branch="false"/>
+								<line number="55" hits="830" branch="false"/>
 							</lines>
 						</method>
 						<method name="hashCode" signature="()I" line-rate="0.0" branch-rate="1.0">
@@ -2671,7 +2667,7 @@
 						</method>
 						<method name="isStatic" signature="()Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="109" hits="1744" branch="false"/>
+								<line number="109" hits="1712" branch="false"/>
 							</lines>
 						</method>
 						<method name="methodUnderReflection" signature="()Ljava/lang/reflect/Method;" line-rate="0.0" branch-rate="1.0">
@@ -2778,7 +2774,7 @@
 						<line number="50" hits="780" branch="false"/>
 						<line number="51" hits="780" branch="false"/>
 						<line number="52" hits="780" branch="false"/>
-						<line number="55" hits="900" branch="false"/>
+						<line number="55" hits="830" branch="false"/>
 						<line number="59" hits="105" branch="false"/>
 						<line number="60" hits="105" branch="false"/>
 						<line number="63" hits="105" branch="false"/>
@@ -2819,7 +2815,7 @@
 						<line number="102" hits="0" branch="false"/>
 						<line number="103" hits="0" branch="false"/>
 						<line number="104" hits="0" branch="false"/>
-						<line number="109" hits="1744" branch="false"/>
+						<line number="109" hits="1712" branch="false"/>
 						<line number="113" hits="18" branch="false"/>
 						<line number="117" hits="0" branch="false"/>
 						<line number="125" hits="218" branch="false"/>
@@ -2981,7 +2977,6 @@
 									</conditions>
 								</line>
 								<line number="35" hits="29" branch="false"/>
-								<line number="36" hits="29" branch="false"/>
 								<line number="38" hits="118" branch="false"/>
 								<line number="39" hits="118" branch="false"/>
 								<line number="41" hits="165" branch="false"/>
@@ -3007,7 +3002,6 @@
 							</conditions>
 						</line>
 						<line number="35" hits="29" branch="false"/>
-						<line number="36" hits="29" branch="false"/>
 						<line number="38" hits="118" branch="false"/>
 						<line number="39" hits="118" branch="false"/>
 						<line number="41" hits="165" branch="false"/>
@@ -3590,7 +3584,7 @@
 						</method>
 						<method name="matchesSafely" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="225" hits="874" branch="true" condition-coverage="100% (2/2)">
+								<line number="225" hits="872" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
@@ -3600,7 +3594,7 @@
 					</methods>
 					<lines>
 						<line number="223" hits="294" branch="false"/>
-						<line number="225" hits="874" branch="true" condition-coverage="100% (2/2)">
+						<line number="225" hits="872" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
@@ -3947,7 +3941,7 @@
 				</class>
 			</classes>
 		</package>
-		<package name="com.lexicalscope.fluentreflection.bean" line-rate="0.9219858156028369" branch-rate="0.675" complexity="1.3692307692307693">
+		<package name="com.lexicalscope.fluentreflection.bean" line-rate="0.920863309352518" branch-rate="0.675" complexity="1.3692307692307693">
 			<classes>
 				<class name="com.lexicalscope.fluentreflection.bean.BeanMap" filename="com/lexicalscope/fluentreflection/bean/BeanMap.java" line-rate="0.8333333333333334" branch-rate="1.0" complexity="1.511111111111111">
 					<methods>
@@ -4263,7 +4257,6 @@
 									</conditions>
 								</line>
 								<line number="132" hits="4" branch="false"/>
-								<line number="133" hits="3" branch="false"/>
 								<line number="134" hits="2" branch="false"/>
 							</lines>
 						</method>
@@ -4286,7 +4279,6 @@
 									</conditions>
 								</line>
 								<line number="147" hits="3" branch="false"/>
-								<line number="148" hits="3" branch="false"/>
 								<line number="149" hits="1" branch="false"/>
 							</lines>
 						</method>
@@ -4354,7 +4346,6 @@
 							</conditions>
 						</line>
 						<line number="132" hits="4" branch="false"/>
-						<line number="133" hits="3" branch="false"/>
 						<line number="134" hits="2" branch="false"/>
 						<line number="137" hits="1" branch="false"/>
 						<line number="141" hits="2" branch="false"/>
@@ -4365,7 +4356,6 @@
 							</conditions>
 						</line>
 						<line number="147" hits="3" branch="false"/>
-						<line number="148" hits="3" branch="false"/>
 						<line number="149" hits="1" branch="false"/>
 					</lines>
 				</class>
@@ -4863,7 +4853,7 @@
 				</class>
 			</classes>
 		</package>
-		<package name="com.lexicalscope.fluentreflection.dynamicproxy" line-rate="0.8125" branch-rate="0.75" complexity="1.5909090909090908">
+		<package name="com.lexicalscope.fluentreflection.dynamicproxy" line-rate="0.8095238095238095" branch-rate="0.75" complexity="1.5909090909090908">
 			<classes>
 				<class name="com.lexicalscope.fluentreflection.dynamicproxy.FluentProxy" filename="com/lexicalscope/fluentreflection/dynamicproxy/FluentProxy.java" line-rate="0.5" branch-rate="1.0" complexity="1.0">
 					<methods>
@@ -4883,7 +4873,7 @@
 						<line number="23" hits="13" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.lexicalscope.fluentreflection.dynamicproxy.Implementing" filename="com/lexicalscope/fluentreflection/dynamicproxy/Implementing.java" line-rate="0.8717948717948718" branch-rate="0.6666666666666666" complexity="1.7647058823529411">
+				<class name="com.lexicalscope.fluentreflection.dynamicproxy.Implementing" filename="com/lexicalscope/fluentreflection/dynamicproxy/Implementing.java" line-rate="0.868421052631579" branch-rate="0.6666666666666666" complexity="1.7647058823529411">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
@@ -4930,7 +4920,7 @@
 								<line number="66" hits="7" branch="false"/>
 							</lines>
 						</method>
-						<method name="invoke" signature="(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="0.8888888888888888" branch-rate="0.75">
+						<method name="invoke" signature="(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="0.875" branch-rate="0.75">
 							<lines>
 								<line number="70" hits="20" branch="false"/>
 								<line number="72" hits="20" branch="true" condition-coverage="50% (1/2)">
@@ -4946,7 +4936,6 @@
 								<line number="75" hits="20" branch="false"/>
 								<line number="77" hits="20" branch="false"/>
 								<line number="79" hits="19" branch="false"/>
-								<line number="81" hits="25" branch="false"/>
 								<line number="82" hits="0" branch="false"/>
 								<line number="84" hits="20" branch="false"/>
 							</lines>
@@ -5028,7 +5017,6 @@
 						<line number="75" hits="20" branch="false"/>
 						<line number="77" hits="20" branch="false"/>
 						<line number="79" hits="19" branch="false"/>
-						<line number="81" hits="25" branch="false"/>
 						<line number="82" hits="0" branch="false"/>
 						<line number="84" hits="20" branch="false"/>
 						<line number="89" hits="13" branch="false"/>
