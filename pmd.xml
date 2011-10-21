@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2011-10-20T19:19:59.061">
+<pmd version="4.2.5" timestamp="2011-10-21T13:03:24.653">
 <file name="/scratch/hudson/workspace/fluent-reflection/src/main/java/com/lexicalscope/fluentreflection/IllegalAccessRuntimeException.java">
 <violation beginline="24" endline="26" begincolumn="12" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.lexicalscope.fluentreflection" class="IllegalAccessRuntimeException" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
 Avoid unused constructor parameters such as 'e'.
