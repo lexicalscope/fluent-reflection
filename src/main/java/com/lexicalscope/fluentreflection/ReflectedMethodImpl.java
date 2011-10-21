@@ -96,6 +96,8 @@ class ReflectedMethodImpl extends AbstractReflectedCallable implements Reflected
                 method.setAccessible(true);
             }
             return method.invoke(instance, arguments);
+        } catch (final IllegalArgumentException e) {
+            throw new IllegalArgumentRuntimeException(e, method, instance, arguments);
         } catch (final IllegalAccessException e) {
             throw new IllegalAccessRuntimeException(e, method);
         } catch (final InvocationTargetException e) {

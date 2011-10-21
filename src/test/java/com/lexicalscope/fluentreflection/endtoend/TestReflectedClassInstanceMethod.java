@@ -9,6 +9,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import com.lexicalscope.fluentreflection.IllegalArgumentRuntimeException;
+
 public class TestReflectedClassInstanceMethod {
     @Rule public final ExpectedException exception = ExpectedException.none();
 
@@ -93,8 +95,8 @@ public class TestReflectedClassInstanceMethod {
     }
 
     @Test public void callingInstanceMethodWithWrongInstanceType() {
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("not an instance of declaring class");
+        exception.expect(IllegalArgumentRuntimeException.class);
+        exception.expectMessage(containsString("not an instance of declaring class"));
 
         type(ClassWithInstanceMethods.class).method(callableHasName("simpleMethod")).call(new Object());
     }
