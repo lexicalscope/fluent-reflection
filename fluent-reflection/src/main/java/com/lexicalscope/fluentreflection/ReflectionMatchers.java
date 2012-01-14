@@ -99,7 +99,7 @@ public class ReflectionMatchers {
      * @return true iff the callable is declared by the argument
      */
     public static ReflectionMatcher<ReflectedCallable> callableDeclaredBy(final Class<?> declaringClass) {
-        return new MatcherCallableDeclaredBy(declaringClass);
+        return new MatcherCallableDeclaredBy(reflectedTypeReflectingOn(declaringClass));
     }
 
     public static ReflectionMatcher<ReflectedClass<?>> typeHasNoInterfaces() {
@@ -266,5 +266,17 @@ public class ReflectionMatchers {
     public static ReflectionMatcher<ReflectedCallable> toStringMethod() {
         return callableHasName("toString").and(callableHasNoArguments()).and(
                 callableHasReturnType(String.class));
+    }
+
+    public static ReflectionMatcher<ReflectedCallable> publicMethod() {
+        return new MatcherPublic();
+    }
+
+    public static Matcher<? super ReflectedCallable> declaredByStrictSubclassOf(final Class<?> klass) {
+        return new MatcherCallableDeclaredBy(strictSubtypeOf(klass));
+    }
+
+    public static Matcher<? super ReflectedClass<?>> strictSubtypeOf(final Class<?> klass) {
+        return new MatcherStrictSubtypeOf(klass);
     }
 }

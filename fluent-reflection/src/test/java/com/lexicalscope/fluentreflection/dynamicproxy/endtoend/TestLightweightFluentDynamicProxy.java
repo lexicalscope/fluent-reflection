@@ -13,10 +13,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import com.lexicalscope.fluentreflection.dynamicproxy.Implementing;
-import com.lexicalscope.fluentreflection.dynamicproxy.MethodBody;
-import com.lexicalscope.fluentreflection.dynamicproxy.QueryMethod;
 
-public class TestFluentDynamicProxy {
+public class TestLightweightFluentDynamicProxy {
     @Rule public final ExpectedException exception = ExpectedException.none();
 
     static class MyException extends Exception {
@@ -41,18 +39,15 @@ public class TestFluentDynamicProxy {
 
     interface MethodWithArgument {
         int method(int argument);
+        String method(String argument);
     }
 
     @Test public void canProxyMultipleMethods() throws Exception {
         final List<String> called = new ArrayList<String>();
 
         final TwoMethods dynamicProxy = dynamicProxy(new Implementing<TwoMethods>() {
-            {
-                whenProxying(anything()).execute(new MethodBody() {
-                    @Override public void body() {
-                        called.add(methodName());
-                    }
-                });
+            @SuppressWarnings("unused") public void body() {
+                called.add(methodName());
             }
         });
 
@@ -70,12 +65,8 @@ public class TestFluentDynamicProxy {
     @Test public void canReturnValueFromProxiedMethod() throws Exception {
 
         final TwoQueryMethod dynamicProxy = dynamicProxy(new Implementing<TwoQueryMethod>() {
-            {
-                whenProxying(anything()).execute(new MethodBody() {
-                    @Override public void body() {
-                        returnValue(42);
-                    }
-                });
+            @SuppressWarnings("unused") public void body() {
+                returnValue(42);
             }
         });
 
@@ -86,18 +77,14 @@ public class TestFluentDynamicProxy {
     @Test public void canReturnDifferentValuesFromEachProxiedMethod() throws Exception {
 
         final TwoQueryMethod dynamicProxy = dynamicProxy(new Implementing<TwoQueryMethod>() {
-            {
-                whenProxying(callableHasName("methodA")).execute(new MethodBody() {
-                    @Override public void body() {
-                        returnValue(42);
-                    }
-                });
+            @SuppressWarnings("unused") public void bodyA() {
+                whenProxying(callableHasName("methodA"));
+                returnValue(42);
+            }
 
-                whenProxying(callableHasName("methodB")).execute(new MethodBody() {
-                    @Override public void body() {
-                        returnValue(24);
-                    }
-                });
+            @SuppressWarnings("unused") public void bodyB() {
+                whenProxying(callableHasName("methodB"));
+                returnValue(24);
             }
         });
 
@@ -108,18 +95,14 @@ public class TestFluentDynamicProxy {
     @Test public void canDefineDefaultImplementationForUnmatchedMethods() throws Exception {
 
         final TwoQueryMethod dynamicProxy = dynamicProxy(new Implementing<TwoQueryMethod>() {
-            {
-                whenProxying(callableHasName("methodA")).execute(new MethodBody() {
-                    @Override public void body() {
-                        returnValue(42);
-                    }
-                });
+            @SuppressWarnings("unused") public void bodyA() {
+                whenProxying(callableHasName("methodA"));
+                returnValue(42);
+            }
 
-                whenProxying(anything()).execute(new MethodBody() {
-                    @Override public void body() {
-                        returnValue(24);
-                    }
-                });
+            @SuppressWarnings("unused") public void bodyX() {
+                whenProxyingUnmatched();
+                returnValue(24);
             }
         });
 
@@ -129,12 +112,8 @@ public class TestFluentDynamicProxy {
 
     @Test public void canThrowException() throws Exception {
         final ThrowingMethod dynamicProxy = dynamicProxy(new Implementing<ThrowingMethod>() {
-            {
-                whenProxying(anything()).execute(new MethodBody() {
-                    @Override public void body() throws MyException {
-                        throw new MyException();
-                    }
-                });
+            @SuppressWarnings("unused") public void body() throws MyException {
+                throw new MyException();
             }
         });
 
@@ -144,12 +123,8 @@ public class TestFluentDynamicProxy {
 
     @Test public void canGetMethodArguments() throws Exception {
         final MethodWithArgument dynamicProxy = dynamicProxy(new Implementing<MethodWithArgument>() {
-            {
-                whenProxying(anything()).execute(new MethodBody() {
-                    @Override public void body() {
-                        returnValue(args()[0]);
-                    }
-                });
+            @SuppressWarnings("unused") public void body() {
+                returnValue(args()[0]);
             }
         });
 
@@ -158,16 +133,18 @@ public class TestFluentDynamicProxy {
 
     @Test public void canGetBindUsingMethodArguments() throws Exception {
         final MethodWithArgument dynamicProxy = dynamicProxy(new Implementing<MethodWithArgument>() {
+            @SuppressWarnings("unused") public int body(final int agument)
             {
-                matchingSignature(new QueryMethod() {
-                    @SuppressWarnings("unused") public int body(final int agument)
-                    {
-                        return 42;
-                    }
-                });
+                return 42;
+            }
+
+            @SuppressWarnings("unused") public String body(final String agument)
+            {
+                return "42";
             }
         });
 
         assertThat(dynamicProxy.method(42), equalTo(42));
+        assertThat(dynamicProxy.method("42"), equalTo("42"));
     }
 }

@@ -30,7 +30,7 @@ public class TestReflectedMethodToString {
     static class ClassWithMethods<T> {
         void myMethod() {};
         public void myPublicMethod() {};
-        private void myPrivateMethod() {};
+        @SuppressWarnings("unused") private void myPrivateMethod() {};
         protected void myProtectedMethod() {};
         final void myFinalMethod() {};
         static void myStaticMethod() {};

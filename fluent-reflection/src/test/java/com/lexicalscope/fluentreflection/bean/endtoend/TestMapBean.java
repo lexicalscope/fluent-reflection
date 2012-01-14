@@ -4,6 +4,7 @@ import static com.lexicalscope.fluentreflection.bean.MapBean.bean;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -51,10 +52,14 @@ public class TestMapBean {
         void setCollection(Collection<Integer> integer);
 
         Set<Integer> getSet();
-        void setCollection(Set<Integer> integer);
+        void setSet(Set<Integer> integer);
 
         List<Integer> getList();
-        void setCollection(List<Integer> integer);
+        void setList(List<Integer> integer);
+
+        List<Integer> getOptionalList();
+        void setOptionalList(List<Integer> integer);
+        boolean isOptionalList();
     }
 
     private final Map<String, Object> map = new HashMap<String, Object>();
@@ -86,5 +91,13 @@ public class TestMapBean {
 
     @Test public void mapBeanNotEqualToSecondBeanOnTheSameMap() throws Exception {
         assertThat(bean, not(equalTo(bean(Bean.class, map))));
+    }
+
+    @Test public void mapBeanOptionalCollectionQueryMethodIsFalseIfTheListIsNotPresent() throws Exception {
+        assertThat(bean.isOptionalList(), equalTo(false));
+
+        bean.setOptionalList(new ArrayList<Integer>());
+
+        assertThat(bean.isOptionalList(), equalTo(true));
     }
 }

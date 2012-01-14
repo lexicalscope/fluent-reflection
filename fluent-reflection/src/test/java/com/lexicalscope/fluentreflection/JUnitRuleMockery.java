@@ -15,17 +15,14 @@ import org.junit.runners.model.Statement;
 
 import com.google.inject.TypeLiteral;
 
-class JUnitRuleMockery extends JUnit4Mockery implements MethodRule {
-    @SuppressWarnings("unchecked")
-    public <T> T mock(final TypeLiteral<T> typeToMock) {
+@SuppressWarnings("deprecation") class JUnitRuleMockery extends JUnit4Mockery implements MethodRule {
+    @SuppressWarnings("unchecked") public <T> T mock(final TypeLiteral<T> typeToMock) {
         return (T) super.mock(typeToMock.getRawType());
     }
 
-    @Override
-    public Statement apply(final Statement base, final FrameworkMethod method, final Object target) {
+    @Override public Statement apply(final Statement base, final FrameworkMethod method, final Object target) {
         return new Statement() {
-            @Override
-            public void evaluate() throws Throwable {
+            @Override public void evaluate() throws Throwable {
                 base.evaluate();
                 assertIsSatisfied();
             }
@@ -36,13 +33,11 @@ class JUnitRuleMockery extends JUnit4Mockery implements MethodRule {
         final List<T> list = new ArrayList<T>();
         list.add(t);
         return new Action() {
-            @Override
-            public void describeTo(final Description description) {
+            @Override public void describeTo(final Description description) {
                 description.appendText("return ").appendValue(list);
             }
 
-            @Override
-            public Object invoke(final Invocation arg0) throws Throwable {
+            @Override public Object invoke(final Invocation arg0) throws Throwable {
                 return unmodifiableList(list);
             }
         };

@@ -1,7 +1,8 @@
 package com.lexicalscope.fluentreflection.dynamicproxy;
 
-import static com.lexicalscope.fluentreflection.FluentReflection.type;
+import static com.lexicalscope.fluentreflection.FluentReflection.*;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
+import static org.hamcrest.Matchers.anything;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -26,6 +27,30 @@ import com.lexicalscope.fluentreflection.ReflectionMatcher;
 import com.lexicalscope.fluentreflection.SecurityException;
 
 public abstract class Implementing<T> implements ProxyImplementation<T> {
+    private final class MethodInvoker implements MethodBody {
+        private final Object subject;
+        private final Method method;
+
+        private MethodInvoker(final Object subject, final Method method) {
+            this.subject = subject;
+            this.method = method;
+        }
+
+        @Override public void body() throws Exception {
+            try {
+                method.setAccessible(true);
+                returnValue(method.invoke(subject, args()));
+            } catch (final SecurityException e) {
+                throw new SecurityException("unable to invoke method in " + subject.getClass(), e);
+            } catch (final IllegalAccessException e) {
+                throw new IllegalAccessRuntimeException("unable to invoke method in "
+                        + subject.getClass(), e);
+            } catch (final InvocationTargetException e) {
+                e.getCause();
+            }
+        }
+    }
+
     private static class MethodInvokationContext {
         private final ReflectedMethod method;
         private final Object[] args;
@@ -39,23 +64,39 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         }
     }
 
+    private final ThreadLocal<Boolean> proxyingMethod =
+            new ThreadLocal<Boolean>() {
+                @Override protected Boolean initialValue() {
+                    return Boolean.FALSE;
+                }
+            };
+    private final ThreadLocal<Boolean> callingDefaultHandler =
+            new ThreadLocal<Boolean>() {
+                @Override protected Boolean initialValue() {
+                    return Boolean.FALSE;
+                }
+            };
+    private final ThreadLocal<MethodInvokationContext> methodInvokationContext =
+            new ThreadLocal<MethodInvokationContext>();
+
     private final Map<Matcher<? super ReflectedMethod>, MethodBody> registeredMethodHandlers =
             new LinkedHashMap<Matcher<? super ReflectedMethod>, MethodBody>();
 
     private final TypeLiteral<?> typeLiteral;
-    private final ThreadLocal<MethodInvokationContext> methodInvokationContext =
-            new ThreadLocal<MethodInvokationContext>();
 
     public Implementing() {
         typeLiteral = TypeLiteral.get(getSuperclassTypeParameter(getClass()));
+        registerDeclaredMethods();
     }
 
     public Implementing(final Class<?> klass) {
         typeLiteral = TypeLiteral.get(klass);
+        registerDeclaredMethods();
     }
 
     public Implementing(final ReflectedClass<?> klass) {
         typeLiteral = TypeLiteral.get(klass.type());
+        registerDeclaredMethods();
     }
 
     private static Type getSuperclassTypeParameter(final Class<?> subclass) {
@@ -66,22 +107,67 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         return ((ParameterizedType) superclass).getActualTypeArguments()[0];
     }
 
-    @Override public final Object invoke(final Object proxy, final Method method, final Object[] args) throws Throwable {
-        methodInvokationContext.set(new MethodInvokationContext(proxy, method, args));
-        try {
-            for (final Entry<Matcher<? super ReflectedMethod>, MethodBody> registeredMethodHandler : registeredMethodHandlers
-                    .entrySet()) {
-                if (registeredMethodHandler.getKey().matches(methodInvokationContext.get().method)) {
-                    final MethodBody registeredImplementation = registeredMethodHandler.getValue();
-
-                    registeredImplementation.body();
-
-                    return methodInvokationContext.get().result;
-                }
+    private void registerDeclaredMethods() {
+        for (final ReflectedMethod reflectedMethod : object(this).methods(
+                publicMethod().and(declaredByStrictSubclassOf(Implementing.class)))) {
+            if (reflectedMethod.argumentCount() == 0) {
+                registeredMethodHandlers.put(
+                        anything(),
+                        new MethodBody() {
+                            @Override public void body() throws Throwable {
+                                try {
+                                    reflectedMethod.call();
+                                } catch (final InvocationTargetRuntimeException e) {
+                                    throw e.getExceptionThrownByInvocationTarget();
+                                }
+                            }
+                        });
+            } else {
+                registeredMethodHandlers.put(
+                        matcherForMethodSignature(reflectedMethod),
+                        new MethodInvoker(this, reflectedMethod.methodUnderReflection()));
             }
-            throw new UnsupportedOperationException("no implemention found for method " + method);
+        }
+    }
+
+    @Override public final Object invoke(final Object proxy, final Method method, final Object[] args) throws Throwable {
+        proxyingMethod.set(Boolean.TRUE);
+        try
+        {
+            methodInvokationContext.set(new MethodInvokationContext(proxy, method, args));
+            try {
+                MethodBody defaultHandler = null;
+                for (final Entry<Matcher<? super ReflectedMethod>, MethodBody> registeredMethodHandler : registeredMethodHandlers
+                        .entrySet()) {
+                    if (registeredMethodHandler.getKey().matches(methodInvokationContext.get().method)) {
+                        final MethodBody registeredImplementation = registeredMethodHandler.getValue();
+                        try {
+                            registeredImplementation.body();
+                        } catch (final CannotProxyThisException e) {
+                            continue;
+                        } catch (final CallIfUnmatchedException e) {
+                            defaultHandler = registeredImplementation;
+                            continue;
+                        }
+                        return methodInvokationContext.get().result;
+                    }
+                }
+                if (defaultHandler != null)
+                {
+                    callingDefaultHandler.set(Boolean.TRUE);
+                    try {
+                        defaultHandler.body();
+                        return methodInvokationContext.get().result;
+                    } finally {
+                        callingDefaultHandler.set(Boolean.FALSE);
+                    }
+                }
+                throw new UnsupportedOperationException("no implemention found for method " + method);
+            } finally {
+                methodInvokationContext.set(null);
+            }
         } finally {
-            methodInvokationContext.set(null);
+            proxyingMethod.set(Boolean.FALSE);
         }
     }
 
@@ -89,39 +175,45 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         return typeLiteral.getRawType();
     }
 
-    public final MethodBinding<T> matching(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return new MethodBinding<T>() {
-            @Override public void execute(final MethodBody methodBody) {
-                registeredMethodHandlers.put(methodMatcher, methodBody);
+    public final MethodBinding<T> whenProxying(final Matcher<? super ReflectedMethod> methodMatcher) {
+        if (proxyingMethod.get())
+        {
+            if (!methodMatcher.matches(methodInvokationContext.get().method)) {
+                throw new CannotProxyThisException();
             }
+            return null;
+        }
+        else
+        {
+            return new MethodBinding<T>() {
+                @Override public void execute(final MethodBody methodBody) {
+                    registeredMethodHandlers.put(methodMatcher, methodBody);
+                }
 
-            @Override public void execute(final QueryMethod queryMethod) {
-                execute(new MethodBody() {
-                    @Override public void body() throws Exception {
-                        final Method method = queryMethod.getClass().getDeclaredMethods()[0];
-                        try {
-                            method.setAccessible(true);
-                            returnValue(method.invoke(queryMethod, args()));
-                        } catch (final SecurityException e) {
-                            throw new SecurityException("unable to invoke method in " + queryMethod.getClass(), e);
-                        } catch (final IllegalAccessException e) {
-                            throw new IllegalAccessRuntimeException("unable to invoke method in "
-                                    + queryMethod.getClass(), e);
-                        } catch (final InvocationTargetException e) {
-                            throw new InvocationTargetRuntimeException(e, method);
-                        }
-                    }
-                });
-            }
-        };
+                @Override public void execute(final QueryMethod queryMethod) {
+                    execute(new MethodInvoker(queryMethod, queryMethod.getClass().getDeclaredMethods()[0]));
+                }
+            };
+        }
+    }
+
+    public final void whenProxyingUnmatched()
+    {
+        if (!callingDefaultHandler.get())
+        {
+            throw new CallIfUnmatchedException();
+        }
     }
 
     public final void matchingSignature(final QueryMethod queryMethod) {
         final ReflectedMethod userDefinedMethod = type(queryMethod.getClass()).methods().get(0);
 
+        whenProxying(matcherForMethodSignature(userDefinedMethod)).execute(queryMethod);
+    }
+
+    private ReflectionMatcher<ReflectedCallable> matcherForMethodSignature(final ReflectedMethod userDefinedMethod) {
         final List<ReflectedClass<?>> argumentTypes =
                 new ArrayList<ReflectedClass<?>>(userDefinedMethod.argumentTypes());
-        //        argumentTypes.remove(0);
 
         final ReflectionMatcher<ReflectedCallable> matchArguments =
                 callableHasReflectedArgumentList(argumentTypes);
@@ -129,7 +221,8 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         final ReflectionMatcher<ReflectedCallable> matchReturnType =
                 callableHasReturnType(userDefinedMethod.returnType());
 
-        matching(matchArguments.and(matchReturnType)).execute(queryMethod);
+        final ReflectionMatcher<ReflectedCallable> matcher = matchArguments.and(matchReturnType);
+        return matcher;
     }
 
     public final String methodName() {

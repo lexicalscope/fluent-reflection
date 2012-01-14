@@ -14,28 +14,23 @@ public class TestMatcherCallableDeclaredBy extends AbstractTestReflectionMatcher
 
     }
 
-    @Override
-    protected ReflectedMethod target() {
+    @Override protected ReflectedMethod target() {
         return method;
     }
 
-    @Override
-    protected ReflectionMatcher<ReflectedCallable> matcher() {
+    @Override protected ReflectionMatcher<ReflectedCallable> matcher() {
         return callableDeclaredBy(DeclaringInterface.class);
     }
 
-    @Override
-    protected void setupMatchingCase() {
+    @Override protected void setupMatchingCase() {
         whenMethodDeclaredBy(DeclaringInterface.class);
     }
 
-    @Override
-    protected void setupFailingCase() {
+    @Override protected void setupFailingCase() {
         whenMethodDeclaredBy(NonDeclaringInterface.class);
     }
 
-    @Override
-    protected Matcher<String> hasDescription() {
-        return equalTo("callable declared by <" + DeclaringInterface.class + ">");
+    @Override protected Matcher<String> hasDescription() {
+        return equalTo("callable declared by type <" + DeclaringInterface.class + ">");
     }
 }

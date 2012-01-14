@@ -36,14 +36,14 @@ public class MapBean {
         return dynamicProxy(new Implementing<T>(klass) {
             private final Object identity = new Object();
             {
-                matching(hashCodeMethod())
+                whenProxying(hashCodeMethod())
                         .execute(new MethodBody() {
                             @Override public void body() throws Throwable {
                                 returnValue(identity.hashCode());
                             }
                         });
 
-                matching(equalsMethod())
+                whenProxying(equalsMethod())
                         .execute(new MethodBody() {
                             @Override public void body() throws Throwable {
                                 final Object that = args()[0];
@@ -52,7 +52,7 @@ public class MapBean {
                             }
                         });
 
-                matching(
+                whenProxying(
                         isGetter().and(
                                 callableHasReturnType(boolean.class).or(
                                         callableHasReturnType(Boolean.class)))).execute(new MethodBody() {
@@ -61,25 +61,25 @@ public class MapBean {
                     }
                 });
 
-                matching(isGetter()).execute(new MethodBody() {
+                whenProxying(isGetter()).execute(new MethodBody() {
                     @Override public void body() {
                         returnValue(map.get(method().propertyName()));
                     }
                 });
 
-                matching(isSetter()).execute(new MethodBody() {
+                whenProxying(isSetter()).execute(new MethodBody() {
                     @Override public void body() {
                         map.put(method().propertyName(), args()[0]);
                     }
                 });
 
-                matching(isExistence()).execute(new MethodBody() {
+                whenProxying(isExistence()).execute(new MethodBody() {
                     @Override public void body() {
                         returnValue(map.containsKey(method().propertyName()));
                     }
                 });
 
-                matching(toStringMethod()).execute(new MethodBody() {
+                whenProxying(toStringMethod()).execute(new MethodBody() {
                     @Override public void body() throws Throwable {
                         returnValue(klass.name() + " " + map.toString());
                     }
