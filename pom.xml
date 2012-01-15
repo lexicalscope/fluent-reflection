@@ -10,7 +10,7 @@
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
-    <name>fluent-reflection</name>
+    <name>fluent-reflection-parent</name>
     <description>A library providing a neat interface to the Java
         language reflection facilities.</description>
         <inceptionYear>2011</inceptionYear>
