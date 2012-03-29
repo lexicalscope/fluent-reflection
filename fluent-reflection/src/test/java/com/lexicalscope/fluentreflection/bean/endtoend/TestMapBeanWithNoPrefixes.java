@@ -5,11 +5,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.junit.Test;
 
@@ -29,36 +27,15 @@ import org.junit.Test;
  * limitations under the License.
  */
 
-public class TestMapBean {
+public class TestMapBeanWithNoPrefixes {
     interface Bean {
-        String getProperty();
+        String property();
         Boolean hasProperty();
         Boolean isProperty();
-        void setProperty(String value);
+        void property(String value);
 
-        int getInt();
-        void setInt(int integer);
-
-        char getChar();
-        void setChar(char character);
-
-        Integer getInteger();
-        void setInteger(Integer integer);
-
-        Iterable<Integer> getIterable();
-        void setIterable(Iterable<Integer> integer);
-
-        Collection<Integer> getCollection();
-        void setCollection(Collection<Integer> integer);
-
-        Set<Integer> getSet();
-        void setSet(Set<Integer> integer);
-
-        List<Integer> getList();
-        void setList(List<Integer> integer);
-
-        List<Integer> getOptionalList();
-        void setOptionalList(List<Integer> integer);
+        List<Integer> optionalList();
+        void optionalList(List<Integer> integer);
         boolean isOptionalList();
     }
 
@@ -68,18 +45,18 @@ public class TestMapBean {
     @Test public void mapCanBeQueriedViaInterface() throws Exception {
         assertThat(bean.isProperty(), equalTo(false));
 
-        bean.setProperty("my value");
+        bean.property("my value");
 
         assertThat(bean.isProperty(), equalTo(true));
     }
 
     @Test public void mapCanBeReadViaInterface() throws Exception {
         map.put("property", "my value");
-        assertThat(bean.getProperty(), equalTo("my value"));
+        assertThat(bean.property(), equalTo("my value"));
     }
 
     @Test public void mapCanBeSetViaInterface() throws Exception {
-        bean.setProperty("my value");
+        bean.property("my value");
 
         assertThat(map.get("property"), equalTo((Object) "my value"));
     }
@@ -96,7 +73,7 @@ public class TestMapBean {
     @Test public void mapBeanOptionalCollectionQueryMethodIsFalseIfTheListIsNotPresent() throws Exception {
         assertThat(bean.isOptionalList(), equalTo(false));
 
-        bean.setOptionalList(new ArrayList<Integer>());
+        bean.optionalList(new ArrayList<Integer>());
 
         assertThat(bean.isOptionalList(), equalTo(true));
     }

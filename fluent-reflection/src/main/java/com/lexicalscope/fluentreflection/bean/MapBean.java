@@ -24,7 +24,7 @@ import com.lexicalscope.fluentreflection.dynamicproxy.MethodBody;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 public class MapBean {
@@ -52,6 +52,12 @@ public class MapBean {
                             }
                         });
 
+                whenProxying(toStringMethod()).execute(new MethodBody() {
+                    @Override public void body() throws Throwable {
+                        returnValue(klass.name() + " " + map.toString());
+                    }
+                });
+
                 whenProxying(
                         isGetter().and(
                                 callableHasReturnType(boolean.class).or(
@@ -61,27 +67,21 @@ public class MapBean {
                     }
                 });
 
-                whenProxying(isGetter()).execute(new MethodBody() {
-                    @Override public void body() {
-                        returnValue(map.get(method().propertyName()));
-                    }
-                });
-
-                whenProxying(isSetter()).execute(new MethodBody() {
-                    @Override public void body() {
-                        map.put(method().propertyName(), args()[0]);
-                    }
-                });
-
                 whenProxying(isExistence()).execute(new MethodBody() {
                     @Override public void body() {
                         returnValue(map.containsKey(method().propertyName()));
                     }
                 });
 
-                whenProxying(toStringMethod()).execute(new MethodBody() {
-                    @Override public void body() throws Throwable {
-                        returnValue(klass.name() + " " + map.toString());
+                whenProxying(isQuery()).execute(new MethodBody() {
+                    @Override public void body() {
+                        returnValue(map.get(method().propertyName()));
+                    }
+                });
+
+                whenProxying(isMutator()).execute(new MethodBody() {
+                    @Override public void body() {
+                        map.put(method().propertyName(), args()[0]);
                     }
                 });
             }
