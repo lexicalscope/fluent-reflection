@@ -5,10 +5,10 @@ package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
-final class MatcherCallableHasNameContaining extends ReflectionMatcher<ReflectedCallable> {
+final class MatcherHasNameContaining extends ReflectionMatcher<ReflectedCallable> {
     private final CharSequence substring;
 
-    MatcherCallableHasNameContaining(final CharSequence substring) {
+    MatcherHasNameContaining(final CharSequence substring) {
         this.substring = substring;
     }
 

@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasThisManyArguments;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasArgumentCount;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -9,7 +9,7 @@ import org.jmock.Expectations;
 public class TestMatcherArgumentCount extends AbstractTestReflectionMatcher<ReflectedCallable> {
     @Override
     protected ReflectionMatcher<ReflectedCallable> matcher() {
-        return callableHasThisManyArguments(3);
+        return hasArgumentCount(3);
     }
 
     @Override

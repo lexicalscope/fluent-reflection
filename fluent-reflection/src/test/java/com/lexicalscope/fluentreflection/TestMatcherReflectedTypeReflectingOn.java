@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectedTypeReflectingOn;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectingOn;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -13,7 +13,7 @@ public class TestMatcherReflectedTypeReflectingOn extends AbstractTestReflection
 
     @Override
     protected ReflectionMatcher<ReflectedClass<?>> matcher() {
-        return reflectedTypeReflectingOn(Object.class);
+        return reflectingOn(Object.class);
     }
 
     @Override

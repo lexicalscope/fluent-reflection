@@ -30,22 +30,22 @@ import com.lexicalscope.fluentreflection.ReflectedClass;
 public class TestReflectionOnTypeHierarchy {
     @Test
     public void topLevelClassImplementsNoInterfaces() {
-        assertThat(type(ExampleClass.class), typeHasNoInterfaces());
+        assertThat(type(ExampleClass.class), hasNoInterfaces());
     }
 
     @Test
     public void topLevelClassHasNoSuperclasses() {
-        assertThat(type(ExampleClass.class), typeHasNoInterfaces());
+        assertThat(type(ExampleClass.class), hasNoInterfaces());
     }
 
     @Test
     public void topLevelInterfaceHasNoInterfaces() {
-        assertThat(type(ExampleInterface.class), typeHasNoInterfaces());
+        assertThat(type(ExampleInterface.class), hasNoInterfaces());
     }
 
     @Test
     public void ancestorInterfacesAreFound() {
-        assertThat(type(ExampleSuperclass.class), typeHasInterface(ExampleSuperinterface.class));
+        assertThat(type(ExampleSuperclass.class), hasInterface(ExampleSuperinterface.class));
     }
 
     @Test

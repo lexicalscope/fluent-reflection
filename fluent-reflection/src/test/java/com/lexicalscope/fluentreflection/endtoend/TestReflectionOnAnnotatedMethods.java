@@ -40,16 +40,16 @@ public class TestReflectionOnAnnotatedMethods {
     }
 
     private final ReflectedMethod annotatedMethod = type(ClassWithAnnotatedMethod.class).method(
-            callableHasName("myAnnotatedMethod"));
+            hasName("myAnnotatedMethod"));
 
     private final ReflectedMethod boundAnnotatedMethod = object(new ClassWithAnnotatedMethod()).method(
-            callableHasName("myAnnotatedMethod"));
+            hasName("myAnnotatedMethod"));
 
     private final ReflectedMethod nonAnnotatedMethod = type(ClassWithAnnotatedMethod.class).method(
-            callableHasName("myNonAnnotatedMethod"));
+            hasName("myNonAnnotatedMethod"));
 
     private final ReflectedMethod boundNonAnnotatedMethod = type(ClassWithAnnotatedMethod.class).method(
-            callableHasName("myNonAnnotatedMethod"));
+            hasName("myNonAnnotatedMethod"));
 
     @Test public void canReadAnnotationOnMethod() throws Exception {
         assertThat(annotatedMethod.annotation(MyAnnotation.class).value(), equalTo("my value"));
@@ -67,7 +67,7 @@ public class TestReflectionOnAnnotatedMethods {
     }
 
     @Test public void matchingAnnotationIsReflectedOn() {
-        assertThat(annotatedMethod.annotation(Matchers.anything()), typeHasSimpleName("MyAnnotation"));
-        assertThat(boundAnnotatedMethod.annotation(Matchers.anything()), typeHasSimpleName("MyAnnotation"));
+        assertThat(annotatedMethod.annotation(Matchers.anything()), hasSimpleName("MyAnnotation"));
+        assertThat(boundAnnotatedMethod.annotation(Matchers.anything()), hasSimpleName("MyAnnotation"));
     }
 }

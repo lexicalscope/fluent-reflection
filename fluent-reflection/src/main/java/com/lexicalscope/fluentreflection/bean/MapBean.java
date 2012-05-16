@@ -36,14 +36,14 @@ public class MapBean {
         return dynamicProxy(new Implementing<T>(klass) {
             private final Object identity = new Object();
             {
-                whenProxying(hashCodeMethod())
+                whenProxying(isHashCodeMethod())
                         .execute(new MethodBody() {
                             @Override public void body() throws Throwable {
                                 returnValue(identity.hashCode());
                             }
                         });
 
-                whenProxying(equalsMethod())
+                whenProxying(isEqualsMethod())
                         .execute(new MethodBody() {
                             @Override public void body() throws Throwable {
                                 final Object that = args()[0];
@@ -52,7 +52,7 @@ public class MapBean {
                             }
                         });
 
-                whenProxying(toStringMethod()).execute(new MethodBody() {
+                whenProxying(isToStringMethod()).execute(new MethodBody() {
                     @Override public void body() throws Throwable {
                         returnValue(klass.name() + " " + map.toString());
                     }
@@ -60,8 +60,8 @@ public class MapBean {
 
                 whenProxying(
                         isGetter().and(
-                                callableHasReturnType(boolean.class).or(
-                                        callableHasReturnType(Boolean.class)))).execute(new MethodBody() {
+                                hasReturnType(boolean.class).or(
+                                        hasReturnType(Boolean.class)))).execute(new MethodBody() {
                     @Override public void body() {
                         returnValue(map.containsKey(method().propertyName()));
                     }

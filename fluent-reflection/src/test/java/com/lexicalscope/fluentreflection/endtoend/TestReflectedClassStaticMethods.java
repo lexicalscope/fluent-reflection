@@ -1,7 +1,7 @@
 package com.lexicalscope.fluentreflection.endtoend;
 
 import static com.lexicalscope.fluentreflection.FluentReflection.type;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasName;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasName;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -46,7 +46,7 @@ public class TestReflectedClassStaticMethods {
 
     @Test
     public void callSimpleStaticMethod() {
-        type(ClassWithStaticMethods.class).staticMethod(callableHasName("simpleStaticMethod")).call();
+        type(ClassWithStaticMethods.class).staticMethod(hasName("simpleStaticMethod")).call();
 
         assertThat(
                 ClassWithStaticMethods.called,
@@ -57,7 +57,7 @@ public class TestReflectedClassStaticMethods {
     public void callStaticMethodWithReturnValue() {
         final Integer result =
                 (Integer) type(ClassWithStaticMethods.class)
-                        .staticMethod(callableHasName("staticMethodWithReturnValue"))
+                        .staticMethod(hasName("staticMethodWithReturnValue"))
                         .call();
 
         assertThat(result, equalTo(42));
@@ -65,14 +65,14 @@ public class TestReflectedClassStaticMethods {
 
     @Test
     public void callStaticMethodWithOneArgumentIfMultipleMatches() {
-        type(ClassWithStaticMethods.class).staticMethod(callableHasName("staticMethodWithOneArgument")).call("string");
+        type(ClassWithStaticMethods.class).staticMethod(hasName("staticMethodWithOneArgument")).call("string");
         assertThat(ClassWithStaticMethods.stringCalled || ClassWithStaticMethods.objectCalled,
                 equalTo(true));
     }
 
     @Test
     public void callstaticMethodWithTwoArguments() {
-        type(ClassWithStaticMethods.class).staticMethod(callableHasName("staticMethodWithTwoArguments")).call("string", 42);
+        type(ClassWithStaticMethods.class).staticMethod(hasName("staticMethodWithTwoArguments")).call("string", 42);
         assertThat(ClassWithStaticMethods.stringAndIntegerCalled,
                 equalTo(true));
     }
@@ -80,7 +80,7 @@ public class TestReflectedClassStaticMethods {
     @Test
     public void methodWithTwoArgumentsHasCorrectArgumentCount() {
         assertThat(
-                type(ClassWithStaticMethods.class).method(callableHasName("staticMethodWithTwoArguments")).argumentCount(),
+                type(ClassWithStaticMethods.class).method(hasName("staticMethodWithTwoArguments")).argumentCount(),
                 equalTo(2));
     }
 }

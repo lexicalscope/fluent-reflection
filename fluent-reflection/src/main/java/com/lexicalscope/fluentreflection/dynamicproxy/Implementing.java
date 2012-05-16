@@ -109,7 +109,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
 
     private void registerDeclaredMethods() {
         for (final ReflectedMethod reflectedMethod : object(this).methods(
-                publicMethod().and(declaredByStrictSubclassOf(Implementing.class)))) {
+                isPublicMethod().and(isDeclaredByStrictSubtypeOf(Implementing.class)))) {
             if (reflectedMethod.argumentCount() == 0) {
                 registeredMethodHandlers.put(
                         anything(),
@@ -216,10 +216,10 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
                 new ArrayList<ReflectedClass<?>>(userDefinedMethod.argumentTypes());
 
         final ReflectionMatcher<ReflectedCallable> matchArguments =
-                callableHasReflectedArgumentList(argumentTypes);
+                hasReflectedArgumentList(argumentTypes);
 
         final ReflectionMatcher<ReflectedCallable> matchReturnType =
-                callableHasReturnType(userDefinedMethod.returnType());
+                hasReturnType(userDefinedMethod.returnType());
 
         final ReflectionMatcher<ReflectedCallable> matcher = matchArguments.and(matchReturnType);
         return matcher;

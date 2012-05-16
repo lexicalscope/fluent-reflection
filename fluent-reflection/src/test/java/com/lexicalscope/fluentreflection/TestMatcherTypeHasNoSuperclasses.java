@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.typeHasNoSuperclasses;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasNoSuperclasses;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -20,7 +20,7 @@ public class TestMatcherTypeHasNoSuperclasses extends AbstractTestReflectionMatc
 
     @Override
     protected ReflectionMatcher<ReflectedClass<?>> matcher() {
-        return typeHasNoSuperclasses();
+        return hasNoSuperclasses();
     }
 
     @Override

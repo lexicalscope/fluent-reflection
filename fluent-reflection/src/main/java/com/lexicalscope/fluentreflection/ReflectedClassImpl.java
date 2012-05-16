@@ -68,11 +68,11 @@ class ReflectedClassImpl<T> implements ReflectedClass<T> {
     }
 
     @Override public ReflectedMethod method(final String name) {
-        return members.method(callableHasName(name));
+        return members.method(hasName(name));
     }
 
     @Override public ReflectedMethod staticMethod(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return method(ReflectionMatchers.methodIsStatic().and(methodMatcher));
+        return method(ReflectionMatchers.isStatic().and(methodMatcher));
     }
 
     @Override public List<ReflectedMethod> methods() {
@@ -84,11 +84,11 @@ class ReflectedClassImpl<T> implements ReflectedClass<T> {
     }
 
     @Override public List<ReflectedClass<?>> interfaces() {
-        return members.superclassesAndInterfaces(typeIsInterface());
+        return members.superclassesAndInterfaces(isAnInterface());
     }
 
     @Override public List<ReflectedClass<?>> superclasses() {
-        return members.superclassesAndInterfaces(not(typeIsInterface()));
+        return members.superclassesAndInterfaces(not(isAnInterface()));
     }
 
     @Override public ReflectedClass<?> asType(final Matcher<ReflectedClass<?>> typeMatcher) {
@@ -111,7 +111,7 @@ class ReflectedClassImpl<T> implements ReflectedClass<T> {
 
     @Override public T constructRaw(final Object... args) {
         final ReflectedConstructor<T> constructor =
-                constructor(callableHasArgumentList(convert(args, new ConvertObjectToClass())));
+                constructor(hasArgumentList(convert(args, new ConvertObjectToClass())));
 
         if (constructor == null) {
             throw new ConstructorNotFoundRuntimeException(typeLiteral.getRawType());

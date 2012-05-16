@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.typeHasNoInterfaces;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasNoInterfaces;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -16,7 +16,7 @@ public class TestMatcherTypeHasNoInterfaces extends AbstractTestReflectionMatche
 
     @Override
     protected ReflectionMatcher<ReflectedClass<?>> matcher() {
-        return typeHasNoInterfaces();
+        return hasNoInterfaces();
     }
 
     @Override

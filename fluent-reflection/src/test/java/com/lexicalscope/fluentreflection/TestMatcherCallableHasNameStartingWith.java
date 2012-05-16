@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasNameStartingWith;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasNameStartingWith;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -13,7 +13,7 @@ public class TestMatcherCallableHasNameStartingWith extends AbstractTestReflecti
 
     @Override
     protected ReflectionMatcher<ReflectedCallable> matcher() {
-        return callableHasNameStartingWith("abc");
+        return hasNameStartingWith("abc");
     }
 
     @Override

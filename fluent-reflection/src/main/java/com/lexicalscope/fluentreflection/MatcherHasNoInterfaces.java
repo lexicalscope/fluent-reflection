@@ -6,14 +6,14 @@ package com.lexicalscope.fluentreflection;
 import org.hamcrest.Description;
 
 
-final class MatcherTypeHasNoSuperclasses extends ReflectionMatcher<ReflectedClass<?>> {
+final class MatcherHasNoInterfaces extends ReflectionMatcher<ReflectedClass<?>> {
     @Override
     public boolean matchesSafely(final ReflectedClass<?> arg) {
-        return arg.superclasses().isEmpty();
+        return arg.interfaces().isEmpty();
     }
 
     @Override
     public void describeTo(final Description description) {
-        description.appendText("type that extends no superclasses");
+        description.appendText("type that implements no interfaces");
     }
 }

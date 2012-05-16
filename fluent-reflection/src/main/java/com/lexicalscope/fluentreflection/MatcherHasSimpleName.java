@@ -19,10 +19,10 @@ import org.hamcrest.Matcher;
  * limitations under the License. 
  */
 
-class MatcherTypeHasSimpleName extends ReflectionMatcher<ReflectedClass<?>> {
+class MatcherHasSimpleName extends ReflectionMatcher<ReflectedClass<?>> {
     private final Matcher<? super String> simpleNameMatcher;
 
-    public MatcherTypeHasSimpleName(final Matcher<? super String> simpleNameMatcher) {
+    public MatcherHasSimpleName(final Matcher<? super String> simpleNameMatcher) {
         this.simpleNameMatcher = simpleNameMatcher;
     }
 

@@ -35,32 +35,32 @@ public class TestReflectionOnInterface {
 
     @Test public void methodsCanBeSelectedByPrefix() {
         assertThat(
-                type(ExampleInterface.class).methods(callableHasNameStartingWith("get")),
-                Matchers.<ReflectedMethod>hasItem(callableHasName("getPropertyOne")));
+                type(ExampleInterface.class).methods(hasNameStartingWith("get")),
+                Matchers.<ReflectedMethod>hasItem(hasName("getPropertyOne")));
     }
 
     @Test public void methodsCanBeSelectedBySuffix() {
         assertThat(
-                type(ExampleInterface.class).methods(callableHasNameEndingWith("One")),
-                Matchers.<ReflectedMethod>hasItem(callableHasName("getPropertyOne")));
+                type(ExampleInterface.class).methods(hasNameEndingWith("One")),
+                Matchers.<ReflectedMethod>hasItem(hasName("getPropertyOne")));
     }
 
     @Test public void methodsCanBeSelectedByRegularExpression() {
         assertThat(
-                type(ExampleInterface.class).methods(callableHasNameMatching(".*Property.*")),
-                Matchers.<ReflectedMethod>hasItem(callableHasName("getPropertyOne")));
+                type(ExampleInterface.class).methods(hasNameMatching(".*Property.*")),
+                Matchers.<ReflectedMethod>hasItem(hasName("getPropertyOne")));
     }
 
     @Test public void methodsWithNoArgumentsCanBeSelected() {
         assertThat(
                 type(ExampleInterface.class).methods(
-                        callableHasArguments()),
-                Matchers.<ReflectedMethod>hasItem(callableHasName("getPropertyOne")));
+                        hasArguments()),
+                Matchers.<ReflectedMethod>hasItem(hasName("getPropertyOne")));
     }
 
     @Test public void methodCanBeSelectedByArgument() {
         assertThat(
-                type(ExampleInterface.class).methods(callableHasArguments(String.class)),
-                Matchers.<ReflectedMethod>hasItem(callableHasName("setPropertyOne")));
+                type(ExampleInterface.class).methods(hasArguments(String.class)),
+                Matchers.<ReflectedMethod>hasItem(hasName("setPropertyOne")));
     }
 }

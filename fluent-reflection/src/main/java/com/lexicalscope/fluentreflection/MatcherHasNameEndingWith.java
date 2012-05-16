@@ -5,10 +5,10 @@ package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
-final class MatcherCallableHasNameEndingWith extends ReflectionMatcher<ReflectedCallable> {
+final class MatcherHasNameEndingWith extends ReflectionMatcher<ReflectedCallable> {
     private final String suffix;
 
-    MatcherCallableHasNameEndingWith(final String suffix) {
+    MatcherHasNameEndingWith(final String suffix) {
         this.suffix = suffix;
     }
 

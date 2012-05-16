@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasArguments;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasArguments;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -13,7 +13,7 @@ public class TestMatcherCallableWithArguments extends AbstractTestReflectionMatc
 
     @Override
     protected ReflectionMatcher<ReflectedCallable> matcher() {
-        return callableHasArguments(String.class);
+        return hasArguments(String.class);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasReturnType;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasReturnType;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -9,7 +9,7 @@ import org.jmock.Expectations;
 public class TestMatcherCallableHasVoidReturn extends AbstractTestReflectionMatcher<ReflectedCallable> {
     @Override
     protected ReflectionMatcher<ReflectedCallable> matcher() {
-        return callableHasReturnType((Class<?>) null);
+        return hasReturnType((Class<?>) null);
     }
 
     @Override

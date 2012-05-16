@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectedTypeReflectingOn;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectingOn;
 
 import java.lang.annotation.Annotation;
 
@@ -31,7 +31,7 @@ class MatcherCallableAnnotatedWith extends ReflectionMatcher<ReflectedAnnotated>
 
     @Override
     protected boolean matchesSafely(final ReflectedAnnotated item) {
-        return item.annotation(reflectedTypeReflectingOn(annotation)) != null;
+        return item.annotation(reflectingOn(annotation)) != null;
     }
 
     @Override

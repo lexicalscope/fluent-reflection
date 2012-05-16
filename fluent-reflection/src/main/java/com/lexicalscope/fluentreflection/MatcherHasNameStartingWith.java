@@ -5,10 +5,10 @@ package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
-final class MatcherCallableHasNameStartingWith extends ReflectionMatcher<ReflectedCallable> {
+final class MatcherHasNameStartingWith extends ReflectionMatcher<ReflectedCallable> {
     private final String prefix;
 
-    MatcherCallableHasNameStartingWith(final String prefix) {
+    MatcherHasNameStartingWith(final String prefix) {
         this.prefix = prefix;
     }
 

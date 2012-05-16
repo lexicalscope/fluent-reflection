@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasNameMatching;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasNameMatching;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -13,7 +13,7 @@ public class TestMatcherCallableHasNameMatching extends AbstractTestReflectionMa
 
     @Override
     protected ReflectionMatcher<ReflectedCallable> matcher() {
-        return callableHasNameMatching(".+bc.+");
+        return hasNameMatching(".+bc.+");
     }
 
     @Override

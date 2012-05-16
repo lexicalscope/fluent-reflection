@@ -1,7 +1,7 @@
 package com.lexicalscope.fluentreflection.endtoend;
 
 import static com.lexicalscope.fluentreflection.FluentReflection.type;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectedTypeReflectingOn;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectingOn;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -40,7 +40,7 @@ public class TestReflectedClass {
     @Test public void canGetReflectedClassAsASuperType()
     {
         assertThat(
-                type(List.class).asType(reflectedTypeReflectingOn(Iterable.class)).classUnderReflection(),
+                type(List.class).asType(reflectingOn(Iterable.class)).classUnderReflection(),
                 equalTo((Object) Iterable.class));
     }
 }

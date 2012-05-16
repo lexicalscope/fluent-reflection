@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasArguments;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasArguments;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -53,7 +53,7 @@ public class TestReflectedClassImpl {
     @Test public void constructFindsConstructorAndBindsReflectedResult() throws Exception {
         context.checking(new Expectations() {
             {
-                oneOf(members).constructor(callableHasArguments());
+                oneOf(members).constructor(hasArguments());
                 will(returnValue(reflectedConstructor));
 
                 oneOf(reflectedConstructor).call();

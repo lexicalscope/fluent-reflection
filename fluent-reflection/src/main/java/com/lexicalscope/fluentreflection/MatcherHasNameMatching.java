@@ -7,11 +7,11 @@ import java.util.regex.Pattern;
 
 import org.hamcrest.Description;
 
-final class MatcherCallableHasNameMatching extends ReflectionMatcher<ReflectedCallable> {
+final class MatcherHasNameMatching extends ReflectionMatcher<ReflectedCallable> {
     private final String regex;
     private final Pattern pattern;
 
-    MatcherCallableHasNameMatching(final String regex) {
+    MatcherHasNameMatching(final String regex) {
         this.regex = regex;
         pattern = Pattern.compile(regex);
     }

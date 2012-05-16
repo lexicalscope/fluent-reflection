@@ -45,11 +45,11 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
     }
 
     @Override public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return selectFirst(boundMethods(), methodIsNotStatic().and(methodMatcher));
+        return selectFirst(boundMethods(), isNotStatic().and(methodMatcher));
     }
 
     @Override public ReflectedMethod method(final String name) {
-        return method(callableHasName(name));
+        return method(hasName(name));
     }
 
     @Override public List<ReflectedMethod> methods() {
@@ -70,7 +70,7 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
 
     private List<ReflectedMethod> bind(final List<ReflectedMethod> methods) {
         return convert(
-                select(methods, methodIsNotStatic()),
+                select(methods, isNotStatic()),
                 new ConvertReflectedMethodToBoundReflectedMethod(instance));
     }
 

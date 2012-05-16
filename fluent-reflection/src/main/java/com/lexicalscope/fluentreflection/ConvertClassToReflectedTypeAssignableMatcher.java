@@ -12,6 +12,6 @@ class ConvertClassToReflectedTypeAssignableMatcher implements Converter<Class<?>
         if (from == null) {
             return anyReflectedType();
         }
-        return reflectedTypeReflectingOnAssignableFrom(from);
+        return assignableFrom(from);
     }
 }

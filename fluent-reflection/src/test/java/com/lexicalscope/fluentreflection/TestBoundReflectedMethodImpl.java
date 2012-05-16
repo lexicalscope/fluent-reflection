@@ -1,7 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
 import static com.lexicalscope.fluentreflection.FluentReflection.method;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectedTypeReflectingOn;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectingOn;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -73,6 +73,6 @@ public class TestBoundReflectedMethodImpl {
     public void boundMethodReturnTypeIsAvailable() throws Exception {
         assertThat(
                 methodWithReturnType.returnType(),
-                reflectedTypeReflectingOn(Integer.class));
+                reflectingOn(Integer.class));
     }
 }

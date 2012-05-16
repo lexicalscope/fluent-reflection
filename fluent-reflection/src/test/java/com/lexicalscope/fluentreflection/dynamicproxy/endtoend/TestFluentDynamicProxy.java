@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection.dynamicproxy.endtoend;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasName;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasName;
 import static com.lexicalscope.fluentreflection.dynamicproxy.FluentProxy.dynamicProxy;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -87,13 +87,13 @@ public class TestFluentDynamicProxy {
 
         final TwoQueryMethod dynamicProxy = dynamicProxy(new Implementing<TwoQueryMethod>() {
             {
-                whenProxying(callableHasName("methodA")).execute(new MethodBody() {
+                whenProxying(hasName("methodA")).execute(new MethodBody() {
                     @Override public void body() {
                         returnValue(42);
                     }
                 });
 
-                whenProxying(callableHasName("methodB")).execute(new MethodBody() {
+                whenProxying(hasName("methodB")).execute(new MethodBody() {
                     @Override public void body() {
                         returnValue(24);
                     }
@@ -109,7 +109,7 @@ public class TestFluentDynamicProxy {
 
         final TwoQueryMethod dynamicProxy = dynamicProxy(new Implementing<TwoQueryMethod>() {
             {
-                whenProxying(callableHasName("methodA")).execute(new MethodBody() {
+                whenProxying(hasName("methodA")).execute(new MethodBody() {
                     @Override public void body() {
                         returnValue(42);
                     }

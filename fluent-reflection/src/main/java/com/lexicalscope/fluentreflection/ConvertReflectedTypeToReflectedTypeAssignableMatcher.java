@@ -13,6 +13,6 @@ class ConvertReflectedTypeToReflectedTypeAssignableMatcher
         if (from == null) {
             return anyReflectedType();
         }
-        return reflectedTypeReflectingOnAssignableFrom(from);
+        return assignableFrom(from);
     }
 }

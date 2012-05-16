@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectedTypeReflectingOn;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectingOn;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
@@ -13,6 +13,6 @@ public class TestConvertClassToReflectedType {
     public void classCanBeConvertedToReflectedType() throws Exception {
         assertThat(
                 new ConvertClassToReflectedType(new ReflectedTypeFactoryImpl()).convert(ExampleClass.class),
-                reflectedTypeReflectingOn(ExampleClass.class));
+                reflectingOn(ExampleClass.class));
     }
 }

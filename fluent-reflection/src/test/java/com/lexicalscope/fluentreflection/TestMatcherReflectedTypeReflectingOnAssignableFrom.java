@@ -21,6 +21,6 @@ import org.junit.Test;
 public class TestMatcherReflectedTypeReflectingOnAssignableFrom {
     @Test
     public void testPrimativeType() throws Exception {
-        new MatcherReflectedTypeReflectingOnAssignableFrom(int.class).matchesSafely(FluentReflection.type(int.class));
+        new MatcherAssignableFrom(int.class).matchesSafely(FluentReflection.type(int.class));
     }
 }

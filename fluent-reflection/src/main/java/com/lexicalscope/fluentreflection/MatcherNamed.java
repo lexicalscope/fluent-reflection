@@ -18,10 +18,10 @@ package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
-final class MatcherCallableNamed extends ReflectionMatcher<ReflectedCallable> {
+final class MatcherNamed extends ReflectionMatcher<ReflectedCallable> {
     private final String name;
 
-    MatcherCallableNamed(final String name) {
+    MatcherNamed(final String name) {
         this.name = name;
     }
 

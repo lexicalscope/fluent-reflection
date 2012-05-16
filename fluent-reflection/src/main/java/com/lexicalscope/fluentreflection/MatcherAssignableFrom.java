@@ -5,14 +5,14 @@ package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
-final class MatcherReflectedTypeReflectingOnAssignableFrom extends ReflectionMatcher<ReflectedClass<?>> {
+final class MatcherAssignableFrom extends ReflectionMatcher<ReflectedClass<?>> {
     private final Class<?> klass;
 
-    MatcherReflectedTypeReflectingOnAssignableFrom(final Class<?> klass) {
+    MatcherAssignableFrom(final Class<?> klass) {
         this.klass = klass;
     }
 
-    public MatcherReflectedTypeReflectingOnAssignableFrom(final ReflectedClass<?> klass) {
+    public MatcherAssignableFrom(final ReflectedClass<?> klass) {
         this(klass.classUnderReflection());
     }
 

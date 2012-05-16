@@ -62,8 +62,8 @@ public class TestFindAllBeanMethods {
                 object(new Bean()).methods(isGetter()),
                 containsInAnyOrder(
                         ListBuilder.<Matcher<? super ReflectedCallable>>
-                                list(callableHasName("getReadOnlyProperty")).add(
-                                        callableHasName("getReadWriteProperty")).$()));
+                                list(hasName("getReadOnlyProperty")).add(
+                                        hasName("getReadWriteProperty")).$()));
     }
 
     @Test public void canSelectAllSetters() throws Exception {
@@ -72,7 +72,7 @@ public class TestFindAllBeanMethods {
                         isSetter()),
                 containsInAnyOrder(
                         ListBuilder.<Matcher<? super ReflectedCallable>>
-                                list(callableHasName("setWriteOnlyProperty")).add(
-                                        callableHasName("setReadWriteProperty")).$()));
+                                list(hasName("setWriteOnlyProperty")).add(
+                                        hasName("setReadWriteProperty")).$()));
     }
 }

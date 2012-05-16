@@ -4,15 +4,15 @@
 package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.select;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectedTypeReflectingOn;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectingOn;
 
 import org.hamcrest.Description;
 
 
-final class MatcherTypeHasInterface extends ReflectionMatcher<ReflectedClass<?>> {
+final class MatcherHasInterface extends ReflectionMatcher<ReflectedClass<?>> {
     private final Class<?> interfac3;
 
-    MatcherTypeHasInterface(final Class<?> interfac3) {
+    MatcherHasInterface(final Class<?> interfac3) {
         this.interfac3 = interfac3;
     }
 
@@ -20,7 +20,7 @@ final class MatcherTypeHasInterface extends ReflectionMatcher<ReflectedClass<?>>
     public boolean matchesSafely(final ReflectedClass<?> arg) {
         return !select(
                 arg.interfaces(),
-                reflectedTypeReflectingOn(interfac3)).isEmpty();
+                reflectingOn(interfac3)).isEmpty();
     }
 
     @Override

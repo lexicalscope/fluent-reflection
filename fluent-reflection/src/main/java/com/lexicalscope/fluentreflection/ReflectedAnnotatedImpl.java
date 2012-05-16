@@ -1,7 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.*;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectedTypeReflectingOn;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectingOn;
 import static org.hamcrest.Matchers.hasItem;
 
 import java.lang.annotation.Annotation;
@@ -42,7 +42,7 @@ class ReflectedAnnotatedImpl implements ReflectedAnnotated {
     }
 
     @Override public boolean annotatedWith(final Class<? extends Annotation> annotationClass) {
-        return hasItem(reflectedTypeReflectingOn(annotationClass)).matches(annotations());
+        return hasItem(reflectingOn(annotationClass)).matches(annotations());
     }
 
     @Override public <A extends Annotation> A annotation(final Class<A> annotationClass) {

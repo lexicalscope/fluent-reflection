@@ -32,60 +32,60 @@ public class TestReflectionOnInherentedMethods {
 	@Test
 	public void subinterfaceMethodsIncludeSuperinterfaceMethods() {
 		assertThat(
-				type(ExampleSubinterface.class).methods(callableHasNameContaining("Superinterface")),
-				Matchers.<ReflectedMethod>hasItem(callableHasName("getSuperinterfaceProperty")));
+				type(ExampleSubinterface.class).methods(hasNameContaining("Superinterface")),
+				Matchers.<ReflectedMethod>hasItem(hasName("getSuperinterfaceProperty")));
 	}
 
 	@Test
 	public void subinterfaceMethodsIncludeSubinterfaceMethods() {
 		assertThat(
-				type(ExampleSubinterface.class).methods(callableHasNameContaining("Subinterface")),
-				Matchers.<ReflectedMethod>hasItem(callableHasName("getSubinterfaceProperty")));
+				type(ExampleSubinterface.class).methods(hasNameContaining("Subinterface")),
+				Matchers.<ReflectedMethod>hasItem(hasName("getSubinterfaceProperty")));
 	}
 
 	@Test
 	public void subclassMethodsIncludeSuperinterfaceMethods() {
 		assertThat(
-				type(ExampleSubclass.class).methods(callableHasNameContaining("Superinterface")),
-				Matchers.<ReflectedMethod>hasItem(callableHasName("getSuperinterfaceProperty")));
+				type(ExampleSubclass.class).methods(hasNameContaining("Superinterface")),
+				Matchers.<ReflectedMethod>hasItem(hasName("getSuperinterfaceProperty")));
 	}
 
 	@Test
 	public void subclassMethodsIncludeSubinterfaceMethods() {
 		assertThat(
-				type(ExampleSubclass.class).methods(callableHasNameContaining("Subinterface")),
-				Matchers.<ReflectedMethod>hasItem(callableHasName("getSubinterfaceProperty")));
+				type(ExampleSubclass.class).methods(hasNameContaining("Subinterface")),
+				Matchers.<ReflectedMethod>hasItem(hasName("getSubinterfaceProperty")));
 	}
 
 	@Test
 	public void subclassMethodsIncludeSuperclassMethods() {
 		assertThat(
-				type(ExampleSubclass.class).methods(callableHasNameContaining("Superclass")),
-				Matchers.<ReflectedMethod>hasItem(callableHasName("getSuperclassProperty")));
+				type(ExampleSubclass.class).methods(hasNameContaining("Superclass")),
+				Matchers.<ReflectedMethod>hasItem(hasName("getSuperclassProperty")));
 	}
 
 	@Test
 	public void subclassMethodsIncludeSubclassMethods() {
 		assertThat(
-				type(ExampleSubclass.class).methods(callableHasNameContaining("Subclass")),
-				Matchers.<ReflectedMethod>hasItem(callableHasName("getSubclassProperty")));
+				type(ExampleSubclass.class).methods(hasNameContaining("Subclass")),
+				Matchers.<ReflectedMethod>hasItem(hasName("getSubclassProperty")));
 	}
 
 	@Test
 	public void subsubclassMethodsIncludeSuperclassMethods() {
 		assertThat(
-				type(ExampleSubsubclass.class).methods(callableHasNameContaining("Superclass")),
-				Matchers.<ReflectedMethod>hasItem(callableHasName("getSuperclassProperty")));
+				type(ExampleSubsubclass.class).methods(hasNameContaining("Superclass")),
+				Matchers.<ReflectedMethod>hasItem(hasName("getSuperclassProperty")));
 	}
 
 	@Test
 	public void declaredSubclassMethodsAreFound() {
 		final List<ReflectedMethod> methodsDeclaredByExampleSubclass =
-				type(ExampleSubclass.class).methods(callableDeclaredBy(ExampleSubclass.class));
+				type(ExampleSubclass.class).methods(declaredBy(ExampleSubclass.class));
 
 		assertThat(
 				methodsDeclaredByExampleSubclass,
-				Matchers.<ReflectedMethod>hasItem(callableHasName("getSubclassProperty")));
+				Matchers.<ReflectedMethod>hasItem(hasName("getSubclassProperty")));
 
 		assertThat(
 				methodsDeclaredByExampleSubclass.size(),
@@ -95,19 +95,19 @@ public class TestReflectionOnInherentedMethods {
 	@Test
 	public void declaredSuperclassMethodsAreFound() {
 		final List<ReflectedMethod> methodsDeclaredByExampleSuperclass =
-				type(ExampleSubclass.class).methods(callableDeclaredBy(ExampleSuperclass.class));
+				type(ExampleSubclass.class).methods(declaredBy(ExampleSuperclass.class));
 
 		assertThat(
 				methodsDeclaredByExampleSuperclass,
-				Matchers.<ReflectedMethod>hasItem(callableHasName("getSuperclassProperty")));
+				Matchers.<ReflectedMethod>hasItem(hasName("getSuperclassProperty")));
 
 		assertThat(
 				methodsDeclaredByExampleSuperclass,
-				Matchers.<ReflectedMethod>hasItem(callableHasName("getSubinterfaceProperty")));
+				Matchers.<ReflectedMethod>hasItem(hasName("getSubinterfaceProperty")));
 
 		assertThat(
 				methodsDeclaredByExampleSuperclass,
-				Matchers.<ReflectedMethod>hasItem(callableHasName("getSuperinterfaceProperty")));
+				Matchers.<ReflectedMethod>hasItem(hasName("getSuperinterfaceProperty")));
 
 		assertThat(
 				methodsDeclaredByExampleSuperclass.size(),
