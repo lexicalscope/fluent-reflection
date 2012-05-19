@@ -5,7 +5,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherCallableDeclaredBy extends AbstractTestReflectionMatcher<ReflectedMember> {
+public class TestMatcherElementDeclaredBy extends AbstractTestReflectionMatcher<ReflectedMember> {
     interface DeclaringInterface {
 
     }

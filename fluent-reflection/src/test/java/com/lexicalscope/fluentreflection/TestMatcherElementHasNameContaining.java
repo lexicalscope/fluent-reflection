@@ -1,11 +1,11 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasArguments;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasNameContaining;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherCallableWithArguments extends AbstractTestReflectionMatcher<ReflectedMember> {
+public class TestMatcherElementHasNameContaining extends AbstractTestReflectionMatcher<ReflectedMember> {
     @Override
     protected ReflectedMethod target() {
         return method;
@@ -13,21 +13,21 @@ public class TestMatcherCallableWithArguments extends AbstractTestReflectionMatc
 
     @Override
     protected ReflectionMatcher<ReflectedMember> matcher() {
-        return hasArguments(String.class);
+        return hasNameContaining("abc");
     }
 
     @Override
     protected void setupMatchingCase() {
-        whenMethodHasArguments(String.class);
+        whenMethodHasName("defabc");
     }
 
     @Override
     protected void setupFailingCase() {
-        whenMethodHasArguments(String.class, String.class);
+        whenMethodHasName("pqrxyz");
     }
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("callable with arguments (type assignable from <class java.lang.String>)");
+        return equalTo("callable containing \"abc\"");
     }
 }

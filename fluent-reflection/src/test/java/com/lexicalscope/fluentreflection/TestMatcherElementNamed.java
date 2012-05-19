@@ -1,11 +1,11 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasNameStartingWith;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasName;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherCallableHasNameStartingWith extends AbstractTestReflectionMatcher<ReflectedMember> {
+public class TestMatcherElementNamed extends AbstractTestReflectionMatcher<ReflectedMember> {
     @Override
     protected ReflectedMethod target() {
         return method;
@@ -13,21 +13,21 @@ public class TestMatcherCallableHasNameStartingWith extends AbstractTestReflecti
 
     @Override
     protected ReflectionMatcher<ReflectedMember> matcher() {
-        return hasNameStartingWith("abc");
+        return hasName("abc");
     }
 
     @Override
     protected void setupMatchingCase() {
-        whenMethodHasName("abcdef");
+        whenMethodHasName("abc");
     }
 
     @Override
     protected void setupFailingCase() {
-        whenMethodHasName("defabc");
+        whenMethodHasName("def");
     }
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("callable starting with \"abc\"");
+        return equalTo("reflected element named \"abc\"");
     }
 }

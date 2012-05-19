@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 import org.hamcrest.Matcher;
 import org.jmock.Expectations;
 
-public class TestMatcherCallableHasVoidReturn extends AbstractTestReflectionMatcher<ReflectedMember> {
+public class TestMatcherElementHasVoidReturn extends AbstractTestReflectionMatcher<ReflectedMember> {
     @Override
     protected ReflectionMatcher<ReflectedMember> matcher() {
         return hasReturnType((Class<?>) null);

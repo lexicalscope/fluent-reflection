@@ -5,7 +5,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherCallableHasNameMatching extends AbstractTestReflectionMatcher<ReflectedMember> {
+public class TestMatcherElementHasNameMatching extends AbstractTestReflectionMatcher<ReflectedMember> {
     @Override
     protected ReflectedMethod target() {
         return method;

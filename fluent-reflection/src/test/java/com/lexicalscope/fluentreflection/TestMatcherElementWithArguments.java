@@ -1,11 +1,11 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasNameEndingWith;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasArguments;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherCallableHasNameEndingWith extends AbstractTestReflectionMatcher<ReflectedMember> {
+public class TestMatcherElementWithArguments extends AbstractTestReflectionMatcher<ReflectedMember> {
     @Override
     protected ReflectedMethod target() {
         return method;
@@ -13,21 +13,21 @@ public class TestMatcherCallableHasNameEndingWith extends AbstractTestReflection
 
     @Override
     protected ReflectionMatcher<ReflectedMember> matcher() {
-        return hasNameEndingWith("abc");
+        return hasArguments(String.class);
     }
 
     @Override
     protected void setupMatchingCase() {
-        whenMethodHasName("defabc");
+        whenMethodHasArguments(String.class);
     }
 
     @Override
     protected void setupFailingCase() {
-        whenMethodHasName("abcdef");
+        whenMethodHasArguments(String.class, String.class);
     }
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("callable ending with \"abc\"");
+        return equalTo("callable with arguments (type assignable from <class java.lang.String>)");
     }
 }
