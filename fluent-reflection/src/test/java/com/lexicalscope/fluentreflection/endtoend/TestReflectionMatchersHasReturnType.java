@@ -1,9 +1,12 @@
-package com.lexicalscope.fluentreflection;
+package com.lexicalscope.fluentreflection.endtoend;
 
-import ch.lambdaj.function.convert.Converter;
+import static com.lexicalscope.fluentreflection.FluentReflection.type;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasReturnType;
+
+import org.junit.Test;
 
 /*
- * Copyright 2011 Tim Wood
+ * Copyright 2012 Tim Wood
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,15 +21,17 @@ import ch.lambdaj.function.convert.Converter;
  * limitations under the License.
  */
 
-class ConvertReflectedMethodToBoundReflectedMethod implements Converter<ReflectedMethod, ReflectedMethod> {
-    private final Object instance;
+public class TestReflectionMatchersHasReturnType {
+    public static interface A {
 
-    public ConvertReflectedMethodToBoundReflectedMethod(final Object instance) {
-        this.instance = instance;
     }
 
-    @Override
-    public ReflectedMethod convert(final ReflectedMethod from) {
-        return new BoundReflectedMethodImpl(from, instance);
+    public static interface B {
+        A method();
+        Object otherMethod();
+    }
+
+    @Test public void canMatchReturnTypeByReflectedClass() {
+        type(B.class).method(hasReturnType(type(A.class)));
     }
 }

@@ -1,5 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
+import static com.lexicalscope.fluentreflection.Visibility.PUBLIC;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -61,5 +62,14 @@ public class TestBoundReflectedMemberImpl {
             }
         });
         assertThat(boundReflectedMemberImpl.isFinal(), equalTo(true));
+    }
+
+    @Test public void visibilityIsDelegated() {
+        context.checking(new Expectations() {
+            {
+                oneOf(member).visibility(); will(returnValue(PUBLIC));
+            }
+        });
+        assertThat(boundReflectedMemberImpl.visibility(), equalTo(PUBLIC));
     }
 }

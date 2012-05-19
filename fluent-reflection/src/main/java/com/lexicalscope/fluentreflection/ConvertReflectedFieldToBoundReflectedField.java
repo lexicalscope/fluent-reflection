@@ -27,9 +27,6 @@ class ConvertReflectedFieldToBoundReflectedField implements Converter<ReflectedF
 
     @Override
     public ReflectedField convert(final ReflectedField from) {
-        if (from.isStatic()) {
-            return from;
-        }
         return new BoundReflectedFieldImpl(from, instance);
     }
 }
