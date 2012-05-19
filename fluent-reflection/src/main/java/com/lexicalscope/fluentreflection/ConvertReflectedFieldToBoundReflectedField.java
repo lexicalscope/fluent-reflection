@@ -18,18 +18,18 @@ import ch.lambdaj.function.convert.Converter;
  * limitations under the License.
  */
 
-class ConvertReflectedMethodToBoundReflectedMethod implements Converter<ReflectedMethod, ReflectedMethod> {
+class ConvertReflectedFieldToBoundReflectedField implements Converter<ReflectedField, ReflectedField> {
     private final Object instance;
 
-    public ConvertReflectedMethodToBoundReflectedMethod(final Object instance) {
+    public ConvertReflectedFieldToBoundReflectedField(final Object instance) {
         this.instance = instance;
     }
 
     @Override
-    public ReflectedMethod convert(final ReflectedMethod from) {
+    public ReflectedField convert(final ReflectedField from) {
         if (from.isStatic()) {
             return from;
         }
-        return new BoundReflectedMethodImpl(from, instance);
+        return new BoundReflectedFieldImpl(from, instance);
     }
 }

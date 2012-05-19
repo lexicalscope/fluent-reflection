@@ -2,9 +2,7 @@ package com.lexicalscope.fluentreflection;
 
 import java.util.List;
 
-public interface ReflectedCallable extends ReflectedAnnotated {
-    String getName();
-
+public interface ReflectedCallable extends ReflectedAnnotated, ReflectedNamed {
     ReflectedClass<?> declaringClass();
 
     int argumentCount();

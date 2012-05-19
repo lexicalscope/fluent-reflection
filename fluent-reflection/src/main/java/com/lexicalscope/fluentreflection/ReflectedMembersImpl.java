@@ -12,6 +12,7 @@ class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
     private final ReflectedSuperclassesAndInterfaces<T> superclassesAndInterfaces;
     private final ReflectedMethods<T> methods;
     private final ReflectedConstructors<T> constructors;
+    private final ReflectedFields<T> fields;
     private final Class<T> klass;
 
     public ReflectedMembersImpl(final ReflectedTypeFactory reflectedTypeFactory, final TypeLiteral<T> typeLiteral) {
@@ -20,6 +21,7 @@ class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
                 new ReflectedSuperclassesAndInterfacesImpl<T>(reflectedTypeFactory, typeLiteral);
         this.methods = new ReflectedMethodsImpl<T>(reflectedTypeFactory, typeLiteral, superclassesAndInterfaces);
         this.constructors = new ReflectedConstructorsImpl<T>(reflectedTypeFactory, typeLiteral);
+        this.fields = new ReflectedFieldsImpl<T>(reflectedTypeFactory, typeLiteral, superclassesAndInterfaces);
     }
 
     @Override public List<ReflectedConstructor<T>> constructors() {
@@ -63,5 +65,17 @@ class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
     @Override public List<ReflectedClass<?>> superclassesAndInterfaces(
             final Matcher<? super ReflectedClass<?>> supertypeMatcher) {
         return select(superclassesAndInterfaces(), supertypeMatcher);
+    }
+
+    @Override public List<ReflectedField> declaredFields() {
+        return fields.declaredFields();
+    }
+
+    @Override public List<ReflectedField> fields() {
+        return fields.fields();
+    }
+
+    @Override public List<ReflectedField> fields(final ReflectionMatcher<? super ReflectedField> fieldMatcher) {
+        return select(fields(), fieldMatcher);
     }
 }

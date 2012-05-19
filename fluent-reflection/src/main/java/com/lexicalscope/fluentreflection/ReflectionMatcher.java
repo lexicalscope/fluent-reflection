@@ -13,7 +13,7 @@ package com.lexicalscope.fluentreflection;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 import static com.lexicalscope.fluentreflection.MatcherAnd.andOf;
@@ -28,7 +28,7 @@ import org.hamcrest.TypeSafeMatcher;
 public abstract class ReflectionMatcher<T> extends TypeSafeMatcher<T> {
     /**
      * Creates an and matcher combining this matcher and the given one
-     * 
+     *
      * @param matcher
      *            The matcher to be put in and with this one
      * @return A matcher that return true if this matcher and the passed one
@@ -43,7 +43,7 @@ public abstract class ReflectionMatcher<T> extends TypeSafeMatcher<T> {
 
     /**
      * Creates an or matcher combining this matcher and the given one
-     * 
+     *
      * @param matcher
      *            The matcher to be put in or with this one
      * @return A matcher that return true if this matcher or the passed one
@@ -54,5 +54,14 @@ public abstract class ReflectionMatcher<T> extends TypeSafeMatcher<T> {
         list.add(this);
         list.add(matcher);
         return orOf(list);
+    }
+
+    public static <T> Matcher<T> allOf(
+            final Matcher<? super T> T0,
+            final Matcher<? super T> T1) {
+        final List<Matcher<? super T>> list = new ArrayList<Matcher<? super T>>();
+        list.add(T0);
+        list.add(T1);
+        return andOf(list);
     }
 }

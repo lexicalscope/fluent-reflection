@@ -1,5 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import com.google.inject.TypeLiteral;
@@ -17,7 +18,7 @@ import com.google.inject.TypeLiteral;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 interface ReflectedTypeFactory {
@@ -29,7 +30,9 @@ interface ReflectedTypeFactory {
 
     <T> ReflectedObject<T> reflect(TypeLiteral<T> klass, T instance);
 
-    ReflectedMethod method(Method method);
+    ReflectedElement method(Method method);
 
     ReflectedMethod method(TypeLiteral<?> klass, Method method);
+
+    ReflectedField field(TypeLiteral<?> klass, Field method);
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.google.inject.TypeLiteral;
 
-class ReflectedConstructorImpl<T> extends AbstractReflectedCallable implements ReflectedConstructor<T> {
+class ReflectedConstructorImpl<T> extends AbstractReflectedAnnotated implements ReflectedConstructor<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final TypeLiteral<T> typeLiteral;
     private final Constructor<T> constructor;
@@ -56,6 +56,10 @@ class ReflectedConstructorImpl<T> extends AbstractReflectedCallable implements R
 
     @Override public String getName() {
         return constructor.getName();
+    }
+
+    @Override public String propertyName() {
+        return getName();
     }
 
     @Override public ReflectedClass<?> returnType() {

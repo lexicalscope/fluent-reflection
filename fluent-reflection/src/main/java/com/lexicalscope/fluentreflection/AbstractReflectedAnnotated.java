@@ -18,13 +18,13 @@ import org.hamcrest.Matcher;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
-abstract class AbstractReflectedCallable implements ReflectedCallable {
+abstract class AbstractReflectedAnnotated implements ReflectedAnnotated {
     private final ReflectedAnnotated annotatedElement;
 
-    public AbstractReflectedCallable(
+    public AbstractReflectedAnnotated(
             final ReflectedTypeFactory reflectedTypeFactory,
             final AnnotatedElement annotatedElement) {
         this.annotatedElement = new ReflectedAnnotatedImpl(reflectedTypeFactory, annotatedElement);

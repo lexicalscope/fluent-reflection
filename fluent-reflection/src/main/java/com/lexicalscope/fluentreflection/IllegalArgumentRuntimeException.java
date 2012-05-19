@@ -2,6 +2,7 @@ package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.join;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Member;
 
 public class IllegalArgumentRuntimeException extends ReflectionRuntimeException {
@@ -33,6 +34,14 @@ public class IllegalArgumentRuntimeException extends ReflectionRuntimeException 
                 member,
                 instance,
                 join(arguments, ", "),
+                e.getMessage()), e);
+    }
+
+    public IllegalArgumentRuntimeException(final IllegalArgumentException e, final Field field, final Object instance) {
+        this(String.format(
+                "when reading %s on %s : %s",
+                field,
+                instance,
                 e.getMessage()), e);
     }
 }

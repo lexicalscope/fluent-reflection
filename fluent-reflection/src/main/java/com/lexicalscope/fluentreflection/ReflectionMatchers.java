@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.*;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.util.List;
 
 import org.hamcrest.Description;
@@ -86,7 +87,7 @@ public class ReflectionMatchers {
      *
      * @return true iff the argument is equal to the name of the callable
      */
-    public static ReflectionMatcher<ReflectedCallable> hasName(final String name) {
+    public static ReflectionMatcher<ReflectedNamed> hasName(final String name) {
         return new MatcherNamed(name);
     }
 
@@ -209,11 +210,11 @@ public class ReflectionMatchers {
         return new MatcherCallableAnnotatedWith(annotation);
     }
 
-    public static ReflectionMatcher<ReflectedMethod> isStatic() {
+    public static ReflectionMatcher<ReflectedElement> isStatic() {
         return new MatcherMethodIsStatic();
     }
 
-    public static ReflectionMatcher<ReflectedMethod> isNotStatic() {
+    public static ReflectionMatcher<ReflectedElement> isNotStatic() {
         return not(isStatic());
     }
 
@@ -247,23 +248,27 @@ public class ReflectionMatchers {
     }
 
     public static ReflectionMatcher<ReflectedCallable> isExistence() {
-        return hasNameStartingWith("is").or(hasNameStartingWith("has")).and(isQuery()).and(
-                hasReturnType(boolean.class).or(hasReturnType(Boolean.class)));
+        return isQuery().
+                and(hasReturnType(boolean.class).or(hasReturnType(Boolean.class))).
+                and(hasNameStartingWith("is").or(hasNameStartingWith("has")));
     }
 
     public static ReflectionMatcher<ReflectedCallable> isHashCodeMethod() {
-        return hasName("hashCode").and(hasNoArguments()).and(hasReturnType(int.class));
+        return hasNoArguments().
+                and(hasReturnType(int.class)).
+                and(hasName("hashCode"));
     }
 
     public static ReflectionMatcher<ReflectedCallable> isEqualsMethod() {
-        return hasName("equals")
-                .and(hasArguments(Object.class))
-                .and(hasReturnType(boolean.class));
+        return hasArguments(Object.class).
+                and(hasReturnType(boolean.class)).
+                and(hasName("equals"));
     }
 
     public static ReflectionMatcher<ReflectedCallable> isToStringMethod() {
-        return hasName("toString").and(hasNoArguments()).and(
-                hasReturnType(String.class));
+        return hasNoArguments().
+                and(hasReturnType(String.class)).
+                and(hasName("toString"));
     }
 
     public static ReflectionMatcher<ReflectedCallable> isPublicMethod() {
@@ -276,5 +281,9 @@ public class ReflectionMatchers {
 
     public static Matcher<? super ReflectedClass<?>> isStrictSubtypeOf(final Class<?> klass) {
         return new MatcherStrictSubtypeOf(klass);
+    }
+
+    public static ReflectionMatcher<ReflectedField> reflectingOnField(final Field field) {
+        return new MatcherFieldReflectingOn(field);
     }
 }

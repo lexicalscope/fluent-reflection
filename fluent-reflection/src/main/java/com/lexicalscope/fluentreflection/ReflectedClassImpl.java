@@ -13,10 +13,11 @@ package com.lexicalscope.fluentreflection;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 import static ch.lambdaj.Lambda.*;
+import static com.lexicalscope.fluentreflection.ReflectionMatcher.allOf;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static org.hamcrest.Matchers.hasItem;
 
@@ -32,9 +33,9 @@ import com.google.inject.TypeLiteral;
 
 /**
  * Not thread safe
- * 
+ *
  * @author tim
- * 
+ *
  * @param <T>
  */
 class ReflectedClassImpl<T> implements ReflectedClass<T> {
@@ -72,7 +73,7 @@ class ReflectedClassImpl<T> implements ReflectedClass<T> {
     }
 
     @Override public ReflectedMethod staticMethod(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return method(ReflectionMatchers.isStatic().and(methodMatcher));
+        return method(allOf(isStatic(), methodMatcher));
     }
 
     @Override public List<ReflectedMethod> methods() {
@@ -81,6 +82,18 @@ class ReflectedClassImpl<T> implements ReflectedClass<T> {
 
     @Override public List<ReflectedMethod> declaredMethods() {
         return members.declaredMethods();
+    }
+
+    @Override public List<ReflectedField> fields() {
+        return members.fields();
+    }
+
+    @Override public List<ReflectedField> fields(final ReflectionMatcher<? super ReflectedField> fieldMatcher) {
+        return members.fields(fieldMatcher);
+    }
+
+    @Override public List<ReflectedField> declaredFields() {
+        return members.declaredFields();
     }
 
     @Override public List<ReflectedClass<?>> interfaces() {

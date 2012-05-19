@@ -1,9 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
-import ch.lambdaj.function.convert.Converter;
-
 /*
- * Copyright 2011 Tim Wood
+ * Copyright 2012 Tim Wood
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,18 +16,8 @@ import ch.lambdaj.function.convert.Converter;
  * limitations under the License.
  */
 
-class ConvertReflectedMethodToBoundReflectedMethod implements Converter<ReflectedMethod, ReflectedMethod> {
-    private final Object instance;
+public interface ReflectedNamed {
+    String getName();
 
-    public ConvertReflectedMethodToBoundReflectedMethod(final Object instance) {
-        this.instance = instance;
-    }
-
-    @Override
-    public ReflectedMethod convert(final ReflectedMethod from) {
-        if (from.isStatic()) {
-            return from;
-        }
-        return new BoundReflectedMethodImpl(from, instance);
-    }
+    String propertyName();
 }

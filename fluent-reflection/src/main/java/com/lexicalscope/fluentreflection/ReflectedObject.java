@@ -13,13 +13,13 @@ package com.lexicalscope.fluentreflection;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 public interface ReflectedObject<T> extends ReflectedType<T> {
     /**
      * get the static reflection information about the type of this object
-     * 
+     *
      * @return the static reflection infomraiton about the type fo this object
      */
     ReflectedClass<T> reflectedClass();

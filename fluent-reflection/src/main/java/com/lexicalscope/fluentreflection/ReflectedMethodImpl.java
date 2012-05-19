@@ -34,7 +34,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.google.inject.TypeLiteral;
 
-class ReflectedMethodImpl extends AbstractReflectedCallable implements ReflectedMethod {
+class ReflectedMethodImpl extends AbstractReflectedAnnotated implements ReflectedMethod {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final ReflectedClass<?> reflectedClass;
     private final TypeLiteral<?> typeLiteral;

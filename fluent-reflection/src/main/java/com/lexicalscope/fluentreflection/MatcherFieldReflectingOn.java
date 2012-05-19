@@ -1,9 +1,11 @@
 package com.lexicalscope.fluentreflection;
 
-import ch.lambdaj.function.convert.Converter;
+import java.lang.reflect.Field;
+
+import org.hamcrest.Description;
 
 /*
- * Copyright 2011 Tim Wood
+ * Copyright 2012 Tim Wood
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,18 +20,18 @@ import ch.lambdaj.function.convert.Converter;
  * limitations under the License.
  */
 
-class ConvertReflectedMethodToBoundReflectedMethod implements Converter<ReflectedMethod, ReflectedMethod> {
-    private final Object instance;
+class MatcherFieldReflectingOn extends ReflectionMatcher<ReflectedField>{
+    private final Field field;
 
-    public ConvertReflectedMethodToBoundReflectedMethod(final Object instance) {
-        this.instance = instance;
+    public MatcherFieldReflectingOn(final Field field) {
+        this.field = field;
     }
 
-    @Override
-    public ReflectedMethod convert(final ReflectedMethod from) {
-        if (from.isStatic()) {
-            return from;
-        }
-        return new BoundReflectedMethodImpl(from, instance);
+    @Override public void describeTo(final Description description) {
+        description.appendText("reflecting on field ").appendValue(field);
+    }
+
+    @Override protected boolean matchesSafely(final ReflectedField item) {
+        return item.fieldUnderReflection().equals(field);
     }
 }

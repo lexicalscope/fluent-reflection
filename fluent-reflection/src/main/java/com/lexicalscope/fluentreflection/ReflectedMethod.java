@@ -16,17 +16,7 @@ import java.lang.reflect.Method;
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public interface ReflectedMethod extends ReflectedCallable {
-    /**
-     * @return true iff the method is static
-     */
-    boolean isStatic();
-
-    /**
-     * @return true iff the method is final
-     */
-    boolean isFinal();
-
+public interface ReflectedMethod extends ReflectedCallable, ReflectedElement {
     <T> ReflectedQuery<T> castResultTo(Class<T> returnType);
 
     /**

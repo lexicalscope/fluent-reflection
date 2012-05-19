@@ -1,6 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.*;
+import static com.lexicalscope.fluentreflection.ReflectionMatcher.allOf;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 
 import java.lang.annotation.Annotation;
@@ -21,7 +22,7 @@ import org.hamcrest.Matcher;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 class ReflectedObjectImpl<T> implements ReflectedObject<T> {
@@ -45,7 +46,7 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
     }
 
     @Override public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return selectFirst(boundMethods(), isNotStatic().and(methodMatcher));
+        return selectFirst(boundMethods(), allOf(isNotStatic(), methodMatcher));
     }
 
     @Override public ReflectedMethod method(final String name) {
@@ -76,6 +77,32 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
 
     private List<ReflectedMethod> boundDeclaredMethods() {
         return bind(reflect.declaredMethods());
+    }
+
+    @Override public List<ReflectedField> fields(final ReflectionMatcher<? super ReflectedField> fieldMatcher) {
+        return select(boundFields(), fieldMatcher);
+    }
+
+    @Override public List<ReflectedField> declaredFields() {
+        return boundDeclaredFields();
+    }
+
+    private List<ReflectedField> boundFields() {
+        return bindFields(reflect.fields());
+    }
+
+    private List<ReflectedField> boundDeclaredFields() {
+        return bindFields(reflect.declaredFields());
+    }
+
+    private List<ReflectedField> bindFields(final List<ReflectedField> fields) {
+        return convert(
+                select(fields, isNotStatic()),
+                new ConvertReflectedFieldToBoundReflectedField(instance));
+    }
+
+    @Override public List<ReflectedField> fields() {
+        return boundFields();
     }
 
     @Override public boolean canBeBoxed(final Class<?> from) {

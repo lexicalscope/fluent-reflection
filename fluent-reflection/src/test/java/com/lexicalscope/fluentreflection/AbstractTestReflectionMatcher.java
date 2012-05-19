@@ -46,7 +46,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
 
     protected void setupFailingCase() throws Throwable {}
 
-    protected abstract ReflectionMatcher<T> matcher() throws Throwable;
+    protected abstract ReflectionMatcher<? super T> matcher() throws Throwable;
 
     protected T failingTarget() {
         return target();

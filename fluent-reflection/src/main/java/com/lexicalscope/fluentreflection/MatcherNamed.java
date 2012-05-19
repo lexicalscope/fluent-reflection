@@ -13,23 +13,23 @@ package com.lexicalscope.fluentreflection;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 import org.hamcrest.Description;
 
-final class MatcherNamed extends ReflectionMatcher<ReflectedCallable> {
+final class MatcherNamed extends ReflectionMatcher<ReflectedNamed> {
     private final String name;
 
     MatcherNamed(final String name) {
         this.name = name;
     }
 
-    @Override public boolean matchesSafely(final ReflectedCallable arg) {
+    @Override public boolean matchesSafely(final ReflectedNamed arg) {
         return arg.getName().equals(name);
     }
 
     @Override public void describeTo(final Description description) {
-        description.appendText("callable named ").appendValue(name);
+        description.appendText("reflected element named ").appendValue(name);
     }
 }
