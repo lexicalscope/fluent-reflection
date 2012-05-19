@@ -87,7 +87,7 @@ public class ReflectionMatchers {
      *
      * @return true iff the argument is equal to the name of the callable
      */
-    public static ReflectionMatcher<ReflectedNamed> hasName(final String name) {
+    public static ReflectionMatcher<ReflectedCallable> hasName(final String name) {
         return new MatcherNamed(name);
     }
 
@@ -210,11 +210,11 @@ public class ReflectionMatchers {
         return new MatcherCallableAnnotatedWith(annotation);
     }
 
-    public static ReflectionMatcher<ReflectedElement> isStatic() {
-        return new MatcherMethodIsStatic();
+    public static ReflectionMatcher<ReflectedCallable> isStatic() {
+        return new MatcherIsStatic();
     }
 
-    public static ReflectionMatcher<ReflectedElement> isNotStatic() {
+    public static ReflectionMatcher<ReflectedCallable> isNotStatic() {
         return not(isStatic());
     }
 

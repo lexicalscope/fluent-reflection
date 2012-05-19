@@ -219,7 +219,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
                 hasReflectedArgumentList(argumentTypes);
 
         final ReflectionMatcher<ReflectedCallable> matchReturnType =
-                hasReturnType(userDefinedMethod.returnType());
+                hasReturnType(userDefinedMethod.type());
 
         final ReflectionMatcher<ReflectedCallable> matcher = matchArguments.and(matchReturnType);
         return matcher;

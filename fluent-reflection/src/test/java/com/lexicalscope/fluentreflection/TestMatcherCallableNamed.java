@@ -12,7 +12,7 @@ public class TestMatcherCallableNamed extends AbstractTestReflectionMatcher<Refl
     }
 
     @Override
-    protected ReflectionMatcher<ReflectedNamed> matcher() {
+    protected ReflectionMatcher<ReflectedCallable> matcher() {
         return hasName("abc");
     }
 

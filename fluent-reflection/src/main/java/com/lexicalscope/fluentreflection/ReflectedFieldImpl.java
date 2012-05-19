@@ -21,6 +21,8 @@ import static java.lang.String.format;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -58,36 +60,6 @@ class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Reflected
 
     @Override public boolean isFinal() {
         return Modifier.isFinal(field.getModifiers());
-    }
-
-    @Override public <T> ReflectedQuery<T> castTo(final Class<T> type) {
-        return new ReflectedQuery<T>() {
-            @Override public T call(final Object... args) {
-                return type.cast(ReflectedFieldImpl.this.read(args));
-            }
-        };
-    }
-
-    @Override public Object read(final Object ... args) {
-        if(args == null || args.length != 1)
-        {
-            throw new ReflectionRuntimeException("reading a field require an instance argument");
-        }
-        try {
-            return field.get(args[0]);
-        } catch (final IllegalArgumentException e) {
-            throw new IllegalArgumentRuntimeException(e, field, args[0]);
-        } catch (final IllegalAccessException e) {
-            throw new IllegalAccessRuntimeException(e, field);
-        }
-    }
-
-    @Override public ReflectedClass<?> type() {
-        final TypeLiteral<?> returnType = typeLiteral.getFieldType(field);
-        if (returnType == null) {
-            return null;
-        }
-        return reflectedTypeFactory.reflect(returnType);
     }
 
     @Override public String propertyName() {
@@ -155,5 +127,43 @@ class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Reflected
 
     @Override public int hashCode() {
         return new HashCodeBuilder().append(field).append(typeLiteral).toHashCode();
+    }
+
+    @Override public int argumentCount() {
+        return 0;
+    }
+
+    @Override public List<ReflectedClass<?>> argumentTypes() {
+        return new ArrayList<ReflectedClass<?>>();
+    }
+
+    @Override public ReflectedClass<?> type() {
+        final TypeLiteral<?> returnType = typeLiteral.getFieldType(field);
+        if (returnType == null) {
+            return null;
+        }
+        return reflectedTypeFactory.reflect(returnType);
+    }
+
+    @Override public Object call(final Object... args) {
+        if(args == null || args.length != 1)
+        {
+            throw new ReflectionRuntimeException("reading a field require an instance argument");
+        }
+        try {
+            return field.get(args[0]);
+        } catch (final IllegalArgumentException e) {
+            throw new IllegalArgumentRuntimeException(e, field, args[0]);
+        } catch (final IllegalAccessException e) {
+            throw new IllegalAccessRuntimeException(e, field);
+        }
+    }
+
+    @Override public <T> ReflectedQuery<T> castResultTo(final Class<T> returnType) {
+        return new ReflectedQuery<T>() {
+            @Override public T call(final Object... args) {
+                return returnType.cast(ReflectedFieldImpl.this.call(args));
+            }
+        };
     }
 }

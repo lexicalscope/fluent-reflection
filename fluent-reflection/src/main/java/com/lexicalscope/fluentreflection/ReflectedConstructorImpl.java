@@ -62,11 +62,27 @@ class ReflectedConstructorImpl<T> extends AbstractReflectedAnnotated implements 
         return getName();
     }
 
-    @Override public ReflectedClass<?> returnType() {
+    @Override public ReflectedClass<?> type() {
         return declaringClass();
     }
 
     @Override public Visibility visibility() {
         return visibilityFromModifiers(constructor.getModifiers());
+    }
+
+    @Override public <S> ReflectedQuery<S> castResultTo(final Class<S> returnType) {
+        return new ReflectedQuery<S>() {
+            @Override public S call(final Object... args) {
+                return returnType.cast(ReflectedConstructorImpl.this.call(args));
+            }
+        };
+    }
+
+    @Override public boolean isStatic() {
+        return true;
+    }
+
+    @Override public boolean isFinal() {
+        return false;
     }
 }

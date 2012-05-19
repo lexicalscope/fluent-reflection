@@ -1,7 +1,11 @@
 package com.lexicalscope.fluentreflection;
 
+import static java.lang.System.arraycopy;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hamcrest.Matcher;
 
@@ -35,10 +39,6 @@ class BoundReflectedFieldImpl implements ReflectedField {
         this.instance = instance;
     }
 
-    @Override public Object read(final Object... args) {
-        return field.read(instance);
-    }
-
     @Override public ReflectedClass<?> declaringClass() {
         return field.declaringClass();
     }
@@ -59,22 +59,6 @@ class BoundReflectedFieldImpl implements ReflectedField {
         return field.isFinal();
     }
 
-    @Override public <T> ReflectedQuery<T> castTo(final Class<T> returnType) {
-        return new ReflectedQuery<T>() {
-            @Override public T call(final Object... args) {
-                return returnType.cast(BoundReflectedFieldImpl.this.read());
-            }
-        };
-    }
-
-    @Override public String toString() {
-        return String.format("%s in %s", field, instance);
-    }
-
-    @Override public ReflectedClass<?> type() {
-        return field.type();
-    }
-
     @Override public ReflectedClass<?> annotation(final Matcher<? super ReflectedClass<?>> annotationMatcher) {
         return field.annotation(annotationMatcher);
     }
@@ -93,5 +77,36 @@ class BoundReflectedFieldImpl implements ReflectedField {
 
     @Override public Field fieldUnderReflection() {
         return field.fieldUnderReflection();
+    }
+
+    @Override public int argumentCount() {
+        return 0;
+    }
+
+    @Override public List<ReflectedClass<?>> argumentTypes() {
+        return new ArrayList<ReflectedClass<?>>();
+    }
+
+    @Override public ReflectedClass<?> type() {
+        return field.type();
+    }
+
+    @Override public Object call(final Object... args) {
+        final Object[] argsWithInstance = new Object[args.length + 1];
+        argsWithInstance[0] = instance;
+        arraycopy(args, 0, argsWithInstance, 1, args.length);
+        return field.call(argsWithInstance);
+    }
+
+    @Override public <T> ReflectedQuery<T> castResultTo(final Class<T> returnType) {
+        return new ReflectedQuery<T>() {
+            @Override public T call(final Object... args) {
+                return returnType.cast(BoundReflectedFieldImpl.this.call(args));
+            }
+        };
+    }
+
+    @Override public String toString() {
+        return String.format("%s in %s", field, instance);
     }
 }

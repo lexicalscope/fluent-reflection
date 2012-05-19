@@ -16,13 +16,11 @@ import java.lang.reflect.Method;
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public interface ReflectedMethod extends ReflectedCallable, ReflectedElement {
-    <T> ReflectedQuery<T> castResultTo(Class<T> returnType);
-
+public interface ReflectedMethod extends ReflectedCallable {
     /**
      * The name of the method with any prefix of "get", "set" or "is" removed
      * and the first subsequent character changed to lower case
-     * 
+     *
      * @return The name of the method with any prefix of "get", "set" or "is"
      *         removed and the first subsequent character changed to lower case
      */

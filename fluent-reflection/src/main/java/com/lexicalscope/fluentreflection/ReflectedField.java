@@ -18,20 +18,6 @@ import java.lang.reflect.Field;
  * limitations under the License.
  */
 
-public interface ReflectedField extends ReflectedAnnotated, ReflectedNamed, ReflectedElement {
-
-    ReflectedClass<?> declaringClass();
-
-    <T> ReflectedQuery<T> castTo(Class<T> type);
-
-    ReflectedClass<?> type();
-
-    Object read(Object... args);
-
-    String propertyName();
-
+public interface ReflectedField extends ReflectedCallable {
     Field fieldUnderReflection();
-
-    Visibility visibility();
-
 }

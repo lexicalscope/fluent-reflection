@@ -5,6 +5,7 @@ import static com.lexicalscope.fluentreflection.ReflectionMatcher.allOf;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
 import java.util.List;
 
 import org.hamcrest.Matcher;
@@ -123,5 +124,49 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
 
     @Override public <A extends Annotation> A annotation(final Class<A> annotationClass) {
         return reflect.annotation(annotationClass);
+    }
+
+    @Override public boolean isPrimitive() {
+        return reflect.isPrimitive();
+    }
+
+    @Override public ReflectedClass<T> boxedType() {
+        return reflect.boxedType();
+    }
+
+    @Override public boolean assignableFromObject(final Object value) {
+        return reflect.assignableFromObject(value);
+    }
+
+    @Override public boolean assignableTo(final Class<?> klass) {
+        return reflect.assignableTo(klass);
+    }
+
+    @Override public ReflectedClass<?> typeArgument(final int typeParameter) {
+        return reflect.typeArgument(typeParameter);
+    }
+
+    @Override public String name() {
+        return reflect.name();
+    }
+
+    @Override public String simpleName() {
+        return reflect.simpleName();
+    }
+
+    @Override public Type type() {
+        return reflect.type();
+    }
+
+    @Override public List<ReflectedClass<?>> interfaces() {
+        return reflect.interfaces();
+    }
+
+    @Override public List<ReflectedClass<?>> superclasses() {
+        return reflect.superclasses();
+    }
+
+    @Override public boolean isType(final ReflectionMatcher<ReflectedClass<?>> typeMatcher) {
+        return reflect.isType(typeMatcher);
     }
 }

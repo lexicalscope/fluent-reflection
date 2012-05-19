@@ -21,7 +21,7 @@ public class TestMatcherCallableHasVoidReturn extends AbstractTestReflectionMatc
     protected void setupFailingCase() {
         context.checking(new Expectations() {
             {
-                oneOf(method).returnType();
+                oneOf(method).type();
                 will(returnValue(type));
 
                 oneOf(type).classUnderReflection();
@@ -34,7 +34,7 @@ public class TestMatcherCallableHasVoidReturn extends AbstractTestReflectionMatc
     protected void setupMatchingCase() {
         context.checking(new Expectations() {
             {
-                oneOf(method).returnType();
+                oneOf(method).type();
                 will(returnValue(type));
 
                 oneOf(type).classUnderReflection();

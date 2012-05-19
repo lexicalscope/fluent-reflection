@@ -72,7 +72,7 @@ public class TestBoundReflectedMethodImpl {
     @Test
     public void boundMethodReturnTypeIsAvailable() throws Exception {
         assertThat(
-                methodWithReturnType.returnType(),
+                methodWithReturnType.type(),
                 reflectingOn(Integer.class));
     }
 }

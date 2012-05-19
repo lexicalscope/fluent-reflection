@@ -1,5 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import org.hamcrest.Matcher;
@@ -27,6 +28,30 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
      * @return the class being reflected
      */
     Class<T> classUnderReflection();
+
+    /**
+     * All interfaces implemented by this type
+     *
+     * @return all the interfaces
+     */
+    List<ReflectedClass<?>> interfaces();
+
+    /**
+     * Return the list of all superclasses with the immediate parent first
+     *
+     * @return list of superclasses nearest first
+     */
+    List<ReflectedClass<?>> superclasses();
+
+    /**
+     * Does this type or any of its implemented types match the given matcher?
+     *
+     * @param typeMatcher
+     *            matcher on the required type
+     *
+     * @return does the type or any of its supertypes match the given matcher
+     */
+    boolean isType(ReflectionMatcher<ReflectedClass<?>> typeMatcher);
 
     /**
      * All methods
@@ -72,11 +97,65 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
      */
     ReflectedMethod method(String name);
 
+    /**
+     * All fields
+     *
+     * @return all the fields
+     */
     List<ReflectedField> fields();
+
+    /**
+     * Find all fields matching the supplied matcher
+     *
+     * @param fieldMatcher
+     *            matches the field
+     *
+     * @return The fields matching the supplied matcher
+     */
     List<ReflectedField> fields(ReflectionMatcher<? super ReflectedField> fieldMatcher);
+
+    /**
+     * All fields declared by this type
+     *
+     * @return fields declared by this type
+     */
     List<ReflectedField> declaredFields();
+
+    boolean isPrimitive();
 
     boolean canBeBoxed(Class<?> from);
 
     boolean canBeUnboxed(Class<?> from);
+
+    ReflectedClass<T> boxedType();
+
+    /**
+     * True if the given object can be assigned to a variable of the type
+     * represented by this class
+     *
+     * @param value
+     *            the value that might be assigned
+     *
+     * @return true iff the value can be assigned to variables of this type
+     */
+    boolean assignableFromObject(Object value);
+
+    boolean assignableTo(Class<?> klass);
+
+    ReflectedClass<?> typeArgument(int typeParameter);
+
+    /**
+     * @return the name of the class under reflection
+     */
+    String name();
+
+    /**
+     * @return the simple name of the class under reflection
+     */
+    String simpleName();
+
+    /**
+     * @return the underlying type instance
+     */
+    Type type();
 }

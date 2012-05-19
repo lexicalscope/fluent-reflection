@@ -18,14 +18,14 @@ package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
-final class MatcherNamed extends ReflectionMatcher<ReflectedNamed> {
+final class MatcherNamed extends ReflectionMatcher<ReflectedCallable> {
     private final String name;
 
     MatcherNamed(final String name) {
         this.name = name;
     }
 
-    @Override public boolean matchesSafely(final ReflectedNamed arg) {
+    @Override public boolean matchesSafely(final ReflectedCallable arg) {
         return arg.getName().equals(name);
     }
 

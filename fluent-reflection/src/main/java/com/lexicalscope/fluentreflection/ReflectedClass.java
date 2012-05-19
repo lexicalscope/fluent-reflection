@@ -16,7 +16,6 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License.
  */
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 import org.hamcrest.Matcher;
@@ -30,20 +29,6 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
     boolean isInterface();
 
     /**
-     * All interfaces implemented by this type
-     *
-     * @return all the interfaces
-     */
-    List<ReflectedClass<?>> interfaces();
-
-    /**
-     * Return the list of all superclasses with the immediate parent first
-     *
-     * @return list of superclasses nearest first
-     */
-    List<ReflectedClass<?>> superclasses();
-
-    /**
      * Get this type as the first matching the supplied matcher. This type and
      * then the supertypes are searched
      *
@@ -53,16 +38,6 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
      * @return first matching the matcher
      */
     ReflectedClass<?> asType(Matcher<ReflectedClass<?>> typeMatcher);
-
-    /**
-     * Does this type or any of its implemented types match the given matcher?
-     *
-     * @param typeMatcher
-     *            matcher on the required type
-     *
-     * @return does the type or any of its supertypes match the given matcher
-     */
-    boolean isType(ReflectionMatcher<ReflectedClass<?>> typeMatcher);
 
     /**
      * Construct an object of the type under reflection
@@ -84,7 +59,7 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
      * @param constructorMatcher
      *            matches the constructors
      *
-     * @return
+     * @return all constructors matching the supplied matcher
      */
     List<ReflectedConstructor<T>> constructors(Matcher<? super ReflectedConstructor<?>> constructorMatcher);
 
@@ -107,35 +82,4 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
      * @return The method matching the supplied matcher
      */
     ReflectedMethod staticMethod(Matcher<? super ReflectedMethod> methodNamed);
-
-    /**
-     * True if the given object can be assigned to a variable of the type
-     * represented by this class
-     *
-     * @param value
-     *            the value that might be assigned
-     *
-     * @return true iff the value can be assigned to variables of this type
-     */
-    boolean assignableFromObject(Object value);
-
-    boolean assignableTo(Class<?> klass);
-
-    ReflectedClass<?> typeArgument(int typeParameter);
-
-    boolean isPrimitive();
-
-    ReflectedClass<T> boxedType();
-
-    /**
-     * @return the name of the class under reflection
-     */
-    String name();
-
-    String simpleName();
-
-    /**
-     * @return the underlying type instance
-     */
-    Type type();
 }

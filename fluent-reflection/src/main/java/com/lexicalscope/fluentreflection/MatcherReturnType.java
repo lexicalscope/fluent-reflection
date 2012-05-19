@@ -14,7 +14,7 @@ final class MatcherReturnType extends ReflectionMatcher<ReflectedCallable> {
 
     @Override
     protected boolean matchesSafely(final ReflectedCallable item) {
-        final ReflectedClass<?> actualReturnType = item.returnType();
+        final ReflectedClass<?> actualReturnType = item.type();
 
         if (actualReturnType == null) {
             return false;

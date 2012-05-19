@@ -121,7 +121,7 @@ class ReflectedMethodImpl extends AbstractReflectedAnnotated implements Reflecte
         };
     }
 
-    @Override public ReflectedClass<?> returnType() {
+    @Override public ReflectedClass<?> type() {
         final TypeLiteral<?> returnType = typeLiteral.getReturnType(method);
         if (returnType == null) {
             return null;
@@ -216,7 +216,7 @@ class ReflectedMethodImpl extends AbstractReflectedAnnotated implements Reflecte
                 staticModifier,
                 finalModifier,
                 typeParameters,
-                returnType(),
+                type(),
                 method.getName(),
                 arguments);
     }

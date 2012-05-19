@@ -30,7 +30,7 @@ interface ReflectedTypeFactory {
 
     <T> ReflectedObject<T> reflect(TypeLiteral<T> klass, T instance);
 
-    ReflectedElement method(Method method);
+    ReflectedMethod method(Method method);
 
     ReflectedMethod method(TypeLiteral<?> klass, Method method);
 

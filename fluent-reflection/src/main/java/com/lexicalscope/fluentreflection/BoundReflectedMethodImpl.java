@@ -86,8 +86,8 @@ class BoundReflectedMethodImpl implements ReflectedMethod {
         return String.format("%s in %s", method, instance);
     }
 
-    @Override public ReflectedClass<?> returnType() {
-        return method.returnType();
+    @Override public ReflectedClass<?> type() {
+        return method.type();
     }
 
     @Override public ReflectedClass<?> annotation(final Matcher<? super ReflectedClass<?>> annotationMatcher) {
