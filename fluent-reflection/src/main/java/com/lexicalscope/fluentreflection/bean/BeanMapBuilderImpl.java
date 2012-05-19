@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.hamcrest.Matcher;
 
-import com.lexicalscope.fluentreflection.ReflectedCallable;
+import com.lexicalscope.fluentreflection.ReflectedMember;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
 import com.lexicalscope.fluentreflection.bean.BeanMap.KeySetCalculation;
 import com.lexicalscope.fluentreflection.bean.BeanMap.PropertyNameConvertor;
@@ -34,8 +34,8 @@ class BeanMapBuilderImpl implements BeanMapBuilder {
             return from.propertyName();
         }
     };
-    private Matcher<ReflectedCallable> getterMatcher = isGetter();
-    private Matcher<ReflectedCallable> setterMatcher = isSetter();
+    private Matcher<ReflectedMember> getterMatcher = isGetter();
+    private Matcher<ReflectedMember> setterMatcher = isSetter();
     private KeySetCalculation keySetCalculation = allProperties();
 
     @Override public Map<String, Object> build(final Object bean) {
@@ -47,12 +47,12 @@ class BeanMapBuilderImpl implements BeanMapBuilder {
         return this;
     }
 
-    @Override public BeanMapBuilder getters(final Matcher<ReflectedCallable> getterMatcher) {
+    @Override public BeanMapBuilder getters(final Matcher<ReflectedMember> getterMatcher) {
         this.getterMatcher = getterMatcher;
         return this;
     }
 
-    @Override public BeanMapBuilder setters(final Matcher<ReflectedCallable> setterMatcher) {
+    @Override public BeanMapBuilder setters(final Matcher<ReflectedMember> setterMatcher) {
         this.setterMatcher = setterMatcher;
         return this;
     }

@@ -5,7 +5,7 @@ package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
-final class MatcherHasNameContaining extends ReflectionMatcher<ReflectedCallable> {
+final class MatcherHasNameContaining extends ReflectionMatcher<ReflectedMember> {
     private final CharSequence substring;
 
     MatcherHasNameContaining(final CharSequence substring) {
@@ -13,7 +13,7 @@ final class MatcherHasNameContaining extends ReflectionMatcher<ReflectedCallable
     }
 
     @Override
-    public boolean matchesSafely(final ReflectedCallable arg) {
+    public boolean matchesSafely(final ReflectedMember arg) {
         return arg.getName().contains(substring);
     }
 

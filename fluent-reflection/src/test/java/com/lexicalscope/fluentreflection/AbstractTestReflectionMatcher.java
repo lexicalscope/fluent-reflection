@@ -19,7 +19,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
     protected final ReflectedMethod method = context.mock(ReflectedMethod.class);
     protected final ReflectedConstructor<?> constructor = context.mock(ReflectedConstructor.class);
     protected final ReflectedClass<?> type = context.mock(ReflectedClass.class);
-    protected final ReflectedCallable callable = context.mock(ReflectedCallable.class);
+    protected final ReflectedMember callable = context.mock(ReflectedMember.class);
     private final Description description = new StringDescription();
 
     @Test public final void matcherCanMatch() throws Throwable {

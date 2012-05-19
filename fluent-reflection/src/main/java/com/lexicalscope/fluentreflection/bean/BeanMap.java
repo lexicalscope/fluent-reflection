@@ -16,7 +16,7 @@ import org.hamcrest.Matcher;
 import ch.lambdaj.Lambda;
 import ch.lambdaj.function.convert.Converter;
 
-import com.lexicalscope.fluentreflection.ReflectedCallable;
+import com.lexicalscope.fluentreflection.ReflectedMember;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
 import com.lexicalscope.fluentreflection.ReflectedObject;
 
@@ -53,8 +53,8 @@ public class BeanMap {
         BeanMapImpl(
                 final ReflectedObject<Object> object,
                 final PropertyNameConvertor propertyNameConvertor,
-                final Matcher<ReflectedCallable> getterMatcher,
-                final Matcher<ReflectedCallable> setterMatcher,
+                final Matcher<ReflectedMember> getterMatcher,
+                final Matcher<ReflectedMember> setterMatcher,
                 final KeySetCalculation keySetCalculation) {
             this.getters = indexMethods(object, getterMatcher, propertyNameConvertor);
             this.setters = indexMethods(object, setterMatcher, propertyNameConvertor);
@@ -63,7 +63,7 @@ public class BeanMap {
 
         private Map<String, ReflectedMethod> indexMethods(
                 final ReflectedObject<Object> object,
-                final Matcher<ReflectedCallable> matcher,
+                final Matcher<ReflectedMember> matcher,
                 final PropertyNameConvertor propertyNameConvertor) {
             return Lambda.map(
                     object.methods(matcher),
@@ -242,8 +242,8 @@ public class BeanMap {
     static Map<String, Object> map(
             final Object bean,
             final PropertyNameConvertor propertyNameConvertor,
-            final Matcher<ReflectedCallable> getterMatcher,
-            final Matcher<ReflectedCallable> setterMatcher,
+            final Matcher<ReflectedMember> getterMatcher,
+            final Matcher<ReflectedMember> setterMatcher,
             final KeySetCalculation keySetCalculation) {
         return new BeanMapImpl(
                 object(bean),

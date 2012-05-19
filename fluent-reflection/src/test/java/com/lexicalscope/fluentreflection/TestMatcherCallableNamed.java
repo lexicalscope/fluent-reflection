@@ -5,14 +5,14 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherCallableNamed extends AbstractTestReflectionMatcher<ReflectedCallable> {
+public class TestMatcherCallableNamed extends AbstractTestReflectionMatcher<ReflectedMember> {
     @Override
     protected ReflectedMethod target() {
         return method;
     }
 
     @Override
-    protected ReflectionMatcher<ReflectedCallable> matcher() {
+    protected ReflectionMatcher<ReflectedMember> matcher() {
         return hasName("abc");
     }
 

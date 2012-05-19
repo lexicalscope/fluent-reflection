@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.hamcrest.Matcher;
 
-import com.lexicalscope.fluentreflection.ReflectedCallable;
+import com.lexicalscope.fluentreflection.ReflectedMember;
 import com.lexicalscope.fluentreflection.bean.BeanMap.KeySetCalculation;
 import com.lexicalscope.fluentreflection.bean.BeanMap.PropertyNameConvertor;
 
@@ -29,9 +29,9 @@ public interface BeanMapBuilder {
 
     BeanMapBuilder keys(KeySetCalculation onlyReadWriteProperties);
 
-    BeanMapBuilder getters(Matcher<ReflectedCallable> getterMatcher);
+    BeanMapBuilder getters(Matcher<ReflectedMember> getterMatcher);
 
-    BeanMapBuilder setters(Matcher<ReflectedCallable> setterMatcher);
+    BeanMapBuilder setters(Matcher<ReflectedMember> setterMatcher);
 
     BeanMapBuilder propertyNames(PropertyNameConvertor propertyNameConvertor);
 }

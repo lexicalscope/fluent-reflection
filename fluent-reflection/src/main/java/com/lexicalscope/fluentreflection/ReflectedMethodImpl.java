@@ -149,7 +149,7 @@ class ReflectedMethodImpl extends AbstractReflectedAnnotated implements Reflecte
         return substring.substring(0, 1).toLowerCase() + substring.substring(1);
     }
 
-    @Override public Method methodUnderReflection() {
+    @Override public Method memberUnderReflection() {
         return method;
     }
 

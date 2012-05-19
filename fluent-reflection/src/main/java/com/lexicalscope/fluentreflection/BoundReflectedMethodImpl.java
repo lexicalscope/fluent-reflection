@@ -106,7 +106,7 @@ class BoundReflectedMethodImpl implements ReflectedMethod {
         return method.propertyName();
     }
 
-    @Override public Method methodUnderReflection() {
-        return method.methodUnderReflection();
+    @Override public Method memberUnderReflection() {
+        return method.memberUnderReflection();
     }
 }

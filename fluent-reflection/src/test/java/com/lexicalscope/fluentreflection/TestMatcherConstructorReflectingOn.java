@@ -37,7 +37,7 @@ public class TestMatcherConstructorReflectingOn extends AbstractTestReflectionMa
     @Override protected void setupMatchingCase() throws Throwable {
         context.checking(new Expectations() {
             {
-                oneOf(constructor).constructorUnderReflection();
+                oneOf(constructor).memberUnderReflection();
                 will(returnValue(ClassWithAConstructor.class.getDeclaredConstructor()));
             }
         });
@@ -46,7 +46,7 @@ public class TestMatcherConstructorReflectingOn extends AbstractTestReflectionMa
     @Override protected void setupFailingCase() throws Throwable {
         context.checking(new Expectations() {
             {
-                oneOf(constructor).constructorUnderReflection();
+                oneOf(constructor).memberUnderReflection();
                 will(returnValue(AnotherClassWithAConstructor.class.getDeclaredConstructor()));
             }
         });

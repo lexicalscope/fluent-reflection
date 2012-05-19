@@ -66,7 +66,7 @@ class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Reflected
         return field.getName();
     }
 
-    @Override public Field fieldUnderReflection() {
+    @Override public Field memberUnderReflection() {
         return field;
     }
 

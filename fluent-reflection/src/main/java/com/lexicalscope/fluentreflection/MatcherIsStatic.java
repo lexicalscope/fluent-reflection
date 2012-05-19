@@ -2,9 +2,9 @@ package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
-class MatcherIsStatic extends ReflectionMatcher<ReflectedCallable> {
+class MatcherIsStatic extends ReflectionMatcher<ReflectedMember> {
     @Override
-    protected boolean matchesSafely(final ReflectedCallable item) {
+    protected boolean matchesSafely(final ReflectedMember item) {
         return item.isStatic();
     }
 

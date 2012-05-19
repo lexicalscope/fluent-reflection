@@ -75,8 +75,8 @@ class BoundReflectedFieldImpl implements ReflectedField {
         return field.propertyName();
     }
 
-    @Override public Field fieldUnderReflection() {
-        return field.fieldUnderReflection();
+    @Override public Field memberUnderReflection() {
+        return field.memberUnderReflection();
     }
 
     @Override public int argumentCount() {

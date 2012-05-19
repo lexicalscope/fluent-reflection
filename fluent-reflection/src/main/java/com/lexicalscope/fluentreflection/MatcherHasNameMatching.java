@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 import org.hamcrest.Description;
 
-final class MatcherHasNameMatching extends ReflectionMatcher<ReflectedCallable> {
+final class MatcherHasNameMatching extends ReflectionMatcher<ReflectedMember> {
     private final String regex;
     private final Pattern pattern;
 
@@ -17,7 +17,7 @@ final class MatcherHasNameMatching extends ReflectionMatcher<ReflectedCallable> 
     }
 
     @Override
-    public boolean matchesSafely(final ReflectedCallable arg) {
+    public boolean matchesSafely(final ReflectedMember arg) {
         return pattern.matcher(arg.getName()).matches();
     }
 

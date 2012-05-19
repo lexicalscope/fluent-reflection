@@ -13,7 +13,7 @@ class MatcherConstructorReflectingOn extends ReflectionMatcher<ReflectedConstruc
 
     @Override
     protected boolean matchesSafely(final ReflectedConstructor<?> item) {
-        return item.constructorUnderReflection().equals(constructor);
+        return item.memberUnderReflection().equals(constructor);
     }
 
     @Override

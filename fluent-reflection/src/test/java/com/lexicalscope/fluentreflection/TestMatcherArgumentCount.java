@@ -6,9 +6,9 @@ import static org.hamcrest.Matchers.equalTo;
 import org.hamcrest.Matcher;
 import org.jmock.Expectations;
 
-public class TestMatcherArgumentCount extends AbstractTestReflectionMatcher<ReflectedCallable> {
+public class TestMatcherArgumentCount extends AbstractTestReflectionMatcher<ReflectedMember> {
     @Override
-    protected ReflectionMatcher<ReflectedCallable> matcher() {
+    protected ReflectionMatcher<ReflectedMember> matcher() {
         return hasArgumentCount(3);
     }
 
@@ -38,7 +38,7 @@ public class TestMatcherArgumentCount extends AbstractTestReflectionMatcher<Refl
     }
 
     @Override
-    protected ReflectedCallable target() {
+    protected ReflectedMember target() {
         return callable;
     }
 }

@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public interface ReflectedMethod extends ReflectedCallable {
+public interface ReflectedMethod extends ReflectedMember {
     /**
      * The name of the method with any prefix of "get", "set" or "is" removed
      * and the first subsequent character changed to lower case
@@ -26,5 +26,5 @@ public interface ReflectedMethod extends ReflectedCallable {
      */
     String propertyName();
 
-    Method methodUnderReflection();
+    Method memberUnderReflection();
 }

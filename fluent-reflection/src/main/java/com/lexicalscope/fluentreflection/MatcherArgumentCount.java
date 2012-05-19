@@ -2,7 +2,7 @@ package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
-class MatcherArgumentCount extends ReflectionMatcher<ReflectedCallable> {
+class MatcherArgumentCount extends ReflectionMatcher<ReflectedMember> {
     private final int expectedArgumentCount;
 
     public MatcherArgumentCount(final int expectedArgumentCount) {
@@ -10,7 +10,7 @@ class MatcherArgumentCount extends ReflectionMatcher<ReflectedCallable> {
     }
 
     @Override
-    protected boolean matchesSafely(final ReflectedCallable item) {
+    protected boolean matchesSafely(final ReflectedMember item) {
         return item.argumentCount() == expectedArgumentCount;
     }
 

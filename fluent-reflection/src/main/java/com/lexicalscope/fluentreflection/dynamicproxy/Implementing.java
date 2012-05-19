@@ -20,7 +20,7 @@ import com.google.inject.TypeLiteral;
 import com.lexicalscope.fluentreflection.FluentReflection;
 import com.lexicalscope.fluentreflection.IllegalAccessRuntimeException;
 import com.lexicalscope.fluentreflection.InvocationTargetRuntimeException;
-import com.lexicalscope.fluentreflection.ReflectedCallable;
+import com.lexicalscope.fluentreflection.ReflectedMember;
 import com.lexicalscope.fluentreflection.ReflectedClass;
 import com.lexicalscope.fluentreflection.ReflectedMethod;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
@@ -125,7 +125,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
             } else {
                 registeredMethodHandlers.put(
                         matcherForMethodSignature(reflectedMethod),
-                        new MethodInvoker(this, reflectedMethod.methodUnderReflection()));
+                        new MethodInvoker(this, reflectedMethod.memberUnderReflection()));
             }
         }
     }
@@ -211,17 +211,17 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         whenProxying(matcherForMethodSignature(userDefinedMethod)).execute(queryMethod);
     }
 
-    private ReflectionMatcher<ReflectedCallable> matcherForMethodSignature(final ReflectedMethod userDefinedMethod) {
+    private ReflectionMatcher<ReflectedMember> matcherForMethodSignature(final ReflectedMethod userDefinedMethod) {
         final List<ReflectedClass<?>> argumentTypes =
                 new ArrayList<ReflectedClass<?>>(userDefinedMethod.argumentTypes());
 
-        final ReflectionMatcher<ReflectedCallable> matchArguments =
+        final ReflectionMatcher<ReflectedMember> matchArguments =
                 hasReflectedArgumentList(argumentTypes);
 
-        final ReflectionMatcher<ReflectedCallable> matchReturnType =
+        final ReflectionMatcher<ReflectedMember> matchReturnType =
                 hasReturnType(userDefinedMethod.type());
 
-        final ReflectionMatcher<ReflectedCallable> matcher = matchArguments.and(matchReturnType);
+        final ReflectionMatcher<ReflectedMember> matcher = matchArguments.and(matchReturnType);
         return matcher;
     }
 

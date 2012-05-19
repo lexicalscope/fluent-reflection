@@ -34,7 +34,7 @@ class ReflectedConstructorImpl<T> extends AbstractReflectedAnnotated implements 
                 new ConvertTypeLiteralToReflectedType(reflectedTypeFactory));
     }
 
-    @Override public Constructor<T> constructorUnderReflection() {
+    @Override public Constructor<T> memberUnderReflection() {
         return constructor;
     }
 

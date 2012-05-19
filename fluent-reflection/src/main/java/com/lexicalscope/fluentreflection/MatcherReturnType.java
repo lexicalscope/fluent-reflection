@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
-final class MatcherReturnType extends ReflectionMatcher<ReflectedCallable> {
+final class MatcherReturnType extends ReflectionMatcher<ReflectedMember> {
     private final Matcher<? super ReflectedClass<?>> returnTypeMatcher;
 
     public MatcherReturnType(final Matcher<? super ReflectedClass<?>> returnTypeMatcher) {
@@ -13,7 +13,7 @@ final class MatcherReturnType extends ReflectionMatcher<ReflectedCallable> {
     }
 
     @Override
-    protected boolean matchesSafely(final ReflectedCallable item) {
+    protected boolean matchesSafely(final ReflectedMember item) {
         final ReflectedClass<?> actualReturnType = item.type();
 
         if (actualReturnType == null) {

@@ -1,9 +1,12 @@
 package com.lexicalscope.fluentreflection;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
-public interface ReflectedCallable extends ReflectedAnnotated {
+public interface ReflectedMember extends ReflectedAnnotated {
     ReflectedClass<?> declaringClass();
+
+    Member memberUnderReflection();
 
     String getName();
 

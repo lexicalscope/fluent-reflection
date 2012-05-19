@@ -18,6 +18,6 @@ import java.lang.reflect.Field;
  * limitations under the License.
  */
 
-public interface ReflectedField extends ReflectedCallable {
-    Field fieldUnderReflection();
+public interface ReflectedField extends ReflectedMember {
+    Field memberUnderReflection();
 }
