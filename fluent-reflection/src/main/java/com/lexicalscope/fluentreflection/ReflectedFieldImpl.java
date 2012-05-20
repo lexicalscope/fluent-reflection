@@ -146,12 +146,19 @@ class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Reflected
     }
 
     @Override public Object call(final Object... args) {
-        if(args == null || args.length != 1)
-        {
+        if(args == null || args.length == 0 || args[0] == null) {
             throw new ReflectionRuntimeException("reading a field require an instance argument");
+        } else if (args.length > 2) {
+            throw new ReflectionRuntimeException("reading a field require one argument, writing a field requires two arguments. Got " + args.length + " arguments");
         }
+
         try {
-            return field.get(args[0]);
+            final Object fieldValue = field.get(args[0]);
+            if(args.length == 2)
+            {
+                field.set(args[0], args[1]);
+            }
+            return fieldValue;
         } catch (final IllegalArgumentException e) {
             throw new IllegalArgumentRuntimeException(e, field, args[0]);
         } catch (final IllegalAccessException e) {

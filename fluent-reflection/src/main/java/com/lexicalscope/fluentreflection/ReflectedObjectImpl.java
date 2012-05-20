@@ -1,7 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.*;
-import static com.lexicalscope.fluentreflection.ReflectionMatcher.allOf;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 
 import java.lang.annotation.Annotation;
@@ -47,7 +46,7 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
     }
 
     @Override public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return selectFirst(boundMethods(), allOf(isNotStatic(), methodMatcher));
+        return selectFirst(boundMethods(), methodMatcher);
     }
 
     @Override public ReflectedMethod method(final String name) {
@@ -104,6 +103,10 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
 
     @Override public List<ReflectedField> fields() {
         return boundFields();
+    }
+
+    @Override public ReflectedField field(final ReflectionMatcher<ReflectedMember> fieldMatcher) {
+        return selectFirst(fields(), fieldMatcher);
     }
 
     @Override public boolean canBeBoxed(final Class<?> from) {

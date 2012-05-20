@@ -3,12 +3,13 @@ package com.lexicalscope.fluentreflection.endtoend;
 import static com.lexicalscope.fluentreflection.FluentReflection.*;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.*;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import com.lexicalscope.fluentreflection.ReflectedField;
+import com.lexicalscope.fluentreflection.ReflectedObject;
 
 
 /*
@@ -28,7 +29,7 @@ import com.lexicalscope.fluentreflection.ReflectedField;
  */
 
 public class TestReflectedClassFields {
-    public static class AnnotatedFields {
+    public static class Fields {
         public String field0;
         String field1;
         protected String field2;
@@ -38,13 +39,23 @@ public class TestReflectedClassFields {
 
     @Test public void canFindFieldByName() throws SecurityException, NoSuchFieldException {
         assertThat(
-                type(AnnotatedFields.class).fields(hasName("field0")),
-                contains(reflectingOnField(AnnotatedFields.class.getDeclaredField("field0"))));
+                type(Fields.class).fields(hasName("field0")),
+                contains(reflectingOnField(Fields.class.getDeclaredField("field0"))));
     }
 
     @Test public void canNotFindStaticFieldOfBoundObject() throws SecurityException, NoSuchFieldException {
         assertThat(
-                object(new AnnotatedFields()).fields(hasName("staticField0")),
+                object(new Fields()).fields(hasName("staticField0")),
                 Matchers.<ReflectedField>empty());
+    }
+
+    @Test public void canWriteField() throws SecurityException, NoSuchFieldException {
+        final ReflectedObject<Fields> object = object(new Fields());
+        final ReflectedField field = object.field(hasName("field0"));
+
+        field.call("value");
+        assertThat(
+                field.call(),
+                equalTo((Object) "value"));
     }
 }

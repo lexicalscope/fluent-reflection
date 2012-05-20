@@ -23,4 +23,5 @@ interface ReflectedMembers<T> {
 
     List<ReflectedField> fields();
     List<ReflectedField> fields(ReflectionMatcher<? super ReflectedField> fieldMatcher);
+    ReflectedField field(Matcher<? super ReflectedField> fieldMatcher);
 }

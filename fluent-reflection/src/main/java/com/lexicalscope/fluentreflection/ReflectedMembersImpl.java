@@ -78,4 +78,12 @@ class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
     @Override public List<ReflectedField> fields(final ReflectionMatcher<? super ReflectedField> fieldMatcher) {
         return select(fields(), fieldMatcher);
     }
+
+    @Override public ReflectedField field(final Matcher<? super ReflectedField> fieldMatcher) {
+        final ReflectedField selectedMethod = selectFirst(fields(), fieldMatcher);
+        if (selectedMethod == null) {
+            throw new FieldNotFoundException(klass, fieldMatcher);
+        }
+        return selectedMethod;
+    }
 }

@@ -92,6 +92,10 @@ class ReflectedClassImpl<T> implements ReflectedClass<T> {
         return members.fields(fieldMatcher);
     }
 
+    @Override public ReflectedField field(final ReflectionMatcher<ReflectedMember> fieldMatcher) {
+        return members.field(fieldMatcher);
+    }
+
     @Override public List<ReflectedField> declaredFields() {
         return members.declaredFields();
     }

@@ -121,6 +121,16 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
      */
     List<ReflectedField> declaredFields();
 
+    /**
+     * Find field matching the supplied matcher
+     *
+     * @param fieldMatcher
+     *            matches the field
+     *
+     * @return The first field matching the supplied matcher
+     */
+    ReflectedField field(ReflectionMatcher<ReflectedMember> fieldMatcher);
+
     boolean isPrimitive();
 
     boolean canBeBoxed(Class<?> from);
