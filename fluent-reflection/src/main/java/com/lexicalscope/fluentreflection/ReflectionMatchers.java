@@ -184,29 +184,29 @@ public class ReflectionMatchers {
         return new MatcherArgumentTypes(convert(argTypes, new ConvertReflectedTypeToReflectedTypeAssignableMatcher()));
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasReturnType(final Class<?> returnType) {
+    public static ReflectionMatcher<ReflectedMember> hasType(final Class<?> returnType) {
         if (returnType == null) {
-            return hasVoidReturn();
+            return hasVoidType();
         }
         return new MatcherReturnType(new ConvertClassToReflectedTypeAssignableMatcher().convert(returnType));
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasVoidReturn() {
+    public static ReflectionMatcher<ReflectedMember> hasVoidType() {
         return new MatcherReturnType(reflectingOn(void.class));
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasNonVoidReturn() {
-        return not(hasVoidReturn());
+    public static ReflectionMatcher<ReflectedMember> hasNonVoidType() {
+        return not(hasVoidType());
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasReturnType(final ReflectedClass<?> returnType) {
+    public static ReflectionMatcher<ReflectedMember> hasType(final ReflectedClass<?> returnType) {
         if (returnType == null) {
-            return hasVoidReturn();
+            return hasVoidType();
         }
         return new MatcherReturnType(new ConvertReflectedTypeToReflectedTypeAssignableMatcher().convert(returnType));
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasReturnType(final Matcher<? super ReflectedClass<?>> returnType) {
+    public static ReflectionMatcher<ReflectedMember> hasType(final Matcher<? super ReflectedClass<?>> returnType) {
         return new MatcherReturnType(returnType);
     }
 
@@ -235,7 +235,7 @@ public class ReflectionMatchers {
     }
 
     public static ReflectionMatcher<ReflectedMember> isQuery() {
-        return hasNoArguments().and(not(hasVoidReturn()));
+        return hasNoArguments().and(not(hasVoidType()));
     }
 
     public static ReflectionMatcher<ReflectedMember> isGetter() {
@@ -244,7 +244,7 @@ public class ReflectionMatchers {
 
     public static ReflectionMatcher<ReflectedMember> isMutator() {
         return hasArgumentsMatching(anything()).and(
-                not(hasNonVoidReturn()));
+                not(hasNonVoidType()));
     }
 
     public static ReflectionMatcher<ReflectedMember> isSetter() {
@@ -253,25 +253,25 @@ public class ReflectionMatchers {
 
     public static ReflectionMatcher<ReflectedMember> isExistence() {
         return isQuery().
-                and(hasReturnType(boolean.class).or(hasReturnType(Boolean.class))).
+                and(hasType(boolean.class).or(hasType(Boolean.class))).
                 and(hasNameStartingWith("is").or(hasNameStartingWith("has")));
     }
 
     public static ReflectionMatcher<ReflectedMember> isHashCodeMethod() {
         return hasNoArguments().
-                and(hasReturnType(int.class)).
+                and(hasType(int.class)).
                 and(hasName("hashCode"));
     }
 
     public static ReflectionMatcher<ReflectedMember> isEqualsMethod() {
         return hasArguments(Object.class).
-                and(hasReturnType(boolean.class)).
+                and(hasType(boolean.class)).
                 and(hasName("equals"));
     }
 
     public static ReflectionMatcher<ReflectedMember> isToStringMethod() {
         return hasNoArguments().
-                and(hasReturnType(String.class)).
+                and(hasType(String.class)).
                 and(hasName("toString"));
     }
 

@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasReturnType;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasType;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
@@ -9,7 +9,7 @@ import org.jmock.Expectations;
 public class TestMatcherElementHasVoidReturn extends AbstractTestReflectionMatcher<ReflectedMember> {
     @Override
     protected ReflectionMatcher<ReflectedMember> matcher() {
-        return hasReturnType((Class<?>) null);
+        return hasType((Class<?>) null);
     }
 
     @Override

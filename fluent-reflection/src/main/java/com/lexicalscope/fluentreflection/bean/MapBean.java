@@ -60,8 +60,8 @@ public class MapBean {
 
                 whenProxying(
                         isGetter().and(
-                                hasReturnType(boolean.class).or(
-                                        hasReturnType(Boolean.class)))).execute(new MethodBody() {
+                                hasType(boolean.class).or(
+                                        hasType(Boolean.class)))).execute(new MethodBody() {
                     @Override public void body() {
                         returnValue(map.containsKey(method().propertyName()));
                     }

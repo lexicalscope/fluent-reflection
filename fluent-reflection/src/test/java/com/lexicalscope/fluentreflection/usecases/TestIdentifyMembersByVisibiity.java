@@ -31,16 +31,19 @@ public class TestIdentifyMembersByVisibiity {
         protected String fieldProtected;
         private String fieldPrivate;
 
-        String getFieldPublic() {
+        public String getFieldPublic() {
             return fieldPublic;
         }
+
         String getFieldPackage() {
             return fieldPackage;
         }
-        String getFieldProtected() {
+
+        protected String getFieldProtected() {
             return fieldProtected;
         }
-        String getFieldPrivate() {
+
+        private String getFieldPrivate() {
             return fieldPrivate;
         }
     }

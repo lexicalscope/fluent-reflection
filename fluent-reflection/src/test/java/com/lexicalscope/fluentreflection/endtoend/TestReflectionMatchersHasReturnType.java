@@ -1,7 +1,7 @@
 package com.lexicalscope.fluentreflection.endtoend;
 
 import static com.lexicalscope.fluentreflection.FluentReflection.type;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasReturnType;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasType;
 
 import org.junit.Test;
 
@@ -32,6 +32,6 @@ public class TestReflectionMatchersHasReturnType {
     }
 
     @Test public void canMatchReturnTypeByReflectedClass() {
-        type(B.class).method(hasReturnType(type(A.class)));
+        type(B.class).method(hasType(type(A.class)));
     }
 }

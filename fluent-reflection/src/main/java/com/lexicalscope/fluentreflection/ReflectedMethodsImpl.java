@@ -4,7 +4,6 @@ import static java.util.Collections.unmodifiableList;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.google.inject.TypeLiteral;
@@ -30,12 +29,11 @@ class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
         if (reflectedMethods == null) {
             final List<ReflectedMethod> result = new ArrayList<ReflectedMethod>();
 
-            result.addAll(declaredMethods());
             for (final ReflectedClass<?> klassToReflect : allTypes.superclassesAndInterfaces()) {
                 result.addAll(klassToReflect.declaredMethods());
             }
+            result.addAll(declaredMethods());
 
-            Collections.reverse(result);
             reflectedMethods = unmodifiableList(result);
         }
         return reflectedMethods;
