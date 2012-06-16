@@ -109,7 +109,7 @@ class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Reflected
         }
 
         return format(
-                "%s %s %s %s %s",
+                "%s%s%s%s %s",
                 visibility,
                 staticModifier,
                 finalModifier,
@@ -133,7 +133,7 @@ class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Reflected
     }
 
     @Override public int argumentCount() {
-        return 0;
+        return 1;
     }
 
     @Override public List<ReflectedClass<?>> argumentTypes() {

@@ -37,8 +37,8 @@ public class TestReflectedClassFields {
     @Rule public ExpectedException exception = ExpectedException.none();
 
     public static class Fields {
-        public String field0;
-        String field1;
+        public String publicField;
+        String packageField;
         protected String field2;
         private String field3;
         public static String staticField0;
@@ -47,8 +47,8 @@ public class TestReflectedClassFields {
 
     @Test public void canFindFieldByName() throws SecurityException, NoSuchFieldException {
         assertThat(
-                type(Fields.class).fields(hasName("field0")),
-                contains(isReflectingOnField(Fields.class.getDeclaredField("field0"))));
+                type(Fields.class).fields(hasName("publicField")),
+                contains(isReflectingOnField(Fields.class.getDeclaredField("publicField"))));
     }
 
     @Test public void canNotFindStaticFieldOfBoundObject() throws SecurityException, NoSuchFieldException {
@@ -59,7 +59,7 @@ public class TestReflectedClassFields {
 
     @Test public void canWriteField() throws SecurityException, NoSuchFieldException {
         final ReflectedObject<Fields> object = object(new Fields());
-        final ReflectedField field = object.field(hasName("field0"));
+        final ReflectedField field = object.field(hasName("publicField"));
 
         field.call("value");
         assertThat(
@@ -69,7 +69,7 @@ public class TestReflectedClassFields {
 
     @Test public void fieldDeclaringTypeIsCorrect() throws SecurityException, NoSuchFieldException {
         assertThat(
-                type(Fields.class).field(hasName("field0")),
+                type(Fields.class).field(hasName("publicField")),
                 declaredBy(Fields.class));
     }
 
@@ -79,9 +79,33 @@ public class TestReflectedClassFields {
                 isFinal());
     }
 
+    @Test public void propertyNameIsAvailable() throws SecurityException, NoSuchFieldException {
+        assertThat(
+                type(Fields.class).field(hasName("publicField")),
+                hasName("publicField").and(hasPropertyName("publicField")));
+    }
+
+    @Test public void fieldHasOneArgument() throws SecurityException, NoSuchFieldException {
+        assertThat(
+                type(Fields.class).field(hasName("publicField")),
+                hasArgumentCount(1));
+    }
+
+    @Test public void publicFieldToStringIsUseful() throws SecurityException, NoSuchFieldException {
+        assertThat(
+                type(Fields.class).field(hasName("publicField")),
+                hasToString("public java.lang.String publicField"));
+    }
+
+    @Test public void packageToStringIsUseful() throws SecurityException, NoSuchFieldException {
+        assertThat(
+                type(Fields.class).field(hasName("packageField")),
+                hasToString("java.lang.String packageField"));
+    }
+
     @Test public void cannotReadFieldWithoutInstance() throws SecurityException, NoSuchFieldException {
         final ReflectedClass<Fields> object = type(Fields.class);
-        final ReflectedField field = object.field(hasName("field0"));
+        final ReflectedField field = object.field(hasName("publicField"));
 
         exception.expect(ReflectionRuntimeException.class);
         exception.expectMessage("reading a field requires an instance argument");
@@ -90,7 +114,7 @@ public class TestReflectedClassFields {
 
     @Test public void cannotCallFieldWithTooManyArguments() throws SecurityException, NoSuchFieldException {
         final ReflectedClass<Fields> object = type(Fields.class);
-        final ReflectedField field = object.field(hasName("field0"));
+        final ReflectedField field = object.field(hasName("publicField"));
 
         exception.expect(ReflectionRuntimeException.class);
         exception.expectMessage("reading a field requires one argument, writing a field requires two arguments. Got 3 arguments");

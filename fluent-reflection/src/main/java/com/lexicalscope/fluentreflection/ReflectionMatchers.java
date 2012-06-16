@@ -91,6 +91,10 @@ public class ReflectionMatchers {
         return new MatcherNamed(name);
     }
 
+    public static ReflectionMatcher<ReflectedMember> hasPropertyName(final String name) {
+        return new MatcherPropertyName(name);
+    }
+
     /**
      * Matches the declaring class of a callable
      *
@@ -289,5 +293,9 @@ public class ReflectionMatchers {
 
     public static ReflectionMatcher<ReflectedMember> isFinal() {
         return new MatcherFinalMember();
+    }
+
+    public static ReflectionMatcher<ReflectedMember> hasVisibility(final Visibility visibility) {
+        return new MatcherVisibility(visibility);
     }
 }
