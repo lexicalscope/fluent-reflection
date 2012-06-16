@@ -42,6 +42,7 @@ public class TestReflectedClassFields {
         protected String field2;
         private String field3;
         public static String staticField0;
+        public static final String staticFinalField0 = "value";
         public final String finalField0 = "value";
     }
 
@@ -101,6 +102,18 @@ public class TestReflectedClassFields {
         assertThat(
                 type(Fields.class).field(hasName("packageField")),
                 hasToString("java.lang.String packageField"));
+    }
+
+    @Test public void staticToStringIsUseful() throws SecurityException, NoSuchFieldException {
+        assertThat(
+                type(Fields.class).field(hasName("staticField0")),
+                hasToString("public static java.lang.String staticField0"));
+    }
+
+    @Test public void staticFinalToStringIsUseful() throws SecurityException, NoSuchFieldException {
+        assertThat(
+                type(Fields.class).field(hasName("staticFinalField0")),
+                hasToString("public static final java.lang.String staticFinalField0"));
     }
 
     @Test public void cannotReadFieldWithoutInstance() throws SecurityException, NoSuchFieldException {
