@@ -44,6 +44,9 @@ class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Reflected
         this.reflectedClass = reflectedClass;
         this.typeLiteral = typeLiteral;
         this.field = field;
+
+        try { field.setAccessible(true); } catch(final SecurityException e)
+        { /* ignore, if we can set the field as accessible we get much improved performance */ }
     }
 
     @Override public String getName() {
@@ -147,9 +150,9 @@ class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Reflected
 
     @Override public Object call(final Object... args) {
         if(args == null || args.length == 0 || args[0] == null) {
-            throw new ReflectionRuntimeException("reading a field require an instance argument");
+            throw new ReflectionRuntimeException("reading a field requires an instance argument");
         } else if (args.length > 2) {
-            throw new ReflectionRuntimeException("reading a field require one argument, writing a field requires two arguments. Got " + args.length + " arguments");
+            throw new ReflectionRuntimeException("reading a field requires one argument, writing a field requires two arguments. Got " + args.length + " arguments");
         }
 
         try {

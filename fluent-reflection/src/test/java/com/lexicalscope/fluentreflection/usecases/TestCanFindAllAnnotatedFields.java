@@ -30,17 +30,17 @@ public class TestCanFindAllAnnotatedFields {
         public String field0;
         String field1;
         protected String field2;
-        private String field3;
+        @SuppressWarnings("unused") private String field3;
 
         @Inject public String annotatedField0;
         @Inject String annotatedField1;
         @Inject protected String annotatedField2;
-        @Inject private String annotatedField3;
+        @SuppressWarnings("unused") @Inject private String annotatedField3;
     }
 
     private final AnnotatedFields subject = new AnnotatedFields();
 
-    @Test
+    @SuppressWarnings("unchecked") @Test
     public void canSelectAllFieldThatAreAnnotated() throws Exception {
         assertThat(
                 object(subject).fields(annotatedWith(Inject.class)),

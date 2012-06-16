@@ -106,7 +106,11 @@ class ReflectedObjectImpl<T> implements ReflectedObject<T> {
     }
 
     @Override public ReflectedField field(final ReflectionMatcher<ReflectedMember> fieldMatcher) {
-        return selectFirst(fields(), fieldMatcher);
+        final ReflectedField selectedField = selectFirst(fields(), fieldMatcher);
+        if (selectedField == null) {
+            throw new FieldNotFoundException(instance.getClass(), fieldMatcher);
+        }
+        return selectedField;
     }
 
     @Override public boolean canBeBoxed(final Class<?> from) {

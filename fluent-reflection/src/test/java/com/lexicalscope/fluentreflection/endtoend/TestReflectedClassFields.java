@@ -6,10 +6,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import org.hamcrest.Matchers;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
+import com.lexicalscope.fluentreflection.FieldNotFoundException;
+import com.lexicalscope.fluentreflection.ReflectedClass;
 import com.lexicalscope.fluentreflection.ReflectedField;
 import com.lexicalscope.fluentreflection.ReflectedObject;
+import com.lexicalscope.fluentreflection.ReflectionRuntimeException;
 
 
 /*
@@ -29,18 +34,21 @@ import com.lexicalscope.fluentreflection.ReflectedObject;
  */
 
 public class TestReflectedClassFields {
+    @Rule public ExpectedException exception = ExpectedException.none();
+
     public static class Fields {
         public String field0;
         String field1;
         protected String field2;
         private String field3;
         public static String staticField0;
+        public final String finalField0 = "value";
     }
 
     @Test public void canFindFieldByName() throws SecurityException, NoSuchFieldException {
         assertThat(
                 type(Fields.class).fields(hasName("field0")),
-                contains(reflectingOnField(Fields.class.getDeclaredField("field0"))));
+                contains(isReflectingOnField(Fields.class.getDeclaredField("field0"))));
     }
 
     @Test public void canNotFindStaticFieldOfBoundObject() throws SecurityException, NoSuchFieldException {
@@ -57,5 +65,40 @@ public class TestReflectedClassFields {
         assertThat(
                 field.call(),
                 equalTo((Object) "value"));
+    }
+
+    @Test public void fieldDeclaringTypeIsCorrect() throws SecurityException, NoSuchFieldException {
+        assertThat(
+                type(Fields.class).field(hasName("field0")),
+                declaredBy(Fields.class));
+    }
+
+    @Test public void finalFieldsAreMarkedAsFinal() throws SecurityException, NoSuchFieldException {
+        assertThat(
+                type(Fields.class).field(hasName("finalField0")),
+                isFinal());
+    }
+
+    @Test public void cannotReadFieldWithoutInstance() throws SecurityException, NoSuchFieldException {
+        final ReflectedClass<Fields> object = type(Fields.class);
+        final ReflectedField field = object.field(hasName("field0"));
+
+        exception.expect(ReflectionRuntimeException.class);
+        exception.expectMessage("reading a field requires an instance argument");
+        field.call();
+    }
+
+    @Test public void cannotCallFieldWithTooManyArguments() throws SecurityException, NoSuchFieldException {
+        final ReflectedClass<Fields> object = type(Fields.class);
+        final ReflectedField field = object.field(hasName("field0"));
+
+        exception.expect(ReflectionRuntimeException.class);
+        exception.expectMessage("reading a field requires one argument, writing a field requires two arguments. Got 3 arguments");
+        field.call(new Fields(), "value", "excess argument");
+    }
+
+    @Test public void missingFieldThrowsException() throws SecurityException, NoSuchFieldException {
+        exception.expect(FieldNotFoundException.class);
+        object(new Fields()).field(hasName("noSuchField"));
     }
 }

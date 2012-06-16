@@ -22,6 +22,6 @@ public class IllegalAccessRuntimeException extends ReflectionRuntimeException {
     }
 
     public IllegalAccessRuntimeException(final IllegalAccessException e, final Member member) {
-        // TODO Auto-generated constructor stub
+        super("unable to access " + member, e);
     }
 }

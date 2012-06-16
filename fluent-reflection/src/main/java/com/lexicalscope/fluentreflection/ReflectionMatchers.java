@@ -283,7 +283,11 @@ public class ReflectionMatchers {
         return new MatcherStrictSubtypeOf(klass);
     }
 
-    public static ReflectionMatcher<ReflectedField> reflectingOnField(final Field field) {
+    public static ReflectionMatcher<ReflectedField> isReflectingOnField(final Field field) {
         return new MatcherFieldReflectingOn(field);
+    }
+
+    public static ReflectionMatcher<ReflectedMember> isFinal() {
+        return new MatcherFinalMember();
     }
 }
