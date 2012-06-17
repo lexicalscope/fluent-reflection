@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.google.inject.TypeLiteral;
 
-class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
+final class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final ReflectedSuperclassesAndInterfaces<T> allTypes;
     private final TypeLiteral<T> typeLiteral;

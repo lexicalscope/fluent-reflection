@@ -116,6 +116,42 @@ public class TestReflectedClassFields {
                 hasToString("public static final java.lang.String staticFinalField0"));
     }
 
+    @Test public void boundToStringIsUseful() throws SecurityException, NoSuchFieldException {
+        assertThat(
+                object(new Fields()).field(hasName("publicField")),
+                hasToString(startsWith("public java.lang.String publicField")));
+    }
+
+    @Test public void boundEqualsIsTrueForTheSameInstance() throws SecurityException, NoSuchFieldException {
+        final Fields instance = new Fields();
+        assertThat(
+                object(instance).field(hasName("publicField")),
+                equalTo(object(instance).field(hasName("publicField"))));
+    }
+
+    @Test public void hashCodeIsTheSameForTheSameBoundInstance() throws SecurityException, NoSuchFieldException {
+        final Fields instance = new Fields();
+        assertThat(
+                object(instance).field(hasName("publicField")).hashCode(),
+                equalTo(object(instance).field(hasName("publicField")).hashCode()));
+    }
+
+    @Test public void boundEqualsIsFalseForTheDifferentBoundInstances() throws SecurityException, NoSuchFieldException {
+        assertThat(
+                object(new Fields()).field(hasName("publicField")),
+                not(equalTo(object(new Fields()).field(hasName("publicField")))));
+    }
+
+    @Test public void equalsIsTrueWhenTheFieldsAreTheSameAsEachOther() throws SecurityException, NoSuchFieldException {
+        final ReflectedField field = object(new Fields()).field(hasName("publicField"));
+        assertThat(field, equalTo(field));
+    }
+
+    @Test public void equalsIsTrueWhenTheThatIsARandomOtherObject() throws SecurityException, NoSuchFieldException {
+        final ReflectedField field = object(new Fields()).field(hasName("publicField"));
+        assertThat(field, not(equalTo(new Object())));
+    }
+
     @Test public void cannotReadFieldWithoutInstance() throws SecurityException, NoSuchFieldException {
         final ReflectedClass<Fields> object = type(Fields.class);
         final ReflectedField field = object.field(hasName("publicField"));

@@ -15,10 +15,10 @@ import org.hamcrest.Matcher;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
-public class MethodNotFoundException extends ReflectionRuntimeException {
+final class MethodNotFoundException extends ReflectionRuntimeException {
     private static final long serialVersionUID = 6649785414761324558L;
     private Class<?> klass;
     private Matcher<? super ReflectedMethod> methodMatcher;

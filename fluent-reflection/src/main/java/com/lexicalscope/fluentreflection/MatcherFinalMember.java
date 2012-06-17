@@ -17,8 +17,7 @@ import org.hamcrest.Description;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-public class MatcherFinalMember extends ReflectionMatcher<ReflectedMember> {
+class MatcherFinalMember extends ReflectionMatcher<ReflectedMember> {
     @Override public void describeTo(final Description description) {
         description.appendText("");
     }

@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.google.inject.TypeLiteral;
 
-class ReflectedSuperclassesAndInterfacesImpl<T> implements ReflectedSuperclassesAndInterfaces<T> {
+final class ReflectedSuperclassesAndInterfacesImpl<T> implements ReflectedSuperclassesAndInterfaces<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private List<ReflectedClass<?>> interfacesAndSuperClass;
     private final TypeLiteral<T> typeLiteral;

@@ -4,7 +4,7 @@ import java.lang.reflect.Constructor;
 
 import org.hamcrest.Description;
 
-class MatcherConstructorReflectingOn extends ReflectionMatcher<ReflectedConstructor<?>> {
+final class MatcherConstructorReflectingOn extends ReflectionMatcher<ReflectedConstructor<?>> {
     private final Constructor<?> constructor;
 
     public MatcherConstructorReflectingOn(final Constructor<?> constructor) {

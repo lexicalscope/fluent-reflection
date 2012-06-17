@@ -29,7 +29,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.google.inject.TypeLiteral;
 
-class ReflectedFieldImpl extends AbstractReflectedAnnotated implements ReflectedField {
+final class ReflectedFieldImpl extends AbstractReflectedAnnotated implements ReflectedField {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final ReflectedClass<?> reflectedClass;
     private final TypeLiteral<?> typeLiteral;

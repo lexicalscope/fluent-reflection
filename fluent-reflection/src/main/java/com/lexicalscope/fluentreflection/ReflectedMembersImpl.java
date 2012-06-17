@@ -8,7 +8,7 @@ import org.hamcrest.Matcher;
 
 import com.google.inject.TypeLiteral;
 
-class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
+final class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
     private final ReflectedSuperclassesAndInterfaces<T> superclassesAndInterfaces;
     private final ReflectedMethods<T> methods;
     private final ReflectedConstructors<T> constructors;

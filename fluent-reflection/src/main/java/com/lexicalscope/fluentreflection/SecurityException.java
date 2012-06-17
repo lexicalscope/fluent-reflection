@@ -13,10 +13,10 @@ package com.lexicalscope.fluentreflection;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
-public class SecurityException extends ReflectionRuntimeException {
+public final class SecurityException extends ReflectionRuntimeException {
     private static final long serialVersionUID = -3653100629901464368L;
 
     public SecurityException() {

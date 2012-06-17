@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.google.inject.TypeLiteral;
 
-class ReflectedConstructorImpl<T> extends AbstractReflectedAnnotated implements ReflectedConstructor<T> {
+final class ReflectedConstructorImpl<T> extends AbstractReflectedAnnotated implements ReflectedConstructor<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final TypeLiteral<T> typeLiteral;
     private final Constructor<T> constructor;

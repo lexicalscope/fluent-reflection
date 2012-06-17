@@ -18,7 +18,7 @@ import org.hamcrest.Description;
  * limitations under the License.
  */
 
-public class MatcherPropertyName extends ReflectionMatcher<ReflectedMember> {
+final class MatcherPropertyName extends ReflectionMatcher<ReflectedMember> {
     private final String propertyName;
 
     public MatcherPropertyName(final String propertyName) {

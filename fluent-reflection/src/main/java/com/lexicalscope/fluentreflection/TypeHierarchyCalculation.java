@@ -13,7 +13,7 @@ package com.lexicalscope.fluentreflection;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import java.util.List;
 
 import com.google.inject.TypeLiteral;
 
-class TypeHierarchyCalculation {
+final class TypeHierarchyCalculation {
     private final List<TypeLiteral<?>> done = new ArrayList<TypeLiteral<?>>();
     private final List<ReflectedClass<?>> result = new ArrayList<ReflectedClass<?>>();
     private final List<TypeLiteral<?>> pending = new LinkedList<TypeLiteral<?>>();

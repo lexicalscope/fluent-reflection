@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.google.inject.TypeLiteral;
 
-class ReflectedFieldsImpl<T> implements ReflectedFields<T> {
+final class ReflectedFieldsImpl<T> implements ReflectedFields<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final ReflectedSuperclassesAndInterfaces<T> allTypes;
     private final TypeLiteral<T> typeLiteral;

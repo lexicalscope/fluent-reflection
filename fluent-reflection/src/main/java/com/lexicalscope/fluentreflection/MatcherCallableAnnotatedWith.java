@@ -19,10 +19,10 @@ import org.hamcrest.Description;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
-class MatcherCallableAnnotatedWith extends ReflectionMatcher<ReflectedAnnotated> {
+final class MatcherCallableAnnotatedWith extends ReflectionMatcher<ReflectedAnnotated> {
     private final Class<? extends Annotation> annotation;
 
     public MatcherCallableAnnotatedWith(final Class<? extends Annotation> annotation) {
@@ -37,6 +37,5 @@ class MatcherCallableAnnotatedWith extends ReflectionMatcher<ReflectedAnnotated>
     @Override
     public void describeTo(final Description description) {
         description.appendText("callable annotated with ").appendValue(annotation);
-
     }
 }

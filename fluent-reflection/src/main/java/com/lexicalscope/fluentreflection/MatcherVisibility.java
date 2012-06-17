@@ -18,7 +18,7 @@ import org.hamcrest.Description;
  * limitations under the License.
  */
 
-public class MatcherVisibility extends ReflectionMatcher<ReflectedMember> {
+final class MatcherVisibility extends ReflectionMatcher<ReflectedMember> {
     private final Visibility visibility;
 
     public MatcherVisibility(final Visibility visibility) {

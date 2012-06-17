@@ -25,7 +25,7 @@ import org.hamcrest.Matcher;
  * limitations under the License.
  */
 
-class ReflectedObjectImpl<T> implements ReflectedObject<T> {
+final class ReflectedObjectImpl<T> implements ReflectedObject<T> {
     private final ReflectedClass<T> reflect;
     private final T instance;
 

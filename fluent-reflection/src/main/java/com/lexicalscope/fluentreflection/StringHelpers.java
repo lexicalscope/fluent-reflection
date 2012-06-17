@@ -3,7 +3,7 @@ package com.lexicalscope.fluentreflection;
 import static ch.lambdaj.Lambda.*;
 import static java.lang.String.format;
 
-class StringHelpers {
+final class StringHelpers {
     static String argList(final Object[] args) {
         return join(convert(args, new ConvertObjectToClass()), ", ");
     }

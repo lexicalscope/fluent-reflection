@@ -20,7 +20,7 @@ import org.hamcrest.Description;
  * limitations under the License.
  */
 
-class MatcherFieldReflectingOn extends ReflectionMatcher<ReflectedField>{
+final class MatcherFieldReflectingOn extends ReflectionMatcher<ReflectedField>{
     private final Field field;
 
     public MatcherFieldReflectingOn(final Field field) {

@@ -21,7 +21,7 @@ import com.google.inject.TypeLiteral;
  * limitations under the License.
  */
 
-class ReflectedTypeFactoryImpl implements ReflectedTypeFactory {
+final class ReflectedTypeFactoryImpl implements ReflectedTypeFactory {
     @Override public <T> ReflectedClass<T> reflect(final Class<T> klass) {
         return reflect(TypeLiteral.get(klass));
     }

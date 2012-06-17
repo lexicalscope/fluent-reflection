@@ -28,7 +28,9 @@ import org.hamcrest.Matcher;
  * limitations under the License.
  */
 
-public class ReflectionMatchers {
+public final class ReflectionMatchers {
+    private ReflectionMatchers() { }
+
     /**
      * Matches a prefix of the name of a callable
      *

@@ -3,6 +3,13 @@ package com.lexicalscope.fluentreflection;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Please do not use this class
+ *
+ * @author tim
+ *
+ * @param <T>
+ */
 public final class ListBuilder<T> {
     public static <T> ListBuilder<T> list(final T firstItem) {
         final ListBuilder<T> listBuilder = new ListBuilder<T>();

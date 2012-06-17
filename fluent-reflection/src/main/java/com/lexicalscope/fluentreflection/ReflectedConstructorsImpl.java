@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.google.inject.TypeLiteral;
 
-class ReflectedConstructorsImpl<T> implements ReflectedConstructors<T> {
+final class ReflectedConstructorsImpl<T> implements ReflectedConstructors<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final TypeLiteral<T> typeLiteral;
 
