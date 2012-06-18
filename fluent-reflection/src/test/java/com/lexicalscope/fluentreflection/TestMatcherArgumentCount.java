@@ -21,7 +21,7 @@ public class TestMatcherArgumentCount extends AbstractTestReflectionMatcher<Flue
     protected void setupFailingCase() {
         context.checking(new Expectations() {
             {
-                oneOf(callable).argumentCount();
+                oneOf(callable).argCount();
                 will(returnValue(5));
             }
         });
@@ -31,7 +31,7 @@ public class TestMatcherArgumentCount extends AbstractTestReflectionMatcher<Flue
     protected void setupMatchingCase() {
         context.checking(new Expectations() {
             {
-                oneOf(callable).argumentCount();
+                oneOf(callable).argCount();
                 will(returnValue(3));
             }
         });

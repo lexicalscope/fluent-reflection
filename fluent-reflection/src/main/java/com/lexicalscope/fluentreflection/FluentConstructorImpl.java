@@ -24,11 +24,11 @@ final class FluentConstructorImpl<T> extends AbstractFluentAnnotated implements 
         this.constructor = constructor;
     }
 
-    @Override public int argumentCount() {
+    @Override public int argCount() {
         return constructor.getParameterTypes().length;
     }
 
-    @Override public List<FluentClass<?>> argumentTypes() {
+    @Override public List<FluentClass<?>> args() {
         return convert(
                 typeLiteral.getParameterTypes(constructor),
                 new ConvertTypeLiteralToReflectedType(reflectedTypeFactory));

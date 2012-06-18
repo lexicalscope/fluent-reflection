@@ -42,12 +42,12 @@ abstract class BoundFluentMemberImpl implements FluentMember {
         this.instance = instance;
     }
 
-    @Override public final int argumentCount() {
-        return member.argumentCount();
+    @Override public final int argCount() {
+        return member.argCount();
     }
 
-    @Override public final List<FluentClass<?>> argumentTypes() {
-        return new ArrayList<FluentClass<?>>(member.argumentTypes());
+    @Override public final List<FluentClass<?>> args() {
+        return new ArrayList<FluentClass<?>>(member.args());
     }
 
     @SuppressWarnings("unchecked") @Override public FluentObject<?> call(final Object... args) {

@@ -83,10 +83,10 @@ public abstract class AbstractTestReflectionMatcher<T> {
 
         context.checking(new Expectations() {
             {
-                oneOf(method).argumentCount();
+                oneOf(method).argCount();
                 will(returnValue(arguments.length));
 
-                allowing(method).argumentTypes();
+                allowing(method).args();
                 will(returnValue(asList(argumentTypes)));
 
                 for (int i = 0; i < argumentTypes.length; i++) {

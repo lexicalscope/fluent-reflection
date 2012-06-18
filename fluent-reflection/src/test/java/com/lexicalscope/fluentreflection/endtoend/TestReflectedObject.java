@@ -57,12 +57,12 @@ public class TestReflectedObject {
     }
 
     @Test public void instanceMethodArgumentsCountIsCorrect() throws Exception {
-        assertThat(reflectedInstance.method("doubleIt").argumentCount(), equalTo(1));
+        assertThat(reflectedInstance.method("doubleIt").argCount(), equalTo(1));
     }
 
     @Test public void instanceMethodArgumentTypeIsCorrect() throws Exception {
         assertThat(
-                reflectedInstance.method("doubleIt").argumentTypes(),
+                reflectedInstance.method("doubleIt").args(),
                 contains(reflectingOn(int.class)));
     }
 

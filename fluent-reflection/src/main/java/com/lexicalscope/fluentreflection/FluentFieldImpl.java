@@ -133,11 +133,11 @@ final class FluentFieldImpl extends AbstractFluentAnnotated implements Reflected
         return new HashCodeBuilder().append(field).append(typeLiteral).toHashCode();
     }
 
-    @Override public int argumentCount() {
+    @Override public int argCount() {
         return 1;
     }
 
-    @Override public List<FluentClass<?>> argumentTypes() {
+    @Override public List<FluentClass<?>> args() {
         return new ArrayList<FluentClass<?>>();
     }
 

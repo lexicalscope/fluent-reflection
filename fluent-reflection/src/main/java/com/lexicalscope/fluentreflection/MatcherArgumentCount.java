@@ -11,7 +11,7 @@ final class MatcherArgumentCount extends ReflectionMatcher<FluentMember> {
 
     @Override
     protected boolean matchesSafely(final FluentMember item) {
-        return item.argumentCount() == expectedArgumentCount;
+        return item.argCount() == expectedArgumentCount;
     }
 
     @Override

@@ -75,13 +75,13 @@ public class TestReflectedClassInstanceMethod {
 
     @Test public void methodWithTwoArgumentsHasCorrectArgumentCount() {
         assertThat(
-                type(ClassWithInstanceMethods.class).method(hasName("methodWithTwoArguments")).argumentCount(),
+                type(ClassWithInstanceMethods.class).method(hasName("methodWithTwoArguments")).argCount(),
                 equalTo(2));
     }
 
     @SuppressWarnings("unchecked") @Test public void instanceMethodArgumentTypeIsCorrect() throws Exception {
         assertThat(
-                type(ClassWithInstanceMethods.class).method(hasName("methodWithTwoArguments")).argumentTypes(),
+                type(ClassWithInstanceMethods.class).method(hasName("methodWithTwoArguments")).args(),
                 contains(
                         reflectingOn(String.class),
                         reflectingOn(Integer.class)));

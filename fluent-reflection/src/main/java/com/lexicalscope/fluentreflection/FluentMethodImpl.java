@@ -56,7 +56,7 @@ final class FluentMethodImpl extends AbstractFluentAnnotated implements FluentMe
         return method.getName();
     }
 
-    @Override public List<FluentClass<?>> argumentTypes() {
+    @Override public List<FluentClass<?>> args() {
         final List<FluentClass<?>> result = new ArrayList<FluentClass<?>>();
         result.addAll(convert(
                 typeLiteral.getParameterTypes(method),
@@ -64,7 +64,7 @@ final class FluentMethodImpl extends AbstractFluentAnnotated implements FluentMe
         return result;
     }
 
-    @Override public int argumentCount() {
+    @Override public int argCount() {
         final int parameterCount = method.getParameterTypes().length;
         if (isStatic()) {
             return parameterCount;
@@ -213,8 +213,8 @@ final class FluentMethodImpl extends AbstractFluentAnnotated implements FluentMe
         }
 
         final String arguments;
-        if (argumentCount() > 0) {
-            arguments = joinFrom(argumentTypes(), ", ").toString();
+        if (argCount() > 0) {
+            arguments = joinFrom(args(), ", ").toString();
         } else {
             arguments = "";
         }

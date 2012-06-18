@@ -80,7 +80,7 @@ public class TestReflectedClassStaticMethods {
     @Test
     public void methodWithTwoArgumentsHasCorrectArgumentCount() {
         assertThat(
-                type(ClassWithStaticMethods.class).method(hasName("staticMethodWithTwoArguments")).argumentCount(),
+                type(ClassWithStaticMethods.class).method(hasName("staticMethodWithTwoArguments")).argCount(),
                 equalTo(2));
     }
 }

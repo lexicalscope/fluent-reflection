@@ -110,7 +110,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
     private void registerDeclaredMethods() {
         for (final FluentMethod reflectedMethod : object(this).methods(
                 isPublicMethod().and(isDeclaredByStrictSubtypeOf(Implementing.class)))) {
-            if (reflectedMethod.argumentCount() == 0) {
+            if (reflectedMethod.argCount() == 0) {
                 registeredMethodHandlers.put(
                         anything(),
                         new MethodBody() {
@@ -213,7 +213,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
 
     private ReflectionMatcher<FluentMember> matcherForMethodSignature(final FluentMethod userDefinedMethod) {
         final List<FluentClass<?>> argumentTypes =
-                new ArrayList<FluentClass<?>>(userDefinedMethod.argumentTypes());
+                new ArrayList<FluentClass<?>>(userDefinedMethod.args());
 
         final ReflectionMatcher<FluentMember> matchArguments =
                 hasReflectedArgumentList(argumentTypes);

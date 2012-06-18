@@ -19,7 +19,7 @@ final class MatcherArgumentTypes extends ReflectionMatcher<FluentMember> {
 
     @Override
     protected boolean matchesSafely(final FluentMember item) {
-        final int actualArgumentCount = item.argumentCount();
+        final int actualArgumentCount = item.argCount();
         final int expectedArgumentCount = argumentTypeMatchers.size();
 
         if (actualArgumentCount != expectedArgumentCount) {
@@ -28,7 +28,7 @@ final class MatcherArgumentTypes extends ReflectionMatcher<FluentMember> {
             return true;
         }
 
-        return contains(argumentTypeMatchers).matches(item.argumentTypes());
+        return contains(argumentTypeMatchers).matches(item.args());
     }
 
     @Override
