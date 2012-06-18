@@ -148,7 +148,7 @@ final class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Ref
         return reflectedTypeFactory.reflect(returnType);
     }
 
-    @Override public Object call(final Object... args) {
+    @Override public Object callRaw(final Object... args) {
         if(args == null || args.length == 0 || args[0] == null) {
             throw new ReflectionRuntimeException("reading a field requires an instance argument");
         } else if (args.length > 2) {
@@ -169,10 +169,18 @@ final class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Ref
         }
     }
 
+    @SuppressWarnings({ "unchecked", "rawtypes" }) @Override public ReflectedObject<?> call(final Object... args) {
+        final Object object = callRaw(args);
+        if(object == null) {
+            return null;
+        }
+        return reflectedTypeFactory.reflect((Class) object.getClass(), object);
+    }
+
     @Override public <T> ReflectedQuery<T> castResultTo(final Class<T> returnType) {
         return new ReflectedQuery<T>() {
             @Override public T call(final Object... args) {
-                return returnType.cast(ReflectedFieldImpl.this.call(args));
+                return returnType.cast(ReflectedFieldImpl.this.callRaw(args));
             }
         };
     }

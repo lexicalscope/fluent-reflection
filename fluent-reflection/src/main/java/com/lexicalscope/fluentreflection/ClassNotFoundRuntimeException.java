@@ -1,7 +1,5 @@
 package com.lexicalscope.fluentreflection;
 
-import ch.lambdaj.function.convert.Converter;
-
 /*
  * Copyright 2011 Tim Wood
  *
@@ -18,17 +16,23 @@ import ch.lambdaj.function.convert.Converter;
  * limitations under the License.
  */
 
-class ConvertReflectedMethodToBoundReflectedMethod implements Converter<ReflectedMethod, ReflectedMethod> {
-    private final Object instance;
-    private final ReflectedTypeFactory reflectedTypeFactory;
 
-    public ConvertReflectedMethodToBoundReflectedMethod(final ReflectedTypeFactory reflectedTypeFactory, final Object instance) {
-        this.reflectedTypeFactory = reflectedTypeFactory;
-        this.instance = instance;
+public class ClassNotFoundRuntimeException extends ReflectionRuntimeException {
+    private static final long serialVersionUID = -5339808693443391503L;
+
+    public ClassNotFoundRuntimeException() {
+        super();
     }
 
-    @Override
-    public ReflectedMethod convert(final ReflectedMethod from) {
-        return new BoundReflectedMethodImpl(reflectedTypeFactory, from, instance);
+    public ClassNotFoundRuntimeException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
+
+    public ClassNotFoundRuntimeException(final String message) {
+        super(message);
+    }
+
+    public ClassNotFoundRuntimeException(final Throwable cause) {
+        super(cause);
     }
 }

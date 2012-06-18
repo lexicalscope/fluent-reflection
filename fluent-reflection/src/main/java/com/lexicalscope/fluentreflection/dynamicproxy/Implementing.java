@@ -116,7 +116,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
                         new MethodBody() {
                             @Override public void body() throws Throwable {
                                 try {
-                                    reflectedMethod.call();
+                                    reflectedMethod.callRaw();
                                 } catch (final InvocationTargetRuntimeException e) {
                                     throw e.getExceptionThrownByInvocationTarget();
                                 }

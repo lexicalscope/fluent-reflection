@@ -26,10 +26,15 @@ import org.hamcrest.Matcher;
  */
 
 abstract class BoundReflectedMemberImpl implements ReflectedMember {
+    private final ReflectedTypeFactory reflectedTypeFactory;
     private final ReflectedMember member;
     private final Object instance;
 
-    public BoundReflectedMemberImpl(final ReflectedMember member, final Object instance) {
+    public BoundReflectedMemberImpl(
+            final ReflectedTypeFactory reflectedTypeFactory,
+            final ReflectedMember member,
+            final Object instance) {
+        this.reflectedTypeFactory = reflectedTypeFactory;
         if (member.isStatic()) {
             throw new IllegalArgumentException("cannot bind static member " + member);
         }
@@ -45,11 +50,19 @@ abstract class BoundReflectedMemberImpl implements ReflectedMember {
         return new ArrayList<ReflectedClass<?>>(member.argumentTypes());
     }
 
-    @Override public final Object call(final Object... args) {
+    @SuppressWarnings("unchecked") @Override public ReflectedObject<?> call(final Object... args) {
+        final Object object = callRaw(args);
+        if(object == null) {
+            return null;
+        }
+        return reflectedTypeFactory.reflect((Class) object.getClass(), object);
+    }
+
+    @Override public final Object callRaw(final Object... args) {
         final Object[] argsWithInstance = new Object[args.length + 1];
         argsWithInstance[0] = instance;
         arraycopy(args, 0, argsWithInstance, 1, args.length);
-        return member.call(argsWithInstance);
+        return member.callRaw(argsWithInstance);
     }
 
     @Override public final ReflectedClass<?> declaringClass() {
@@ -99,7 +112,7 @@ abstract class BoundReflectedMemberImpl implements ReflectedMember {
     @Override public final <T> ReflectedQuery<T> castResultTo(final Class<T> returnType) {
         return new ReflectedQuery<T>() {
             @Override public T call(final Object... args) {
-                return returnType.cast(BoundReflectedMemberImpl.this.call(args));
+                return returnType.cast(BoundReflectedMemberImpl.this.callRaw(args));
             }
         };
     }

@@ -84,6 +84,11 @@ class ReflectedClassImpl<T> implements ReflectedClass<T> {
         return members.declaredMethods();
     }
 
+    @SuppressWarnings("unchecked") @Override public ReflectedObject<T> call(final String name, final Object ... args)
+    {
+        return (ReflectedObject<T>) method(hasName(name).and(canBeCalledWithArguments(args))).call(args);
+    }
+
     @Override public List<ReflectedField> fields() {
         return members.fields();
     }
@@ -134,7 +139,7 @@ class ReflectedClassImpl<T> implements ReflectedClass<T> {
             throw new ConstructorNotFoundRuntimeException(typeLiteral.getRawType());
         }
 
-        return constructor.call(args);
+        return constructor.callRaw(args);
     }
 
     @Override public ReflectedObject<T> construct(final Object... args) {
@@ -180,8 +185,19 @@ class ReflectedClassImpl<T> implements ReflectedClass<T> {
         return this;
     }
 
+    @Override public ReflectedClass<T> unboxedType() {
+        if (isUnboxable()) {
+            return reflectedTypeFactory.reflect(Primitives.unwrap(klass));
+        }
+        return this;
+    }
+
     @Override public boolean isPrimitive() {
         return klass.isPrimitive();
+    }
+
+    @Override public boolean isUnboxable() {
+        return Primitives.isWrapperType(klass);
     }
 
     @Override public ReflectedClass<?> typeArgument(final int typeParameter) {

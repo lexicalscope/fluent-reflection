@@ -32,7 +32,7 @@ public class TestReflectionOnBoundMethods {
 	@Test
 	public void boundMethodCanBeCalled() throws SecurityException, NoSuchMethodException {
 		assertThat(
-				method(ExampleClass.class.getMethod("method"), new ExampleClass()).call(),
+				method(ExampleClass.class.getMethod("method"), new ExampleClass()).callRaw(),
 				equalTo((Object) 42));
 	}
 }

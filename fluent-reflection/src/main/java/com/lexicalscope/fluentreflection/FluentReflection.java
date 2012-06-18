@@ -26,6 +26,14 @@ import com.google.inject.TypeLiteral;
 public final class FluentReflection {
     private FluentReflection() {}
 
+    public static <T> ReflectedClass<T> type(final String className) {
+        try {
+            return (ReflectedClass<T>) type(Class.forName(className));
+        } catch (final ClassNotFoundException e) {
+            throw new ClassNotFoundRuntimeException("unable to find class with name " + className, e);
+        }
+    }
+
     public static <T> ReflectedClass<T> type(final Class<T> klass) {
         return new ReflectedTypeFactoryImpl().reflect(klass);
     }

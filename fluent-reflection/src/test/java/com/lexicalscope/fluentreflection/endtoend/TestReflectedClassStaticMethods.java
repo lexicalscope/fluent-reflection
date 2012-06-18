@@ -46,7 +46,7 @@ public class TestReflectedClassStaticMethods {
 
     @Test
     public void callSimpleStaticMethod() {
-        type(ClassWithStaticMethods.class).staticMethod(hasName("simpleStaticMethod")).call();
+        type(ClassWithStaticMethods.class).staticMethod(hasName("simpleStaticMethod")).callRaw();
 
         assertThat(
                 ClassWithStaticMethods.called,
@@ -58,21 +58,21 @@ public class TestReflectedClassStaticMethods {
         final Integer result =
                 (Integer) type(ClassWithStaticMethods.class)
                         .staticMethod(hasName("staticMethodWithReturnValue"))
-                        .call();
+                        .callRaw();
 
         assertThat(result, equalTo(42));
     }
 
     @Test
     public void callStaticMethodWithOneArgumentIfMultipleMatches() {
-        type(ClassWithStaticMethods.class).staticMethod(hasName("staticMethodWithOneArgument")).call("string");
+        type(ClassWithStaticMethods.class).staticMethod(hasName("staticMethodWithOneArgument")).callRaw("string");
         assertThat(ClassWithStaticMethods.stringCalled || ClassWithStaticMethods.objectCalled,
                 equalTo(true));
     }
 
     @Test
     public void callstaticMethodWithTwoArguments() {
-        type(ClassWithStaticMethods.class).staticMethod(hasName("staticMethodWithTwoArguments")).call("string", 42);
+        type(ClassWithStaticMethods.class).staticMethod(hasName("staticMethodWithTwoArguments")).callRaw("string", 42);
         assertThat(ClassWithStaticMethods.stringAndIntegerCalled,
                 equalTo(true));
     }

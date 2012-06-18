@@ -56,7 +56,7 @@ public class TestReflectedClassImpl {
                 oneOf(members).constructor(hasArguments());
                 will(returnValue(reflectedConstructor));
 
-                oneOf(reflectedConstructor).call();
+                oneOf(reflectedConstructor).callRaw();
                 will(returnValue(instance));
 
                 oneOf(reflectedTypeFactory).reflect(TypeLiteral.get(ExampleClass.class), instance);

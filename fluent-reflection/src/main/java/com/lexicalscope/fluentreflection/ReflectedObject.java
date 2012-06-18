@@ -21,7 +21,23 @@ public interface ReflectedObject<T> extends ReflectedType<T> {
     /**
      * get the static reflection information about the type of this object
      *
-     * @return the static reflection infomraiton about the type fo this object
+     * @return the static reflection information about the type of this object
      */
     ReflectedClass<T> reflectedClass();
+
+    /**
+     * The value under reflection
+     *
+     * @return the value that is being reflected upon
+     */
+    T value();
+
+    /**
+     * The value under reflection cast to a given type
+     *
+     * @param asType the type the value should have been cast to
+     *
+     * @return the value that is being reflected upon
+     */
+    <V> V as(Class<V> asType);
 }

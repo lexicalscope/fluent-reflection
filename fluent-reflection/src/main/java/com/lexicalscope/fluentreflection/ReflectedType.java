@@ -98,6 +98,16 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
     ReflectedMethod method(String name);
 
     /**
+     * Call a method by name if one can be found that can be called with the given arguments
+     *
+     * @param name the name of the method
+     * @param args the arguments of the method
+     *
+     * @return the result of calling the method
+     */
+    ReflectedObject<?> call(String name, Object ... args);
+
+    /**
      * All fields
      *
      * @return all the fields
@@ -133,11 +143,15 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
 
     boolean isPrimitive();
 
+    boolean isUnboxable();
+
     boolean canBeBoxed(Class<?> from);
 
     boolean canBeUnboxed(Class<?> from);
 
     ReflectedClass<T> boxedType();
+
+    ReflectedClass<T> unboxedType();
 
     /**
      * True if the given object can be assigned to a variable of the type

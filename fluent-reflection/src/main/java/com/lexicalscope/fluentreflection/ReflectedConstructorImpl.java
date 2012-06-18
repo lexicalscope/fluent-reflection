@@ -38,7 +38,7 @@ final class ReflectedConstructorImpl<T> extends AbstractReflectedAnnotated imple
         return constructor;
     }
 
-    @Override public T call(final Object... args) {
+    @Override public T callRaw(final Object... args) {
         try {
             return constructor.newInstance(args);
         } catch (final InstantiationException e) {
@@ -48,6 +48,14 @@ final class ReflectedConstructorImpl<T> extends AbstractReflectedAnnotated imple
         } catch (final InvocationTargetException e) {
             throw new InvocationTargetRuntimeException(e, constructor);
         }
+    }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" }) @Override public ReflectedObject<?> call(final Object... args) {
+        final Object object = callRaw(args);
+        if(object == null) {
+            return null;
+        }
+        return reflectedTypeFactory.reflect((Class) object.getClass(), object);
     }
 
     @Override public ReflectedClass<?> declaringClass() {
@@ -73,7 +81,7 @@ final class ReflectedConstructorImpl<T> extends AbstractReflectedAnnotated imple
     @Override public <S> ReflectedQuery<S> castResultTo(final Class<S> returnType) {
         return new ReflectedQuery<S>() {
             @Override public S call(final Object... args) {
-                return returnType.cast(ReflectedConstructorImpl.this.call(args));
+                return returnType.cast(ReflectedConstructorImpl.this.callRaw(args));
             }
         };
     }

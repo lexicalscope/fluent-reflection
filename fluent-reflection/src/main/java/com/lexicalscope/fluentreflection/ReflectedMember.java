@@ -18,7 +18,9 @@ public interface ReflectedMember extends ReflectedAnnotated {
 
     ReflectedClass<?> type();
 
-    Object call(Object... args);
+    Object callRaw(Object... args);
+
+    ReflectedObject<?> call(Object... args);
 
     <T> ReflectedQuery<T> castResultTo(Class<T> returnType);
 

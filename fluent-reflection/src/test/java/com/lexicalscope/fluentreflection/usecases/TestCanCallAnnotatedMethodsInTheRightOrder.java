@@ -74,7 +74,7 @@ public class TestCanCallAnnotatedMethodsInTheRightOrder {
 
         forEach(
                 object(subject).methods(annotatedWith(PostConstruct.class)),
-                ReflectedMethod.class).call();
+                ReflectedMethod.class).callRaw();
 
         assertThat(subject.result, contains("afterConstruction", "afterConstructionExtension"));
     }
@@ -85,7 +85,7 @@ public class TestCanCallAnnotatedMethodsInTheRightOrder {
 
         forEach(
                 reverse(object(subject).methods(annotatedWith(PreDestroy.class))),
-                ReflectedMethod.class).call();
+                ReflectedMethod.class).callRaw();
 
         assertThat(subject.result, contains("beforeDestructionExtension", "beforeDestruction"));
     }

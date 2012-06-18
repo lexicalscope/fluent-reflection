@@ -10,5 +10,5 @@ public interface ReflectedConstructor<T> extends ReflectedMember {
      */
     Constructor<T> memberUnderReflection();
 
-    T call(Object... args);
+    T callRaw(Object... args);
 }

@@ -40,7 +40,8 @@ final class ReflectedMethodImpl extends AbstractReflectedAnnotated implements Re
     private final TypeLiteral<?> typeLiteral;
     private final Method method;
 
-    public ReflectedMethodImpl(final ReflectedTypeFactory reflectedTypeFactory,
+    public ReflectedMethodImpl(
+            final ReflectedTypeFactory reflectedTypeFactory,
             final ReflectedClass<?> reflectedClass,
             final TypeLiteral<?> typeLiteral,
             final Method method) {
@@ -75,7 +76,15 @@ final class ReflectedMethodImpl extends AbstractReflectedAnnotated implements Re
         return reflectedTypeFactory.reflect(typeLiteral);
     }
 
-    @Override public Object call(final Object... args) {
+    @SuppressWarnings({ "unchecked", "rawtypes" }) @Override public ReflectedObject<?> call(final Object... args) {
+        final Object object = callRaw(args);
+        if(object == null) {
+            return null;
+        }
+        return reflectedTypeFactory.reflect((Class) object.getClass(), object);
+    }
+
+    @Override public Object callRaw(final Object... args) {
         if (isStatic()) {
             return invokeMethod(null, args);
         } else {
@@ -116,7 +125,7 @@ final class ReflectedMethodImpl extends AbstractReflectedAnnotated implements Re
     @Override public <T> ReflectedQuery<T> castResultTo(final Class<T> returnType) {
         return new ReflectedQuery<T>() {
             @Override public T call(final Object... args) {
-                return returnType.cast(ReflectedMethodImpl.this.call(args));
+                return returnType.cast(ReflectedMethodImpl.this.callRaw(args));
             }
         };
     }

@@ -103,7 +103,7 @@ public class BeanMap {
             if (getter == null) {
                 return null;
             }
-            return getter.call();
+            return getter.callRaw();
         }
 
         @Override public boolean isEmpty() {
@@ -122,7 +122,7 @@ public class BeanMap {
             final Object oldValue = get(key);
             final ReflectedMethod setter = setters.get(key);
             if (setter != null) {
-                setter.call(value);
+                setter.callRaw(value);
             }
             return oldValue;
         }

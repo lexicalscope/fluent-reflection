@@ -19,14 +19,16 @@ import ch.lambdaj.function.convert.Converter;
  */
 
 class ConvertReflectedFieldToBoundReflectedField implements Converter<ReflectedField, ReflectedField> {
+    private final ReflectedTypeFactory reflectedTypeFactory;
     private final Object instance;
 
-    public ConvertReflectedFieldToBoundReflectedField(final Object instance) {
+    public ConvertReflectedFieldToBoundReflectedField(final ReflectedTypeFactory reflectedTypeFactory, final Object instance) {
+        this.reflectedTypeFactory = reflectedTypeFactory;
         this.instance = instance;
     }
 
     @Override
     public ReflectedField convert(final ReflectedField from) {
-        return new BoundReflectedFieldImpl(from, instance);
+        return new BoundReflectedFieldImpl(reflectedTypeFactory, from, instance);
     }
 }

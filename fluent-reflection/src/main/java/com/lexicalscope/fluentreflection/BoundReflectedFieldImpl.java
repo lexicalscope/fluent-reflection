@@ -23,9 +23,10 @@ class BoundReflectedFieldImpl extends BoundReflectedMemberImpl implements Reflec
     private final Object instance;
 
     public BoundReflectedFieldImpl(
+            final ReflectedTypeFactory reflectedTypeFactory,
             final ReflectedField field,
             final Object instance) {
-        super(field, instance);
+        super(reflectedTypeFactory, field, instance);
         this.field = field;
         this.instance = instance;
     }

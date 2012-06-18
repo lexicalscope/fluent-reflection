@@ -47,7 +47,7 @@ final class ReflectedTypeFactoryImpl implements ReflectedTypeFactory {
     }
 
     public ReflectedMethod method(final Method method, final Object instance) {
-        return new BoundReflectedMethodImpl(method(method), instance);
+        return new BoundReflectedMethodImpl(this, method(method), instance);
     }
 
     @Override public ReflectedField field(final TypeLiteral<?> klass, final Field field) {

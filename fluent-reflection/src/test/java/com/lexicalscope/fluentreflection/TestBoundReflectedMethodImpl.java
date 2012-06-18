@@ -49,6 +49,7 @@ public class TestBoundReflectedMethodImpl {
 
     public TestBoundReflectedMethodImpl() throws SecurityException, NoSuchMethodException {
         methodWithReturnType = new BoundReflectedMethodImpl(
+                null,
                 method(ClassWithMethod.class.getDeclaredMethod("method")),
                 new ClassWithMethod());
     }
@@ -58,6 +59,7 @@ public class TestBoundReflectedMethodImpl {
         exception.expect(IllegalArgumentException.class);
 
         new BoundReflectedMethodImpl(
+                null,
                 method(ClassWithStaticMethod.class.getDeclaredMethods()[0]),
                 new ClassWithStaticMethod());
     }

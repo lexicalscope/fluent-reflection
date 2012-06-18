@@ -23,9 +23,10 @@ class BoundReflectedMethodImpl extends BoundReflectedMemberImpl implements Refle
     private final Object instance;
 
     public BoundReflectedMethodImpl(
+            final ReflectedTypeFactory reflectedTypeFactory,
             final ReflectedMethod method,
             final Object instance) {
-        super(method, instance);
+        super(reflectedTypeFactory, method, instance);
         this.method = method;
         this.instance = instance;
     }

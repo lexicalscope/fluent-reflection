@@ -62,9 +62,9 @@ public class TestReflectedClassFields {
         final ReflectedObject<Fields> object = object(new Fields());
         final ReflectedField field = object.field(hasName("publicField"));
 
-        field.call("value");
+        field.callRaw("value");
         assertThat(
-                field.call(),
+                field.callRaw(),
                 equalTo((Object) "value"));
     }
 
@@ -158,7 +158,7 @@ public class TestReflectedClassFields {
 
         exception.expect(ReflectionRuntimeException.class);
         exception.expectMessage("reading a field requires an instance argument");
-        field.call();
+        field.callRaw();
     }
 
     @Test public void cannotCallFieldWithTooManyArguments() throws SecurityException, NoSuchFieldException {
@@ -167,7 +167,7 @@ public class TestReflectedClassFields {
 
         exception.expect(ReflectionRuntimeException.class);
         exception.expectMessage("reading a field requires one argument, writing a field requires two arguments. Got 3 arguments");
-        field.call(new Fields(), "value", "excess argument");
+        field.callRaw(new Fields(), "value", "excess argument");
     }
 
     @Test public void missingFieldThrowsException() throws SecurityException, NoSuchFieldException {

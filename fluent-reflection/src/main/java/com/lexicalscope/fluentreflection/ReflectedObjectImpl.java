@@ -28,11 +28,13 @@ import org.hamcrest.Matcher;
 final class ReflectedObjectImpl<T> implements ReflectedObject<T> {
     private final ReflectedClass<T> reflect;
     private final T instance;
+    private final ReflectedTypeFactory reflectedTypeFactory;
 
     public ReflectedObjectImpl(
-            final ReflectedTypeFactoryImpl reflectedTypeFactoryImpl,
+            final ReflectedTypeFactory reflectedTypeFactory,
             final ReflectedClass<T> reflect,
             final T instance) {
+        this.reflectedTypeFactory = reflectedTypeFactory;
         this.reflect = reflect;
         this.instance = instance;
     }
@@ -46,7 +48,11 @@ final class ReflectedObjectImpl<T> implements ReflectedObject<T> {
     }
 
     @Override public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
-        return selectFirst(boundMethods(), methodMatcher);
+        final ReflectedMethod method = selectFirst(boundMethods(), methodMatcher);
+        if(method == null) {
+            throw new MethodNotFoundException(reflect.classUnderReflection(), methodMatcher);
+        }
+        return method;
     }
 
     @Override public ReflectedMethod method(final String name) {
@@ -72,11 +78,15 @@ final class ReflectedObjectImpl<T> implements ReflectedObject<T> {
     private List<ReflectedMethod> bind(final List<ReflectedMethod> methods) {
         return convert(
                 select(methods, isNotStatic()),
-                new ConvertReflectedMethodToBoundReflectedMethod(instance));
+                new ConvertReflectedMethodToBoundReflectedMethod(reflectedTypeFactory, instance));
     }
 
     private List<ReflectedMethod> boundDeclaredMethods() {
         return bind(reflect.declaredMethods());
+    }
+
+    @SuppressWarnings("unchecked") @Override public ReflectedObject<T> call(final String name, final Object ... args) {
+        return (ReflectedObject<T>) method(hasName(name).and(canBeCalledWithArguments(args))).call(args);
     }
 
     @Override public List<ReflectedField> fields(final ReflectionMatcher<? super ReflectedField> fieldMatcher) {
@@ -98,7 +108,7 @@ final class ReflectedObjectImpl<T> implements ReflectedObject<T> {
     private List<ReflectedField> bindFields(final List<ReflectedField> fields) {
         return convert(
                 select(fields, isNotStatic()),
-                new ConvertReflectedFieldToBoundReflectedField(instance));
+                new ConvertReflectedFieldToBoundReflectedField(reflectedTypeFactory, instance));
     }
 
     @Override public List<ReflectedField> fields() {
@@ -137,8 +147,16 @@ final class ReflectedObjectImpl<T> implements ReflectedObject<T> {
         return reflect.isPrimitive();
     }
 
+    @Override public boolean isUnboxable() {
+        return reflect.isUnboxable();
+    }
+
     @Override public ReflectedClass<T> boxedType() {
         return reflect.boxedType();
+    }
+
+    @Override public ReflectedClass<T> unboxedType() {
+        return reflect.unboxedType();
     }
 
     @Override public boolean assignableFromObject(final Object value) {
@@ -175,5 +193,13 @@ final class ReflectedObjectImpl<T> implements ReflectedObject<T> {
 
     @Override public boolean isType(final ReflectionMatcher<ReflectedClass<?>> typeMatcher) {
         return reflect.isType(typeMatcher);
+    }
+
+    @Override public T value() {
+        return instance;
+    }
+
+    @Override public <V> V as(final Class<V> asType) {
+        return asType.cast(value());
     }
 }

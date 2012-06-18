@@ -34,7 +34,7 @@ public class TestCanReadAndSetFields {
     private final AnnotatedFields subject = new AnnotatedFields();
 
     @Test public void canSetPublicField() throws Exception {
-        object(subject).field(hasName("fieldPublic")).call("value");
+        object(subject).field(hasName("fieldPublic")).callRaw("value");
 
         assertThat(subject.fieldPublic, equalTo("value"));
     }
@@ -48,7 +48,7 @@ public class TestCanReadAndSetFields {
     }
 
     @Test public void canSetPackageField() throws Exception {
-        object(subject).field(hasName("fieldPackage")).call("value");
+        object(subject).field(hasName("fieldPackage")).callRaw("value");
 
         assertThat(subject.fieldPackage, equalTo("value"));
     }
@@ -62,7 +62,7 @@ public class TestCanReadAndSetFields {
     }
 
     @Test public void canSetProtectedField() throws Exception {
-        object(subject).field(hasName("fieldProtected")).call("value");
+        object(subject).field(hasName("fieldProtected")).callRaw("value");
 
         assertThat(subject.fieldProtected, equalTo("value"));
     }
@@ -76,7 +76,7 @@ public class TestCanReadAndSetFields {
     }
 
     @Test public void canSetPrivateField() throws Exception {
-        object(subject).field(hasName("fieldPrivate")).call("value");
+        object(subject).field(hasName("fieldPrivate")).callRaw("value");
 
         assertThat(subject.fieldPrivate, equalTo("value"));
     }

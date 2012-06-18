@@ -1,12 +1,14 @@
 package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.convert;
+import static com.lexicalscope.fluentreflection.FluentReflection.type;
 import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.*;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hamcrest.Description;
@@ -160,6 +162,25 @@ public final class ReflectionMatchers {
 
     public static ReflectionMatcher<ReflectedMember> hasArguments(final Class<?>... argTypes) {
         return hasArgumentList(asList(argTypes));
+    }
+
+    public static ReflectionMatcher<ReflectedMember> canBeCalledWithArguments(final Object ... args) {
+        final List<Matcher<? super ReflectedClass<?>>> types = new ArrayList<Matcher<? super ReflectedClass<?>>>();
+        for (final Object object : args) {
+            if(object == null) {
+                types.add(anyReflectedType());
+            } else {
+                final ReflectedClass<? extends Object> argumentType = type(object.getClass());
+                if(argumentType.isPrimitive()) {
+                    types.add(assignableFrom(argumentType).or(assignableFrom(argumentType.boxedType())));
+                } else if(argumentType.isUnboxable()) {
+                    types.add(assignableFrom(argumentType).or(assignableFrom(argumentType.unboxedType())));
+                } else {
+                    types.add(assignableFrom(argumentType));
+                }
+            }
+        }
+        return hasArgumentListMatching(types);
     }
 
     public static ReflectionMatcher<ReflectedMember> hasArgumentList(final List<Class<?>> argTypes) {
