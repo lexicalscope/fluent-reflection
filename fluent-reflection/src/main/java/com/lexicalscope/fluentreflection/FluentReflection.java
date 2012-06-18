@@ -26,31 +26,31 @@ import com.google.inject.TypeLiteral;
 public final class FluentReflection {
     private FluentReflection() {}
 
-    public static <T> ReflectedClass<T> type(final String className) {
+    public static <T> FluentClass<T> type(final String className) {
         try {
-            return (ReflectedClass<T>) type(Class.forName(className));
+            return (FluentClass<T>) type(Class.forName(className));
         } catch (final ClassNotFoundException e) {
             throw new ClassNotFoundRuntimeException("unable to find class with name " + className, e);
         }
     }
 
-    public static <T> ReflectedClass<T> type(final Class<T> klass) {
+    public static <T> FluentClass<T> type(final Class<T> klass) {
         return new ReflectedTypeFactoryImpl().reflect(klass);
     }
 
-    public static <T> ReflectedClass<T> type(final TypeToken<T> token) {
-        return (ReflectedClass<T>) new ReflectedTypeFactoryImpl().reflect(TypeLiteral.get(token
+    public static <T> FluentClass<T> type(final TypeToken<T> token) {
+        return (FluentClass<T>) new ReflectedTypeFactoryImpl().reflect(TypeLiteral.get(token
                 .getSuperclassTypeParameter()));
     }
-    public static ReflectedMethod method(final Method method) {
+    public static FluentMethod method(final Method method) {
         return new ReflectedTypeFactoryImpl().method(method);
     }
 
-    public static <T> ReflectedObject<T> object(final T object) {
+    public static <T> FluentObject<T> object(final T object) {
         return new ReflectedTypeFactoryImpl().reflect((Class<T>) object.getClass(), object);
     }
 
-    public static ReflectedMethod method(final Method method, final Object instance) {
+    public static FluentMethod method(final Method method, final Object instance) {
         return new ReflectedTypeFactoryImpl().method(method, instance);
     }
 }

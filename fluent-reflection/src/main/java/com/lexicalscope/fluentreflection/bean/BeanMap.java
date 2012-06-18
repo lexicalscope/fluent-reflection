@@ -16,9 +16,9 @@ import org.hamcrest.Matcher;
 import ch.lambdaj.Lambda;
 import ch.lambdaj.function.convert.Converter;
 
-import com.lexicalscope.fluentreflection.ReflectedMember;
-import com.lexicalscope.fluentreflection.ReflectedMethod;
-import com.lexicalscope.fluentreflection.ReflectedObject;
+import com.lexicalscope.fluentreflection.FluentMember;
+import com.lexicalscope.fluentreflection.FluentMethod;
+import com.lexicalscope.fluentreflection.FluentObject;
 
 /*
  * Copyright 2011 Tim Wood
@@ -46,29 +46,29 @@ import com.lexicalscope.fluentreflection.ReflectedObject;
  */
 public class BeanMap {
     private static final class BeanMapImpl implements Map<String, Object> {
-        private final Map<String, ReflectedMethod> getters;
-        private final Map<String, ReflectedMethod> setters;
+        private final Map<String, FluentMethod> getters;
+        private final Map<String, FluentMethod> setters;
         private final Set<String> keySet;
 
         BeanMapImpl(
-                final ReflectedObject<Object> object,
+                final FluentObject<Object> object,
                 final PropertyNameConvertor propertyNameConvertor,
-                final Matcher<ReflectedMember> getterMatcher,
-                final Matcher<ReflectedMember> setterMatcher,
+                final Matcher<FluentMember> getterMatcher,
+                final Matcher<FluentMember> setterMatcher,
                 final KeySetCalculation keySetCalculation) {
             this.getters = indexMethods(object, getterMatcher, propertyNameConvertor);
             this.setters = indexMethods(object, setterMatcher, propertyNameConvertor);
             this.keySet = unmodifiableSet(keySetCalculation.supportedKeys(getters, setters));
         }
 
-        private Map<String, ReflectedMethod> indexMethods(
-                final ReflectedObject<Object> object,
-                final Matcher<ReflectedMember> matcher,
+        private Map<String, FluentMethod> indexMethods(
+                final FluentObject<Object> object,
+                final Matcher<FluentMember> matcher,
                 final PropertyNameConvertor propertyNameConvertor) {
             return Lambda.map(
                     object.methods(matcher),
-                    new Converter<ReflectedMethod, String>() {
-                        @Override public String convert(final ReflectedMethod from) {
+                    new Converter<FluentMethod, String>() {
+                        @Override public String convert(final FluentMethod from) {
                             return propertyNameConvertor.propertyName(from);
                         }
                     });
@@ -99,7 +99,7 @@ public class BeanMap {
         }
 
         @Override public Object get(final Object key) {
-            final ReflectedMethod getter = getters.get(key);
+            final FluentMethod getter = getters.get(key);
             if (getter == null) {
                 return null;
             }
@@ -120,7 +120,7 @@ public class BeanMap {
             }
 
             final Object oldValue = get(key);
-            final ReflectedMethod setter = setters.get(key);
+            final FluentMethod setter = setters.get(key);
             if (setter != null) {
                 setter.callRaw(value);
             }
@@ -211,11 +211,11 @@ public class BeanMap {
     }
 
     public static interface KeySetCalculation {
-        Set<String> supportedKeys(Map<String, ReflectedMethod> getters, Map<String, ReflectedMethod> setters);
+        Set<String> supportedKeys(Map<String, FluentMethod> getters, Map<String, FluentMethod> setters);
     }
 
     public static interface PropertyNameConvertor {
-        String propertyName(ReflectedMethod method);
+        String propertyName(FluentMethod method);
     }
 
     /**
@@ -242,8 +242,8 @@ public class BeanMap {
     static Map<String, Object> map(
             final Object bean,
             final PropertyNameConvertor propertyNameConvertor,
-            final Matcher<ReflectedMember> getterMatcher,
-            final Matcher<ReflectedMember> setterMatcher,
+            final Matcher<FluentMember> getterMatcher,
+            final Matcher<FluentMember> setterMatcher,
             final KeySetCalculation keySetCalculation) {
         return new BeanMapImpl(
                 object(bean),
@@ -256,8 +256,8 @@ public class BeanMap {
     public static KeySetCalculation onlyReadWriteProperties() {
         return new KeySetCalculation() {
             @Override public Set<String> supportedKeys(
-                        final Map<String, ReflectedMethod> getters,
-                        final Map<String, ReflectedMethod> setters) {
+                        final Map<String, FluentMethod> getters,
+                        final Map<String, FluentMethod> setters) {
                 return intersection(getters.keySet(), setters.keySet());
             }
         };
@@ -266,8 +266,8 @@ public class BeanMap {
     public static KeySetCalculation allReadableProperties() {
         return new KeySetCalculation() {
             @Override public Set<String> supportedKeys(
-                        final Map<String, ReflectedMethod> getters,
-                        final Map<String, ReflectedMethod> setters) {
+                        final Map<String, FluentMethod> getters,
+                        final Map<String, FluentMethod> setters) {
                 return getters.keySet();
             }
         };
@@ -276,8 +276,8 @@ public class BeanMap {
     public static KeySetCalculation allWriteableProperties() {
         return new KeySetCalculation() {
             @Override public Set<String> supportedKeys(
-                        final Map<String, ReflectedMethod> getters,
-                        final Map<String, ReflectedMethod> setters) {
+                        final Map<String, FluentMethod> getters,
+                        final Map<String, FluentMethod> setters) {
                 return setters.keySet();
             }
         };
@@ -286,8 +286,8 @@ public class BeanMap {
     public static KeySetCalculation writeablePropertiesOnly() {
         return new KeySetCalculation() {
             @Override public Set<String> supportedKeys(
-                        final Map<String, ReflectedMethod> getters,
-                        final Map<String, ReflectedMethod> setters) {
+                        final Map<String, FluentMethod> getters,
+                        final Map<String, FluentMethod> setters) {
                 return difference(setters.keySet(), getters.keySet());
             }
         };
@@ -296,8 +296,8 @@ public class BeanMap {
     public static KeySetCalculation readablePropertiesOnly() {
         return new KeySetCalculation() {
             @Override public Set<String> supportedKeys(
-                        final Map<String, ReflectedMethod> getters,
-                        final Map<String, ReflectedMethod> setters) {
+                        final Map<String, FluentMethod> getters,
+                        final Map<String, FluentMethod> setters) {
                 return difference(getters.keySet(), setters.keySet());
             }
         };
@@ -306,8 +306,8 @@ public class BeanMap {
     public static KeySetCalculation allProperties() {
         return new KeySetCalculation() {
             @Override public Set<String> supportedKeys(
-                        final Map<String, ReflectedMethod> getters,
-                        final Map<String, ReflectedMethod> setters) {
+                        final Map<String, FluentMethod> getters,
+                        final Map<String, FluentMethod> setters) {
                 return union(getters.keySet(), setters.keySet());
             }
         };
@@ -315,8 +315,8 @@ public class BeanMap {
 
     public static PropertyNameConvertor lowercasePropertyName() {
         return new PropertyNameConvertor() {
-            @Override public String propertyName(final ReflectedMethod method) {
-                return method.propertyName().toLowerCase();
+            @Override public String propertyName(final FluentMethod method) {
+                return method.property().toLowerCase();
             }
         };
     }

@@ -18,21 +18,21 @@ import java.lang.reflect.Method;
  * limitations under the License.
  */
 
-class BoundReflectedMethodImpl extends BoundReflectedMemberImpl implements ReflectedMethod {
-    private final ReflectedMethod method;
+class BoundFluentMethodImpl extends BoundFluentMemberImpl implements FluentMethod {
+    private final FluentMethod method;
     private final Object instance;
 
-    public BoundReflectedMethodImpl(
+    public BoundFluentMethodImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
-            final ReflectedMethod method,
+            final FluentMethod method,
             final Object instance) {
         super(reflectedTypeFactory, method, instance);
         this.method = method;
         this.instance = instance;
     }
 
-    @Override public Method memberUnderReflection() {
-        return method.memberUnderReflection();
+    @Override public Method member() {
+        return method.member();
     }
 
     @Override public String toString() {

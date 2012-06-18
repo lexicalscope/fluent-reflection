@@ -7,7 +7,7 @@ import static com.lexicalscope.fluentreflection.dynamicproxy.FluentProxy.dynamic
 import java.lang.reflect.Proxy;
 import java.util.Map;
 
-import com.lexicalscope.fluentreflection.ReflectedClass;
+import com.lexicalscope.fluentreflection.FluentClass;
 import com.lexicalscope.fluentreflection.dynamicproxy.Implementing;
 import com.lexicalscope.fluentreflection.dynamicproxy.MethodBody;
 
@@ -32,7 +32,7 @@ public class MapBean {
         return bean(type(klass), map);
     }
 
-    public static <T> T bean(final ReflectedClass<T> klass, final Map<String, Object> map) {
+    public static <T> T bean(final FluentClass<T> klass, final Map<String, Object> map) {
         return dynamicProxy(new Implementing<T>(klass) {
             private final Object identity = new Object();
             {
@@ -63,25 +63,25 @@ public class MapBean {
                                 hasType(boolean.class).or(
                                         hasType(Boolean.class)))).execute(new MethodBody() {
                     @Override public void body() {
-                        returnValue(map.containsKey(method().propertyName()));
+                        returnValue(map.containsKey(method().property()));
                     }
                 });
 
                 whenProxying(isExistence()).execute(new MethodBody() {
                     @Override public void body() {
-                        returnValue(map.containsKey(method().propertyName()));
+                        returnValue(map.containsKey(method().property()));
                     }
                 });
 
                 whenProxying(isQuery()).execute(new MethodBody() {
                     @Override public void body() {
-                        returnValue(map.get(method().propertyName()));
+                        returnValue(map.get(method().property()));
                     }
                 });
 
                 whenProxying(isMutator()).execute(new MethodBody() {
                     @Override public void body() {
-                        map.put(method().propertyName(), args()[0]);
+                        map.put(method().property(), args()[0]);
                     }
                 });
             }

@@ -17,12 +17,13 @@ import org.hamcrest.Matcher;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
-public interface ReflectedAnnotated {
-    ReflectedClass<?> annotation(Matcher<? super ReflectedClass<?>> annotationMatcher);
+public interface FluentAnnotated {
+    FluentClass<?> annotation(Matcher<? super FluentClass<?>> annotationMatcher);
+    <A extends Annotation> A annotation(Class<A> annotationClass);
 
     boolean annotatedWith(Class<? extends Annotation> annotationClass);
-    <A extends Annotation> A annotation(Class<A> annotationClass);
+    boolean annotatedWith(Matcher<? super FluentClass<?>> annotationMatcher);
 }

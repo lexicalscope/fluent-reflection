@@ -5,7 +5,7 @@ package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
-final class MatcherHasNameStartingWith extends ReflectionMatcher<ReflectedMember> {
+final class MatcherHasNameStartingWith extends ReflectionMatcher<FluentMember> {
     private final String prefix;
 
     MatcherHasNameStartingWith(final String prefix) {
@@ -13,8 +13,8 @@ final class MatcherHasNameStartingWith extends ReflectionMatcher<ReflectedMember
     }
 
     @Override
-    public boolean matchesSafely(final ReflectedMember arg) {
-        return arg.getName().startsWith(prefix);
+    public boolean matchesSafely(final FluentMember arg) {
+        return arg.name().startsWith(prefix);
     }
 
     @Override

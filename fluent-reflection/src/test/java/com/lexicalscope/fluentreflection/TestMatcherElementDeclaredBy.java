@@ -5,7 +5,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherElementDeclaredBy extends AbstractTestReflectionMatcher<ReflectedMember> {
+public class TestMatcherElementDeclaredBy extends AbstractTestReflectionMatcher<FluentMember> {
     interface DeclaringInterface {
 
     }
@@ -14,11 +14,11 @@ public class TestMatcherElementDeclaredBy extends AbstractTestReflectionMatcher<
 
     }
 
-    @Override protected ReflectedMethod target() {
+    @Override protected FluentMethod target() {
         return method;
     }
 
-    @Override protected ReflectionMatcher<ReflectedMember> matcher() {
+    @Override protected ReflectionMatcher<FluentMember> matcher() {
         return declaredBy(DeclaringInterface.class);
     }
 

@@ -37,7 +37,7 @@ public class TestBoundReflectedFieldImpl {
     private Object field;
     private final Field fieldReference;
 
-    private BoundReflectedFieldImpl boundReflectedFieldImpl;
+    private BoundFluentFieldImpl boundReflectedFieldImpl;
 
     public TestBoundReflectedFieldImpl() throws SecurityException, NoSuchFieldException {
         fieldReference = TestBoundReflectedFieldImpl.class.getDeclaredField("field");
@@ -50,15 +50,15 @@ public class TestBoundReflectedFieldImpl {
             }
         });
 
-        boundReflectedFieldImpl = new BoundReflectedFieldImpl(null, member, instance);
+        boundReflectedFieldImpl = new BoundFluentFieldImpl(null, member, instance);
     }
 
     @Test public void memberUnderReflectionIsDelegated() {
         context.checking(new Expectations() {
             {
-                oneOf(member).memberUnderReflection(); will(returnValue(fieldReference));
+                oneOf(member).member(); will(returnValue(fieldReference));
             }
         });
-        assertThat(boundReflectedFieldImpl.memberUnderReflection(), equalTo(fieldReference));
+        assertThat(boundReflectedFieldImpl.member(), equalTo(fieldReference));
     }
 }

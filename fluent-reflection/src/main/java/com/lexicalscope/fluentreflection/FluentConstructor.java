@@ -2,13 +2,13 @@ package com.lexicalscope.fluentreflection;
 
 import java.lang.reflect.Constructor;
 
-public interface ReflectedConstructor<T> extends ReflectedMember {
+public interface FluentConstructor<T> extends FluentMember {
     /**
      * Obtain the class being reflected
      * 
      * @return the class being reflected
      */
-    Constructor<T> memberUnderReflection();
+    Constructor<T> member();
 
     T callRaw(Object... args);
 }

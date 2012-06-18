@@ -13,9 +13,10 @@ package com.lexicalscope.fluentreflection;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
-public interface ReflectedQuery<T> {
-    T call(Object... args);
+public interface Call<T> {
+    T callRaw(Object... args);
+    FluentObject<T> call(Object... args);
 }

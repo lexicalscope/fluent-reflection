@@ -29,6 +29,6 @@ class ConvertReflectedFieldToBoundReflectedField implements Converter<ReflectedF
 
     @Override
     public ReflectedField convert(final ReflectedField from) {
-        return new BoundReflectedFieldImpl(reflectedTypeFactory, from, instance);
+        return new BoundFluentFieldImpl(reflectedTypeFactory, from, instance);
     }
 }

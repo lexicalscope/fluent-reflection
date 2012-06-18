@@ -18,7 +18,7 @@ package com.lexicalscope.fluentreflection;
 
 import ch.lambdaj.function.convert.Converter;
 
-class ConvertClassToReflectedType implements Converter<Class<?>, ReflectedClass<?>> {
+class ConvertClassToReflectedType implements Converter<Class<?>, FluentClass<?>> {
     private final ReflectedTypeFactory reflectedTypeFactory;
 
     public ConvertClassToReflectedType(final ReflectedTypeFactory reflectedTypeFactory) {
@@ -26,7 +26,7 @@ class ConvertClassToReflectedType implements Converter<Class<?>, ReflectedClass<
     }
 
     @Override
-    public ReflectedClass<?> convert(final Class<?> from) {
+    public FluentClass<?> convert(final Class<?> from) {
         return reflectedTypeFactory.reflect(from);
     }
 }

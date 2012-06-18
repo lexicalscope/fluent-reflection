@@ -5,14 +5,14 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherElementHasNameContaining extends AbstractTestReflectionMatcher<ReflectedMember> {
+public class TestMatcherElementHasNameContaining extends AbstractTestReflectionMatcher<FluentMember> {
     @Override
-    protected ReflectedMethod target() {
+    protected FluentMethod target() {
         return method;
     }
 
     @Override
-    protected ReflectionMatcher<ReflectedMember> matcher() {
+    protected ReflectionMatcher<FluentMember> matcher() {
         return hasNameContaining("abc");
     }
 

@@ -25,30 +25,34 @@ import org.hamcrest.Matcher;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-final class ReflectedAnnotatedImpl implements ReflectedAnnotated {
+final class FluentAnnotatedImpl implements FluentAnnotated {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final AnnotatedElement annotatedElement;
 
-    public ReflectedAnnotatedImpl(
+    public FluentAnnotatedImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
             final AnnotatedElement annotatedElement) {
         this.reflectedTypeFactory = reflectedTypeFactory;
         this.annotatedElement = annotatedElement;
     }
 
-    @Override public ReflectedClass<?> annotation(final Matcher<? super ReflectedClass<?>> annotationMatcher) {
+    @Override public FluentClass<?> annotation(final Matcher<? super FluentClass<?>> annotationMatcher) {
         return selectFirst(annotations(), annotationMatcher);
-    }
-
-    @Override public boolean annotatedWith(final Class<? extends Annotation> annotationClass) {
-        return hasItem(reflectingOn(annotationClass)).matches(annotations());
     }
 
     @Override public <A extends Annotation> A annotation(final Class<A> annotationClass) {
         return annotatedElement.getAnnotation(annotationClass);
     }
 
-    private List<ReflectedClass<?>> annotations() {
+    @Override public boolean annotatedWith(final Matcher<? super FluentClass<?>> annotationMatcher) {
+        return hasItem(annotationMatcher).matches(annotations());
+    }
+
+    @Override public boolean annotatedWith(final Class<? extends Annotation> annotationClass) {
+        return annotatedWith(reflectingOn(annotationClass));
+    }
+
+    private List<FluentClass<?>> annotations() {
         return convert(
                 convert(annotatedElement.getAnnotations(), new ConvertAnnotationToClass()),
                 new ConvertClassToReflectedType(reflectedTypeFactory));

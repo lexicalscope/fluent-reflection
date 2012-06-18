@@ -20,14 +20,14 @@ import ch.lambdaj.function.convert.Converter;
 
 import com.google.inject.TypeLiteral;
 
-class ConvertTypeLiteralToReflectedType implements Converter<TypeLiteral<?>, ReflectedClass<?>> {
+class ConvertTypeLiteralToReflectedType implements Converter<TypeLiteral<?>, FluentClass<?>> {
     private final ReflectedTypeFactory reflectedTypeFactory;
 
     public ConvertTypeLiteralToReflectedType(final ReflectedTypeFactory reflectedTypeFactory) {
         this.reflectedTypeFactory = reflectedTypeFactory;
     }
 
-    @Override public ReflectedClass<?> convert(final TypeLiteral<?> from) {
+    @Override public FluentClass<?> convert(final TypeLiteral<?> from) {
         return reflectedTypeFactory.reflect(from);
     }
 }

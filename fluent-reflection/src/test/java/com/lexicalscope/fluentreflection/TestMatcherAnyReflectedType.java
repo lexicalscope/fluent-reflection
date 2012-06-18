@@ -5,9 +5,9 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherAnyReflectedType extends AbstractTestReflectionMatcher<ReflectedClass<?>> {
+public class TestMatcherAnyReflectedType extends AbstractTestReflectionMatcher<FluentClass<?>> {
     @Override
-    protected ReflectionMatcher<ReflectedClass<?>> matcher() {
+    protected ReflectionMatcher<FluentClass<?>> matcher() {
         return anyReflectedType();
     }
 
@@ -17,12 +17,12 @@ public class TestMatcherAnyReflectedType extends AbstractTestReflectionMatcher<R
     }
 
     @Override
-    protected ReflectedClass<?> target() {
+    protected FluentClass<?> target() {
         return type;
     }
 
     @Override
-    protected ReflectedClass<?> failingTarget() {
+    protected FluentClass<?> failingTarget() {
         return null;
     }
 }

@@ -21,7 +21,7 @@ import org.hamcrest.Matcher;
 final class MethodNotFoundException extends ReflectionRuntimeException {
     private static final long serialVersionUID = 6649785414761324558L;
     private Class<?> klass;
-    private Matcher<? super ReflectedMethod> methodMatcher;
+    private Matcher<? super FluentMethod> methodMatcher;
 
     public MethodNotFoundException() {
         super();
@@ -39,7 +39,7 @@ final class MethodNotFoundException extends ReflectionRuntimeException {
         super(cause);
     }
 
-    public MethodNotFoundException(final Class<?> klass, final Matcher<? super ReflectedMethod> methodMatcher) {
+    public MethodNotFoundException(final Class<?> klass, final Matcher<? super FluentMethod> methodMatcher) {
         this(String.format("unable to find method matching <%s> in %s", methodMatcher, klass));
         this.klass = klass;
         this.methodMatcher = methodMatcher;
@@ -49,7 +49,7 @@ final class MethodNotFoundException extends ReflectionRuntimeException {
         return klass;
     }
 
-    public Matcher<? super ReflectedMethod> getMethodMatcher() {
+    public Matcher<? super FluentMethod> getMethodMatcher() {
         return methodMatcher;
     }
 }

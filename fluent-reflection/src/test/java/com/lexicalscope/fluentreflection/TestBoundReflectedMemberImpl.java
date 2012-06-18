@@ -32,10 +32,10 @@ import org.junit.Test;
 public class TestBoundReflectedMemberImpl {
     @Rule public final JUnitRuleMockery context = new JUnitRuleMockery();
 
-    @Mock private ReflectedMember member;
+    @Mock private FluentMember member;
     private final Object instance = new Object();
 
-    private BoundReflectedMemberImpl boundReflectedMemberImpl;
+    private BoundFluentMemberImpl boundReflectedMemberImpl;
 
     @Before public void setUp() {
         context.checking(new Expectations() {
@@ -44,8 +44,8 @@ public class TestBoundReflectedMemberImpl {
             }
         });
 
-        boundReflectedMemberImpl = new BoundReflectedMemberImpl(null, member, instance) {
-            @Override public Member memberUnderReflection() {
+        boundReflectedMemberImpl = new BoundFluentMemberImpl(null, member, instance) {
+            @Override public Member member() {
                 return null;
             }
         };

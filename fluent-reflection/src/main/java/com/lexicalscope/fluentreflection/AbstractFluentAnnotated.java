@@ -21,21 +21,25 @@ import org.hamcrest.Matcher;
  * limitations under the License.
  */
 
-abstract class AbstractReflectedAnnotated implements ReflectedAnnotated {
-    private final ReflectedAnnotated annotatedElement;
+abstract class AbstractFluentAnnotated implements FluentAnnotated {
+    private final FluentAnnotated annotatedElement;
 
-    public AbstractReflectedAnnotated(
+    public AbstractFluentAnnotated(
             final ReflectedTypeFactory reflectedTypeFactory,
             final AnnotatedElement annotatedElement) {
-        this.annotatedElement = new ReflectedAnnotatedImpl(reflectedTypeFactory, annotatedElement);
+        this.annotatedElement = new FluentAnnotatedImpl(reflectedTypeFactory, annotatedElement);
     }
 
-    @Override public ReflectedClass<?> annotation(final Matcher<? super ReflectedClass<?>> annotationMatcher) {
+    @Override public FluentClass<?> annotation(final Matcher<? super FluentClass<?>> annotationMatcher) {
         return annotatedElement.annotation(annotationMatcher);
     }
 
     @Override public boolean annotatedWith(final Class<? extends Annotation> annotationClass) {
         return annotatedElement.annotatedWith(annotationClass);
+    }
+
+    @Override public boolean annotatedWith(final Matcher<? super FluentClass<?>> annotationMatcher) {
+        return annotatedElement.annotatedWith(annotationMatcher);
     }
 
     @Override public <A extends Annotation> A annotation(final Class<A> annotationClass) {

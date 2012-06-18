@@ -18,7 +18,7 @@ import org.hamcrest.Description;
  * limitations under the License.
  */
 
-final class MatcherVisibility extends ReflectionMatcher<ReflectedMember> {
+final class MatcherVisibility extends ReflectionMatcher<FluentMember> {
     private final Visibility visibility;
 
     public MatcherVisibility(final Visibility visibility) {
@@ -29,7 +29,7 @@ final class MatcherVisibility extends ReflectionMatcher<ReflectedMember> {
         description.appendText("member with visibility ").appendValue(visibility);
     }
 
-    @Override protected boolean matchesSafely(final ReflectedMember item) {
+    @Override protected boolean matchesSafely(final FluentMember item) {
         return item.visibility().equals(visibility);
     }
 }

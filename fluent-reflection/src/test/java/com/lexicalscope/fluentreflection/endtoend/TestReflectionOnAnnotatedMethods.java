@@ -11,7 +11,7 @@ import java.lang.annotation.Retention;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-import com.lexicalscope.fluentreflection.ReflectedMethod;
+import com.lexicalscope.fluentreflection.FluentMethod;
 
 /*
  * Copyright 2011 Tim Wood
@@ -39,16 +39,16 @@ public class TestReflectionOnAnnotatedMethods {
         void myNonAnnotatedMethod() {};
     }
 
-    private final ReflectedMethod annotatedMethod = type(ClassWithAnnotatedMethod.class).method(
+    private final FluentMethod annotatedMethod = type(ClassWithAnnotatedMethod.class).method(
             hasName("myAnnotatedMethod"));
 
-    private final ReflectedMethod boundAnnotatedMethod = object(new ClassWithAnnotatedMethod()).method(
+    private final FluentMethod boundAnnotatedMethod = object(new ClassWithAnnotatedMethod()).method(
             hasName("myAnnotatedMethod"));
 
-    private final ReflectedMethod nonAnnotatedMethod = type(ClassWithAnnotatedMethod.class).method(
+    private final FluentMethod nonAnnotatedMethod = type(ClassWithAnnotatedMethod.class).method(
             hasName("myNonAnnotatedMethod"));
 
-    private final ReflectedMethod boundNonAnnotatedMethod = type(ClassWithAnnotatedMethod.class).method(
+    private final FluentMethod boundNonAnnotatedMethod = type(ClassWithAnnotatedMethod.class).method(
             hasName("myNonAnnotatedMethod"));
 
     @Test public void canReadAnnotationOnMethod() throws Exception {

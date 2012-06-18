@@ -3,26 +3,26 @@ package com.lexicalscope.fluentreflection;
 import java.lang.reflect.Member;
 import java.util.List;
 
-public interface ReflectedMember extends ReflectedAnnotated {
-    ReflectedClass<?> declaringClass();
+public interface FluentMember extends FluentAnnotated {
+    FluentClass<?> declarer();
 
-    Member memberUnderReflection();
+    Member member();
 
-    String getName();
+    String name();
 
-    String propertyName();
+    String property();
 
     int argumentCount();
 
-    List<ReflectedClass<?>> argumentTypes();
+    List<FluentClass<?>> argumentTypes();
 
-    ReflectedClass<?> type();
+    FluentClass<?> type();
 
     Object callRaw(Object... args);
 
-    ReflectedObject<?> call(Object... args);
+    FluentObject<?> call(Object... args);
 
-    <T> ReflectedQuery<T> castResultTo(Class<T> returnType);
+    <T> Call<T> as(Class<T> returnType);
 
     /**
      * @return true iff the method is static

@@ -22,7 +22,7 @@ import org.hamcrest.Description;
  * limitations under the License.
  */
 
-final class MatcherCallableAnnotatedWith extends ReflectionMatcher<ReflectedAnnotated> {
+final class MatcherCallableAnnotatedWith extends ReflectionMatcher<FluentAnnotated> {
     private final Class<? extends Annotation> annotation;
 
     public MatcherCallableAnnotatedWith(final Class<? extends Annotation> annotation) {
@@ -30,7 +30,7 @@ final class MatcherCallableAnnotatedWith extends ReflectionMatcher<ReflectedAnno
     }
 
     @Override
-    protected boolean matchesSafely(final ReflectedAnnotated item) {
+    protected boolean matchesSafely(final FluentAnnotated item) {
         return item.annotation(reflectingOn(annotation)) != null;
     }
 

@@ -29,14 +29,15 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.google.inject.TypeLiteral;
 
-final class ReflectedFieldImpl extends AbstractReflectedAnnotated implements ReflectedField {
+final class FluentFieldImpl extends AbstractFluentAnnotated implements ReflectedField {
     private final ReflectedTypeFactory reflectedTypeFactory;
-    private final ReflectedClass<?> reflectedClass;
+    private final FluentClass<?> reflectedClass;
     private final TypeLiteral<?> typeLiteral;
     private final Field field;
 
-    public ReflectedFieldImpl(final ReflectedTypeFactory reflectedTypeFactory,
-            final ReflectedClass<?> reflectedClass,
+    public FluentFieldImpl(
+            final ReflectedTypeFactory reflectedTypeFactory,
+            final FluentClass<?> reflectedClass,
             final TypeLiteral<?> typeLiteral,
             final Field field) {
         super(reflectedTypeFactory, field);
@@ -49,11 +50,11 @@ final class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Ref
         { /* ignore, if we can set the field as accessible we get much improved performance */ }
     }
 
-    @Override public String getName() {
+    @Override public String name() {
         return field.getName();
     }
 
-    @Override public ReflectedClass<?> declaringClass() {
+    @Override public FluentClass<?> declarer() {
         return reflectedTypeFactory.reflect(typeLiteral);
     }
 
@@ -65,11 +66,11 @@ final class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Ref
         return Modifier.isFinal(field.getModifiers());
     }
 
-    @Override public String propertyName() {
+    @Override public String property() {
         return field.getName();
     }
 
-    @Override public Field memberUnderReflection() {
+    @Override public Field member() {
         return field;
     }
 
@@ -119,7 +120,7 @@ final class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Ref
 
     @Override public boolean equals(final Object obj) {
         if (obj != null && this.getClass().equals(obj.getClass())) {
-            final ReflectedFieldImpl that = (ReflectedFieldImpl) obj;
+            final FluentFieldImpl that = (FluentFieldImpl) obj;
             return new EqualsBuilder()
                     .append(this.field, that.field)
                     .append(this.typeLiteral, that.typeLiteral)
@@ -136,11 +137,11 @@ final class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Ref
         return 1;
     }
 
-    @Override public List<ReflectedClass<?>> argumentTypes() {
-        return new ArrayList<ReflectedClass<?>>();
+    @Override public List<FluentClass<?>> argumentTypes() {
+        return new ArrayList<FluentClass<?>>();
     }
 
-    @Override public ReflectedClass<?> type() {
+    @Override public FluentClass<?> type() {
         final TypeLiteral<?> returnType = typeLiteral.getFieldType(field);
         if (returnType == null) {
             return null;
@@ -169,7 +170,7 @@ final class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Ref
         }
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" }) @Override public ReflectedObject<?> call(final Object... args) {
+    @SuppressWarnings({ "unchecked", "rawtypes" }) @Override public FluentObject<?> call(final Object... args) {
         final Object object = callRaw(args);
         if(object == null) {
             return null;
@@ -177,10 +178,10 @@ final class ReflectedFieldImpl extends AbstractReflectedAnnotated implements Ref
         return reflectedTypeFactory.reflect((Class) object.getClass(), object);
     }
 
-    @Override public <T> ReflectedQuery<T> castResultTo(final Class<T> returnType) {
-        return new ReflectedQuery<T>() {
-            @Override public T call(final Object... args) {
-                return returnType.cast(ReflectedFieldImpl.this.callRaw(args));
+    @Override public <T> Call<T> as(final Class<T> returnType) {
+        return new AbstractCall<T>(reflectedTypeFactory) {
+            @Override public T callRaw(final Object... args) {
+                return returnType.cast(FluentFieldImpl.this.callRaw(args));
             }
         };
     }

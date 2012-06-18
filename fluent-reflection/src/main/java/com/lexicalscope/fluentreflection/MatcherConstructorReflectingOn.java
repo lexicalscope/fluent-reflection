@@ -4,7 +4,7 @@ import java.lang.reflect.Constructor;
 
 import org.hamcrest.Description;
 
-final class MatcherConstructorReflectingOn extends ReflectionMatcher<ReflectedConstructor<?>> {
+final class MatcherConstructorReflectingOn extends ReflectionMatcher<FluentConstructor<?>> {
     private final Constructor<?> constructor;
 
     public MatcherConstructorReflectingOn(final Constructor<?> constructor) {
@@ -12,8 +12,8 @@ final class MatcherConstructorReflectingOn extends ReflectionMatcher<ReflectedCo
     }
 
     @Override
-    protected boolean matchesSafely(final ReflectedConstructor<?> item) {
-        return item.memberUnderReflection().equals(constructor);
+    protected boolean matchesSafely(final FluentConstructor<?> item) {
+        return item.member().equals(constructor);
     }
 
     @Override

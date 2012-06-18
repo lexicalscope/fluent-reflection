@@ -5,14 +5,14 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherReflectedTypeReflectingOn extends AbstractTestReflectionMatcher<ReflectedClass<?>> {
+public class TestMatcherReflectedTypeReflectingOn extends AbstractTestReflectionMatcher<FluentClass<?>> {
     @Override
-    protected ReflectedClass<?> target() {
+    protected FluentClass<?> target() {
         return type;
     }
 
     @Override
-    protected ReflectionMatcher<ReflectedClass<?>> matcher() {
+    protected ReflectionMatcher<FluentClass<?>> matcher() {
         return reflectingOn(Object.class);
     }
 

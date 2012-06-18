@@ -34,12 +34,12 @@ public class TestReflectedClassImpl {
             context.mock(new TypeLiteral<ReflectedMembers<ExampleClass>>() {
                     });
 
-    private final ReflectedConstructor<ExampleClass> reflectedConstructor =
-            context.mock(new TypeLiteral<ReflectedConstructor<ExampleClass>>() {
+    private final FluentConstructor<ExampleClass> reflectedConstructor =
+            context.mock(new TypeLiteral<FluentConstructor<ExampleClass>>() {
                     });
 
-    private final ReflectedObject<ExampleClass> reflectedInstance =
-            context.mock(new TypeLiteral<ReflectedObject<ExampleClass>>() {
+    private final FluentObject<ExampleClass> reflectedInstance =
+            context.mock(new TypeLiteral<FluentObject<ExampleClass>>() {
                     });
 
     class ExampleClass {
@@ -64,8 +64,8 @@ public class TestReflectedClassImpl {
             }
         });
 
-        final ReflectedClassImpl<ExampleClass> reflectedTypeImpl =
-                new ReflectedClassImpl<ExampleClass>(reflectedTypeFactory, TypeLiteral.get(ExampleClass.class), members);
+        final FluentClassImpl<ExampleClass> reflectedTypeImpl =
+                new FluentClassImpl<ExampleClass>(reflectedTypeFactory, TypeLiteral.get(ExampleClass.class), members);
 
         assertThat(reflectedTypeImpl.construct(), equalTo(reflectedInstance));
     }

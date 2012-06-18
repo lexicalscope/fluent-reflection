@@ -9,12 +9,12 @@ import java.util.List;
 
 import com.google.inject.TypeLiteral;
 
-final class ReflectedConstructorImpl<T> extends AbstractReflectedAnnotated implements ReflectedConstructor<T> {
+final class FluentConstructorImpl<T> extends AbstractFluentAnnotated implements FluentConstructor<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final TypeLiteral<T> typeLiteral;
     private final Constructor<T> constructor;
 
-    public ReflectedConstructorImpl(
+    public FluentConstructorImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
             final TypeLiteral<T> typeLiteral,
             final Constructor<T> constructor) {
@@ -28,13 +28,13 @@ final class ReflectedConstructorImpl<T> extends AbstractReflectedAnnotated imple
         return constructor.getParameterTypes().length;
     }
 
-    @Override public List<ReflectedClass<?>> argumentTypes() {
+    @Override public List<FluentClass<?>> argumentTypes() {
         return convert(
                 typeLiteral.getParameterTypes(constructor),
                 new ConvertTypeLiteralToReflectedType(reflectedTypeFactory));
     }
 
-    @Override public Constructor<T> memberUnderReflection() {
+    @Override public Constructor<T> member() {
         return constructor;
     }
 
@@ -50,7 +50,7 @@ final class ReflectedConstructorImpl<T> extends AbstractReflectedAnnotated imple
         }
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" }) @Override public ReflectedObject<?> call(final Object... args) {
+    @SuppressWarnings({ "unchecked", "rawtypes" }) @Override public FluentObject<?> call(final Object... args) {
         final Object object = callRaw(args);
         if(object == null) {
             return null;
@@ -58,30 +58,30 @@ final class ReflectedConstructorImpl<T> extends AbstractReflectedAnnotated imple
         return reflectedTypeFactory.reflect((Class) object.getClass(), object);
     }
 
-    @Override public ReflectedClass<?> declaringClass() {
+    @Override public FluentClass<?> declarer() {
         return reflectedTypeFactory.reflect(typeLiteral);
     }
 
-    @Override public String getName() {
+    @Override public String name() {
         return constructor.getName();
     }
 
-    @Override public String propertyName() {
-        return getName();
+    @Override public String property() {
+        return "<init>";
     }
 
-    @Override public ReflectedClass<?> type() {
-        return declaringClass();
+    @Override public FluentClass<?> type() {
+        return declarer();
     }
 
     @Override public Visibility visibility() {
         return visibilityFromModifiers(constructor.getModifiers());
     }
 
-    @Override public <S> ReflectedQuery<S> castResultTo(final Class<S> returnType) {
-        return new ReflectedQuery<S>() {
-            @Override public S call(final Object... args) {
-                return returnType.cast(ReflectedConstructorImpl.this.callRaw(args));
+    @Override public <S> Call<S> as(final Class<S> returnType) {
+        return new AbstractCall<S>(reflectedTypeFactory) {
+            @Override public S callRaw(final Object... args) {
+                return returnType.cast(FluentConstructorImpl.this.callRaw(args));
             }
         };
     }

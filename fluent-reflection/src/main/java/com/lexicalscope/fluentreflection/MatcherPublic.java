@@ -18,12 +18,12 @@ import org.hamcrest.Description;
  * limitations under the License.
  */
 
-final class MatcherPublic extends ReflectionMatcher<ReflectedMember> {
+final class MatcherPublic extends ReflectionMatcher<FluentMember> {
     @Override public void describeTo(final Description description) {
         // TODO Auto-generated method stub
     }
 
-    @Override protected boolean matchesSafely(final ReflectedMember item) {
+    @Override protected boolean matchesSafely(final FluentMember item) {
         return item.visibility().equals(Visibility.PUBLIC);
     }
 }

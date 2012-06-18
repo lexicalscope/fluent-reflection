@@ -18,7 +18,7 @@ import ch.lambdaj.function.convert.Converter;
  * limitations under the License.
  */
 
-class ConvertReflectedMethodToBoundReflectedMethod implements Converter<ReflectedMethod, ReflectedMethod> {
+class ConvertReflectedMethodToBoundReflectedMethod implements Converter<FluentMethod, FluentMethod> {
     private final Object instance;
     private final ReflectedTypeFactory reflectedTypeFactory;
 
@@ -28,7 +28,7 @@ class ConvertReflectedMethodToBoundReflectedMethod implements Converter<Reflecte
     }
 
     @Override
-    public ReflectedMethod convert(final ReflectedMethod from) {
-        return new BoundReflectedMethodImpl(reflectedTypeFactory, from, instance);
+    public FluentMethod convert(final FluentMethod from) {
+        return new BoundFluentMethodImpl(reflectedTypeFactory, from, instance);
     }
 }

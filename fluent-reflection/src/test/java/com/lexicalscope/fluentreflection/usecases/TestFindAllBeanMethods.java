@@ -9,7 +9,7 @@ import org.hamcrest.Matcher;
 import org.junit.Test;
 
 import com.lexicalscope.fluentreflection.ListBuilder;
-import com.lexicalscope.fluentreflection.ReflectedMember;
+import com.lexicalscope.fluentreflection.FluentMember;
 
 /*
  * Copyright 2011 Tim Wood
@@ -61,7 +61,7 @@ public class TestFindAllBeanMethods {
         assertThat(
                 object(new Bean()).methods(isGetter()),
                 containsInAnyOrder(
-                        ListBuilder.<Matcher<? super ReflectedMember>>
+                        ListBuilder.<Matcher<? super FluentMember>>
                                 list(hasName("getReadOnlyProperty")).add(
                                         hasName("getReadWriteProperty")).$()));
     }
@@ -71,7 +71,7 @@ public class TestFindAllBeanMethods {
                 object(new Bean()).methods(
                         isSetter()),
                 containsInAnyOrder(
-                        ListBuilder.<Matcher<? super ReflectedMember>>
+                        ListBuilder.<Matcher<? super FluentMember>>
                                 list(hasName("setWriteOnlyProperty")).add(
                                         hasName("setReadWriteProperty")).$()));
     }

@@ -21,7 +21,7 @@ import org.jmock.Expectations;
  * limitations under the License. 
  */
 
-public class TestMatcherConstructorReflectingOn extends AbstractTestReflectionMatcher<ReflectedConstructor<?>> {
+public class TestMatcherConstructorReflectingOn extends AbstractTestReflectionMatcher<FluentConstructor<?>> {
     static class ClassWithAConstructor {
         ClassWithAConstructor() {}
     }
@@ -30,14 +30,14 @@ public class TestMatcherConstructorReflectingOn extends AbstractTestReflectionMa
         AnotherClassWithAConstructor() {}
     }
 
-    @Override protected ReflectedConstructor<?> target() {
+    @Override protected FluentConstructor<?> target() {
         return constructor;
     }
 
     @Override protected void setupMatchingCase() throws Throwable {
         context.checking(new Expectations() {
             {
-                oneOf(constructor).memberUnderReflection();
+                oneOf(constructor).member();
                 will(returnValue(ClassWithAConstructor.class.getDeclaredConstructor()));
             }
         });
@@ -46,7 +46,7 @@ public class TestMatcherConstructorReflectingOn extends AbstractTestReflectionMa
     @Override protected void setupFailingCase() throws Throwable {
         context.checking(new Expectations() {
             {
-                oneOf(constructor).memberUnderReflection();
+                oneOf(constructor).member();
                 will(returnValue(AnotherClassWithAConstructor.class.getDeclaredConstructor()));
             }
         });
@@ -56,7 +56,7 @@ public class TestMatcherConstructorReflectingOn extends AbstractTestReflectionMa
         return equalTo("reflecting on constructor <com.lexicalscope.fluentreflection.TestMatcherConstructorReflectingOn$ClassWithAConstructor()>");
     }
 
-    @Override protected ReflectionMatcher<ReflectedConstructor<?>> matcher() throws Throwable {
+    @Override protected ReflectionMatcher<FluentConstructor<?>> matcher() throws Throwable {
         return new MatcherConstructorReflectingOn(ClassWithAConstructor.class.getDeclaredConstructor());
     }
 }

@@ -5,16 +5,16 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
-final class MatcherReturnType extends ReflectionMatcher<ReflectedMember> {
-    private final Matcher<? super ReflectedClass<?>> returnTypeMatcher;
+final class MatcherReturnType extends ReflectionMatcher<FluentMember> {
+    private final Matcher<? super FluentClass<?>> returnTypeMatcher;
 
-    public MatcherReturnType(final Matcher<? super ReflectedClass<?>> returnTypeMatcher) {
+    public MatcherReturnType(final Matcher<? super FluentClass<?>> returnTypeMatcher) {
         this.returnTypeMatcher = returnTypeMatcher;
     }
 
     @Override
-    protected boolean matchesSafely(final ReflectedMember item) {
-        final ReflectedClass<?> actualReturnType = item.type();
+    protected boolean matchesSafely(final FluentMember item) {
+        final FluentClass<?> actualReturnType = item.type();
 
         if (actualReturnType == null) {
             return false;

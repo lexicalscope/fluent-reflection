@@ -24,7 +24,7 @@ import com.google.inject.TypeLiteral;
 
 final class TypeHierarchyCalculation {
     private final List<TypeLiteral<?>> done = new ArrayList<TypeLiteral<?>>();
-    private final List<ReflectedClass<?>> result = new ArrayList<ReflectedClass<?>>();
+    private final List<FluentClass<?>> result = new ArrayList<FluentClass<?>>();
     private final List<TypeLiteral<?>> pending = new LinkedList<TypeLiteral<?>>();
     private final ReflectedTypeFactory reflectedTypeFactory;
 
@@ -32,7 +32,7 @@ final class TypeHierarchyCalculation {
         this.reflectedTypeFactory = reflectedTypeFactory;
     }
 
-    List<ReflectedClass<?>> interfacesAndSuperClass(final TypeLiteral<?> typeLiteral) {
+    List<FluentClass<?>> interfacesAndSuperClass(final TypeLiteral<?> typeLiteral) {
         queueSuperclassAndInterfaces(typeLiteral);
         processesPendingTypes();
         return result;

@@ -42,7 +42,7 @@ public class TestCanReadAndSetFields {
     @Test public void canReadPublicField() throws Exception {
         subject.fieldPublic = "value";
 
-        final String value = object(subject).field(hasName("fieldPublic")).castResultTo(String.class).call();
+        final String value = object(subject).field(hasName("fieldPublic")).as(String.class).callRaw();
 
         assertThat(value, equalTo("value"));
     }
@@ -56,7 +56,7 @@ public class TestCanReadAndSetFields {
     @Test public void canReadPackageField() throws Exception {
         subject.fieldPackage = "value";
 
-        final String value = object(subject).field(hasName("fieldPackage")).castResultTo(String.class).call();
+        final String value = object(subject).field(hasName("fieldPackage")).as(String.class).callRaw();
 
         assertThat(value, equalTo("value"));
     }
@@ -70,7 +70,7 @@ public class TestCanReadAndSetFields {
     @Test public void canReadProtectedField() throws Exception {
         subject.fieldProtected = "value";
 
-        final String value = object(subject).field(hasName("fieldProtected")).castResultTo(String.class).call();
+        final String value = object(subject).field(hasName("fieldProtected")).as(String.class).callRaw();
 
         assertThat(value, equalTo("value"));
     }
@@ -84,7 +84,7 @@ public class TestCanReadAndSetFields {
     @Test public void canReadPrivateField() throws Exception {
         subject.fieldPrivate = "value";
 
-        final String value = object(subject).field(hasName("fieldPrivate")).castResultTo(String.class).call();
+        final String value = object(subject).field(hasName("fieldPrivate")).as(String.class).callRaw();
 
         assertThat(value, equalTo("value"));
     }

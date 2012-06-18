@@ -5,17 +5,17 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-import com.lexicalscope.fluentreflection.ReflectedClass;
+import com.lexicalscope.fluentreflection.FluentClass;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
-public class TestMatcherTypeHasInterfaces extends AbstractTestReflectionMatcher<ReflectedClass<?>> {
+public class TestMatcherTypeHasInterfaces extends AbstractTestReflectionMatcher<FluentClass<?>> {
     @Override
-    protected ReflectedClass<?> target() {
+    protected FluentClass<?> target() {
         return type;
     }
 
     @Override
-    protected ReflectionMatcher<ReflectedClass<?>> matcher() {
+    protected ReflectionMatcher<FluentClass<?>> matcher() {
         return hasInterface(Object.class);
     }
 

@@ -19,7 +19,7 @@ import org.hamcrest.Matcher;
  * limitations under the License.
  */
 
-final class MatcherHasSimpleName extends ReflectionMatcher<ReflectedClass<?>> {
+final class MatcherHasSimpleName extends ReflectionMatcher<FluentClass<?>> {
     private final Matcher<? super String> simpleNameMatcher;
 
     public MatcherHasSimpleName(final Matcher<? super String> simpleNameMatcher) {
@@ -30,7 +30,7 @@ final class MatcherHasSimpleName extends ReflectionMatcher<ReflectedClass<?>> {
         description.appendText("type that has simple name ").appendDescriptionOf(simpleNameMatcher);
     }
 
-    @Override protected boolean matchesSafely(final ReflectedClass<?> item) {
+    @Override protected boolean matchesSafely(final FluentClass<?> item) {
         return simpleNameMatcher.matches(item.simpleName());
     }
 }

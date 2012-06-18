@@ -13,8 +13,8 @@ final class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
     private final ReflectedSuperclassesAndInterfaces<T> allTypes;
     private final TypeLiteral<T> typeLiteral;
 
-    private List<ReflectedMethod> declaredMethods;
-    private List<ReflectedMethod> reflectedMethods;
+    private List<FluentMethod> declaredMethods;
+    private List<FluentMethod> reflectedMethods;
 
     ReflectedMethodsImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
@@ -25,11 +25,11 @@ final class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
         this.allTypes = allTypes;
     }
 
-    @Override public List<ReflectedMethod> methods() {
+    @Override public List<FluentMethod> methods() {
         if (reflectedMethods == null) {
-            final List<ReflectedMethod> result = new ArrayList<ReflectedMethod>();
+            final List<FluentMethod> result = new ArrayList<FluentMethod>();
 
-            for (final ReflectedClass<?> klassToReflect : allTypes.superclassesAndInterfaces()) {
+            for (final FluentClass<?> klassToReflect : allTypes.superclassesAndInterfaces()) {
                 result.addAll(klassToReflect.declaredMethods());
             }
             result.addAll(declaredMethods());
@@ -39,8 +39,8 @@ final class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
         return reflectedMethods;
     }
 
-    private List<ReflectedMethod> getDeclaredMethodsOfClass(final TypeLiteral<?> typeLiteralToReflect) {
-        final List<ReflectedMethod> result = new ArrayList<ReflectedMethod>();
+    private List<FluentMethod> getDeclaredMethodsOfClass(final TypeLiteral<?> typeLiteralToReflect) {
+        final List<FluentMethod> result = new ArrayList<FluentMethod>();
         final Method[] declaredMethods = typeLiteralToReflect.getRawType().getDeclaredMethods();
         for (final Method method : declaredMethods) {
             result.add(reflectedTypeFactory.method(typeLiteralToReflect, method));
@@ -48,7 +48,7 @@ final class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
         return result;
     }
 
-    @Override public List<ReflectedMethod> declaredMethods() {
+    @Override public List<FluentMethod> declaredMethods() {
         if (declaredMethods == null) {
             declaredMethods = unmodifiableList(getDeclaredMethodsOfClass(typeLiteral));
         }

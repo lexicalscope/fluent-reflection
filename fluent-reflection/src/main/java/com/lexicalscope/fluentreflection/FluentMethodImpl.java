@@ -34,15 +34,15 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.google.inject.TypeLiteral;
 
-final class ReflectedMethodImpl extends AbstractReflectedAnnotated implements ReflectedMethod {
+final class FluentMethodImpl extends AbstractFluentAnnotated implements FluentMethod {
     private final ReflectedTypeFactory reflectedTypeFactory;
-    private final ReflectedClass<?> reflectedClass;
+    private final FluentClass<?> reflectedClass;
     private final TypeLiteral<?> typeLiteral;
     private final Method method;
 
-    public ReflectedMethodImpl(
+    public FluentMethodImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
-            final ReflectedClass<?> reflectedClass,
+            final FluentClass<?> reflectedClass,
             final TypeLiteral<?> typeLiteral,
             final Method method) {
         super(reflectedTypeFactory, method);
@@ -52,12 +52,12 @@ final class ReflectedMethodImpl extends AbstractReflectedAnnotated implements Re
         this.method = method;
     }
 
-    @Override public String getName() {
+    @Override public String name() {
         return method.getName();
     }
 
-    @Override public List<ReflectedClass<?>> argumentTypes() {
-        final List<ReflectedClass<?>> result = new ArrayList<ReflectedClass<?>>();
+    @Override public List<FluentClass<?>> argumentTypes() {
+        final List<FluentClass<?>> result = new ArrayList<FluentClass<?>>();
         result.addAll(convert(
                 typeLiteral.getParameterTypes(method),
                 new ConvertTypeLiteralToReflectedType(reflectedTypeFactory)));
@@ -72,11 +72,11 @@ final class ReflectedMethodImpl extends AbstractReflectedAnnotated implements Re
         return parameterCount;
     }
 
-    @Override public ReflectedClass<?> declaringClass() {
+    @Override public FluentClass<?> declarer() {
         return reflectedTypeFactory.reflect(typeLiteral);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" }) @Override public ReflectedObject<?> call(final Object... args) {
+    @SuppressWarnings({ "unchecked", "rawtypes" }) @Override public FluentObject<?> call(final Object... args) {
         final Object object = callRaw(args);
         if(object == null) {
             return null;
@@ -122,15 +122,15 @@ final class ReflectedMethodImpl extends AbstractReflectedAnnotated implements Re
         return Modifier.isFinal(method.getModifiers());
     }
 
-    @Override public <T> ReflectedQuery<T> castResultTo(final Class<T> returnType) {
-        return new ReflectedQuery<T>() {
-            @Override public T call(final Object... args) {
-                return returnType.cast(ReflectedMethodImpl.this.callRaw(args));
+    @Override public <T> Call<T> as(final Class<T> returnType) {
+        return new AbstractCall<T>(reflectedTypeFactory) {
+            @Override public T callRaw(final Object... args) {
+                return returnType.cast(FluentMethodImpl.this.callRaw(args));
             }
         };
     }
 
-    @Override public ReflectedClass<?> type() {
+    @Override public FluentClass<?> type() {
         final TypeLiteral<?> returnType = typeLiteral.getReturnType(method);
         if (returnType == null) {
             return null;
@@ -138,8 +138,8 @@ final class ReflectedMethodImpl extends AbstractReflectedAnnotated implements Re
         return reflectedTypeFactory.reflect(returnType);
     }
 
-    @Override public String propertyName() {
-        final String name = getName();
+    @Override public String property() {
+        final String name = name();
 
         if (name.length() > 2) {
             if (name.length() > 3) {
@@ -158,7 +158,7 @@ final class ReflectedMethodImpl extends AbstractReflectedAnnotated implements Re
         return substring.substring(0, 1).toLowerCase() + substring.substring(1);
     }
 
-    @Override public Method memberUnderReflection() {
+    @Override public Method member() {
         return method;
     }
 
@@ -232,7 +232,7 @@ final class ReflectedMethodImpl extends AbstractReflectedAnnotated implements Re
 
     @Override public boolean equals(final Object obj) {
         if (obj != null && this.getClass().equals(obj.getClass())) {
-            final ReflectedMethodImpl that = (ReflectedMethodImpl) obj;
+            final FluentMethodImpl that = (FluentMethodImpl) obj;
             return new EqualsBuilder()
                     .append(this.method, that.method)
                     .append(this.typeLiteral, that.typeLiteral)

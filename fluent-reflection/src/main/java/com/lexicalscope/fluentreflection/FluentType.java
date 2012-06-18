@@ -21,7 +21,7 @@ import org.hamcrest.Matcher;
  * limitations under the License.
  */
 
-public interface ReflectedType<T> extends ReflectedAnnotated {
+public interface FluentType<T> extends FluentAnnotated {
     /**
      * Obtain the class being reflected
      *
@@ -34,14 +34,14 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
      *
      * @return all the interfaces
      */
-    List<ReflectedClass<?>> interfaces();
+    List<FluentClass<?>> interfaces();
 
     /**
      * Return the list of all superclasses with the immediate parent first
      *
      * @return list of superclasses nearest first
      */
-    List<ReflectedClass<?>> superclasses();
+    List<FluentClass<?>> superclasses();
 
     /**
      * Does this type or any of its implemented types match the given matcher?
@@ -51,21 +51,21 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
      *
      * @return does the type or any of its supertypes match the given matcher
      */
-    boolean isType(ReflectionMatcher<ReflectedClass<?>> typeMatcher);
+    boolean isType(ReflectionMatcher<FluentClass<?>> typeMatcher);
 
     /**
      * All methods
      *
      * @return all the methods
      */
-    List<ReflectedMethod> methods();
+    List<FluentMethod> methods();
 
     /**
      * All methods declared by this type
      *
      * @return methods declared by this type
      */
-    List<ReflectedMethod> declaredMethods();
+    List<FluentMethod> declaredMethods();
 
     /**
      * Find all methods matching the supplied matcher
@@ -75,7 +75,7 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
      *
      * @return The methods matching the supplied matcher
      */
-    List<ReflectedMethod> methods(Matcher<? super ReflectedMethod> methodMatcher);
+    List<FluentMethod> methods(Matcher<? super FluentMethod> methodMatcher);
 
     /**
      * Find the first method matching the supplied matcher
@@ -85,7 +85,7 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
      *
      * @return The method matching the supplied matcher
      */
-    ReflectedMethod method(Matcher<? super ReflectedMethod> methodMatcher);
+    FluentMethod method(Matcher<? super FluentMethod> methodMatcher);
 
     /**
      * Find the first method with the given name
@@ -95,7 +95,7 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
      *
      * @return The method matching the name
      */
-    ReflectedMethod method(String name);
+    FluentMethod method(String name);
 
     /**
      * Call a method by name if one can be found that can be called with the given arguments
@@ -105,7 +105,7 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
      *
      * @return the result of calling the method
      */
-    ReflectedObject<?> call(String name, Object ... args);
+    FluentObject<?> call(String name, Object ... args);
 
     /**
      * All fields
@@ -139,7 +139,7 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
      *
      * @return The first field matching the supplied matcher
      */
-    ReflectedField field(ReflectionMatcher<ReflectedMember> fieldMatcher);
+    ReflectedField field(ReflectionMatcher<FluentMember> fieldMatcher);
 
     boolean isPrimitive();
 
@@ -149,9 +149,9 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
 
     boolean canBeUnboxed(Class<?> from);
 
-    ReflectedClass<T> boxedType();
+    FluentClass<T> boxedType();
 
-    ReflectedClass<T> unboxedType();
+    FluentClass<T> unboxedType();
 
     /**
      * True if the given object can be assigned to a variable of the type
@@ -166,7 +166,7 @@ public interface ReflectedType<T> extends ReflectedAnnotated {
 
     boolean assignableTo(Class<?> klass);
 
-    ReflectedClass<?> typeArgument(int typeParameter);
+    FluentClass<?> typeArgument(int typeParameter);
 
     /**
      * @return the name of the class under reflection

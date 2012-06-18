@@ -6,7 +6,7 @@ import ch.lambdaj.function.convert.Converter;
 
 import com.google.inject.TypeLiteral;
 
-class ConvertConstructorToReflectedConstructor<T> implements Converter<Constructor<?>, ReflectedConstructor<T>> {
+class ConvertConstructorToReflectedConstructor<T> implements Converter<Constructor<?>, FluentConstructor<T>> {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final TypeLiteral<T> typeLiteral;
 
@@ -23,7 +23,7 @@ class ConvertConstructorToReflectedConstructor<T> implements Converter<Construct
         this(reflectedTypeFactory, TypeLiteral.get(klass));
     }
 
-    @SuppressWarnings("unchecked") @Override public ReflectedConstructor<T> convert(final Constructor<?> from) {
-        return new ReflectedConstructorImpl<T>(reflectedTypeFactory, typeLiteral, (Constructor<T>) from);
+    @SuppressWarnings("unchecked") @Override public FluentConstructor<T> convert(final Constructor<?> from) {
+        return new FluentConstructorImpl<T>(reflectedTypeFactory, typeLiteral, (Constructor<T>) from);
     }
 }

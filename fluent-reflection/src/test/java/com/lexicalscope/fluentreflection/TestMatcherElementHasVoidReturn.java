@@ -6,9 +6,9 @@ import static org.hamcrest.Matchers.equalTo;
 import org.hamcrest.Matcher;
 import org.jmock.Expectations;
 
-public class TestMatcherElementHasVoidReturn extends AbstractTestReflectionMatcher<ReflectedMember> {
+public class TestMatcherElementHasVoidReturn extends AbstractTestReflectionMatcher<FluentMember> {
     @Override
-    protected ReflectionMatcher<ReflectedMember> matcher() {
+    protected ReflectionMatcher<FluentMember> matcher() {
         return hasType((Class<?>) null);
     }
 
@@ -44,7 +44,7 @@ public class TestMatcherElementHasVoidReturn extends AbstractTestReflectionMatch
     }
 
     @Override
-    protected ReflectedMember target() {
+    protected FluentMember target() {
         return method;
     }
 }

@@ -19,5 +19,5 @@ import java.util.List;
  */
 
 interface ReflectedConstructors<T> {
-    List<ReflectedConstructor<T>> constructors();
+    List<FluentConstructor<T>> constructors();
 }

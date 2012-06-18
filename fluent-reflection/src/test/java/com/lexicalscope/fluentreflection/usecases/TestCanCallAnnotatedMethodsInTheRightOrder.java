@@ -15,7 +15,7 @@ import javax.annotation.PreDestroy;
 
 import org.junit.Test;
 
-import com.lexicalscope.fluentreflection.ReflectedMethod;
+import com.lexicalscope.fluentreflection.FluentMethod;
 
 /*
  * Copyright 2011 Tim Wood
@@ -74,7 +74,7 @@ public class TestCanCallAnnotatedMethodsInTheRightOrder {
 
         forEach(
                 object(subject).methods(annotatedWith(PostConstruct.class)),
-                ReflectedMethod.class).callRaw();
+                FluentMethod.class).callRaw();
 
         assertThat(subject.result, contains("afterConstruction", "afterConstructionExtension"));
     }
@@ -85,7 +85,7 @@ public class TestCanCallAnnotatedMethodsInTheRightOrder {
 
         forEach(
                 reverse(object(subject).methods(annotatedWith(PreDestroy.class))),
-                ReflectedMethod.class).callRaw();
+                FluentMethod.class).callRaw();
 
         assertThat(subject.result, contains("beforeDestructionExtension", "beforeDestruction"));
     }

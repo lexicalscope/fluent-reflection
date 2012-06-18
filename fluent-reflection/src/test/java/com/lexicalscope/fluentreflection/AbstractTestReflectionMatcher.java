@@ -16,10 +16,10 @@ import org.junit.Test;
 public abstract class AbstractTestReflectionMatcher<T> {
     @Rule public final JUnitRuleMockery context = new JUnitRuleMockery();
 
-    protected final ReflectedMethod method = context.mock(ReflectedMethod.class);
-    protected final ReflectedConstructor<?> constructor = context.mock(ReflectedConstructor.class);
-    protected final ReflectedClass<?> type = context.mock(ReflectedClass.class);
-    protected final ReflectedMember callable = context.mock(ReflectedMember.class);
+    protected final FluentMethod method = context.mock(FluentMethod.class);
+    protected final FluentConstructor<?> constructor = context.mock(FluentConstructor.class);
+    protected final FluentClass<?> type = context.mock(FluentClass.class);
+    protected final FluentMember callable = context.mock(FluentMember.class);
     private final Description description = new StringDescription();
 
     @Test public final void matcherCanMatch() throws Throwable {
@@ -55,17 +55,17 @@ public abstract class AbstractTestReflectionMatcher<T> {
     protected final void whenMethodHasName(final String methodName) {
         context.checking(new Expectations() {
             {
-                oneOf(method).getName();
+                oneOf(method).name();
                 will(returnValue(methodName));
             }
         });
     }
 
     protected final void whenMethodDeclaredBy(final Class<?> declaringClass) {
-        final ReflectedClass<?> declaringType = context.mock(ReflectedClass.class, "declaringType");
+        final FluentClass<?> declaringType = context.mock(FluentClass.class, "declaringType");
         context.checking(new Expectations() {
             {
-                oneOf(method).declaringClass();
+                oneOf(method).declarer();
                 will(returnValue(declaringType));
 
                 oneOf(declaringType).classUnderReflection();
@@ -75,10 +75,10 @@ public abstract class AbstractTestReflectionMatcher<T> {
     }
 
     protected final void whenMethodHasArguments(final Class<?>... arguments) {
-        final ReflectedClass<?>[] argumentTypes = new ReflectedClass<?>[arguments.length];
+        final FluentClass<?>[] argumentTypes = new FluentClass<?>[arguments.length];
         for (int i = 0; i < argumentTypes.length; i++) {
             argumentTypes[i] =
-                    context.mock(ReflectedClass.class, "argument " + i + ": " + arguments[i].getSimpleName());
+                    context.mock(FluentClass.class, "argument " + i + ": " + arguments[i].getSimpleName());
         }
 
         context.checking(new Expectations() {
@@ -99,7 +99,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
     }
 
     protected final void whenTypeHasInterface(final Class<?> interfac3) {
-        final ReflectedClass<?> interfaceType = context.mock(ReflectedClass.class, "interfaceType");
+        final FluentClass<?> interfaceType = context.mock(FluentClass.class, "interfaceType");
         context.checking(new Expectations() {
             {
                 oneOf(type).interfaces();
@@ -112,7 +112,7 @@ public abstract class AbstractTestReflectionMatcher<T> {
     }
 
     protected final void whenTypeHasSuperclass(final Class<?> klass) {
-        final ReflectedClass<?> superclassType = context.mock(ReflectedClass.class, "superclassType");
+        final FluentClass<?> superclassType = context.mock(FluentClass.class, "superclassType");
         context.checking(new Expectations() {
             {
                 oneOf(type).superclasses();

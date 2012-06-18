@@ -5,19 +5,19 @@ import java.util.List;
 import org.hamcrest.Matcher;
 
 interface ReflectedMembers<T> {
-    List<ReflectedClass<?>> superclassesAndInterfaces(Matcher<? super ReflectedClass<?>> supertypeMatcher);
+    List<FluentClass<?>> superclassesAndInterfaces(Matcher<? super FluentClass<?>> supertypeMatcher);
 
-    List<ReflectedMethod> declaredMethods();
+    List<FluentMethod> declaredMethods();
 
-    List<ReflectedMethod> methods();
-    List<ReflectedMethod> methods(Matcher<? super ReflectedMethod> methodMatcher);
-    ReflectedMethod method(Matcher<? super ReflectedMethod> methodMatcher);
+    List<FluentMethod> methods();
+    List<FluentMethod> methods(Matcher<? super FluentMethod> methodMatcher);
+    FluentMethod method(Matcher<? super FluentMethod> methodMatcher);
 
-    List<ReflectedClass<?>> superclassesAndInterfaces();
+    List<FluentClass<?>> superclassesAndInterfaces();
 
-    List<ReflectedConstructor<T>> constructors();
-    List<ReflectedConstructor<T>> constructors(Matcher<? super ReflectedConstructor<?>> constructorMatcher);
-    ReflectedConstructor<T> constructor(Matcher<? super ReflectedConstructor<?>> constructorMatcher);
+    List<FluentConstructor<T>> constructors();
+    List<FluentConstructor<T>> constructors(Matcher<? super FluentConstructor<?>> constructorMatcher);
+    FluentConstructor<T> constructor(Matcher<? super FluentConstructor<?>> constructorMatcher);
 
     List<ReflectedField> declaredFields();
 

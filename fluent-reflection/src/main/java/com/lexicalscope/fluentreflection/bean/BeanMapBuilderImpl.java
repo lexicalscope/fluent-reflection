@@ -7,8 +7,8 @@ import java.util.Map;
 
 import org.hamcrest.Matcher;
 
-import com.lexicalscope.fluentreflection.ReflectedMember;
-import com.lexicalscope.fluentreflection.ReflectedMethod;
+import com.lexicalscope.fluentreflection.FluentMember;
+import com.lexicalscope.fluentreflection.FluentMethod;
 import com.lexicalscope.fluentreflection.bean.BeanMap.KeySetCalculation;
 import com.lexicalscope.fluentreflection.bean.BeanMap.PropertyNameConvertor;
 
@@ -30,12 +30,12 @@ import com.lexicalscope.fluentreflection.bean.BeanMap.PropertyNameConvertor;
 
 class BeanMapBuilderImpl implements BeanMapBuilder {
     private PropertyNameConvertor propertyNameConvertor = new PropertyNameConvertor() {
-        @Override public String propertyName(final ReflectedMethod from) {
-            return from.propertyName();
+        @Override public String propertyName(final FluentMethod from) {
+            return from.property();
         }
     };
-    private Matcher<ReflectedMember> getterMatcher = isGetter();
-    private Matcher<ReflectedMember> setterMatcher = isSetter();
+    private Matcher<FluentMember> getterMatcher = isGetter();
+    private Matcher<FluentMember> setterMatcher = isSetter();
     private KeySetCalculation keySetCalculation = allProperties();
 
     @Override public Map<String, Object> build(final Object bean) {
@@ -47,12 +47,12 @@ class BeanMapBuilderImpl implements BeanMapBuilder {
         return this;
     }
 
-    @Override public BeanMapBuilder getters(final Matcher<ReflectedMember> getterMatcher) {
+    @Override public BeanMapBuilder getters(final Matcher<FluentMember> getterMatcher) {
         this.getterMatcher = getterMatcher;
         return this;
     }
 
-    @Override public BeanMapBuilder setters(final Matcher<ReflectedMember> setterMatcher) {
+    @Override public BeanMapBuilder setters(final Matcher<FluentMember> setterMatcher) {
         this.setterMatcher = setterMatcher;
         return this;
     }

@@ -25,14 +25,14 @@ import org.hamcrest.Matcher;
  * limitations under the License.
  */
 
-final class ReflectedObjectImpl<T> implements ReflectedObject<T> {
-    private final ReflectedClass<T> reflect;
+final class FluentObjectImpl<T> implements FluentObject<T> {
+    private final FluentClass<T> reflect;
     private final T instance;
     private final ReflectedTypeFactory reflectedTypeFactory;
 
-    public ReflectedObjectImpl(
+    public FluentObjectImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
-            final ReflectedClass<T> reflect,
+            final FluentClass<T> reflect,
             final T instance) {
         this.reflectedTypeFactory = reflectedTypeFactory;
         this.reflect = reflect;
@@ -43,50 +43,50 @@ final class ReflectedObjectImpl<T> implements ReflectedObject<T> {
         return reflect.classUnderReflection();
     }
 
-    @Override public ReflectedClass<T> reflectedClass() {
+    @Override public FluentClass<T> reflectedClass() {
         return reflect;
     }
 
-    @Override public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
-        final ReflectedMethod method = selectFirst(boundMethods(), methodMatcher);
+    @Override public FluentMethod method(final Matcher<? super FluentMethod> methodMatcher) {
+        final FluentMethod method = selectFirst(boundMethods(), methodMatcher);
         if(method == null) {
             throw new MethodNotFoundException(reflect.classUnderReflection(), methodMatcher);
         }
         return method;
     }
 
-    @Override public ReflectedMethod method(final String name) {
+    @Override public FluentMethod method(final String name) {
         return method(hasName(name));
     }
 
-    @Override public List<ReflectedMethod> methods() {
+    @Override public List<FluentMethod> methods() {
         return boundMethods();
     }
 
-    @Override public List<ReflectedMethod> declaredMethods() {
+    @Override public List<FluentMethod> declaredMethods() {
         return boundDeclaredMethods();
     }
 
-    @Override public List<ReflectedMethod> methods(final Matcher<? super ReflectedMethod> methodMatcher) {
+    @Override public List<FluentMethod> methods(final Matcher<? super FluentMethod> methodMatcher) {
         return select(boundMethods(), methodMatcher);
     }
 
-    private List<ReflectedMethod> boundMethods() {
+    private List<FluentMethod> boundMethods() {
         return bind(reflect.methods());
     }
 
-    private List<ReflectedMethod> bind(final List<ReflectedMethod> methods) {
+    private List<FluentMethod> bind(final List<FluentMethod> methods) {
         return convert(
                 select(methods, isNotStatic()),
                 new ConvertReflectedMethodToBoundReflectedMethod(reflectedTypeFactory, instance));
     }
 
-    private List<ReflectedMethod> boundDeclaredMethods() {
+    private List<FluentMethod> boundDeclaredMethods() {
         return bind(reflect.declaredMethods());
     }
 
-    @SuppressWarnings("unchecked") @Override public ReflectedObject<T> call(final String name, final Object ... args) {
-        return (ReflectedObject<T>) method(hasName(name).and(canBeCalledWithArguments(args))).call(args);
+    @SuppressWarnings("unchecked") @Override public FluentObject<T> call(final String name, final Object ... args) {
+        return (FluentObject<T>) method(hasName(name).and(canBeCalledWithArguments(args))).call(args);
     }
 
     @Override public List<ReflectedField> fields(final ReflectionMatcher<? super ReflectedField> fieldMatcher) {
@@ -115,7 +115,7 @@ final class ReflectedObjectImpl<T> implements ReflectedObject<T> {
         return boundFields();
     }
 
-    @Override public ReflectedField field(final ReflectionMatcher<ReflectedMember> fieldMatcher) {
+    @Override public ReflectedField field(final ReflectionMatcher<FluentMember> fieldMatcher) {
         final ReflectedField selectedField = selectFirst(fields(), fieldMatcher);
         if (selectedField == null) {
             throw new FieldNotFoundException(instance.getClass(), fieldMatcher);
@@ -131,16 +131,20 @@ final class ReflectedObjectImpl<T> implements ReflectedObject<T> {
         return reflect.canBeUnboxed(from);
     }
 
-    @Override public ReflectedClass<?> annotation(final Matcher<? super ReflectedClass<?>> annotationMatcher) {
+    @Override public FluentClass<?> annotation(final Matcher<? super FluentClass<?>> annotationMatcher) {
         return reflect.annotation(annotationMatcher);
+    }
+
+    @Override public <A extends Annotation> A annotation(final Class<A> annotationClass) {
+        return reflect.annotation(annotationClass);
     }
 
     @Override public boolean annotatedWith(final Class<? extends Annotation> annotationClass) {
         return reflect.annotatedWith(annotationClass);
     }
 
-    @Override public <A extends Annotation> A annotation(final Class<A> annotationClass) {
-        return reflect.annotation(annotationClass);
+    @Override public boolean annotatedWith(final Matcher<? super FluentClass<?>> annotationMatcher) {
+        return reflect.annotatedWith(annotationMatcher);
     }
 
     @Override public boolean isPrimitive() {
@@ -151,11 +155,11 @@ final class ReflectedObjectImpl<T> implements ReflectedObject<T> {
         return reflect.isUnboxable();
     }
 
-    @Override public ReflectedClass<T> boxedType() {
+    @Override public FluentClass<T> boxedType() {
         return reflect.boxedType();
     }
 
-    @Override public ReflectedClass<T> unboxedType() {
+    @Override public FluentClass<T> unboxedType() {
         return reflect.unboxedType();
     }
 
@@ -167,7 +171,7 @@ final class ReflectedObjectImpl<T> implements ReflectedObject<T> {
         return reflect.assignableTo(klass);
     }
 
-    @Override public ReflectedClass<?> typeArgument(final int typeParameter) {
+    @Override public FluentClass<?> typeArgument(final int typeParameter) {
         return reflect.typeArgument(typeParameter);
     }
 
@@ -183,15 +187,15 @@ final class ReflectedObjectImpl<T> implements ReflectedObject<T> {
         return reflect.type();
     }
 
-    @Override public List<ReflectedClass<?>> interfaces() {
+    @Override public List<FluentClass<?>> interfaces() {
         return reflect.interfaces();
     }
 
-    @Override public List<ReflectedClass<?>> superclasses() {
+    @Override public List<FluentClass<?>> superclasses() {
         return reflect.superclasses();
     }
 
-    @Override public boolean isType(final ReflectionMatcher<ReflectedClass<?>> typeMatcher) {
+    @Override public boolean isType(final ReflectionMatcher<FluentClass<?>> typeMatcher) {
         return reflect.isType(typeMatcher);
     }
 

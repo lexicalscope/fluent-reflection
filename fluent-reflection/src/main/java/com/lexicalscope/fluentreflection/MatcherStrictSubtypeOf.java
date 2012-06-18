@@ -18,7 +18,7 @@ import org.hamcrest.Description;
  * limitations under the License.
  */
 
-final class MatcherStrictSubtypeOf extends ReflectionMatcher<ReflectedClass<?>> {
+final class MatcherStrictSubtypeOf extends ReflectionMatcher<FluentClass<?>> {
     private final Class<?> klass;
 
     public MatcherStrictSubtypeOf(final Class<?> klass) {
@@ -29,7 +29,7 @@ final class MatcherStrictSubtypeOf extends ReflectionMatcher<ReflectedClass<?>> 
         description.appendText("strict subtype of ").appendValue(klass.getName());
     }
 
-    @Override protected boolean matchesSafely(final ReflectedClass<?> item) {
+    @Override protected boolean matchesSafely(final FluentClass<?> item) {
         return !item.classUnderReflection().equals(klass) && item.assignableTo(klass);
     }
 

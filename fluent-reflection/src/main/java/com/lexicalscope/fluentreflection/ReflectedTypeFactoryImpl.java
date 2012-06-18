@@ -22,35 +22,35 @@ import com.google.inject.TypeLiteral;
  */
 
 final class ReflectedTypeFactoryImpl implements ReflectedTypeFactory {
-    @Override public <T> ReflectedClass<T> reflect(final Class<T> klass) {
+    @Override public <T> FluentClass<T> reflect(final Class<T> klass) {
         return reflect(TypeLiteral.get(klass));
     }
 
-    @Override public <T> ReflectedClass<T> reflect(final TypeLiteral<T> typeLiteral) {
-        return new ReflectedClassImpl<T>(this, typeLiteral, new ReflectedMembersImpl<T>(this, typeLiteral));
+    @Override public <T> FluentClass<T> reflect(final TypeLiteral<T> typeLiteral) {
+        return new FluentClassImpl<T>(this, typeLiteral, new ReflectedMembersImpl<T>(this, typeLiteral));
     }
 
-    @Override public <T> ReflectedObject<T> reflect(final Class<T> klass, final T instance) {
+    @Override public <T> FluentObject<T> reflect(final Class<T> klass, final T instance) {
         return reflect(TypeLiteral.get(klass), instance);
     }
 
-    @Override public <T> ReflectedObject<T> reflect(final TypeLiteral<T> klass, final T instance) {
-        return new ReflectedObjectImpl<T>(this, reflect(klass), instance);
+    @Override public <T> FluentObject<T> reflect(final TypeLiteral<T> klass, final T instance) {
+        return new FluentObjectImpl<T>(this, reflect(klass), instance);
     }
 
-    @Override public ReflectedMethod method(final Method method) {
+    @Override public FluentMethod method(final Method method) {
         return method(TypeLiteral.get(method.getDeclaringClass()), method);
     }
 
-    @Override public ReflectedMethod method(final TypeLiteral<?> klass, final Method method) {
-        return new ReflectedMethodImpl(this, reflect(klass), klass, method);
+    @Override public FluentMethod method(final TypeLiteral<?> klass, final Method method) {
+        return new FluentMethodImpl(this, reflect(klass), klass, method);
     }
 
-    public ReflectedMethod method(final Method method, final Object instance) {
-        return new BoundReflectedMethodImpl(this, method(method), instance);
+    public FluentMethod method(final Method method, final Object instance) {
+        return new BoundFluentMethodImpl(this, method(method), instance);
     }
 
     @Override public ReflectedField field(final TypeLiteral<?> klass, final Field field) {
-        return new ReflectedFieldImpl(this, reflect(klass), klass, field);
+        return new FluentFieldImpl(this, reflect(klass), klass, field);
     }
 }

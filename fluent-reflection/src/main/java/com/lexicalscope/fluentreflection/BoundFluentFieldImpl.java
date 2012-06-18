@@ -18,11 +18,11 @@ import java.lang.reflect.Field;
  * limitations under the License.
  */
 
-class BoundReflectedFieldImpl extends BoundReflectedMemberImpl implements ReflectedField {
+class BoundFluentFieldImpl extends BoundFluentMemberImpl implements ReflectedField {
     private final ReflectedField field;
     private final Object instance;
 
-    public BoundReflectedFieldImpl(
+    public BoundFluentFieldImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
             final ReflectedField field,
             final Object instance) {
@@ -31,8 +31,8 @@ class BoundReflectedFieldImpl extends BoundReflectedMemberImpl implements Reflec
         this.instance = instance;
     }
 
-    @Override public Field memberUnderReflection() {
-        return field.memberUnderReflection();
+    @Override public Field member() {
+        return field.member();
     }
 
     @Override public String toString() {

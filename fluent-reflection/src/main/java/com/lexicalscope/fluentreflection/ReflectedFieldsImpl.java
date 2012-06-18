@@ -31,7 +31,7 @@ final class ReflectedFieldsImpl<T> implements ReflectedFields<T> {
             final List<ReflectedField> result = new ArrayList<ReflectedField>();
 
             result.addAll(declaredFields());
-            for (final ReflectedClass<?> klassToReflect : allTypes.superclassesAndInterfaces()) {
+            for (final FluentClass<?> klassToReflect : allTypes.superclassesAndInterfaces()) {
                 result.addAll(klassToReflect.declaredFields());
             }
 

@@ -24,46 +24,46 @@ final class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
         this.fields = new ReflectedFieldsImpl<T>(reflectedTypeFactory, typeLiteral, superclassesAndInterfaces);
     }
 
-    @Override public List<ReflectedConstructor<T>> constructors() {
+    @Override public List<FluentConstructor<T>> constructors() {
         return constructors.constructors();
     }
 
-    @Override public List<ReflectedMethod> methods() {
+    @Override public List<FluentMethod> methods() {
         return methods.methods();
     }
 
-    @Override public List<ReflectedMethod> declaredMethods() {
+    @Override public List<FluentMethod> declaredMethods() {
         return methods.declaredMethods();
     }
 
-    @Override public List<ReflectedClass<?>> superclassesAndInterfaces() {
+    @Override public List<FluentClass<?>> superclassesAndInterfaces() {
         return superclassesAndInterfaces.superclassesAndInterfaces();
     }
 
-    @Override public List<ReflectedMethod> methods(final Matcher<? super ReflectedMethod> methodMatcher) {
+    @Override public List<FluentMethod> methods(final Matcher<? super FluentMethod> methodMatcher) {
         return select(methods(), methodMatcher);
     }
 
-    @Override public ReflectedMethod method(final Matcher<? super ReflectedMethod> methodMatcher) {
-        final ReflectedMethod selectedMethod = selectFirst(methods(), methodMatcher);
+    @Override public FluentMethod method(final Matcher<? super FluentMethod> methodMatcher) {
+        final FluentMethod selectedMethod = selectFirst(methods(), methodMatcher);
         if (selectedMethod == null) {
             throw new MethodNotFoundException(klass, methodMatcher);
         }
         return selectedMethod;
     }
 
-    @Override public List<ReflectedConstructor<T>> constructors(
-            final Matcher<? super ReflectedConstructor<?>> constructorMatcher) {
+    @Override public List<FluentConstructor<T>> constructors(
+            final Matcher<? super FluentConstructor<?>> constructorMatcher) {
         return select(constructors(), constructorMatcher);
     }
 
-    @Override public ReflectedConstructor<T> constructor(
-            final Matcher<? super ReflectedConstructor<?>> constructorMatcher) {
+    @Override public FluentConstructor<T> constructor(
+            final Matcher<? super FluentConstructor<?>> constructorMatcher) {
         return selectFirst(constructors(), constructorMatcher);
     }
 
-    @Override public List<ReflectedClass<?>> superclassesAndInterfaces(
-            final Matcher<? super ReflectedClass<?>> supertypeMatcher) {
+    @Override public List<FluentClass<?>> superclassesAndInterfaces(
+            final Matcher<? super FluentClass<?>> supertypeMatcher) {
         return select(superclassesAndInterfaces(), supertypeMatcher);
     }
 

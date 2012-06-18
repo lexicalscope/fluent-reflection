@@ -41,7 +41,7 @@ public final class ReflectionMatchers {
      *
      * @return true iff the argument is a prefix of the name of the callable
      */
-    public static ReflectionMatcher<ReflectedMember> hasNameStartingWith(final String prefix) {
+    public static ReflectionMatcher<FluentMember> hasNameStartingWith(final String prefix) {
         return new MatcherHasNameStartingWith(prefix);
     }
 
@@ -53,7 +53,7 @@ public final class ReflectionMatchers {
      *
      * @return true iff the argument is a suffix of the name of the callable
      */
-    public static ReflectionMatcher<ReflectedMember> hasNameEndingWith(final String suffix) {
+    public static ReflectionMatcher<FluentMember> hasNameEndingWith(final String suffix) {
         return new MatcherHasNameEndingWith(suffix);
     }
 
@@ -66,7 +66,7 @@ public final class ReflectionMatchers {
      * @return true iff the argument is a regular expression matching the name
      *         of the callable
      */
-    public static ReflectionMatcher<ReflectedMember> hasNameMatching(final String regex) {
+    public static ReflectionMatcher<FluentMember> hasNameMatching(final String regex) {
         return new MatcherHasNameMatching(regex);
     }
 
@@ -79,7 +79,7 @@ public final class ReflectionMatchers {
      * @return true iff the argument is contained within the name of the
      *         callable
      */
-    public static ReflectionMatcher<ReflectedMember> hasNameContaining(final CharSequence substring) {
+    public static ReflectionMatcher<FluentMember> hasNameContaining(final CharSequence substring) {
         return new MatcherHasNameContaining(substring);
     }
 
@@ -91,11 +91,11 @@ public final class ReflectionMatchers {
      *
      * @return true iff the argument is equal to the name of the callable
      */
-    public static ReflectionMatcher<ReflectedMember> hasName(final String name) {
+    public static ReflectionMatcher<FluentMember> hasName(final String name) {
         return new MatcherNamed(name);
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasPropertyName(final String name) {
+    public static ReflectionMatcher<FluentMember> hasPropertyName(final String name) {
         return new MatcherPropertyName(name);
     }
 
@@ -107,70 +107,70 @@ public final class ReflectionMatchers {
      *
      * @return true iff the callable is declared by the argument
      */
-    public static ReflectionMatcher<ReflectedMember> declaredBy(final Class<?> declaringClass) {
+    public static ReflectionMatcher<FluentMember> declaredBy(final Class<?> declaringClass) {
         return new MatcherDeclaredBy(reflectingOn(declaringClass));
     }
 
-    public static ReflectionMatcher<ReflectedClass<?>> hasNoInterfaces() {
+    public static ReflectionMatcher<FluentClass<?>> hasNoInterfaces() {
         return new MatcherHasNoInterfaces();
     }
 
-    public static ReflectionMatcher<ReflectedClass<?>> hasNoSuperclasses() {
+    public static ReflectionMatcher<FluentClass<?>> hasNoSuperclasses() {
         return new MatcherHasNoSuperclasses();
     }
 
-    public static ReflectionMatcher<ReflectedClass<?>> hasInterface(final Class<?> interfac3) {
+    public static ReflectionMatcher<FluentClass<?>> hasInterface(final Class<?> interfac3) {
         return new MatcherHasInterface(interfac3);
     }
 
-    public static ReflectionMatcher<ReflectedClass<?>> isAnInterface() {
+    public static ReflectionMatcher<FluentClass<?>> isAnInterface() {
         return new MatcherIsInterface();
     }
 
-    public static ReflectionMatcher<ReflectedClass<?>> hasSimpleName(final String simpleName) {
+    public static ReflectionMatcher<FluentClass<?>> hasSimpleName(final String simpleName) {
         return new MatcherHasSimpleName(equalTo(simpleName));
     }
 
-    public static ReflectionMatcher<ReflectedClass<?>> anyReflectedType() {
+    public static ReflectionMatcher<FluentClass<?>> anyReflectedType() {
         return new MatcherAnyReflectedType();
     }
 
-    public static ReflectionMatcher<ReflectedClass<?>> reflectingOn(final Class<?> klass) {
+    public static ReflectionMatcher<FluentClass<?>> reflectingOn(final Class<?> klass) {
         return new MatcherReflectingOn(klass);
     }
 
-    public static ReflectionMatcher<ReflectedClass<?>> assignableFrom(final Class<?> klass) {
+    public static ReflectionMatcher<FluentClass<?>> assignableFrom(final Class<?> klass) {
         return new MatcherAssignableFrom(klass);
     }
 
-    public static ReflectionMatcher<ReflectedClass<?>> assignableFrom(final ReflectedClass<?> klass) {
+    public static ReflectionMatcher<FluentClass<?>> assignableFrom(final FluentClass<?> klass) {
         return new MatcherAssignableFrom(klass);
     }
 
-    public static ReflectionMatcher<ReflectedConstructor<?>> reflectingOnConstructor(
+    public static ReflectionMatcher<FluentConstructor<?>> reflectingOnConstructor(
             final Constructor<?> constructor) {
         return new MatcherConstructorReflectingOn(constructor);
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasArgumentCount(final int argumentCount) {
+    public static ReflectionMatcher<FluentMember> hasArgumentCount(final int argumentCount) {
         return new MatcherArgumentCount(argumentCount);
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasNoArguments() {
+    public static ReflectionMatcher<FluentMember> hasNoArguments() {
         return hasArguments();
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasArguments(final Class<?>... argTypes) {
+    public static ReflectionMatcher<FluentMember> hasArguments(final Class<?>... argTypes) {
         return hasArgumentList(asList(argTypes));
     }
 
-    public static ReflectionMatcher<ReflectedMember> canBeCalledWithArguments(final Object ... args) {
-        final List<Matcher<? super ReflectedClass<?>>> types = new ArrayList<Matcher<? super ReflectedClass<?>>>();
+    public static ReflectionMatcher<FluentMember> canBeCalledWithArguments(final Object ... args) {
+        final List<Matcher<? super FluentClass<?>>> types = new ArrayList<Matcher<? super FluentClass<?>>>();
         for (final Object object : args) {
             if(object == null) {
                 types.add(anyReflectedType());
             } else {
-                final ReflectedClass<? extends Object> argumentType = type(object.getClass());
+                final FluentClass<? extends Object> argumentType = type(object.getClass());
                 if(argumentType.isPrimitive()) {
                     types.add(assignableFrom(argumentType).or(assignableFrom(argumentType.boxedType())));
                 } else if(argumentType.isUnboxable()) {
@@ -183,65 +183,65 @@ public final class ReflectionMatchers {
         return hasArgumentListMatching(types);
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasArgumentList(final List<Class<?>> argTypes) {
+    public static ReflectionMatcher<FluentMember> hasArgumentList(final List<Class<?>> argTypes) {
         return new MatcherArgumentTypes(convert(argTypes, new ConvertClassToReflectedTypeAssignableMatcher()));
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasArgumentsMatching(
-            final Matcher<? super ReflectedClass<?>>... argTypes) {
+    public static ReflectionMatcher<FluentMember> hasArgumentsMatching(
+            final Matcher<? super FluentClass<?>>... argTypes) {
         return hasArgumentListMatching(asList(argTypes));
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasArgumentListMatching(
-            final List<Matcher<? super ReflectedClass<?>>> argTypes) {
+    public static ReflectionMatcher<FluentMember> hasArgumentListMatching(
+            final List<Matcher<? super FluentClass<?>>> argTypes) {
         return new MatcherArgumentTypes(argTypes);
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasReflectedArguments(
-            final ReflectedClass<?>... argTypes) {
+    public static ReflectionMatcher<FluentMember> hasReflectedArguments(
+            final FluentClass<?>... argTypes) {
         return hasReflectedArgumentList(asList(argTypes));
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasReflectedArgumentList(
-            final List<ReflectedClass<?>> argTypes) {
+    public static ReflectionMatcher<FluentMember> hasReflectedArgumentList(
+            final List<FluentClass<?>> argTypes) {
         return new MatcherArgumentTypes(convert(argTypes, new ConvertReflectedTypeToReflectedTypeAssignableMatcher()));
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasType(final Class<?> returnType) {
+    public static ReflectionMatcher<FluentMember> hasType(final Class<?> returnType) {
         if (returnType == null) {
             return hasVoidType();
         }
         return new MatcherReturnType(new ConvertClassToReflectedTypeAssignableMatcher().convert(returnType));
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasVoidType() {
+    public static ReflectionMatcher<FluentMember> hasVoidType() {
         return new MatcherReturnType(reflectingOn(void.class));
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasNonVoidType() {
+    public static ReflectionMatcher<FluentMember> hasNonVoidType() {
         return not(hasVoidType());
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasType(final ReflectedClass<?> returnType) {
+    public static ReflectionMatcher<FluentMember> hasType(final FluentClass<?> returnType) {
         if (returnType == null) {
             return hasVoidType();
         }
         return new MatcherReturnType(new ConvertReflectedTypeToReflectedTypeAssignableMatcher().convert(returnType));
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasType(final Matcher<? super ReflectedClass<?>> returnType) {
+    public static ReflectionMatcher<FluentMember> hasType(final Matcher<? super FluentClass<?>> returnType) {
         return new MatcherReturnType(returnType);
     }
 
-    public static ReflectionMatcher<ReflectedAnnotated> annotatedWith(final Class<? extends Annotation> annotation) {
+    public static ReflectionMatcher<FluentAnnotated> annotatedWith(final Class<? extends Annotation> annotation) {
         return new MatcherCallableAnnotatedWith(annotation);
     }
 
-    public static ReflectionMatcher<ReflectedMember> isStatic() {
+    public static ReflectionMatcher<FluentMember> isStatic() {
         return new MatcherIsStatic();
     }
 
-    public static ReflectionMatcher<ReflectedMember> isNotStatic() {
+    public static ReflectionMatcher<FluentMember> isNotStatic() {
         return not(isStatic());
     }
 
@@ -257,56 +257,56 @@ public final class ReflectionMatchers {
         };
     }
 
-    public static ReflectionMatcher<ReflectedMember> isQuery() {
+    public static ReflectionMatcher<FluentMember> isQuery() {
         return hasNoArguments().and(not(hasVoidType()));
     }
 
-    public static ReflectionMatcher<ReflectedMember> isGetter() {
+    public static ReflectionMatcher<FluentMember> isGetter() {
         return hasNameStartingWith("get").and(isQuery());
     }
 
-    public static ReflectionMatcher<ReflectedMember> isMutator() {
+    public static ReflectionMatcher<FluentMember> isMutator() {
         return hasArgumentsMatching(anything()).and(
                 not(hasNonVoidType()));
     }
 
-    public static ReflectionMatcher<ReflectedMember> isSetter() {
+    public static ReflectionMatcher<FluentMember> isSetter() {
         return hasNameStartingWith("set").and(isMutator());
     }
 
-    public static ReflectionMatcher<ReflectedMember> isExistence() {
+    public static ReflectionMatcher<FluentMember> isExistence() {
         return isQuery().
                 and(hasType(boolean.class).or(hasType(Boolean.class))).
                 and(hasNameStartingWith("is").or(hasNameStartingWith("has")));
     }
 
-    public static ReflectionMatcher<ReflectedMember> isHashCodeMethod() {
+    public static ReflectionMatcher<FluentMember> isHashCodeMethod() {
         return hasNoArguments().
                 and(hasType(int.class)).
                 and(hasName("hashCode"));
     }
 
-    public static ReflectionMatcher<ReflectedMember> isEqualsMethod() {
+    public static ReflectionMatcher<FluentMember> isEqualsMethod() {
         return hasArguments(Object.class).
                 and(hasType(boolean.class)).
                 and(hasName("equals"));
     }
 
-    public static ReflectionMatcher<ReflectedMember> isToStringMethod() {
+    public static ReflectionMatcher<FluentMember> isToStringMethod() {
         return hasNoArguments().
                 and(hasType(String.class)).
                 and(hasName("toString"));
     }
 
-    public static ReflectionMatcher<ReflectedMember> isPublicMethod() {
+    public static ReflectionMatcher<FluentMember> isPublicMethod() {
         return new MatcherPublic();
     }
 
-    public static Matcher<? super ReflectedMember> isDeclaredByStrictSubtypeOf(final Class<?> klass) {
+    public static Matcher<? super FluentMember> isDeclaredByStrictSubtypeOf(final Class<?> klass) {
         return new MatcherDeclaredBy(isStrictSubtypeOf(klass));
     }
 
-    public static Matcher<? super ReflectedClass<?>> isStrictSubtypeOf(final Class<?> klass) {
+    public static Matcher<? super FluentClass<?>> isStrictSubtypeOf(final Class<?> klass) {
         return new MatcherStrictSubtypeOf(klass);
     }
 
@@ -314,11 +314,11 @@ public final class ReflectionMatchers {
         return new MatcherFieldReflectingOn(field);
     }
 
-    public static ReflectionMatcher<ReflectedMember> isFinal() {
+    public static ReflectionMatcher<FluentMember> isFinal() {
         return new MatcherFinalMember();
     }
 
-    public static ReflectionMatcher<ReflectedMember> hasVisibility(final Visibility visibility) {
+    public static ReflectionMatcher<FluentMember> hasVisibility(final Visibility visibility) {
         return new MatcherVisibility(visibility);
     }
 }

@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.hamcrest.Matcher;
 
-public interface ReflectedClass<T> extends ReflectedType<T> {
+public interface FluentClass<T> extends FluentType<T> {
     /**
      * True iff the type is an interface
      *
@@ -37,7 +37,7 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
      *
      * @return first matching the matcher
      */
-    ReflectedClass<?> asType(Matcher<ReflectedClass<?>> typeMatcher);
+    FluentClass<?> asType(Matcher<FluentClass<?>> typeMatcher);
 
     /**
      * Construct an object of the type under reflection
@@ -51,7 +51,7 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
      *
      * @return a reflection wrapper around the constructed object
      */
-    ReflectedObject<T> construct(Object... args);
+    FluentObject<T> construct(Object... args);
 
     /**
      * Find all constructors matching the supplied matcher
@@ -61,7 +61,7 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
      *
      * @return all constructors matching the supplied matcher
      */
-    List<ReflectedConstructor<T>> constructors(Matcher<? super ReflectedConstructor<?>> constructorMatcher);
+    List<FluentConstructor<T>> constructors(Matcher<? super FluentConstructor<?>> constructorMatcher);
 
     /**
      * Find the first constructor method matching the supplied matcher
@@ -71,7 +71,7 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
      *
      * @return The constructor matching the supplied matcher
      */
-    ReflectedConstructor<T> constructor(Matcher<? super ReflectedConstructor<?>> constructorMatcher);
+    FluentConstructor<T> constructor(Matcher<? super FluentConstructor<?>> constructorMatcher);
 
     /**
      * Find the first static method matching the supplied matcher
@@ -81,5 +81,5 @@ public interface ReflectedClass<T> extends ReflectedType<T> {
      *
      * @return The method matching the supplied matcher
      */
-    ReflectedMethod staticMethod(Matcher<? super ReflectedMethod> methodNamed);
+    FluentMethod staticMethod(Matcher<? super FluentMethod> methodNamed);
 }

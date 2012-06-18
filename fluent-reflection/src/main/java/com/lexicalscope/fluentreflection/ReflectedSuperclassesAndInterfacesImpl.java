@@ -8,7 +8,7 @@ import com.google.inject.TypeLiteral;
 
 final class ReflectedSuperclassesAndInterfacesImpl<T> implements ReflectedSuperclassesAndInterfaces<T> {
     private final ReflectedTypeFactory reflectedTypeFactory;
-    private List<ReflectedClass<?>> interfacesAndSuperClass;
+    private List<FluentClass<?>> interfacesAndSuperClass;
     private final TypeLiteral<T> typeLiteral;
 
     ReflectedSuperclassesAndInterfacesImpl(
@@ -18,7 +18,7 @@ final class ReflectedSuperclassesAndInterfacesImpl<T> implements ReflectedSuperc
         this.typeLiteral = typeLiteral;
     }
 
-    @Override public List<ReflectedClass<?>> superclassesAndInterfaces() {
+    @Override public List<FluentClass<?>> superclassesAndInterfaces() {
         if (interfacesAndSuperClass == null) {
             interfacesAndSuperClass =
                     unmodifiableList(new TypeHierarchyCalculation(reflectedTypeFactory)

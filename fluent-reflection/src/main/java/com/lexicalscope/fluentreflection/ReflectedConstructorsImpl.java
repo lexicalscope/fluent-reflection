@@ -16,7 +16,7 @@ final class ReflectedConstructorsImpl<T> implements ReflectedConstructors<T> {
         this.typeLiteral = typeLiteral;
     }
 
-    @Override public List<ReflectedConstructor<T>> constructors() {
+    @Override public List<FluentConstructor<T>> constructors() {
         return unmodifiableList(convert(
                 typeLiteral.getRawType().getConstructors(),
                 new ConvertConstructorToReflectedConstructor<T>(

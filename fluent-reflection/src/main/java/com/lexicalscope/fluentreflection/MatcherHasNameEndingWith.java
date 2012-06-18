@@ -5,7 +5,7 @@ package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
-final class MatcherHasNameEndingWith extends ReflectionMatcher<ReflectedMember> {
+final class MatcherHasNameEndingWith extends ReflectionMatcher<FluentMember> {
     private final String suffix;
 
     MatcherHasNameEndingWith(final String suffix) {
@@ -13,8 +13,8 @@ final class MatcherHasNameEndingWith extends ReflectionMatcher<ReflectedMember> 
     }
 
     @Override
-    public boolean matchesSafely(final ReflectedMember arg) {
-        return arg.getName().endsWith(suffix);
+    public boolean matchesSafely(final FluentMember arg) {
+        return arg.name().endsWith(suffix);
     }
 
     @Override

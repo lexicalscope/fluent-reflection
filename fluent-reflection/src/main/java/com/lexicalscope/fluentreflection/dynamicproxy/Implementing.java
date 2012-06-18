@@ -20,9 +20,9 @@ import com.google.inject.TypeLiteral;
 import com.lexicalscope.fluentreflection.FluentReflection;
 import com.lexicalscope.fluentreflection.IllegalAccessRuntimeException;
 import com.lexicalscope.fluentreflection.InvocationTargetRuntimeException;
-import com.lexicalscope.fluentreflection.ReflectedMember;
-import com.lexicalscope.fluentreflection.ReflectedClass;
-import com.lexicalscope.fluentreflection.ReflectedMethod;
+import com.lexicalscope.fluentreflection.FluentMember;
+import com.lexicalscope.fluentreflection.FluentClass;
+import com.lexicalscope.fluentreflection.FluentMethod;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 import com.lexicalscope.fluentreflection.SecurityException;
 
@@ -52,7 +52,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
     }
 
     private static class MethodInvokationContext {
-        private final ReflectedMethod method;
+        private final FluentMethod method;
         private final Object[] args;
         public Object result;
         private final Object proxy;
@@ -79,8 +79,8 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
     private final ThreadLocal<MethodInvokationContext> methodInvokationContext =
             new ThreadLocal<MethodInvokationContext>();
 
-    private final Map<Matcher<? super ReflectedMethod>, MethodBody> registeredMethodHandlers =
-            new LinkedHashMap<Matcher<? super ReflectedMethod>, MethodBody>();
+    private final Map<Matcher<? super FluentMethod>, MethodBody> registeredMethodHandlers =
+            new LinkedHashMap<Matcher<? super FluentMethod>, MethodBody>();
 
     private final TypeLiteral<?> typeLiteral;
 
@@ -94,7 +94,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         registerDeclaredMethods();
     }
 
-    public Implementing(final ReflectedClass<?> klass) {
+    public Implementing(final FluentClass<?> klass) {
         typeLiteral = TypeLiteral.get(klass.type());
         registerDeclaredMethods();
     }
@@ -108,7 +108,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
     }
 
     private void registerDeclaredMethods() {
-        for (final ReflectedMethod reflectedMethod : object(this).methods(
+        for (final FluentMethod reflectedMethod : object(this).methods(
                 isPublicMethod().and(isDeclaredByStrictSubtypeOf(Implementing.class)))) {
             if (reflectedMethod.argumentCount() == 0) {
                 registeredMethodHandlers.put(
@@ -125,7 +125,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
             } else {
                 registeredMethodHandlers.put(
                         matcherForMethodSignature(reflectedMethod),
-                        new MethodInvoker(this, reflectedMethod.memberUnderReflection()));
+                        new MethodInvoker(this, reflectedMethod.member()));
             }
         }
     }
@@ -137,7 +137,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
             methodInvokationContext.set(new MethodInvokationContext(proxy, method, args));
             try {
                 MethodBody defaultHandler = null;
-                for (final Entry<Matcher<? super ReflectedMethod>, MethodBody> registeredMethodHandler : registeredMethodHandlers
+                for (final Entry<Matcher<? super FluentMethod>, MethodBody> registeredMethodHandler : registeredMethodHandlers
                         .entrySet()) {
                     if (registeredMethodHandler.getKey().matches(methodInvokationContext.get().method)) {
                         final MethodBody registeredImplementation = registeredMethodHandler.getValue();
@@ -175,7 +175,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         return typeLiteral.getRawType();
     }
 
-    public final MethodBinding<T> whenProxying(final Matcher<? super ReflectedMethod> methodMatcher) {
+    public final MethodBinding<T> whenProxying(final Matcher<? super FluentMethod> methodMatcher) {
         if (proxyingMethod.get())
         {
             if (!methodMatcher.matches(methodInvokationContext.get().method)) {
@@ -206,30 +206,30 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
     }
 
     public final void matchingSignature(final QueryMethod queryMethod) {
-        final ReflectedMethod userDefinedMethod = type(queryMethod.getClass()).methods().get(0);
+        final FluentMethod userDefinedMethod = type(queryMethod.getClass()).methods().get(0);
 
         whenProxying(matcherForMethodSignature(userDefinedMethod)).execute(queryMethod);
     }
 
-    private ReflectionMatcher<ReflectedMember> matcherForMethodSignature(final ReflectedMethod userDefinedMethod) {
-        final List<ReflectedClass<?>> argumentTypes =
-                new ArrayList<ReflectedClass<?>>(userDefinedMethod.argumentTypes());
+    private ReflectionMatcher<FluentMember> matcherForMethodSignature(final FluentMethod userDefinedMethod) {
+        final List<FluentClass<?>> argumentTypes =
+                new ArrayList<FluentClass<?>>(userDefinedMethod.argumentTypes());
 
-        final ReflectionMatcher<ReflectedMember> matchArguments =
+        final ReflectionMatcher<FluentMember> matchArguments =
                 hasReflectedArgumentList(argumentTypes);
 
-        final ReflectionMatcher<ReflectedMember> matchReturnType =
+        final ReflectionMatcher<FluentMember> matchReturnType =
                 hasType(userDefinedMethod.type());
 
-        final ReflectionMatcher<ReflectedMember> matcher = matchArguments.and(matchReturnType);
+        final ReflectionMatcher<FluentMember> matcher = matchArguments.and(matchReturnType);
         return matcher;
     }
 
     public final String methodName() {
-        return methodInvokationContext.get().method.getName();
+        return methodInvokationContext.get().method.name();
     }
 
-    public final ReflectedMethod method() {
+    public final FluentMethod method() {
         return methodInvokationContext.get().method;
     }
 

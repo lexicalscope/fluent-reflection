@@ -11,9 +11,9 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import com.lexicalscope.fluentreflection.FieldNotFoundException;
-import com.lexicalscope.fluentreflection.ReflectedClass;
+import com.lexicalscope.fluentreflection.FluentClass;
 import com.lexicalscope.fluentreflection.ReflectedField;
-import com.lexicalscope.fluentreflection.ReflectedObject;
+import com.lexicalscope.fluentreflection.FluentObject;
 import com.lexicalscope.fluentreflection.ReflectionRuntimeException;
 
 
@@ -59,7 +59,7 @@ public class TestReflectedClassFields {
     }
 
     @Test public void canWriteField() throws SecurityException, NoSuchFieldException {
-        final ReflectedObject<Fields> object = object(new Fields());
+        final FluentObject<Fields> object = object(new Fields());
         final ReflectedField field = object.field(hasName("publicField"));
 
         field.callRaw("value");
@@ -153,7 +153,7 @@ public class TestReflectedClassFields {
     }
 
     @Test public void cannotReadFieldWithoutInstance() throws SecurityException, NoSuchFieldException {
-        final ReflectedClass<Fields> object = type(Fields.class);
+        final FluentClass<Fields> object = type(Fields.class);
         final ReflectedField field = object.field(hasName("publicField"));
 
         exception.expect(ReflectionRuntimeException.class);
@@ -162,7 +162,7 @@ public class TestReflectedClassFields {
     }
 
     @Test public void cannotCallFieldWithTooManyArguments() throws SecurityException, NoSuchFieldException {
-        final ReflectedClass<Fields> object = type(Fields.class);
+        final FluentClass<Fields> object = type(Fields.class);
         final ReflectedField field = object.field(hasName("publicField"));
 
         exception.expect(ReflectionRuntimeException.class);

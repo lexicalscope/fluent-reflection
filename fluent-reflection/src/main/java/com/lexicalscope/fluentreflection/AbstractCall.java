@@ -1,12 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
-import com.google.inject.TypeLiteral;
-
 /*
- * Copyright 2011 Tim Wood
+ * Copyright 2012 Tim Wood
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,18 +16,18 @@ import com.google.inject.TypeLiteral;
  * limitations under the License.
  */
 
-interface ReflectedTypeFactory {
-    <T> FluentClass<T> reflect(Class<T> klass);
+abstract class AbstractCall<S> implements Call<S> {
+    private final ReflectedTypeFactory reflectedTypeFactory;
 
-    <T> FluentClass<T> reflect(TypeLiteral<T> typeLiteral);
+    public AbstractCall(final ReflectedTypeFactory reflectedTypeFactory) {
+        this.reflectedTypeFactory = reflectedTypeFactory;
+    }
 
-    <T> FluentObject<T> reflect(Class<T> klass, T instance);
-
-    <T> FluentObject<T> reflect(TypeLiteral<T> klass, T instance);
-
-    FluentMethod method(Method method);
-
-    FluentMethod method(TypeLiteral<?> klass, Method method);
-
-    ReflectedField field(TypeLiteral<?> klass, Field method);
+    @SuppressWarnings({ "unchecked", "rawtypes" }) @Override public FluentObject<S> call(final Object... args) {
+        final S result = callRaw(args);
+        if(result == null) {
+            return null;
+        }
+        return reflectedTypeFactory.reflect((Class) result.getClass(), result);
+    }
 }

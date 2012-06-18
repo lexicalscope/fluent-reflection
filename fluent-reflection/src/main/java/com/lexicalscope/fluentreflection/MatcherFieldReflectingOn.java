@@ -32,6 +32,6 @@ final class MatcherFieldReflectingOn extends ReflectionMatcher<ReflectedField>{
     }
 
     @Override protected boolean matchesSafely(final ReflectedField item) {
-        return item.memberUnderReflection().equals(field);
+        return item.member().equals(field);
     }
 }

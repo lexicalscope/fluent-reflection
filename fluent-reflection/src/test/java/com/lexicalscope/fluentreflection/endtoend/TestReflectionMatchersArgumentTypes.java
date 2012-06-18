@@ -30,7 +30,7 @@ public class TestReflectionMatchersArgumentTypes {
 
     @Test public void canMatchNoArguments() throws SecurityException, NoSuchMethodException {
         assertThat(
-                type(A.class).method(hasArguments()).memberUnderReflection(),
+                type(A.class).method(hasArguments()).member(),
                 equalTo(A.class.getMethod("method")));
     }
 }

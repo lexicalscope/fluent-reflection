@@ -17,13 +17,13 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License.
  */
 
-public interface ReflectedObject<T> extends ReflectedType<T> {
+public interface FluentObject<T> extends FluentType<T> {
     /**
      * get the static reflection information about the type of this object
      *
      * @return the static reflection information about the type of this object
      */
-    ReflectedClass<T> reflectedClass();
+    FluentClass<T> reflectedClass();
 
     /**
      * The value under reflection

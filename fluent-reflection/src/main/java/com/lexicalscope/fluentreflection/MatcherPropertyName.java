@@ -18,7 +18,7 @@ import org.hamcrest.Description;
  * limitations under the License.
  */
 
-final class MatcherPropertyName extends ReflectionMatcher<ReflectedMember> {
+final class MatcherPropertyName extends ReflectionMatcher<FluentMember> {
     private final String propertyName;
 
     public MatcherPropertyName(final String propertyName) {
@@ -29,7 +29,7 @@ final class MatcherPropertyName extends ReflectionMatcher<ReflectedMember> {
         description.appendText("member with property name ").appendValue(propertyName);
     }
 
-    @Override protected boolean matchesSafely(final ReflectedMember item) {
-        return item.propertyName().equals(propertyName);
+    @Override protected boolean matchesSafely(final FluentMember item) {
+        return item.property().equals(propertyName);
     }
 }

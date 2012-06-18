@@ -25,14 +25,14 @@ import org.hamcrest.Matcher;
  * limitations under the License.
  */
 
-abstract class BoundReflectedMemberImpl implements ReflectedMember {
+abstract class BoundFluentMemberImpl implements FluentMember {
     private final ReflectedTypeFactory reflectedTypeFactory;
-    private final ReflectedMember member;
+    private final FluentMember member;
     private final Object instance;
 
-    public BoundReflectedMemberImpl(
+    public BoundFluentMemberImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
-            final ReflectedMember member,
+            final FluentMember member,
             final Object instance) {
         this.reflectedTypeFactory = reflectedTypeFactory;
         if (member.isStatic()) {
@@ -46,11 +46,11 @@ abstract class BoundReflectedMemberImpl implements ReflectedMember {
         return member.argumentCount();
     }
 
-    @Override public final List<ReflectedClass<?>> argumentTypes() {
-        return new ArrayList<ReflectedClass<?>>(member.argumentTypes());
+    @Override public final List<FluentClass<?>> argumentTypes() {
+        return new ArrayList<FluentClass<?>>(member.argumentTypes());
     }
 
-    @SuppressWarnings("unchecked") @Override public ReflectedObject<?> call(final Object... args) {
+    @SuppressWarnings("unchecked") @Override public FluentObject<?> call(final Object... args) {
         final Object object = callRaw(args);
         if(object == null) {
             return null;
@@ -65,12 +65,12 @@ abstract class BoundReflectedMemberImpl implements ReflectedMember {
         return member.callRaw(argsWithInstance);
     }
 
-    @Override public final ReflectedClass<?> declaringClass() {
-        return member.declaringClass();
+    @Override public final FluentClass<?> declarer() {
+        return member.declarer();
     }
 
-    @Override public final String getName() {
-        return member.getName();
+    @Override public final String name() {
+        return member.name();
     }
 
     @Override public final boolean isStatic() {
@@ -89,30 +89,34 @@ abstract class BoundReflectedMemberImpl implements ReflectedMember {
         return new HashCodeBuilder().append(instance).append(member).toHashCode();
     }
 
-    @Override public final ReflectedClass<?> type() {
+    @Override public final FluentClass<?> type() {
         return member.type();
     }
 
-    @Override public final ReflectedClass<?> annotation(final Matcher<? super ReflectedClass<?>> annotationMatcher) {
+    @Override public final FluentClass<?> annotation(final Matcher<? super FluentClass<?>> annotationMatcher) {
         return member.annotation(annotationMatcher);
-    }
-
-    @Override public final boolean annotatedWith(final Class<? extends Annotation> annotationClass) {
-        return member.annotatedWith(annotationClass);
     }
 
     @Override public final <A extends Annotation> A annotation(final Class<A> annotationClass) {
         return member.annotation(annotationClass);
     }
 
-    @Override public final String propertyName() {
-        return member.propertyName();
+    @Override public final boolean annotatedWith(final Class<? extends Annotation> annotationClass) {
+        return member.annotatedWith(annotationClass);
     }
 
-    @Override public final <T> ReflectedQuery<T> castResultTo(final Class<T> returnType) {
-        return new ReflectedQuery<T>() {
-            @Override public T call(final Object... args) {
-                return returnType.cast(BoundReflectedMemberImpl.this.callRaw(args));
+    @Override public boolean annotatedWith(final Matcher<? super FluentClass<?>> annotationMatcher) {
+        return member.annotatedWith(annotationMatcher);
+    }
+
+    @Override public final String property() {
+        return member.property();
+    }
+
+    @Override public final <T> Call<T> as(final Class<T> returnType) {
+        return new AbstractCall<T>(reflectedTypeFactory) {
+            @Override public T callRaw(final Object... args) {
+                return returnType.cast(BoundFluentMemberImpl.this.callRaw(args));
             }
         };
     }
@@ -121,7 +125,7 @@ abstract class BoundReflectedMemberImpl implements ReflectedMember {
         if(this == that) {
             return true;
         } else  if(that != null && that.getClass().equals(this.getClass())) {
-            final BoundReflectedMemberImpl castedThat = (BoundReflectedMemberImpl) that;
+            final BoundFluentMemberImpl castedThat = (BoundFluentMemberImpl) that;
             return castedThat.instance.equals(this.instance) && castedThat.member.equals(this.member);
         }
         return false;

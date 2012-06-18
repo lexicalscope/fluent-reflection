@@ -5,21 +5,21 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-import com.lexicalscope.fluentreflection.ReflectedClass;
+import com.lexicalscope.fluentreflection.FluentClass;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 
-public class TestMatcherTypeHasNoSuperclasses extends AbstractTestReflectionMatcher<ReflectedClass<?>> {
+public class TestMatcherTypeHasNoSuperclasses extends AbstractTestReflectionMatcher<FluentClass<?>> {
     class Superclass {
 
     }
 
     @Override
-    protected ReflectedClass<?> target() {
+    protected FluentClass<?> target() {
         return type;
     }
 
     @Override
-    protected ReflectionMatcher<ReflectedClass<?>> matcher() {
+    protected ReflectionMatcher<FluentClass<?>> matcher() {
         return hasNoSuperclasses();
     }
 

@@ -24,7 +24,7 @@ import static org.hamcrest.Matchers.equalTo;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-import com.lexicalscope.fluentreflection.ReflectedMethod;
+import com.lexicalscope.fluentreflection.FluentMethod;
 
 public class TestReflectionOnInterface {
     @Test public void classUnderReflectionReturnsClassUnderReflection() {
@@ -36,31 +36,31 @@ public class TestReflectionOnInterface {
     @Test public void methodsCanBeSelectedByPrefix() {
         assertThat(
                 type(ExampleInterface.class).methods(hasNameStartingWith("get")),
-                Matchers.<ReflectedMethod>hasItem(hasName("getPropertyOne")));
+                Matchers.<FluentMethod>hasItem(hasName("getPropertyOne")));
     }
 
     @Test public void methodsCanBeSelectedBySuffix() {
         assertThat(
                 type(ExampleInterface.class).methods(hasNameEndingWith("One")),
-                Matchers.<ReflectedMethod>hasItem(hasName("getPropertyOne")));
+                Matchers.<FluentMethod>hasItem(hasName("getPropertyOne")));
     }
 
     @Test public void methodsCanBeSelectedByRegularExpression() {
         assertThat(
                 type(ExampleInterface.class).methods(hasNameMatching(".*Property.*")),
-                Matchers.<ReflectedMethod>hasItem(hasName("getPropertyOne")));
+                Matchers.<FluentMethod>hasItem(hasName("getPropertyOne")));
     }
 
     @Test public void methodsWithNoArgumentsCanBeSelected() {
         assertThat(
                 type(ExampleInterface.class).methods(
                         hasArguments()),
-                Matchers.<ReflectedMethod>hasItem(hasName("getPropertyOne")));
+                Matchers.<FluentMethod>hasItem(hasName("getPropertyOne")));
     }
 
     @Test public void methodCanBeSelectedByArgument() {
         assertThat(
                 type(ExampleInterface.class).methods(hasArguments(String.class)),
-                Matchers.<ReflectedMethod>hasItem(hasName("setPropertyOne")));
+                Matchers.<FluentMethod>hasItem(hasName("setPropertyOne")));
     }
 }

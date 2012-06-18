@@ -1,20 +1,20 @@
 /**
- * 
+ *
  */
 package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
-final class MatcherDeclaredBy extends ReflectionMatcher<ReflectedMember> {
-    private final Matcher<? super ReflectedClass<?>> declaringKlassMatcher;
+final class MatcherDeclaredBy extends ReflectionMatcher<FluentMember> {
+    private final Matcher<? super FluentClass<?>> declaringKlassMatcher;
 
-    MatcherDeclaredBy(final Matcher<? super ReflectedClass<?>> declaringKlassMatcher) {
+    MatcherDeclaredBy(final Matcher<? super FluentClass<?>> declaringKlassMatcher) {
         this.declaringKlassMatcher = declaringKlassMatcher;
     }
 
-    @Override public boolean matchesSafely(final ReflectedMember arg) {
-        return declaringKlassMatcher.matches(arg.declaringClass());
+    @Override public boolean matchesSafely(final FluentMember arg) {
+        return declaringKlassMatcher.matches(arg.declarer());
     }
 
     @Override public void describeTo(final Description description) {

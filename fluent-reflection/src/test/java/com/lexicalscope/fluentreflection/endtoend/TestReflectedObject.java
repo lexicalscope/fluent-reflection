@@ -8,8 +8,8 @@ import static org.hamcrest.Matchers.*;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-import com.lexicalscope.fluentreflection.ReflectedMethod;
-import com.lexicalscope.fluentreflection.ReflectedObject;
+import com.lexicalscope.fluentreflection.FluentMethod;
+import com.lexicalscope.fluentreflection.FluentObject;
 
 /*
  * Copyright 2011 Tim Wood
@@ -42,14 +42,14 @@ public class TestReflectedObject {
         }
     }
 
-    private final ReflectedObject<ExampleObject> reflectedInstance = object(new ExampleObject());
+    private final FluentObject<ExampleObject> reflectedInstance = object(new ExampleObject());
 
     @Test public void instanceMethodsCanBeCalled() throws Exception {
         assertThat((Integer) reflectedInstance.method("method").callRaw(), equalTo(42));
     }
 
     @Test public void instanceMethodsCanHaveReturnTypeBoundAndBeCalled() throws Exception {
-        assertThat(reflectedInstance.method("method").castResultTo(Integer.class).call(), equalTo(42));
+        assertThat(reflectedInstance.method("method").as(Integer.class).callRaw(), equalTo(42));
     }
 
     @Test public void instanceMethodsWithArgumentsCanBeCalled() throws Exception {
@@ -68,17 +68,17 @@ public class TestReflectedObject {
 
     @Test public void instanceMethodDeclaringTypeIsCorrect() throws Exception {
         assertThat(
-                reflectedInstance.method("doubleIt").declaringClass(),
+                reflectedInstance.method("doubleIt").declarer(),
                 reflectingOn(ExampleObject.class));
     }
 
     @Test public void staticMethodsAreNotFound() throws Exception {
-        assertThat(reflectedInstance.methods(), not(Matchers.<ReflectedMethod>hasItem(isStatic())));
+        assertThat(reflectedInstance.methods(), not(Matchers.<FluentMethod>hasItem(isStatic())));
     }
 
     @Test public void methodsAreFound() throws Exception {
-        assertThat(reflectedInstance.methods(), Matchers.<ReflectedMethod>hasItem(hasName("method")));
-        assertThat(reflectedInstance.methods(), Matchers.<ReflectedMethod>hasItem(hasName("doubleIt")));
+        assertThat(reflectedInstance.methods(), Matchers.<FluentMethod>hasItem(hasName("method")));
+        assertThat(reflectedInstance.methods(), Matchers.<FluentMethod>hasItem(hasName("doubleIt")));
     }
 
     @Test public void classUnderReflectionIsCorrect() throws Exception {
