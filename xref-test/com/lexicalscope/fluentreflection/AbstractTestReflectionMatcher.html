@@ -26,10 +26,10 @@
 <a name="16" href="#16">16</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">class</strong> AbstractTestReflectionMatcher&lt;T&gt; {
 <a name="17" href="#17">17</a>      @Rule <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/JUnitRuleMockery.html">JUnitRuleMockery</a> context = <strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/JUnitRuleMockery.html">JUnitRuleMockery</a>();
 <a name="18" href="#18">18</a>  
-<a name="19" href="#19">19</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> ReflectedMethod method = context.mock(ReflectedMethod.<strong class="jxr_keyword">class</strong>);
-<a name="20" href="#20">20</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> ReflectedConstructor&lt;?&gt; constructor = context.mock(ReflectedConstructor.<strong class="jxr_keyword">class</strong>);
-<a name="21" href="#21">21</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> ReflectedClass&lt;?&gt; type = context.mock(ReflectedClass.<strong class="jxr_keyword">class</strong>);
-<a name="22" href="#22">22</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> ReflectedCallable callable = context.mock(ReflectedCallable.<strong class="jxr_keyword">class</strong>);
+<a name="19" href="#19">19</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> FluentMethod method = context.mock(FluentMethod.<strong class="jxr_keyword">class</strong>);
+<a name="20" href="#20">20</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> FluentConstructor&lt;?&gt; constructor = context.mock(FluentConstructor.<strong class="jxr_keyword">class</strong>);
+<a name="21" href="#21">21</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> FluentClass&lt;?&gt; type = context.mock(FluentClass.<strong class="jxr_keyword">class</strong>);
+<a name="22" href="#22">22</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> FluentMember callable = context.mock(FluentMember.<strong class="jxr_keyword">class</strong>);
 <a name="23" href="#23">23</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Description description = <strong class="jxr_keyword">new</strong> StringDescription();
 <a name="24" href="#24">24</a>  
 <a name="25" href="#25">25</a>      @Test <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> matcherCanMatch() <strong class="jxr_keyword">throws</strong> Throwable {
@@ -56,7 +56,7 @@
 <a name="46" href="#46">46</a>  
 <a name="47" href="#47">47</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> setupFailingCase() <strong class="jxr_keyword">throws</strong> Throwable {}
 <a name="48" href="#48">48</a>  
-<a name="49" href="#49">49</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">abstract</strong> ReflectionMatcher&lt;T&gt; matcher() <strong class="jxr_keyword">throws</strong> Throwable;
+<a name="49" href="#49">49</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">abstract</strong> ReflectionMatcher&lt;? <strong class="jxr_keyword">super</strong> T&gt; matcher() <strong class="jxr_keyword">throws</strong> Throwable;
 <a name="50" href="#50">50</a>  
 <a name="51" href="#51">51</a>      <strong class="jxr_keyword">protected</strong> T failingTarget() {
 <a name="52" href="#52">52</a>          <strong class="jxr_keyword">return</strong> target();
@@ -65,17 +65,17 @@
 <a name="55" href="#55">55</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> whenMethodHasName(<strong class="jxr_keyword">final</strong> String methodName) {
 <a name="56" href="#56">56</a>          context.checking(<strong class="jxr_keyword">new</strong> Expectations() {
 <a name="57" href="#57">57</a>              {
-<a name="58" href="#58">58</a>                  oneOf(method).getName();
+<a name="58" href="#58">58</a>                  oneOf(method).name();
 <a name="59" href="#59">59</a>                  will(returnValue(methodName));
 <a name="60" href="#60">60</a>              }
 <a name="61" href="#61">61</a>          });
 <a name="62" href="#62">62</a>      }
 <a name="63" href="#63">63</a>  
 <a name="64" href="#64">64</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> whenMethodDeclaredBy(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; declaringClass) {
-<a name="65" href="#65">65</a>          <strong class="jxr_keyword">final</strong> ReflectedClass&lt;?&gt; declaringType = context.mock(ReflectedClass.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"declaringType"</span>);
+<a name="65" href="#65">65</a>          <strong class="jxr_keyword">final</strong> FluentClass&lt;?&gt; declaringType = context.mock(FluentClass.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"declaringType"</span>);
 <a name="66" href="#66">66</a>          context.checking(<strong class="jxr_keyword">new</strong> Expectations() {
 <a name="67" href="#67">67</a>              {
-<a name="68" href="#68">68</a>                  oneOf(method).declaringClass();
+<a name="68" href="#68">68</a>                  oneOf(method).declarer();
 <a name="69" href="#69">69</a>                  will(returnValue(declaringType));
 <a name="70" href="#70">70</a>  
 <a name="71" href="#71">71</a>                  oneOf(declaringType).classUnderReflection();
@@ -85,18 +85,18 @@
 <a name="75" href="#75">75</a>      }
 <a name="76" href="#76">76</a>  
 <a name="77" href="#77">77</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> whenMethodHasArguments(<strong class="jxr_keyword">final</strong> Class&lt;?&gt;... arguments) {
-<a name="78" href="#78">78</a>          <strong class="jxr_keyword">final</strong> ReflectedClass&lt;?&gt;[] argumentTypes = <strong class="jxr_keyword">new</strong> ReflectedClass&lt;?&gt;[arguments.length];
+<a name="78" href="#78">78</a>          <strong class="jxr_keyword">final</strong> FluentClass&lt;?&gt;[] argumentTypes = <strong class="jxr_keyword">new</strong> FluentClass&lt;?&gt;[arguments.length];
 <a name="79" href="#79">79</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; argumentTypes.length; i++) {
 <a name="80" href="#80">80</a>              argumentTypes[i] =
-<a name="81" href="#81">81</a>                      context.mock(ReflectedClass.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"argument "</span> + i + <span class="jxr_string">": "</span> + arguments[i].getSimpleName());
+<a name="81" href="#81">81</a>                      context.mock(FluentClass.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"argument "</span> + i + <span class="jxr_string">": "</span> + arguments[i].getSimpleName());
 <a name="82" href="#82">82</a>          }
 <a name="83" href="#83">83</a>  
 <a name="84" href="#84">84</a>          context.checking(<strong class="jxr_keyword">new</strong> Expectations() {
 <a name="85" href="#85">85</a>              {
-<a name="86" href="#86">86</a>                  oneOf(method).argumentCount();
+<a name="86" href="#86">86</a>                  oneOf(method).argCount();
 <a name="87" href="#87">87</a>                  will(returnValue(arguments.length));
 <a name="88" href="#88">88</a>  
-<a name="89" href="#89">89</a>                  allowing(method).argumentTypes();
+<a name="89" href="#89">89</a>                  allowing(method).args();
 <a name="90" href="#90">90</a>                  will(returnValue(asList(argumentTypes)));
 <a name="91" href="#91">91</a>  
 <a name="92" href="#92">92</a>                  <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; argumentTypes.length; i++) {
@@ -109,7 +109,7 @@
 <a name="99" href="#99">99</a>      }
 <a name="100" href="#100">100</a> 
 <a name="101" href="#101">101</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> whenTypeHasInterface(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; interfac3) {
-<a name="102" href="#102">102</a>         <strong class="jxr_keyword">final</strong> ReflectedClass&lt;?&gt; interfaceType = context.mock(ReflectedClass.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"interfaceType"</span>);
+<a name="102" href="#102">102</a>         <strong class="jxr_keyword">final</strong> FluentClass&lt;?&gt; interfaceType = context.mock(FluentClass.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"interfaceType"</span>);
 <a name="103" href="#103">103</a>         context.checking(<strong class="jxr_keyword">new</strong> Expectations() {
 <a name="104" href="#104">104</a>             {
 <a name="105" href="#105">105</a>                 oneOf(type).interfaces();
@@ -122,7 +122,7 @@
 <a name="112" href="#112">112</a>     }
 <a name="113" href="#113">113</a> 
 <a name="114" href="#114">114</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> whenTypeHasSuperclass(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; klass) {
-<a name="115" href="#115">115</a>         <strong class="jxr_keyword">final</strong> ReflectedClass&lt;?&gt; superclassType = context.mock(ReflectedClass.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"superclassType"</span>);
+<a name="115" href="#115">115</a>         <strong class="jxr_keyword">final</strong> FluentClass&lt;?&gt; superclassType = context.mock(FluentClass.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"superclassType"</span>);
 <a name="116" href="#116">116</a>         context.checking(<strong class="jxr_keyword">new</strong> Expectations() {
 <a name="117" href="#117">117</a>             {
 <a name="118" href="#118">118</a>                 oneOf(type).superclasses();

@@ -23,7 +23,7 @@
 <a name="13" href="#13">13</a>  
 <a name="14" href="#14">14</a>      @Test
 <a name="15" href="#15">15</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> classConvertedToMatcherForReflectedType() <strong class="jxr_keyword">throws</strong> Exception {
-<a name="16" href="#16">16</a>          <strong class="jxr_keyword">final</strong> Matcher&lt;ReflectedClass&lt;?&gt;&gt; matcherUnderTest =
+<a name="16" href="#16">16</a>          <strong class="jxr_keyword">final</strong> Matcher&lt;FluentClass&lt;?&gt;&gt; matcherUnderTest =
 <a name="17" href="#17">17</a>                  <strong class="jxr_keyword">new</strong> ConvertClassToReflectedTypeMatcher().convert(ExampleClass.<strong class="jxr_keyword">class</strong>);
 <a name="18" href="#18">18</a>  
 <a name="19" href="#19">19</a>          assertThat(type(ExampleClass.<strong class="jxr_keyword">class</strong>), matcherUnderTest);

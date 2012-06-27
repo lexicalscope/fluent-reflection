@@ -10,7 +10,7 @@
 
 <a name="1" href="#1">1</a>   <strong class="jxr_keyword">package</strong> com.lexicalscope.fluentreflection.dynamicproxy.endtoend;
 <a name="2" href="#2">2</a>   
-<a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasName;
+<a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.ReflectionMatchers.hasName;
 <a name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.dynamicproxy.FluentProxy.dynamicProxy;
 <a name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.MatcherAssert.assertThat;
 <a name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.Matchers.*;
@@ -97,13 +97,13 @@
 <a name="87" href="#87">87</a>  
 <a name="88" href="#88">88</a>          <strong class="jxr_keyword">final</strong> <a href="../../../../../com/lexicalscope/fluentreflection/dynamicproxy/endtoend/TestFluentDynamicProxy.html">TwoQueryMethod</a> dynamicProxy = dynamicProxy(<strong class="jxr_keyword">new</strong> Implementing&lt;TwoQueryMethod&gt;() {
 <a name="89" href="#89">89</a>              {
-<a name="90" href="#90">90</a>                  whenProxying(callableHasName(<span class="jxr_string">"methodA"</span>)).execute(<strong class="jxr_keyword">new</strong> MethodBody() {
+<a name="90" href="#90">90</a>                  whenProxying(hasName(<span class="jxr_string">"methodA"</span>)).execute(<strong class="jxr_keyword">new</strong> MethodBody() {
 <a name="91" href="#91">91</a>                      @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> body() {
 <a name="92" href="#92">92</a>                          returnValue(42);
 <a name="93" href="#93">93</a>                      }
 <a name="94" href="#94">94</a>                  });
 <a name="95" href="#95">95</a>  
-<a name="96" href="#96">96</a>                  whenProxying(callableHasName(<span class="jxr_string">"methodB"</span>)).execute(<strong class="jxr_keyword">new</strong> MethodBody() {
+<a name="96" href="#96">96</a>                  whenProxying(hasName(<span class="jxr_string">"methodB"</span>)).execute(<strong class="jxr_keyword">new</strong> MethodBody() {
 <a name="97" href="#97">97</a>                      @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> body() {
 <a name="98" href="#98">98</a>                          returnValue(24);
 <a name="99" href="#99">99</a>                      }
@@ -119,7 +119,7 @@
 <a name="109" href="#109">109</a> 
 <a name="110" href="#110">110</a>         <strong class="jxr_keyword">final</strong> <a href="../../../../../com/lexicalscope/fluentreflection/dynamicproxy/endtoend/TestFluentDynamicProxy.html">TwoQueryMethod</a> dynamicProxy = dynamicProxy(<strong class="jxr_keyword">new</strong> Implementing&lt;TwoQueryMethod&gt;() {
 <a name="111" href="#111">111</a>             {
-<a name="112" href="#112">112</a>                 whenProxying(callableHasName(<span class="jxr_string">"methodA"</span>)).execute(<strong class="jxr_keyword">new</strong> MethodBody() {
+<a name="112" href="#112">112</a>                 whenProxying(hasName(<span class="jxr_string">"methodA"</span>)).execute(<strong class="jxr_keyword">new</strong> MethodBody() {
 <a name="113" href="#113">113</a>                     @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> body() {
 <a name="114" href="#114">114</a>                         returnValue(42);
 <a name="115" href="#115">115</a>                     }

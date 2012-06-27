@@ -12,7 +12,7 @@
 <a name="2" href="#2">2</a>   
 <a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> org.hamcrest.Description;
 <a name="4" href="#4">4</a>   
-<a name="5" href="#5">5</a>   <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherArgumentCount.html">MatcherArgumentCount</a> <strong class="jxr_keyword">extends</strong> ReflectionMatcher&lt;ReflectedCallable&gt; {
+<a name="5" href="#5">5</a>   <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherArgumentCount.html">MatcherArgumentCount</a> <strong class="jxr_keyword">extends</strong> ReflectionMatcher&lt;FluentMember&gt; {
 <a name="6" href="#6">6</a>       <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> expectedArgumentCount;
 <a name="7" href="#7">7</a>   
 <a name="8" href="#8">8</a>       <strong class="jxr_keyword">public</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherArgumentCount.html">MatcherArgumentCount</a>(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> expectedArgumentCount) {
@@ -20,8 +20,8 @@
 <a name="10" href="#10">10</a>      }
 <a name="11" href="#11">11</a>  
 <a name="12" href="#12">12</a>      @Override
-<a name="13" href="#13">13</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> matchesSafely(<strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedCallable.html">ReflectedCallable</a> item) {
-<a name="14" href="#14">14</a>          <strong class="jxr_keyword">return</strong> item.argumentCount() == expectedArgumentCount;
+<a name="13" href="#13">13</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> matchesSafely(<strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/FluentMember.html">FluentMember</a> item) {
+<a name="14" href="#14">14</a>          <strong class="jxr_keyword">return</strong> item.argCount() == expectedArgumentCount;
 <a name="15" href="#15">15</a>      }
 <a name="16" href="#16">16</a>  
 <a name="17" href="#17">17</a>      @Override

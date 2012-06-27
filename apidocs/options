@@ -15,10 +15,10 @@
 -docencoding
 'UTF-8'
 -doctitle
-'fluent-reflection 0.0.12-SNAPSHOT API'
+'fluent-reflection 0.1.1-SNAPSHOT API'
 -linkoffline
 'http://download.oracle.com/javase/6/docs/api' '/home/tim/workspace/fluent-reflection/fluent-reflection/target/javadoc-bundle-options'
 -use
 -version
 -windowtitle
-'fluent-reflection 0.0.12-SNAPSHOT API'
+'fluent-reflection 0.1.1-SNAPSHOT API'

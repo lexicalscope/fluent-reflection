@@ -11,7 +11,7 @@
 <a name="1" href="#1">1</a>   <strong class="jxr_keyword">package</strong> com.lexicalscope.fluentreflection.endtoend;
 <a name="2" href="#2">2</a>   
 <a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.FluentReflection.type;
-<a name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasThisManyArguments;
+<a name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.ReflectionMatchers.hasArgumentCount;
 <a name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.MatcherAssert.assertThat;
 <a name="6" href="#6">6</a>   
 <a name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> org.hamcrest.Matchers;
@@ -32,7 +32,7 @@
 <a name="22" href="#22">22</a>      @Test
 <a name="23" href="#23">23</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> canFindConstructorsByTheNumberOfArguments() {
 <a name="24" href="#24">24</a>          assertThat(type(TwoConstructorsWithDifferentNumbersOfArguments.<strong class="jxr_keyword">class</strong>).constructors(
-<a name="25" href="#25">25</a>                  callableHasThisManyArguments(2)), Matchers.contains(ReflectionMatchers.callableHasArguments(
+<a name="25" href="#25">25</a>                  hasArgumentCount(2)), Matchers.contains(ReflectionMatchers.hasArguments(
 <a name="26" href="#26">26</a>                  String.<strong class="jxr_keyword">class</strong>,
 <a name="27" href="#27">27</a>                  Integer.<strong class="jxr_keyword">class</strong>)));
 <a name="28" href="#28">28</a>      }

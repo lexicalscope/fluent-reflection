@@ -25,10 +25,10 @@
 <a name="15" href="#15">15</a>  <em class="jxr_comment"> * distributed under the License is distributed on an "AS IS" BASIS,</em>
 <a name="16" href="#16">16</a>  <em class="jxr_comment"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</em>
 <a name="17" href="#17">17</a>  <em class="jxr_comment"> * See the License for the specific language governing permissions and</em>
-<a name="18" href="#18">18</a>  <em class="jxr_comment"> * limitations under the License. </em>
+<a name="18" href="#18">18</a>  <em class="jxr_comment"> * limitations under the License.</em>
 <a name="19" href="#19">19</a>  <em class="jxr_comment"> */</em>
 <a name="20" href="#20">20</a>  
-<a name="21" href="#21">21</a>  <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherStrictSubtypeOf.html">MatcherStrictSubtypeOf</a> <strong class="jxr_keyword">extends</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; {
+<a name="21" href="#21">21</a>  <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherStrictSubtypeOf.html">MatcherStrictSubtypeOf</a> <strong class="jxr_keyword">extends</strong> ReflectionMatcher&lt;FluentClass&lt;?&gt;&gt; {
 <a name="22" href="#22">22</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Class&lt;?&gt; klass;
 <a name="23" href="#23">23</a>  
 <a name="24" href="#24">24</a>      <strong class="jxr_keyword">public</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherStrictSubtypeOf.html">MatcherStrictSubtypeOf</a>(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; klass) {
@@ -39,7 +39,7 @@
 <a name="29" href="#29">29</a>          description.appendText(<span class="jxr_string">"strict subtype of "</span>).appendValue(klass.getName());
 <a name="30" href="#30">30</a>      }
 <a name="31" href="#31">31</a>  
-<a name="32" href="#32">32</a>      @Override <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> matchesSafely(<strong class="jxr_keyword">final</strong> ReflectedClass&lt;?&gt; item) {
+<a name="32" href="#32">32</a>      @Override <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> matchesSafely(<strong class="jxr_keyword">final</strong> FluentClass&lt;?&gt; item) {
 <a name="33" href="#33">33</a>          <strong class="jxr_keyword">return</strong> !item.classUnderReflection().equals(klass) &amp;&amp; item.assignableTo(klass);
 <a name="34" href="#34">34</a>      }
 <a name="35" href="#35">35</a>  

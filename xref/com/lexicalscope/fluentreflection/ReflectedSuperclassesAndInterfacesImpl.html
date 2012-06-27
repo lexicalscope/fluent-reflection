@@ -16,9 +16,9 @@
 <a name="6" href="#6">6</a>   
 <a name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> com.google.inject.TypeLiteral;
 <a name="8" href="#8">8</a>   
-<a name="9" href="#9">9</a>   <strong class="jxr_keyword">class</strong> ReflectedSuperclassesAndInterfacesImpl&lt;T&gt; implements ReflectedSuperclassesAndInterfaces&lt;T&gt; {
+<a name="9" href="#9">9</a>   <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> ReflectedSuperclassesAndInterfacesImpl&lt;T&gt; implements ReflectedSuperclassesAndInterfaces&lt;T&gt; {
 <a name="10" href="#10">10</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedTypeFactory.html">ReflectedTypeFactory</a> reflectedTypeFactory;
-<a name="11" href="#11">11</a>      <strong class="jxr_keyword">private</strong> List&lt;ReflectedClass&lt;?&gt;&gt; interfacesAndSuperClass;
+<a name="11" href="#11">11</a>      <strong class="jxr_keyword">private</strong> List&lt;FluentClass&lt;?&gt;&gt; interfacesAndSuperClass;
 <a name="12" href="#12">12</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> TypeLiteral&lt;T&gt; typeLiteral;
 <a name="13" href="#13">13</a>  
 <a name="14" href="#14">14</a>      <a href="../../../com/lexicalscope/fluentreflection/ReflectedSuperclassesAndInterfacesImpl.html">ReflectedSuperclassesAndInterfacesImpl</a>(
@@ -28,7 +28,7 @@
 <a name="18" href="#18">18</a>          <strong class="jxr_keyword">this</strong>.typeLiteral = typeLiteral;
 <a name="19" href="#19">19</a>      }
 <a name="20" href="#20">20</a>  
-<a name="21" href="#21">21</a>      @Override <strong class="jxr_keyword">public</strong> List&lt;ReflectedClass&lt;?&gt;&gt; superclassesAndInterfaces() {
+<a name="21" href="#21">21</a>      @Override <strong class="jxr_keyword">public</strong> List&lt;FluentClass&lt;?&gt;&gt; superclassesAndInterfaces() {
 <a name="22" href="#22">22</a>          <strong class="jxr_keyword">if</strong> (interfacesAndSuperClass == <strong class="jxr_keyword">null</strong>) {
 <a name="23" href="#23">23</a>              interfacesAndSuperClass =
 <a name="24" href="#24">24</a>                      unmodifiableList(<strong class="jxr_keyword">new</strong> <a href="../../../com/lexicalscope/fluentreflection/TypeHierarchyCalculation.html">TypeHierarchyCalculation</a>(reflectedTypeFactory)

@@ -10,27 +10,27 @@
 
 <a name="1" href="#1">1</a>   <strong class="jxr_keyword">package</strong> com.lexicalscope.fluentreflection;
 <a name="2" href="#2">2</a>   
-<a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.ReflectionMatchers.typeHasNoSuperclasses;
+<a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.ReflectionMatchers.hasNoSuperclasses;
 <a name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.Matchers.equalTo;
 <a name="5" href="#5">5</a>   
 <a name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> org.hamcrest.Matcher;
 <a name="7" href="#7">7</a>   
-<a name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.ReflectedClass;
+<a name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.FluentClass;
 <a name="9" href="#9">9</a>   <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.ReflectionMatcher;
 <a name="10" href="#10">10</a>  
-<a name="11" href="#11">11</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/TestMatcherTypeHasNoSuperclasses.html">TestMatcherTypeHasNoSuperclasses</a> <strong class="jxr_keyword">extends</strong> AbstractTestReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; {
+<a name="11" href="#11">11</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/TestMatcherTypeHasNoSuperclasses.html">TestMatcherTypeHasNoSuperclasses</a> <strong class="jxr_keyword">extends</strong> AbstractTestReflectionMatcher&lt;FluentClass&lt;?&gt;&gt; {
 <a name="12" href="#12">12</a>      <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/TestMatcherTypeHasNoSuperclasses.html">Superclass</a> {
 <a name="13" href="#13">13</a>  
 <a name="14" href="#14">14</a>      }
 <a name="15" href="#15">15</a>  
 <a name="16" href="#16">16</a>      @Override
-<a name="17" href="#17">17</a>      <strong class="jxr_keyword">protected</strong> ReflectedClass&lt;?&gt; target() {
+<a name="17" href="#17">17</a>      <strong class="jxr_keyword">protected</strong> FluentClass&lt;?&gt; target() {
 <a name="18" href="#18">18</a>          <strong class="jxr_keyword">return</strong> type;
 <a name="19" href="#19">19</a>      }
 <a name="20" href="#20">20</a>  
 <a name="21" href="#21">21</a>      @Override
-<a name="22" href="#22">22</a>      <strong class="jxr_keyword">protected</strong> ReflectionMatcher&lt;ReflectedClass&lt;?&gt;&gt; matcher() {
-<a name="23" href="#23">23</a>          <strong class="jxr_keyword">return</strong> typeHasNoSuperclasses();
+<a name="22" href="#22">22</a>      <strong class="jxr_keyword">protected</strong> ReflectionMatcher&lt;FluentClass&lt;?&gt;&gt; matcher() {
+<a name="23" href="#23">23</a>          <strong class="jxr_keyword">return</strong> hasNoSuperclasses();
 <a name="24" href="#24">24</a>      }
 <a name="25" href="#25">25</a>  
 <a name="26" href="#26">26</a>      @Override

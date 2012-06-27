@@ -26,9 +26,9 @@
 <a name="16" href="#16">16</a>  <strong class="jxr_keyword">import</strong> ch.lambdaj.Lambda;
 <a name="17" href="#17">17</a>  <strong class="jxr_keyword">import</strong> ch.lambdaj.function.convert.Converter;
 <a name="18" href="#18">18</a>  
-<a name="19" href="#19">19</a>  <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.ReflectedCallable;
-<a name="20" href="#20">20</a>  <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.ReflectedMethod;
-<a name="21" href="#21">21</a>  <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.ReflectedObject;
+<a name="19" href="#19">19</a>  <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.FluentMember;
+<a name="20" href="#20">20</a>  <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.FluentMethod;
+<a name="21" href="#21">21</a>  <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.FluentObject;
 <a name="22" href="#22">22</a>  
 <a name="23" href="#23">23</a>  <em class="jxr_comment">/*</em>
 <a name="24" href="#24">24</a>  <em class="jxr_comment"> * Copyright 2011 Tim Wood</em>
@@ -56,29 +56,29 @@
 <a name="46" href="#46">46</a>  <em class="jxr_javadoccomment"> */</em>
 <a name="47" href="#47">47</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">BeanMap</a> {
 <a name="48" href="#48">48</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">BeanMapImpl</a> implements Map&lt;String, Object&gt; {
-<a name="49" href="#49">49</a>          <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Map&lt;String, ReflectedMethod&gt; getters;
-<a name="50" href="#50">50</a>          <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Map&lt;String, ReflectedMethod&gt; setters;
+<a name="49" href="#49">49</a>          <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Map&lt;String, FluentMethod&gt; getters;
+<a name="50" href="#50">50</a>          <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Map&lt;String, FluentMethod&gt; setters;
 <a name="51" href="#51">51</a>          <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Set&lt;String&gt; keySet;
 <a name="52" href="#52">52</a>  
 <a name="53" href="#53">53</a>          <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">BeanMapImpl</a>(
-<a name="54" href="#54">54</a>                  <strong class="jxr_keyword">final</strong> ReflectedObject&lt;Object&gt; object,
+<a name="54" href="#54">54</a>                  <strong class="jxr_keyword">final</strong> FluentObject&lt;Object&gt; object,
 <a name="55" href="#55">55</a>                  <strong class="jxr_keyword">final</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">PropertyNameConvertor</a> propertyNameConvertor,
-<a name="56" href="#56">56</a>                  <strong class="jxr_keyword">final</strong> Matcher&lt;ReflectedCallable&gt; getterMatcher,
-<a name="57" href="#57">57</a>                  <strong class="jxr_keyword">final</strong> Matcher&lt;ReflectedCallable&gt; setterMatcher,
+<a name="56" href="#56">56</a>                  <strong class="jxr_keyword">final</strong> Matcher&lt;FluentMember&gt; getterMatcher,
+<a name="57" href="#57">57</a>                  <strong class="jxr_keyword">final</strong> Matcher&lt;FluentMember&gt; setterMatcher,
 <a name="58" href="#58">58</a>                  <strong class="jxr_keyword">final</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a> keySetCalculation) {
 <a name="59" href="#59">59</a>              <strong class="jxr_keyword">this</strong>.getters = indexMethods(object, getterMatcher, propertyNameConvertor);
 <a name="60" href="#60">60</a>              <strong class="jxr_keyword">this</strong>.setters = indexMethods(object, setterMatcher, propertyNameConvertor);
 <a name="61" href="#61">61</a>              <strong class="jxr_keyword">this</strong>.keySet = unmodifiableSet(keySetCalculation.supportedKeys(getters, setters));
 <a name="62" href="#62">62</a>          }
 <a name="63" href="#63">63</a>  
-<a name="64" href="#64">64</a>          <strong class="jxr_keyword">private</strong> Map&lt;String, ReflectedMethod&gt; indexMethods(
-<a name="65" href="#65">65</a>                  <strong class="jxr_keyword">final</strong> ReflectedObject&lt;Object&gt; object,
-<a name="66" href="#66">66</a>                  <strong class="jxr_keyword">final</strong> Matcher&lt;ReflectedCallable&gt; matcher,
+<a name="64" href="#64">64</a>          <strong class="jxr_keyword">private</strong> Map&lt;String, FluentMethod&gt; indexMethods(
+<a name="65" href="#65">65</a>                  <strong class="jxr_keyword">final</strong> FluentObject&lt;Object&gt; object,
+<a name="66" href="#66">66</a>                  <strong class="jxr_keyword">final</strong> Matcher&lt;FluentMember&gt; matcher,
 <a name="67" href="#67">67</a>                  <strong class="jxr_keyword">final</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">PropertyNameConvertor</a> propertyNameConvertor) {
 <a name="68" href="#68">68</a>              <strong class="jxr_keyword">return</strong> Lambda.map(
 <a name="69" href="#69">69</a>                      object.methods(matcher),
-<a name="70" href="#70">70</a>                      <strong class="jxr_keyword">new</strong> Converter&lt;ReflectedMethod, String&gt;() {
-<a name="71" href="#71">71</a>                          @Override <strong class="jxr_keyword">public</strong> String convert(<strong class="jxr_keyword">final</strong> <a href="../../../../com/lexicalscope/fluentreflection/ReflectedMethod.html">ReflectedMethod</a> from) {
+<a name="70" href="#70">70</a>                      <strong class="jxr_keyword">new</strong> Converter&lt;FluentMethod, String&gt;() {
+<a name="71" href="#71">71</a>                          @Override <strong class="jxr_keyword">public</strong> String convert(<strong class="jxr_keyword">final</strong> <a href="../../../../com/lexicalscope/fluentreflection/FluentMethod.html">FluentMethod</a> from) {
 <a name="72" href="#72">72</a>                              <strong class="jxr_keyword">return</strong> propertyNameConvertor.propertyName(from);
 <a name="73" href="#73">73</a>                          }
 <a name="74" href="#74">74</a>                      });
@@ -109,11 +109,11 @@
 <a name="99" href="#99">99</a>          }
 <a name="100" href="#100">100</a> 
 <a name="101" href="#101">101</a>         @Override <strong class="jxr_keyword">public</strong> Object get(<strong class="jxr_keyword">final</strong> Object key) {
-<a name="102" href="#102">102</a>             <strong class="jxr_keyword">final</strong> <a href="../../../../com/lexicalscope/fluentreflection/ReflectedMethod.html">ReflectedMethod</a> getter = getters.get(key);
+<a name="102" href="#102">102</a>             <strong class="jxr_keyword">final</strong> <a href="../../../../com/lexicalscope/fluentreflection/FluentMethod.html">FluentMethod</a> getter = getters.get(key);
 <a name="103" href="#103">103</a>             <strong class="jxr_keyword">if</strong> (getter == <strong class="jxr_keyword">null</strong>) {
 <a name="104" href="#104">104</a>                 <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
 <a name="105" href="#105">105</a>             }
-<a name="106" href="#106">106</a>             <strong class="jxr_keyword">return</strong> getter.call();
+<a name="106" href="#106">106</a>             <strong class="jxr_keyword">return</strong> getter.callRaw();
 <a name="107" href="#107">107</a>         }
 <a name="108" href="#108">108</a> 
 <a name="109" href="#109">109</a>         @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isEmpty() {
@@ -130,9 +130,9 @@
 <a name="120" href="#120">120</a>             }
 <a name="121" href="#121">121</a> 
 <a name="122" href="#122">122</a>             <strong class="jxr_keyword">final</strong> Object oldValue = get(key);
-<a name="123" href="#123">123</a>             <strong class="jxr_keyword">final</strong> <a href="../../../../com/lexicalscope/fluentreflection/ReflectedMethod.html">ReflectedMethod</a> setter = setters.get(key);
+<a name="123" href="#123">123</a>             <strong class="jxr_keyword">final</strong> <a href="../../../../com/lexicalscope/fluentreflection/FluentMethod.html">FluentMethod</a> setter = setters.get(key);
 <a name="124" href="#124">124</a>             <strong class="jxr_keyword">if</strong> (setter != <strong class="jxr_keyword">null</strong>) {
-<a name="125" href="#125">125</a>                 setter.call(value);
+<a name="125" href="#125">125</a>                 setter.callRaw(value);
 <a name="126" href="#126">126</a>             }
 <a name="127" href="#127">127</a>             <strong class="jxr_keyword">return</strong> oldValue;
 <a name="128" href="#128">128</a>         }
@@ -221,11 +221,11 @@
 <a name="211" href="#211">211</a>     }
 <a name="212" href="#212">212</a> 
 <a name="213" href="#213">213</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">interface</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a> {
-<a name="214" href="#214">214</a>         Set&lt;String&gt; supportedKeys(Map&lt;String, ReflectedMethod&gt; getters, Map&lt;String, ReflectedMethod&gt; setters);
+<a name="214" href="#214">214</a>         Set&lt;String&gt; supportedKeys(Map&lt;String, FluentMethod&gt; getters, Map&lt;String, FluentMethod&gt; setters);
 <a name="215" href="#215">215</a>     }
 <a name="216" href="#216">216</a> 
 <a name="217" href="#217">217</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">interface</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">PropertyNameConvertor</a> {
-<a name="218" href="#218">218</a>         String propertyName(<a href="../../../../com/lexicalscope/fluentreflection/ReflectedMethod.html">ReflectedMethod</a> method);
+<a name="218" href="#218">218</a>         String propertyName(<a href="../../../../com/lexicalscope/fluentreflection/FluentMethod.html">FluentMethod</a> method);
 <a name="219" href="#219">219</a>     }
 <a name="220" href="#220">220</a> 
 <a name="221" href="#221">221</a>     <em class="jxr_javadoccomment">/**</em>
@@ -252,8 +252,8 @@
 <a name="242" href="#242">242</a>     <strong class="jxr_keyword">static</strong> Map&lt;String, Object&gt; map(
 <a name="243" href="#243">243</a>             <strong class="jxr_keyword">final</strong> Object bean,
 <a name="244" href="#244">244</a>             <strong class="jxr_keyword">final</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">PropertyNameConvertor</a> propertyNameConvertor,
-<a name="245" href="#245">245</a>             <strong class="jxr_keyword">final</strong> Matcher&lt;ReflectedCallable&gt; getterMatcher,
-<a name="246" href="#246">246</a>             <strong class="jxr_keyword">final</strong> Matcher&lt;ReflectedCallable&gt; setterMatcher,
+<a name="245" href="#245">245</a>             <strong class="jxr_keyword">final</strong> Matcher&lt;FluentMember&gt; getterMatcher,
+<a name="246" href="#246">246</a>             <strong class="jxr_keyword">final</strong> Matcher&lt;FluentMember&gt; setterMatcher,
 <a name="247" href="#247">247</a>             <strong class="jxr_keyword">final</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a> keySetCalculation) {
 <a name="248" href="#248">248</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">BeanMapImpl</a>(
 <a name="249" href="#249">249</a>                 object(bean),
@@ -266,8 +266,8 @@
 <a name="256" href="#256">256</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a> onlyReadWriteProperties() {
 <a name="257" href="#257">257</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a>() {
 <a name="258" href="#258">258</a>             @Override <strong class="jxr_keyword">public</strong> Set&lt;String&gt; supportedKeys(
-<a name="259" href="#259">259</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, ReflectedMethod&gt; getters,
-<a name="260" href="#260">260</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, ReflectedMethod&gt; setters) {
+<a name="259" href="#259">259</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, FluentMethod&gt; getters,
+<a name="260" href="#260">260</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, FluentMethod&gt; setters) {
 <a name="261" href="#261">261</a>                 <strong class="jxr_keyword">return</strong> intersection(getters.keySet(), setters.keySet());
 <a name="262" href="#262">262</a>             }
 <a name="263" href="#263">263</a>         };
@@ -276,8 +276,8 @@
 <a name="266" href="#266">266</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a> allReadableProperties() {
 <a name="267" href="#267">267</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a>() {
 <a name="268" href="#268">268</a>             @Override <strong class="jxr_keyword">public</strong> Set&lt;String&gt; supportedKeys(
-<a name="269" href="#269">269</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, ReflectedMethod&gt; getters,
-<a name="270" href="#270">270</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, ReflectedMethod&gt; setters) {
+<a name="269" href="#269">269</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, FluentMethod&gt; getters,
+<a name="270" href="#270">270</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, FluentMethod&gt; setters) {
 <a name="271" href="#271">271</a>                 <strong class="jxr_keyword">return</strong> getters.keySet();
 <a name="272" href="#272">272</a>             }
 <a name="273" href="#273">273</a>         };
@@ -286,8 +286,8 @@
 <a name="276" href="#276">276</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a> allWriteableProperties() {
 <a name="277" href="#277">277</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a>() {
 <a name="278" href="#278">278</a>             @Override <strong class="jxr_keyword">public</strong> Set&lt;String&gt; supportedKeys(
-<a name="279" href="#279">279</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, ReflectedMethod&gt; getters,
-<a name="280" href="#280">280</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, ReflectedMethod&gt; setters) {
+<a name="279" href="#279">279</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, FluentMethod&gt; getters,
+<a name="280" href="#280">280</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, FluentMethod&gt; setters) {
 <a name="281" href="#281">281</a>                 <strong class="jxr_keyword">return</strong> setters.keySet();
 <a name="282" href="#282">282</a>             }
 <a name="283" href="#283">283</a>         };
@@ -296,8 +296,8 @@
 <a name="286" href="#286">286</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a> writeablePropertiesOnly() {
 <a name="287" href="#287">287</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a>() {
 <a name="288" href="#288">288</a>             @Override <strong class="jxr_keyword">public</strong> Set&lt;String&gt; supportedKeys(
-<a name="289" href="#289">289</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, ReflectedMethod&gt; getters,
-<a name="290" href="#290">290</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, ReflectedMethod&gt; setters) {
+<a name="289" href="#289">289</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, FluentMethod&gt; getters,
+<a name="290" href="#290">290</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, FluentMethod&gt; setters) {
 <a name="291" href="#291">291</a>                 <strong class="jxr_keyword">return</strong> difference(setters.keySet(), getters.keySet());
 <a name="292" href="#292">292</a>             }
 <a name="293" href="#293">293</a>         };
@@ -306,8 +306,8 @@
 <a name="296" href="#296">296</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a> readablePropertiesOnly() {
 <a name="297" href="#297">297</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a>() {
 <a name="298" href="#298">298</a>             @Override <strong class="jxr_keyword">public</strong> Set&lt;String&gt; supportedKeys(
-<a name="299" href="#299">299</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, ReflectedMethod&gt; getters,
-<a name="300" href="#300">300</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, ReflectedMethod&gt; setters) {
+<a name="299" href="#299">299</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, FluentMethod&gt; getters,
+<a name="300" href="#300">300</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, FluentMethod&gt; setters) {
 <a name="301" href="#301">301</a>                 <strong class="jxr_keyword">return</strong> difference(getters.keySet(), setters.keySet());
 <a name="302" href="#302">302</a>             }
 <a name="303" href="#303">303</a>         };
@@ -316,8 +316,8 @@
 <a name="306" href="#306">306</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a> allProperties() {
 <a name="307" href="#307">307</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">KeySetCalculation</a>() {
 <a name="308" href="#308">308</a>             @Override <strong class="jxr_keyword">public</strong> Set&lt;String&gt; supportedKeys(
-<a name="309" href="#309">309</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, ReflectedMethod&gt; getters,
-<a name="310" href="#310">310</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, ReflectedMethod&gt; setters) {
+<a name="309" href="#309">309</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, FluentMethod&gt; getters,
+<a name="310" href="#310">310</a>                         <strong class="jxr_keyword">final</strong> Map&lt;String, FluentMethod&gt; setters) {
 <a name="311" href="#311">311</a>                 <strong class="jxr_keyword">return</strong> union(getters.keySet(), setters.keySet());
 <a name="312" href="#312">312</a>             }
 <a name="313" href="#313">313</a>         };
@@ -325,8 +325,8 @@
 <a name="315" href="#315">315</a> 
 <a name="316" href="#316">316</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">PropertyNameConvertor</a> lowercasePropertyName() {
 <a name="317" href="#317">317</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/bean/BeanMap.html">PropertyNameConvertor</a>() {
-<a name="318" href="#318">318</a>             @Override <strong class="jxr_keyword">public</strong> String propertyName(<strong class="jxr_keyword">final</strong> <a href="../../../../com/lexicalscope/fluentreflection/ReflectedMethod.html">ReflectedMethod</a> method) {
-<a name="319" href="#319">319</a>                 <strong class="jxr_keyword">return</strong> method.propertyName().toLowerCase();
+<a name="318" href="#318">318</a>             @Override <strong class="jxr_keyword">public</strong> String propertyName(<strong class="jxr_keyword">final</strong> <a href="../../../../com/lexicalscope/fluentreflection/FluentMethod.html">FluentMethod</a> method) {
+<a name="319" href="#319">319</a>                 <strong class="jxr_keyword">return</strong> method.property().toLowerCase();
 <a name="320" href="#320">320</a>             }
 <a name="321" href="#321">321</a>         };
 <a name="322" href="#322">322</a>     }

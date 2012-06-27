@@ -11,7 +11,7 @@
 <a name="1" href="#1">1</a>   <strong class="jxr_keyword">package</strong> com.lexicalscope.fluentreflection.endtoend;
 <a name="2" href="#2">2</a>   
 <a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.FluentReflection.type;
-<a name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.ReflectionMatchers.callableHasName;
+<a name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.ReflectionMatchers.hasName;
 <a name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.MatcherAssert.assertThat;
 <a name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.Matchers.equalTo;
 <a name="7" href="#7">7</a>   
@@ -56,7 +56,7 @@
 <a name="46" href="#46">46</a>  
 <a name="47" href="#47">47</a>      @Test
 <a name="48" href="#48">48</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> callSimpleStaticMethod() {
-<a name="49" href="#49">49</a>          type(ClassWithStaticMethods.<strong class="jxr_keyword">class</strong>).staticMethod(callableHasName(<span class="jxr_string">"simpleStaticMethod"</span>)).call();
+<a name="49" href="#49">49</a>          type(ClassWithStaticMethods.<strong class="jxr_keyword">class</strong>).staticMethod(hasName(<span class="jxr_string">"simpleStaticMethod"</span>)).callRaw();
 <a name="50" href="#50">50</a>  
 <a name="51" href="#51">51</a>          assertThat(
 <a name="52" href="#52">52</a>                  ClassWithStaticMethods.called,
@@ -67,22 +67,22 @@
 <a name="57" href="#57">57</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> callStaticMethodWithReturnValue() {
 <a name="58" href="#58">58</a>          <strong class="jxr_keyword">final</strong> Integer result =
 <a name="59" href="#59">59</a>                  (Integer) type(ClassWithStaticMethods.<strong class="jxr_keyword">class</strong>)
-<a name="60" href="#60">60</a>                          .staticMethod(callableHasName(<span class="jxr_string">"staticMethodWithReturnValue"</span>))
-<a name="61" href="#61">61</a>                          .call();
+<a name="60" href="#60">60</a>                          .staticMethod(hasName(<span class="jxr_string">"staticMethodWithReturnValue"</span>))
+<a name="61" href="#61">61</a>                          .callRaw();
 <a name="62" href="#62">62</a>  
 <a name="63" href="#63">63</a>          assertThat(result, equalTo(42));
 <a name="64" href="#64">64</a>      }
 <a name="65" href="#65">65</a>  
 <a name="66" href="#66">66</a>      @Test
 <a name="67" href="#67">67</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> callStaticMethodWithOneArgumentIfMultipleMatches() {
-<a name="68" href="#68">68</a>          type(ClassWithStaticMethods.<strong class="jxr_keyword">class</strong>).staticMethod(callableHasName(<span class="jxr_string">"staticMethodWithOneArgument"</span>)).call(<span class="jxr_string">"string"</span>);
+<a name="68" href="#68">68</a>          type(ClassWithStaticMethods.<strong class="jxr_keyword">class</strong>).staticMethod(hasName(<span class="jxr_string">"staticMethodWithOneArgument"</span>)).callRaw(<span class="jxr_string">"string"</span>);
 <a name="69" href="#69">69</a>          assertThat(ClassWithStaticMethods.stringCalled || ClassWithStaticMethods.objectCalled,
 <a name="70" href="#70">70</a>                  equalTo(<strong class="jxr_keyword">true</strong>));
 <a name="71" href="#71">71</a>      }
 <a name="72" href="#72">72</a>  
 <a name="73" href="#73">73</a>      @Test
 <a name="74" href="#74">74</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> callstaticMethodWithTwoArguments() {
-<a name="75" href="#75">75</a>          type(ClassWithStaticMethods.<strong class="jxr_keyword">class</strong>).staticMethod(callableHasName(<span class="jxr_string">"staticMethodWithTwoArguments"</span>)).call(<span class="jxr_string">"string"</span>, 42);
+<a name="75" href="#75">75</a>          type(ClassWithStaticMethods.<strong class="jxr_keyword">class</strong>).staticMethod(hasName(<span class="jxr_string">"staticMethodWithTwoArguments"</span>)).callRaw(<span class="jxr_string">"string"</span>, 42);
 <a name="76" href="#76">76</a>          assertThat(ClassWithStaticMethods.stringAndIntegerCalled,
 <a name="77" href="#77">77</a>                  equalTo(<strong class="jxr_keyword">true</strong>));
 <a name="78" href="#78">78</a>      }
@@ -90,7 +90,7 @@
 <a name="80" href="#80">80</a>      @Test
 <a name="81" href="#81">81</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> methodWithTwoArgumentsHasCorrectArgumentCount() {
 <a name="82" href="#82">82</a>          assertThat(
-<a name="83" href="#83">83</a>                  type(ClassWithStaticMethods.<strong class="jxr_keyword">class</strong>).method(callableHasName(<span class="jxr_string">"staticMethodWithTwoArguments"</span>)).argumentCount(),
+<a name="83" href="#83">83</a>                  type(ClassWithStaticMethods.<strong class="jxr_keyword">class</strong>).method(hasName(<span class="jxr_string">"staticMethodWithTwoArguments"</span>)).argCount(),
 <a name="84" href="#84">84</a>                  equalTo(2));
 <a name="85" href="#85">85</a>      }
 <a name="86" href="#86">86</a>  }

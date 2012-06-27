@@ -10,16 +10,16 @@
 
 <a name="1" href="#1">1</a>   <strong class="jxr_keyword">package</strong> com.lexicalscope.fluentreflection;
 <a name="2" href="#2">2</a>   
-<a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.ReflectionMatchers.reflectedTypeReflectingOn;
+<a name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> com.lexicalscope.fluentreflection.ReflectionMatchers.reflectingOn;
 <a name="4" href="#4">4</a>   
 <a name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> org.hamcrest.Matcher;
 <a name="6" href="#6">6</a>   
 <a name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> ch.lambdaj.function.convert.Converter;
 <a name="8" href="#8">8</a>   
-<a name="9" href="#9">9</a>   <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertClassToReflectedTypeMatcher.html">ConvertClassToReflectedTypeMatcher</a> implements Converter&lt;Class&lt;?&gt;, Matcher&lt;ReflectedClass&lt;?&gt;&gt;&gt; {
+<a name="9" href="#9">9</a>   <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/ConvertClassToReflectedTypeMatcher.html">ConvertClassToReflectedTypeMatcher</a> implements Converter&lt;Class&lt;?&gt;, Matcher&lt;FluentClass&lt;?&gt;&gt;&gt; {
 <a name="10" href="#10">10</a>      @Override
-<a name="11" href="#11">11</a>      <strong class="jxr_keyword">public</strong> Matcher&lt;ReflectedClass&lt;?&gt;&gt; convert(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; from) {
-<a name="12" href="#12">12</a>          <strong class="jxr_keyword">return</strong> reflectedTypeReflectingOn(from);
+<a name="11" href="#11">11</a>      <strong class="jxr_keyword">public</strong> Matcher&lt;FluentClass&lt;?&gt;&gt; convert(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; from) {
+<a name="12" href="#12">12</a>          <strong class="jxr_keyword">return</strong> reflectingOn(from);
 <a name="13" href="#13">13</a>      }
 <a name="14" href="#14">14</a>  }
 </pre>
