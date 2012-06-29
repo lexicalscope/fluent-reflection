@@ -123,7 +123,7 @@
 <a name="113" href="#113">113</a>         <strong class="jxr_keyword">return</strong> member.property();
 <a name="114" href="#114">114</a>     }
 <a name="115" href="#115">115</a> 
-<a name="116" href="#116">116</a>     @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> &lt;T&gt; Call&lt;T&gt; as(<strong class="jxr_keyword">final</strong> Class&lt;T&gt; returnType) {
+<a name="116" href="#116">116</a>     @Override <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> &lt;T&gt; FluentCall&lt;T&gt; as(<strong class="jxr_keyword">final</strong> Class&lt;T&gt; returnType) {
 <a name="117" href="#117">117</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> AbstractCall&lt;T&gt;(reflectedTypeFactory) {
 <a name="118" href="#118">118</a>             @Override <strong class="jxr_keyword">public</strong> T callRaw(<strong class="jxr_keyword">final</strong> Object... args) {
 <a name="119" href="#119">119</a>                 <strong class="jxr_keyword">return</strong> returnType.<strong class="jxr_keyword">cast</strong>(BoundFluentMemberImpl.<strong class="jxr_keyword">this</strong>.callRaw(args));

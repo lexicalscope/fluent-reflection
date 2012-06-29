@@ -188,7 +188,7 @@
 <a name="178" href="#178">178</a>         <strong class="jxr_keyword">return</strong> reflectedTypeFactory.reflect((Class) object.getClass(), object);
 <a name="179" href="#179">179</a>     }
 <a name="180" href="#180">180</a> 
-<a name="181" href="#181">181</a>     @Override <strong class="jxr_keyword">public</strong> &lt;T&gt; Call&lt;T&gt; as(<strong class="jxr_keyword">final</strong> Class&lt;T&gt; returnType) {
+<a name="181" href="#181">181</a>     @Override <strong class="jxr_keyword">public</strong> &lt;T&gt; FluentCall&lt;T&gt; as(<strong class="jxr_keyword">final</strong> Class&lt;T&gt; returnType) {
 <a name="182" href="#182">182</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> AbstractCall&lt;T&gt;(reflectedTypeFactory) {
 <a name="183" href="#183">183</a>             @Override <strong class="jxr_keyword">public</strong> T callRaw(<strong class="jxr_keyword">final</strong> Object... args) {
 <a name="184" href="#184">184</a>                 <strong class="jxr_keyword">return</strong> returnType.<strong class="jxr_keyword">cast</strong>(FluentFieldImpl.<strong class="jxr_keyword">this</strong>.callRaw(args));
