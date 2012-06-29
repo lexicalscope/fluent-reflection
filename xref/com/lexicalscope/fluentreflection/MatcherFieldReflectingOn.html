@@ -30,7 +30,7 @@
 <a name="20" href="#20">20</a>  <em class="jxr_comment"> * limitations under the License.</em>
 <a name="21" href="#21">21</a>  <em class="jxr_comment"> */</em>
 <a name="22" href="#22">22</a>  
-<a name="23" href="#23">23</a>  <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherFieldReflectingOn.html">MatcherFieldReflectingOn</a> <strong class="jxr_keyword">extends</strong> ReflectionMatcher&lt;ReflectedField&gt;{
+<a name="23" href="#23">23</a>  <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherFieldReflectingOn.html">MatcherFieldReflectingOn</a> <strong class="jxr_keyword">extends</strong> ReflectionMatcher&lt;FluentField&gt;{
 <a name="24" href="#24">24</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Field field;
 <a name="25" href="#25">25</a>  
 <a name="26" href="#26">26</a>      <strong class="jxr_keyword">public</strong> <a href="../../../com/lexicalscope/fluentreflection/MatcherFieldReflectingOn.html">MatcherFieldReflectingOn</a>(<strong class="jxr_keyword">final</strong> Field field) {
@@ -41,7 +41,7 @@
 <a name="31" href="#31">31</a>          description.appendText(<span class="jxr_string">"reflecting on field "</span>).appendValue(field);
 <a name="32" href="#32">32</a>      }
 <a name="33" href="#33">33</a>  
-<a name="34" href="#34">34</a>      @Override <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> matchesSafely(<strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedField.html">ReflectedField</a> item) {
+<a name="34" href="#34">34</a>      @Override <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">boolean</strong> matchesSafely(<strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/FluentField.html">FluentField</a> item) {
 <a name="35" href="#35">35</a>          <strong class="jxr_keyword">return</strong> item.member().equals(field);
 <a name="36" href="#36">36</a>      }
 <a name="37" href="#37">37</a>  }

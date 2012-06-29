@@ -22,7 +22,7 @@
 <a name="12" href="#12">12</a>  
 <a name="13" href="#13">13</a>  <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.FieldNotFoundException;
 <a name="14" href="#14">14</a>  <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.FluentClass;
-<a name="15" href="#15">15</a>  <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.ReflectedField;
+<a name="15" href="#15">15</a>  <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.FluentField;
 <a name="16" href="#16">16</a>  <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.FluentObject;
 <a name="17" href="#17">17</a>  <strong class="jxr_keyword">import</strong> com.lexicalscope.fluentreflection.ReflectionRuntimeException;
 <a name="18" href="#18">18</a>  
@@ -65,12 +65,12 @@
 <a name="55" href="#55">55</a>      @Test <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> canNotFindStaticFieldOfBoundObject() <strong class="jxr_keyword">throws</strong> SecurityException, NoSuchFieldException {
 <a name="56" href="#56">56</a>          assertThat(
 <a name="57" href="#57">57</a>                  object(<strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/endtoend/TestReflectedClassFields.html">Fields</a>()).fields(hasName(<span class="jxr_string">"staticField0"</span>)),
-<a name="58" href="#58">58</a>                  Matchers.&lt;ReflectedField&gt;empty());
+<a name="58" href="#58">58</a>                  Matchers.&lt;FluentField&gt;empty());
 <a name="59" href="#59">59</a>      }
 <a name="60" href="#60">60</a>  
 <a name="61" href="#61">61</a>      @Test <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> canWriteField() <strong class="jxr_keyword">throws</strong> SecurityException, NoSuchFieldException {
 <a name="62" href="#62">62</a>          <strong class="jxr_keyword">final</strong> FluentObject&lt;Fields&gt; object = object(<strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/endtoend/TestReflectedClassFields.html">Fields</a>());
-<a name="63" href="#63">63</a>          <strong class="jxr_keyword">final</strong> ReflectedField field = object.field(hasName(<span class="jxr_string">"publicField"</span>));
+<a name="63" href="#63">63</a>          <strong class="jxr_keyword">final</strong> FluentField field = object.field(hasName(<span class="jxr_string">"publicField"</span>));
 <a name="64" href="#64">64</a>  
 <a name="65" href="#65">65</a>          field.callRaw(<span class="jxr_string">"value"</span>);
 <a name="66" href="#66">66</a>          assertThat(
@@ -153,18 +153,18 @@
 <a name="143" href="#143">143</a>     }
 <a name="144" href="#144">144</a> 
 <a name="145" href="#145">145</a>     @Test <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> equalsIsTrueWhenTheFieldsAreTheSameAsEachOther() <strong class="jxr_keyword">throws</strong> SecurityException, NoSuchFieldException {
-<a name="146" href="#146">146</a>         <strong class="jxr_keyword">final</strong> ReflectedField field = object(<strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/endtoend/TestReflectedClassFields.html">Fields</a>()).field(hasName(<span class="jxr_string">"publicField"</span>));
+<a name="146" href="#146">146</a>         <strong class="jxr_keyword">final</strong> FluentField field = object(<strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/endtoend/TestReflectedClassFields.html">Fields</a>()).field(hasName(<span class="jxr_string">"publicField"</span>));
 <a name="147" href="#147">147</a>         assertThat(field, equalTo(field));
 <a name="148" href="#148">148</a>     }
 <a name="149" href="#149">149</a> 
 <a name="150" href="#150">150</a>     @Test <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> equalsIsTrueWhenTheThatIsARandomOtherObject() <strong class="jxr_keyword">throws</strong> SecurityException, NoSuchFieldException {
-<a name="151" href="#151">151</a>         <strong class="jxr_keyword">final</strong> ReflectedField field = object(<strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/endtoend/TestReflectedClassFields.html">Fields</a>()).field(hasName(<span class="jxr_string">"publicField"</span>));
+<a name="151" href="#151">151</a>         <strong class="jxr_keyword">final</strong> FluentField field = object(<strong class="jxr_keyword">new</strong> <a href="../../../../com/lexicalscope/fluentreflection/endtoend/TestReflectedClassFields.html">Fields</a>()).field(hasName(<span class="jxr_string">"publicField"</span>));
 <a name="152" href="#152">152</a>         assertThat(field, not(equalTo(<strong class="jxr_keyword">new</strong> Object())));
 <a name="153" href="#153">153</a>     }
 <a name="154" href="#154">154</a> 
 <a name="155" href="#155">155</a>     @Test <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> cannotReadFieldWithoutInstance() <strong class="jxr_keyword">throws</strong> SecurityException, NoSuchFieldException {
 <a name="156" href="#156">156</a>         <strong class="jxr_keyword">final</strong> FluentClass&lt;Fields&gt; object = type(Fields.<strong class="jxr_keyword">class</strong>);
-<a name="157" href="#157">157</a>         <strong class="jxr_keyword">final</strong> ReflectedField field = object.field(hasName(<span class="jxr_string">"publicField"</span>));
+<a name="157" href="#157">157</a>         <strong class="jxr_keyword">final</strong> FluentField field = object.field(hasName(<span class="jxr_string">"publicField"</span>));
 <a name="158" href="#158">158</a> 
 <a name="159" href="#159">159</a>         exception.expect(ReflectionRuntimeException.<strong class="jxr_keyword">class</strong>);
 <a name="160" href="#160">160</a>         exception.expectMessage(<span class="jxr_string">"reading a field requires an instance argument"</span>);
@@ -173,7 +173,7 @@
 <a name="163" href="#163">163</a> 
 <a name="164" href="#164">164</a>     @Test <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> cannotCallFieldWithTooManyArguments() <strong class="jxr_keyword">throws</strong> SecurityException, NoSuchFieldException {
 <a name="165" href="#165">165</a>         <strong class="jxr_keyword">final</strong> FluentClass&lt;Fields&gt; object = type(Fields.<strong class="jxr_keyword">class</strong>);
-<a name="166" href="#166">166</a>         <strong class="jxr_keyword">final</strong> ReflectedField field = object.field(hasName(<span class="jxr_string">"publicField"</span>));
+<a name="166" href="#166">166</a>         <strong class="jxr_keyword">final</strong> FluentField field = object.field(hasName(<span class="jxr_string">"publicField"</span>));
 <a name="167" href="#167">167</a> 
 <a name="168" href="#168">168</a>         exception.expect(ReflectionRuntimeException.<strong class="jxr_keyword">class</strong>);
 <a name="169" href="#169">169</a>         exception.expectMessage(<span class="jxr_string">"reading a field requires one argument, writing a field requires two arguments. Got 3 arguments"</span>);

@@ -28,13 +28,13 @@
 <a name="18" href="#18">18</a>  <em class="jxr_comment"> * limitations under the License.</em>
 <a name="19" href="#19">19</a>  <em class="jxr_comment"> */</em>
 <a name="20" href="#20">20</a>  
-<a name="21" href="#21">21</a>  <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/BoundFluentFieldImpl.html">BoundFluentFieldImpl</a> <strong class="jxr_keyword">extends</strong> <a href="../../../com/lexicalscope/fluentreflection/BoundFluentMemberImpl.html">BoundFluentMemberImpl</a> implements <a href="../../../com/lexicalscope/fluentreflection/ReflectedField.html">ReflectedField</a> {
-<a name="22" href="#22">22</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedField.html">ReflectedField</a> field;
+<a name="21" href="#21">21</a>  <strong class="jxr_keyword">class</strong> <a href="../../../com/lexicalscope/fluentreflection/BoundFluentFieldImpl.html">BoundFluentFieldImpl</a> <strong class="jxr_keyword">extends</strong> <a href="../../../com/lexicalscope/fluentreflection/BoundFluentMemberImpl.html">BoundFluentMemberImpl</a> implements <a href="../../../com/lexicalscope/fluentreflection/FluentField.html">FluentField</a> {
+<a name="22" href="#22">22</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/FluentField.html">FluentField</a> field;
 <a name="23" href="#23">23</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Object instance;
 <a name="24" href="#24">24</a>  
 <a name="25" href="#25">25</a>      <strong class="jxr_keyword">public</strong> <a href="../../../com/lexicalscope/fluentreflection/BoundFluentFieldImpl.html">BoundFluentFieldImpl</a>(
 <a name="26" href="#26">26</a>              <strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedTypeFactory.html">ReflectedTypeFactory</a> reflectedTypeFactory,
-<a name="27" href="#27">27</a>              <strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/ReflectedField.html">ReflectedField</a> field,
+<a name="27" href="#27">27</a>              <strong class="jxr_keyword">final</strong> <a href="../../../com/lexicalscope/fluentreflection/FluentField.html">FluentField</a> field,
 <a name="28" href="#28">28</a>              <strong class="jxr_keyword">final</strong> Object instance) {
 <a name="29" href="#29">29</a>          <strong class="jxr_keyword">super</strong>(reflectedTypeFactory, field, instance);
 <a name="30" href="#30">30</a>          <strong class="jxr_keyword">this</strong>.field = field;
