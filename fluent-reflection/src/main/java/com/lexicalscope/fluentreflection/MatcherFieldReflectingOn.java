@@ -20,7 +20,7 @@ import org.hamcrest.Description;
  * limitations under the License.
  */
 
-final class MatcherFieldReflectingOn extends ReflectionMatcher<ReflectedField>{
+final class MatcherFieldReflectingOn extends ReflectionMatcher<FluentField>{
     private final Field field;
 
     public MatcherFieldReflectingOn(final Field field) {
@@ -31,7 +31,7 @@ final class MatcherFieldReflectingOn extends ReflectionMatcher<ReflectedField>{
         description.appendText("reflecting on field ").appendValue(field);
     }
 
-    @Override protected boolean matchesSafely(final ReflectedField item) {
+    @Override protected boolean matchesSafely(final FluentField item) {
         return item.member().equals(field);
     }
 }

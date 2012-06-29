@@ -89,19 +89,19 @@ class FluentClassImpl<T> implements FluentClass<T> {
         return (FluentObject<T>) method(hasName(name).and(canBeCalledWithArguments(args))).call(args);
     }
 
-    @Override public List<ReflectedField> fields() {
+    @Override public List<FluentField> fields() {
         return members.fields();
     }
 
-    @Override public List<ReflectedField> fields(final ReflectionMatcher<? super ReflectedField> fieldMatcher) {
+    @Override public List<FluentField> fields(final ReflectionMatcher<? super FluentField> fieldMatcher) {
         return members.fields(fieldMatcher);
     }
 
-    @Override public ReflectedField field(final ReflectionMatcher<FluentMember> fieldMatcher) {
+    @Override public FluentField field(final ReflectionMatcher<FluentMember> fieldMatcher) {
         return members.field(fieldMatcher);
     }
 
-    @Override public List<ReflectedField> declaredFields() {
+    @Override public List<FluentField> declaredFields() {
         return members.declaredFields();
     }
 

@@ -20,7 +20,14 @@ import java.util.List;
 
 import org.hamcrest.Matcher;
 
-public interface FluentClass<T> extends FluentType<T> {
+/**
+ * Reflection information about a class.
+ *
+ * @author tim
+ *
+ * @param <T> the underlying type being reflected on
+ */
+public interface FluentClass<T> extends FluentAccess<T> {
     /**
      * True iff the type is an interface
      *

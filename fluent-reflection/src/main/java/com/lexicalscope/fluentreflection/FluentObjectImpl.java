@@ -89,34 +89,34 @@ final class FluentObjectImpl<T> implements FluentObject<T> {
         return (FluentObject<T>) method(hasName(name).and(canBeCalledWithArguments(args))).call(args);
     }
 
-    @Override public List<ReflectedField> fields(final ReflectionMatcher<? super ReflectedField> fieldMatcher) {
+    @Override public List<FluentField> fields(final ReflectionMatcher<? super FluentField> fieldMatcher) {
         return select(boundFields(), fieldMatcher);
     }
 
-    @Override public List<ReflectedField> declaredFields() {
+    @Override public List<FluentField> declaredFields() {
         return boundDeclaredFields();
     }
 
-    private List<ReflectedField> boundFields() {
+    private List<FluentField> boundFields() {
         return bindFields(reflect.fields());
     }
 
-    private List<ReflectedField> boundDeclaredFields() {
+    private List<FluentField> boundDeclaredFields() {
         return bindFields(reflect.declaredFields());
     }
 
-    private List<ReflectedField> bindFields(final List<ReflectedField> fields) {
+    private List<FluentField> bindFields(final List<FluentField> fields) {
         return convert(
                 select(fields, isNotStatic()),
                 new ConvertReflectedFieldToBoundReflectedField(reflectedTypeFactory, instance));
     }
 
-    @Override public List<ReflectedField> fields() {
+    @Override public List<FluentField> fields() {
         return boundFields();
     }
 
-    @Override public ReflectedField field(final ReflectionMatcher<FluentMember> fieldMatcher) {
-        final ReflectedField selectedField = selectFirst(fields(), fieldMatcher);
+    @Override public FluentField field(final ReflectionMatcher<FluentMember> fieldMatcher) {
+        final FluentField selectedField = selectFirst(fields(), fieldMatcher);
         if (selectedField == null) {
             throw new FieldNotFoundException(instance.getClass(), fieldMatcher);
         }

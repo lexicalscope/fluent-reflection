@@ -50,35 +50,12 @@
         <url>https://github.com/lexicalscope/fluent-reflection</url>
         <developerConnection>scm:git:git@github.com:lexicalscope/fluent-reflection.git</developerConnection>
     </scm>
-    <distributionManagement>
-        <site>
-            <id>github-project-site</id>
-            <url>gitsite:git@github.com/lexicalscope/fluent-reflection.git</url>
-        </site>
-    </distributionManagement>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
     </properties>
     <build>
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.scm</groupId>
-                <artifactId>maven-scm-provider-gitexe</artifactId>
-                <version>1.5</version>
-            </extension>
-            <extension>
-                <groupId>org.apache.maven.scm</groupId>
-                <artifactId>maven-scm-manager-plexus</artifactId>
-                <version>1.5</version>
-            </extension>
-            <extension>
-                <groupId>org.kathrynhuxtable.maven.wagon</groupId>
-                <artifactId>wagon-gitsite</artifactId>
-                <version>0.3.1</version>
-            </extension>
-        </extensions>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -311,6 +288,30 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.5</version>
+                <executions>
+                   <execution>
+                      <goals>
+                         <goal>site</goal>
+                      </goals>
+                      <phase>site-deploy</phase>
+                      <configuration>
+                         <message>Creating site for ${project.version}</message>
+                         <merge>true</merge>
+                      </configuration>
+                   </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <configuration>
+                    <skipDeploy>true</skipDeploy>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <reporting>
@@ -346,6 +347,29 @@
                     </formats>
                 </configuration>
             </plugin>
+            <!-- 
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.5.7.201204190339</version>
+                <configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>report</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>                
+                </configuration>
+            </plugin>            
+             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>

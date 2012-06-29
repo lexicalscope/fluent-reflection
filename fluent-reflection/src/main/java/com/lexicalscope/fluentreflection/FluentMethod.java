@@ -16,6 +16,11 @@ import java.lang.reflect.Method;
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/**
+ * Reflection information about a method.
+ *
+ * @author tim
+ */
 public interface FluentMethod extends FluentMember {
     /**
      * The name of the method with any prefix of "get", "set" or "is" removed

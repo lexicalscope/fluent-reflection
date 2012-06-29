@@ -21,7 +21,14 @@ import org.hamcrest.Matcher;
  * limitations under the License.
  */
 
-public interface FluentType<T> extends FluentAnnotated {
+/**
+ * Reflection access to a class or an object.
+ *
+ * @author tim
+ *
+ * @param <T> the underlying type being reflected on
+ */
+public interface FluentAccess<T> extends FluentAnnotated {
     /**
      * Obtain the class being reflected
      *
@@ -112,7 +119,7 @@ public interface FluentType<T> extends FluentAnnotated {
      *
      * @return all the fields
      */
-    List<ReflectedField> fields();
+    List<FluentField> fields();
 
     /**
      * Find all fields matching the supplied matcher
@@ -122,14 +129,14 @@ public interface FluentType<T> extends FluentAnnotated {
      *
      * @return The fields matching the supplied matcher
      */
-    List<ReflectedField> fields(ReflectionMatcher<? super ReflectedField> fieldMatcher);
+    List<FluentField> fields(ReflectionMatcher<? super FluentField> fieldMatcher);
 
     /**
      * All fields declared by this type
      *
      * @return fields declared by this type
      */
-    List<ReflectedField> declaredFields();
+    List<FluentField> declaredFields();
 
     /**
      * Find field matching the supplied matcher
@@ -139,7 +146,7 @@ public interface FluentType<T> extends FluentAnnotated {
      *
      * @return The first field matching the supplied matcher
      */
-    ReflectedField field(ReflectionMatcher<FluentMember> fieldMatcher);
+    FluentField field(ReflectionMatcher<FluentMember> fieldMatcher);
 
     boolean isPrimitive();
 

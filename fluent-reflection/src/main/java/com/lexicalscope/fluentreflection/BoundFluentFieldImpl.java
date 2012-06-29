@@ -18,13 +18,13 @@ import java.lang.reflect.Field;
  * limitations under the License.
  */
 
-class BoundFluentFieldImpl extends BoundFluentMemberImpl implements ReflectedField {
-    private final ReflectedField field;
+class BoundFluentFieldImpl extends BoundFluentMemberImpl implements FluentField {
+    private final FluentField field;
     private final Object instance;
 
     public BoundFluentFieldImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
-            final ReflectedField field,
+            final FluentField field,
             final Object instance) {
         super(reflectedTypeFactory, field, instance);
         this.field = field;

@@ -67,20 +67,20 @@ final class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
         return select(superclassesAndInterfaces(), supertypeMatcher);
     }
 
-    @Override public List<ReflectedField> declaredFields() {
+    @Override public List<FluentField> declaredFields() {
         return fields.declaredFields();
     }
 
-    @Override public List<ReflectedField> fields() {
+    @Override public List<FluentField> fields() {
         return fields.fields();
     }
 
-    @Override public List<ReflectedField> fields(final ReflectionMatcher<? super ReflectedField> fieldMatcher) {
+    @Override public List<FluentField> fields(final ReflectionMatcher<? super FluentField> fieldMatcher) {
         return select(fields(), fieldMatcher);
     }
 
-    @Override public ReflectedField field(final Matcher<? super ReflectedField> fieldMatcher) {
-        final ReflectedField selectedMethod = selectFirst(fields(), fieldMatcher);
+    @Override public FluentField field(final Matcher<? super FluentField> fieldMatcher) {
+        final FluentField selectedMethod = selectFirst(fields(), fieldMatcher);
         if (selectedMethod == null) {
             throw new FieldNotFoundException(klass, fieldMatcher);
         }

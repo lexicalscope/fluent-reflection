@@ -12,7 +12,7 @@ import org.junit.rules.ExpectedException;
 
 import com.lexicalscope.fluentreflection.FieldNotFoundException;
 import com.lexicalscope.fluentreflection.FluentClass;
-import com.lexicalscope.fluentreflection.ReflectedField;
+import com.lexicalscope.fluentreflection.FluentField;
 import com.lexicalscope.fluentreflection.FluentObject;
 import com.lexicalscope.fluentreflection.ReflectionRuntimeException;
 
@@ -55,12 +55,12 @@ public class TestReflectedClassFields {
     @Test public void canNotFindStaticFieldOfBoundObject() throws SecurityException, NoSuchFieldException {
         assertThat(
                 object(new Fields()).fields(hasName("staticField0")),
-                Matchers.<ReflectedField>empty());
+                Matchers.<FluentField>empty());
     }
 
     @Test public void canWriteField() throws SecurityException, NoSuchFieldException {
         final FluentObject<Fields> object = object(new Fields());
-        final ReflectedField field = object.field(hasName("publicField"));
+        final FluentField field = object.field(hasName("publicField"));
 
         field.callRaw("value");
         assertThat(
@@ -143,18 +143,18 @@ public class TestReflectedClassFields {
     }
 
     @Test public void equalsIsTrueWhenTheFieldsAreTheSameAsEachOther() throws SecurityException, NoSuchFieldException {
-        final ReflectedField field = object(new Fields()).field(hasName("publicField"));
+        final FluentField field = object(new Fields()).field(hasName("publicField"));
         assertThat(field, equalTo(field));
     }
 
     @Test public void equalsIsTrueWhenTheThatIsARandomOtherObject() throws SecurityException, NoSuchFieldException {
-        final ReflectedField field = object(new Fields()).field(hasName("publicField"));
+        final FluentField field = object(new Fields()).field(hasName("publicField"));
         assertThat(field, not(equalTo(new Object())));
     }
 
     @Test public void cannotReadFieldWithoutInstance() throws SecurityException, NoSuchFieldException {
         final FluentClass<Fields> object = type(Fields.class);
-        final ReflectedField field = object.field(hasName("publicField"));
+        final FluentField field = object.field(hasName("publicField"));
 
         exception.expect(ReflectionRuntimeException.class);
         exception.expectMessage("reading a field requires an instance argument");
@@ -163,7 +163,7 @@ public class TestReflectedClassFields {
 
     @Test public void cannotCallFieldWithTooManyArguments() throws SecurityException, NoSuchFieldException {
         final FluentClass<Fields> object = type(Fields.class);
-        final ReflectedField field = object.field(hasName("publicField"));
+        final FluentField field = object.field(hasName("publicField"));
 
         exception.expect(ReflectionRuntimeException.class);
         exception.expectMessage("reading a field requires one argument, writing a field requires two arguments. Got 3 arguments");

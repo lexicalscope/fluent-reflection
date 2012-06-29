@@ -29,7 +29,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.google.inject.TypeLiteral;
 
-final class FluentFieldImpl extends AbstractFluentAnnotated implements ReflectedField {
+final class FluentFieldImpl extends AbstractFluentAnnotated implements FluentField {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final FluentClass<?> reflectedClass;
     private final TypeLiteral<?> typeLiteral;
@@ -178,7 +178,7 @@ final class FluentFieldImpl extends AbstractFluentAnnotated implements Reflected
         return reflectedTypeFactory.reflect((Class) object.getClass(), object);
     }
 
-    @Override public <T> Call<T> as(final Class<T> returnType) {
+    @Override public <T> FluentCall<T> as(final Class<T> returnType) {
         return new AbstractCall<T>(reflectedTypeFactory) {
             @Override public T callRaw(final Object... args) {
                 return returnType.cast(FluentFieldImpl.this.callRaw(args));

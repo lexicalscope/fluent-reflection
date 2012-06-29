@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project>
+  <version position="left"/>
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>1.1</version>
+  </skin>
+  <custom>
+    <fluidoSkin>
+      <gitHub>
+        <projectId>lexicalscope/fluent-reflection</projectId>
+        <ribbonOrientation>right</ribbonOrientation>
+        <ribbonColor>black</ribbonColor>
+      </gitHub>
+    </fluidoSkin>
+  </custom>
+  <body>
+    ${reports}
+  </body>
+</project>

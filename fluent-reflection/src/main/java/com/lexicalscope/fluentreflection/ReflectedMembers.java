@@ -19,9 +19,9 @@ interface ReflectedMembers<T> {
     List<FluentConstructor<T>> constructors(Matcher<? super FluentConstructor<?>> constructorMatcher);
     FluentConstructor<T> constructor(Matcher<? super FluentConstructor<?>> constructorMatcher);
 
-    List<ReflectedField> declaredFields();
+    List<FluentField> declaredFields();
 
-    List<ReflectedField> fields();
-    List<ReflectedField> fields(ReflectionMatcher<? super ReflectedField> fieldMatcher);
-    ReflectedField field(Matcher<? super ReflectedField> fieldMatcher);
+    List<FluentField> fields();
+    List<FluentField> fields(ReflectionMatcher<? super FluentField> fieldMatcher);
+    FluentField field(Matcher<? super FluentField> fieldMatcher);
 }

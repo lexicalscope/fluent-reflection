@@ -31,7 +31,7 @@ import org.junit.Test;
 public class TestBoundReflectedFieldImpl {
     @Rule public final JUnitRuleMockery context = new JUnitRuleMockery();
 
-    @Mock private ReflectedField member;
+    @Mock private FluentField member;
     private final Object instance = new Object();
 
     private Object field;

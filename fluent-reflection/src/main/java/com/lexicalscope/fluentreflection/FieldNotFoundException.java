@@ -21,7 +21,7 @@ import org.hamcrest.Matcher;
 public class FieldNotFoundException extends ReflectionRuntimeException {
     private static final long serialVersionUID = 6649785414761324558L;
     private Class<?> klass;
-    private Matcher<? super ReflectedField> fieldMatcher;
+    private Matcher<? super FluentField> fieldMatcher;
 
     public FieldNotFoundException() {
         super();
@@ -39,7 +39,7 @@ public class FieldNotFoundException extends ReflectionRuntimeException {
         super(cause);
     }
 
-    public FieldNotFoundException(final Class<?> klass, final Matcher<? super ReflectedField> fieldMatcher) {
+    public FieldNotFoundException(final Class<?> klass, final Matcher<? super FluentField> fieldMatcher) {
         this(String.format("unable to find field matching <%s> in %s", fieldMatcher, klass));
         this.klass = klass;
         this.fieldMatcher = fieldMatcher;
@@ -49,7 +49,7 @@ public class FieldNotFoundException extends ReflectionRuntimeException {
         return klass;
     }
 
-    public Matcher<? super ReflectedField> getFieldMatcher() {
+    public Matcher<? super FluentField> getFieldMatcher() {
         return fieldMatcher;
     }
 }

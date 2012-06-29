@@ -16,7 +16,7 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License.
  */
 
-abstract class AbstractCall<S> implements Call<S> {
+abstract class AbstractCall<S> implements FluentCall<S> {
     private final ReflectedTypeFactory reflectedTypeFactory;
 
     public AbstractCall(final ReflectedTypeFactory reflectedTypeFactory) {

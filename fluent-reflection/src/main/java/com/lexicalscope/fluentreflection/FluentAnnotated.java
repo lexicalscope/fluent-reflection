@@ -20,6 +20,11 @@ import org.hamcrest.Matcher;
  * limitations under the License.
  */
 
+/**
+ * Reflection access to an annotated program element.
+ *
+ * @author tim
+ */
 public interface FluentAnnotated {
     FluentClass<?> annotation(Matcher<? super FluentClass<?>> annotationMatcher);
     <A extends Annotation> A annotation(Class<A> annotationClass);

@@ -17,7 +17,14 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License.
  */
 
-public interface FluentObject<T> extends FluentType<T> {
+/**
+ * Reflection information about a Object (an instance of a class).
+ *
+ * @author tim
+ *
+ * @param <T> the underlying type being reflected on
+ */
+public interface FluentObject<T> extends FluentAccess<T> {
     /**
      * get the static reflection information about the type of this object
      *

@@ -1,7 +1,9 @@
 package com.lexicalscope.fluentreflection;
 
+import java.lang.reflect.Field;
+
 /*
- * Copyright 2011 Tim Wood
+ * Copyright 2012 Tim Wood
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +18,11 @@ package com.lexicalscope.fluentreflection;
  * limitations under the License.
  */
 
-public interface Call<T> {
-    T callRaw(Object... args);
-    FluentObject<T> call(Object... args);
+/**
+ * Reflection access to a field.
+ *
+ * @author tim
+ */
+public interface FluentField extends FluentMember {
+    Field member();
 }

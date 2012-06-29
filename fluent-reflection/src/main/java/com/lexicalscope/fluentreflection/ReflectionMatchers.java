@@ -310,7 +310,7 @@ public final class ReflectionMatchers {
         return new MatcherStrictSubtypeOf(klass);
     }
 
-    public static ReflectionMatcher<ReflectedField> isReflectingOnField(final Field field) {
+    public static ReflectionMatcher<FluentField> isReflectingOnField(final Field field) {
         return new MatcherFieldReflectingOn(field);
     }
 

@@ -14,8 +14,8 @@ final class ReflectedFieldsImpl<T> implements ReflectedFields<T> {
     private final ReflectedSuperclassesAndInterfaces<T> allTypes;
     private final TypeLiteral<T> typeLiteral;
 
-    private List<ReflectedField> declaredFields;
-    private List<ReflectedField> reflectedFields;
+    private List<FluentField> declaredFields;
+    private List<FluentField> reflectedFields;
 
     ReflectedFieldsImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
@@ -26,9 +26,9 @@ final class ReflectedFieldsImpl<T> implements ReflectedFields<T> {
         this.allTypes = allTypes;
     }
 
-    @Override public List<ReflectedField> fields() {
+    @Override public List<FluentField> fields() {
         if (reflectedFields == null) {
-            final List<ReflectedField> result = new ArrayList<ReflectedField>();
+            final List<FluentField> result = new ArrayList<FluentField>();
 
             result.addAll(declaredFields());
             for (final FluentClass<?> klassToReflect : allTypes.superclassesAndInterfaces()) {
@@ -41,8 +41,8 @@ final class ReflectedFieldsImpl<T> implements ReflectedFields<T> {
         return reflectedFields;
     }
 
-    private List<ReflectedField> getDeclaredFieldsOfClass(final TypeLiteral<?> typeLiteralToReflect) {
-        final List<ReflectedField> result = new ArrayList<ReflectedField>();
+    private List<FluentField> getDeclaredFieldsOfClass(final TypeLiteral<?> typeLiteralToReflect) {
+        final List<FluentField> result = new ArrayList<FluentField>();
         final Field[] declaredFields = typeLiteralToReflect.getRawType().getDeclaredFields();
         for (final Field method : declaredFields) {
             result.add(reflectedTypeFactory.field(typeLiteralToReflect, method));
@@ -50,7 +50,7 @@ final class ReflectedFieldsImpl<T> implements ReflectedFields<T> {
         return result;
     }
 
-    @Override public List<ReflectedField> declaredFields() {
+    @Override public List<FluentField> declaredFields() {
         if (declaredFields == null) {
             declaredFields = unmodifiableList(getDeclaredFieldsOfClass(typeLiteral));
         }

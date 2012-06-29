@@ -18,7 +18,7 @@ import ch.lambdaj.function.convert.Converter;
  * limitations under the License.
  */
 
-class ConvertReflectedFieldToBoundReflectedField implements Converter<ReflectedField, ReflectedField> {
+class ConvertReflectedFieldToBoundReflectedField implements Converter<FluentField, FluentField> {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final Object instance;
 
@@ -28,7 +28,7 @@ class ConvertReflectedFieldToBoundReflectedField implements Converter<ReflectedF
     }
 
     @Override
-    public ReflectedField convert(final ReflectedField from) {
+    public FluentField convert(final FluentField from) {
         return new BoundFluentFieldImpl(reflectedTypeFactory, from, instance);
     }
 }

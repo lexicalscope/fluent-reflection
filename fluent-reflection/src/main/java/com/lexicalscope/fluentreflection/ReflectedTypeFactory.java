@@ -34,5 +34,5 @@ interface ReflectedTypeFactory {
 
     FluentMethod method(TypeLiteral<?> klass, Method method);
 
-    ReflectedField field(TypeLiteral<?> klass, Field method);
+    FluentField field(TypeLiteral<?> klass, Field method);
 }

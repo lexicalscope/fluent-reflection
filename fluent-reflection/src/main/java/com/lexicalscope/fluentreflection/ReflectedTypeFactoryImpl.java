@@ -50,7 +50,7 @@ final class ReflectedTypeFactoryImpl implements ReflectedTypeFactory {
         return new BoundFluentMethodImpl(this, method(method), instance);
     }
 
-    @Override public ReflectedField field(final TypeLiteral<?> klass, final Field field) {
+    @Override public FluentField field(final TypeLiteral<?> klass, final Field field) {
         return new FluentFieldImpl(this, reflect(klass), klass, field);
     }
 }

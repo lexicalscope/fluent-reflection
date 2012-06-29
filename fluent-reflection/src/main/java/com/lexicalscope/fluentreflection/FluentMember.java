@@ -3,6 +3,11 @@ package com.lexicalscope.fluentreflection;
 import java.lang.reflect.Member;
 import java.util.List;
 
+/**
+ * Reflection information about a class member, such as a field or method.
+ *
+ * @author tim
+ */
 public interface FluentMember extends FluentAnnotated {
     /**
      * Type that declares the member
@@ -78,7 +83,7 @@ public interface FluentMember extends FluentAnnotated {
      *
      * @return object that can offers the call with the result cast to the given type
      */
-    <T> Call<T> as(Class<T> returnType);
+    <T> FluentCall<T> as(Class<T> returnType);
 
     /**
      * true iff the member is static
