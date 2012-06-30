@@ -125,81 +125,140 @@
 <a name="115" href="#115">115</a>     FluentObject&lt;?&gt; call(String name, Object ... args);
 <a name="116" href="#116">116</a> 
 <a name="117" href="#117">117</a>     <em class="jxr_javadoccomment">/**</em>
-<a name="118" href="#118">118</a> <em class="jxr_javadoccomment">     * All fields</em>
+<a name="118" href="#118">118</a> <em class="jxr_javadoccomment">     * Call a method using a matcher, if one can be found that can also be called with the given arguments</em>
 <a name="119" href="#119">119</a> <em class="jxr_javadoccomment">     *</em>
-<a name="120" href="#120">120</a> <em class="jxr_javadoccomment">     * @return all the fields</em>
-<a name="121" href="#121">121</a> <em class="jxr_javadoccomment">     */</em>
-<a name="122" href="#122">122</a>     List&lt;FluentField&gt; fields();
-<a name="123" href="#123">123</a> 
-<a name="124" href="#124">124</a>     <em class="jxr_javadoccomment">/**</em>
-<a name="125" href="#125">125</a> <em class="jxr_javadoccomment">     * Find all fields matching the supplied matcher</em>
-<a name="126" href="#126">126</a> <em class="jxr_javadoccomment">     *</em>
-<a name="127" href="#127">127</a> <em class="jxr_javadoccomment">     * @param fieldMatcher</em>
-<a name="128" href="#128">128</a> <em class="jxr_javadoccomment">     *            matches the field</em>
+<a name="120" href="#120">120</a> <em class="jxr_javadoccomment">     * @param methodMatcher matches the method</em>
+<a name="121" href="#121">121</a> <em class="jxr_javadoccomment">     * @param args the arguments of the method</em>
+<a name="122" href="#122">122</a> <em class="jxr_javadoccomment">     *</em>
+<a name="123" href="#123">123</a> <em class="jxr_javadoccomment">     * @return the result of calling the method</em>
+<a name="124" href="#124">124</a> <em class="jxr_javadoccomment">     */</em>
+<a name="125" href="#125">125</a>     FluentObject&lt;?&gt; call(Matcher&lt;? <strong class="jxr_keyword">super</strong> FluentMethod&gt; methodMatcher, Object ... args);
+<a name="126" href="#126">126</a> 
+<a name="127" href="#127">127</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="128" href="#128">128</a> <em class="jxr_javadoccomment">     * All fields</em>
 <a name="129" href="#129">129</a> <em class="jxr_javadoccomment">     *</em>
-<a name="130" href="#130">130</a> <em class="jxr_javadoccomment">     * @return The fields matching the supplied matcher</em>
+<a name="130" href="#130">130</a> <em class="jxr_javadoccomment">     * @return all the fields</em>
 <a name="131" href="#131">131</a> <em class="jxr_javadoccomment">     */</em>
-<a name="132" href="#132">132</a>     List&lt;FluentField&gt; fields(ReflectionMatcher&lt;? <strong class="jxr_keyword">super</strong> FluentField&gt; fieldMatcher);
+<a name="132" href="#132">132</a>     List&lt;FluentField&gt; fields();
 <a name="133" href="#133">133</a> 
 <a name="134" href="#134">134</a>     <em class="jxr_javadoccomment">/**</em>
-<a name="135" href="#135">135</a> <em class="jxr_javadoccomment">     * All fields declared by this type</em>
+<a name="135" href="#135">135</a> <em class="jxr_javadoccomment">     * Find all fields matching the supplied matcher</em>
 <a name="136" href="#136">136</a> <em class="jxr_javadoccomment">     *</em>
-<a name="137" href="#137">137</a> <em class="jxr_javadoccomment">     * @return fields declared by this type</em>
-<a name="138" href="#138">138</a> <em class="jxr_javadoccomment">     */</em>
-<a name="139" href="#139">139</a>     List&lt;FluentField&gt; declaredFields();
-<a name="140" href="#140">140</a> 
-<a name="141" href="#141">141</a>     <em class="jxr_javadoccomment">/**</em>
-<a name="142" href="#142">142</a> <em class="jxr_javadoccomment">     * Find field matching the supplied matcher</em>
-<a name="143" href="#143">143</a> <em class="jxr_javadoccomment">     *</em>
-<a name="144" href="#144">144</a> <em class="jxr_javadoccomment">     * @param fieldMatcher</em>
-<a name="145" href="#145">145</a> <em class="jxr_javadoccomment">     *            matches the field</em>
+<a name="137" href="#137">137</a> <em class="jxr_javadoccomment">     * @param fieldMatcher</em>
+<a name="138" href="#138">138</a> <em class="jxr_javadoccomment">     *            matches the field</em>
+<a name="139" href="#139">139</a> <em class="jxr_javadoccomment">     *</em>
+<a name="140" href="#140">140</a> <em class="jxr_javadoccomment">     * @return The fields matching the supplied matcher</em>
+<a name="141" href="#141">141</a> <em class="jxr_javadoccomment">     */</em>
+<a name="142" href="#142">142</a>     List&lt;FluentField&gt; fields(ReflectionMatcher&lt;? <strong class="jxr_keyword">super</strong> FluentField&gt; fieldMatcher);
+<a name="143" href="#143">143</a> 
+<a name="144" href="#144">144</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="145" href="#145">145</a> <em class="jxr_javadoccomment">     * All fields declared by this type</em>
 <a name="146" href="#146">146</a> <em class="jxr_javadoccomment">     *</em>
-<a name="147" href="#147">147</a> <em class="jxr_javadoccomment">     * @return The first field matching the supplied matcher</em>
+<a name="147" href="#147">147</a> <em class="jxr_javadoccomment">     * @return fields declared by this type</em>
 <a name="148" href="#148">148</a> <em class="jxr_javadoccomment">     */</em>
-<a name="149" href="#149">149</a>     <a href="../../../com/lexicalscope/fluentreflection/FluentField.html">FluentField</a> field(ReflectionMatcher&lt;FluentMember&gt; fieldMatcher);
+<a name="149" href="#149">149</a>     List&lt;FluentField&gt; declaredFields();
 <a name="150" href="#150">150</a> 
-<a name="151" href="#151">151</a>     <strong class="jxr_keyword">boolean</strong> isPrimitive();
-<a name="152" href="#152">152</a> 
-<a name="153" href="#153">153</a>     <strong class="jxr_keyword">boolean</strong> isUnboxable();
-<a name="154" href="#154">154</a> 
-<a name="155" href="#155">155</a>     <strong class="jxr_keyword">boolean</strong> canBeBoxed(Class&lt;?&gt; from);
-<a name="156" href="#156">156</a> 
-<a name="157" href="#157">157</a>     <strong class="jxr_keyword">boolean</strong> canBeUnboxed(Class&lt;?&gt; from);
-<a name="158" href="#158">158</a> 
-<a name="159" href="#159">159</a>     FluentClass&lt;T&gt; boxedType();
+<a name="151" href="#151">151</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="152" href="#152">152</a> <em class="jxr_javadoccomment">     * Find field matching the supplied matcher</em>
+<a name="153" href="#153">153</a> <em class="jxr_javadoccomment">     *</em>
+<a name="154" href="#154">154</a> <em class="jxr_javadoccomment">     * @param fieldMatcher</em>
+<a name="155" href="#155">155</a> <em class="jxr_javadoccomment">     *            matches the field</em>
+<a name="156" href="#156">156</a> <em class="jxr_javadoccomment">     *</em>
+<a name="157" href="#157">157</a> <em class="jxr_javadoccomment">     * @return The first field matching the supplied matcher</em>
+<a name="158" href="#158">158</a> <em class="jxr_javadoccomment">     */</em>
+<a name="159" href="#159">159</a>     <a href="../../../com/lexicalscope/fluentreflection/FluentField.html">FluentField</a> field(ReflectionMatcher&lt;FluentMember&gt; fieldMatcher);
 <a name="160" href="#160">160</a> 
-<a name="161" href="#161">161</a>     FluentClass&lt;T&gt; unboxedType();
-<a name="162" href="#162">162</a> 
-<a name="163" href="#163">163</a>     <em class="jxr_javadoccomment">/**</em>
-<a name="164" href="#164">164</a> <em class="jxr_javadoccomment">     * True if the given object can be assigned to a variable of the type</em>
-<a name="165" href="#165">165</a> <em class="jxr_javadoccomment">     * represented by this class</em>
-<a name="166" href="#166">166</a> <em class="jxr_javadoccomment">     *</em>
-<a name="167" href="#167">167</a> <em class="jxr_javadoccomment">     * @param value</em>
-<a name="168" href="#168">168</a> <em class="jxr_javadoccomment">     *            the value that might be assigned</em>
-<a name="169" href="#169">169</a> <em class="jxr_javadoccomment">     *</em>
-<a name="170" href="#170">170</a> <em class="jxr_javadoccomment">     * @return true iff the value can be assigned to variables of this type</em>
-<a name="171" href="#171">171</a> <em class="jxr_javadoccomment">     */</em>
-<a name="172" href="#172">172</a>     <strong class="jxr_keyword">boolean</strong> assignableFromObject(Object value);
-<a name="173" href="#173">173</a> 
-<a name="174" href="#174">174</a>     <strong class="jxr_keyword">boolean</strong> assignableTo(Class&lt;?&gt; klass);
-<a name="175" href="#175">175</a> 
-<a name="176" href="#176">176</a>     FluentClass&lt;?&gt; typeArgument(<strong class="jxr_keyword">int</strong> typeParameter);
-<a name="177" href="#177">177</a> 
-<a name="178" href="#178">178</a>     <em class="jxr_javadoccomment">/**</em>
-<a name="179" href="#179">179</a> <em class="jxr_javadoccomment">     * @return the name of the class under reflection</em>
-<a name="180" href="#180">180</a> <em class="jxr_javadoccomment">     */</em>
-<a name="181" href="#181">181</a>     String name();
-<a name="182" href="#182">182</a> 
-<a name="183" href="#183">183</a>     <em class="jxr_javadoccomment">/**</em>
-<a name="184" href="#184">184</a> <em class="jxr_javadoccomment">     * @return the simple name of the class under reflection</em>
-<a name="185" href="#185">185</a> <em class="jxr_javadoccomment">     */</em>
-<a name="186" href="#186">186</a>     String simpleName();
-<a name="187" href="#187">187</a> 
-<a name="188" href="#188">188</a>     <em class="jxr_javadoccomment">/**</em>
-<a name="189" href="#189">189</a> <em class="jxr_javadoccomment">     * @return the underlying type instance</em>
-<a name="190" href="#190">190</a> <em class="jxr_javadoccomment">     */</em>
-<a name="191" href="#191">191</a>     Type type();
-<a name="192" href="#192">192</a> }
+<a name="161" href="#161">161</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="162" href="#162">162</a> <em class="jxr_javadoccomment">     * Determines if this {@code Class} object represents a</em>
+<a name="163" href="#163">163</a> <em class="jxr_javadoccomment">     * primitive type.</em>
+<a name="164" href="#164">164</a> <em class="jxr_javadoccomment">     *</em>
+<a name="165" href="#165">165</a> <em class="jxr_javadoccomment">     * @return true if and only if this class represents a primitive type</em>
+<a name="166" href="#166">166</a> <em class="jxr_javadoccomment">     */</em>
+<a name="167" href="#167">167</a>     <strong class="jxr_keyword">boolean</strong> isPrimitive();
+<a name="168" href="#168">168</a> 
+<a name="169" href="#169">169</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="170" href="#170">170</a> <em class="jxr_javadoccomment">     * Determines if this {@code Class} object represents the wrapper of a</em>
+<a name="171" href="#171">171</a> <em class="jxr_javadoccomment">     * primitive type.</em>
+<a name="172" href="#172">172</a> <em class="jxr_javadoccomment">     *</em>
+<a name="173" href="#173">173</a> <em class="jxr_javadoccomment">     * @return true iff this class is one of the primative wrapper types</em>
+<a name="174" href="#174">174</a> <em class="jxr_javadoccomment">     */</em>
+<a name="175" href="#175">175</a>     <strong class="jxr_keyword">boolean</strong> isUnboxable();
+<a name="176" href="#176">176</a> 
+<a name="177" href="#177">177</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="178" href="#178">178</a> <em class="jxr_javadoccomment">     * Determines if this {@code Class} object is a primitive wrapper</em>
+<a name="179" href="#179">179</a> <em class="jxr_javadoccomment">     * type, and the unwrapped type can be assigned from the parameter.</em>
+<a name="180" href="#180">180</a> <em class="jxr_javadoccomment">     * Can the parameter be boxed into this type?</em>
+<a name="181" href="#181">181</a> <em class="jxr_javadoccomment">     *</em>
+<a name="182" href="#182">182</a> <em class="jxr_javadoccomment">     * @param from the type that maybe be assignable to this type</em>
+<a name="183" href="#183">183</a> <em class="jxr_javadoccomment">     *</em>
+<a name="184" href="#184">184</a> <em class="jxr_javadoccomment">     * @return true iff this class is a primitive wrapper type, and the</em>
+<a name="185" href="#185">185</a> <em class="jxr_javadoccomment">     * unwrapped type can be assigned from the parameter</em>
+<a name="186" href="#186">186</a> <em class="jxr_javadoccomment">     */</em>
+<a name="187" href="#187">187</a>     <strong class="jxr_keyword">boolean</strong> canBeBoxed(Class&lt;?&gt; from);
+<a name="188" href="#188">188</a> 
+<a name="189" href="#189">189</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="190" href="#190">190</a> <em class="jxr_javadoccomment">     * Determines if this {@code Class} object is a primitive</em>
+<a name="191" href="#191">191</a> <em class="jxr_javadoccomment">     * type, and the wrapped type can be assigned from the parameter.</em>
+<a name="192" href="#192">192</a> <em class="jxr_javadoccomment">     * Can the parameter be unboxed into this type?</em>
+<a name="193" href="#193">193</a> <em class="jxr_javadoccomment">     *</em>
+<a name="194" href="#194">194</a> <em class="jxr_javadoccomment">     * @param from the type that maybe be assignable to this type</em>
+<a name="195" href="#195">195</a> <em class="jxr_javadoccomment">     *</em>
+<a name="196" href="#196">196</a> <em class="jxr_javadoccomment">     * @return true iff this class is a primitive type, and the</em>
+<a name="197" href="#197">197</a> <em class="jxr_javadoccomment">     * wrapped type can be assigned from the parameter</em>
+<a name="198" href="#198">198</a> <em class="jxr_javadoccomment">     */</em>
+<a name="199" href="#199">199</a>     <strong class="jxr_keyword">boolean</strong> canBeUnboxed(Class&lt;?&gt; from);
+<a name="200" href="#200">200</a> 
+<a name="201" href="#201">201</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="202" href="#202">202</a> <em class="jxr_javadoccomment">     * If this class is a primitive type return the wrapped type</em>
+<a name="203" href="#203">203</a> <em class="jxr_javadoccomment">     *</em>
+<a name="204" href="#204">204</a> <em class="jxr_javadoccomment">     * @return the wrapped type or this</em>
+<a name="205" href="#205">205</a> <em class="jxr_javadoccomment">     */</em>
+<a name="206" href="#206">206</a>     FluentClass&lt;T&gt; boxedType();
+<a name="207" href="#207">207</a> 
+<a name="208" href="#208">208</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="209" href="#209">209</a> <em class="jxr_javadoccomment">     * If this class is a primitive wrapper type return the unwrapped type</em>
+<a name="210" href="#210">210</a> <em class="jxr_javadoccomment">     *</em>
+<a name="211" href="#211">211</a> <em class="jxr_javadoccomment">     * @return the unwrapped type or this</em>
+<a name="212" href="#212">212</a> <em class="jxr_javadoccomment">     */</em>
+<a name="213" href="#213">213</a>     FluentClass&lt;T&gt; unboxedType();
+<a name="214" href="#214">214</a> 
+<a name="215" href="#215">215</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="216" href="#216">216</a> <em class="jxr_javadoccomment">     * True if the given object can be assigned to a variable of the type</em>
+<a name="217" href="#217">217</a> <em class="jxr_javadoccomment">     * represented by this class</em>
+<a name="218" href="#218">218</a> <em class="jxr_javadoccomment">     *</em>
+<a name="219" href="#219">219</a> <em class="jxr_javadoccomment">     * @param value</em>
+<a name="220" href="#220">220</a> <em class="jxr_javadoccomment">     *            the value that might be assigned</em>
+<a name="221" href="#221">221</a> <em class="jxr_javadoccomment">     *</em>
+<a name="222" href="#222">222</a> <em class="jxr_javadoccomment">     * @return true iff the value can be assigned to variables of this type</em>
+<a name="223" href="#223">223</a> <em class="jxr_javadoccomment">     */</em>
+<a name="224" href="#224">224</a>     <strong class="jxr_keyword">boolean</strong> assignableFromObject(Object value);
+<a name="225" href="#225">225</a> 
+<a name="226" href="#226">226</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="227" href="#227">227</a> <em class="jxr_javadoccomment">     * Is the parameter assignable from this class?</em>
+<a name="228" href="#228">228</a> <em class="jxr_javadoccomment">     *</em>
+<a name="229" href="#229">229</a> <em class="jxr_javadoccomment">     * @param klass the class that may be assignable to</em>
+<a name="230" href="#230">230</a> <em class="jxr_javadoccomment">     *</em>
+<a name="231" href="#231">231</a> <em class="jxr_javadoccomment">     * @return true iff the parameter is assignable from this class</em>
+<a name="232" href="#232">232</a> <em class="jxr_javadoccomment">     */</em>
+<a name="233" href="#233">233</a>     <strong class="jxr_keyword">boolean</strong> assignableTo(Class&lt;?&gt; klass);
+<a name="234" href="#234">234</a> 
+<a name="235" href="#235">235</a>     FluentClass&lt;?&gt; typeArgument(<strong class="jxr_keyword">int</strong> typeParameter);
+<a name="236" href="#236">236</a> 
+<a name="237" href="#237">237</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="238" href="#238">238</a> <em class="jxr_javadoccomment">     * @return the name of the class under reflection</em>
+<a name="239" href="#239">239</a> <em class="jxr_javadoccomment">     */</em>
+<a name="240" href="#240">240</a>     String name();
+<a name="241" href="#241">241</a> 
+<a name="242" href="#242">242</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="243" href="#243">243</a> <em class="jxr_javadoccomment">     * @return the simple name of the class under reflection</em>
+<a name="244" href="#244">244</a> <em class="jxr_javadoccomment">     */</em>
+<a name="245" href="#245">245</a>     String simpleName();
+<a name="246" href="#246">246</a> 
+<a name="247" href="#247">247</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="248" href="#248">248</a> <em class="jxr_javadoccomment">     * @return the underlying type instance</em>
+<a name="249" href="#249">249</a> <em class="jxr_javadoccomment">     */</em>
+<a name="250" href="#250">250</a>     Type type();
+<a name="251" href="#251">251</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>
