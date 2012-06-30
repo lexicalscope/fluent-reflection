@@ -84,9 +84,16 @@ class FluentClassImpl<T> implements FluentClass<T> {
         return members.declaredMethods();
     }
 
-    @SuppressWarnings("unchecked") @Override public FluentObject<T> call(final String name, final Object ... args)
+    @Override public FluentObject<?> call(final String name, final Object ... args)
     {
-        return (FluentObject<T>) method(hasName(name).and(canBeCalledWithArguments(args))).call(args);
+        return call(hasName(name), args);
+    }
+
+    @SuppressWarnings("unchecked") @Override public FluentObject<?> call(
+            final Matcher<? super FluentMethod> methodMatcher,
+            final Object ... args)
+    {
+        return method(allOf(methodMatcher, canBeCalledWithArguments(args))).call(args);
     }
 
     @Override public List<FluentField> fields() {

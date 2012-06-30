@@ -25,9 +25,16 @@ import java.util.List;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
+/**
+ * Base class for all the matchers included in the library.
+ *
+ * @author tim
+ *
+ * @param <T>
+ */
 public abstract class ReflectionMatcher<T> extends TypeSafeMatcher<T> {
     /**
-     * Creates an and matcher combining this matcher and the given one
+     * Creates an "and" matcher combining this matcher and the given one
      *
      * @param matcher
      *            The matcher to be put in and with this one
@@ -42,7 +49,7 @@ public abstract class ReflectionMatcher<T> extends TypeSafeMatcher<T> {
     }
 
     /**
-     * Creates an or matcher combining this matcher and the given one
+     * Creates an "or" matcher combining this matcher and the given one
      *
      * @param matcher
      *            The matcher to be put in or with this one
@@ -56,7 +63,7 @@ public abstract class ReflectionMatcher<T> extends TypeSafeMatcher<T> {
         return orOf(list);
     }
 
-    public static <T> Matcher<T> allOf(
+    static <T> Matcher<T> allOf(
             final Matcher<? super T> T0,
             final Matcher<? super T> T1) {
         final List<Matcher<? super T>> list = new ArrayList<Matcher<? super T>>();

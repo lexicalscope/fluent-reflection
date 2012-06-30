@@ -15,9 +15,14 @@ import java.lang.reflect.Modifier;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
+/**
+ * An enum describing the different levels of visibility offered by Java
+ *
+ * @author tim
+ */
 public enum Visibility {
     PUBLIC("public"),
     PRIVATE("private"),
@@ -34,7 +39,7 @@ public enum Visibility {
         return visibility;
     }
 
-    public static Visibility visibilityFromModifiers(final int modifiers) {
+    static Visibility visibilityFromModifiers(final int modifiers) {
         if (Modifier.isPublic(modifiers))
         {
             return Visibility.PUBLIC;

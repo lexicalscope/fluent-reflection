@@ -115,6 +115,16 @@ public interface FluentAccess<T> extends FluentAnnotated {
     FluentObject<?> call(String name, Object ... args);
 
     /**
+     * Call a method using a matcher, if one can be found that can also be called with the given arguments
+     *
+     * @param methodMatcher matches the method
+     * @param args the arguments of the method
+     *
+     * @return the result of calling the method
+     */
+    FluentObject<?> call(Matcher<? super FluentMethod> methodMatcher, Object ... args);
+
+    /**
      * All fields
      *
      * @return all the fields
@@ -148,16 +158,58 @@ public interface FluentAccess<T> extends FluentAnnotated {
      */
     FluentField field(ReflectionMatcher<FluentMember> fieldMatcher);
 
+    /**
+     * Determines if this {@code Class} object represents a
+     * primitive type.
+     *
+     * @return true if and only if this class represents a primitive type
+     */
     boolean isPrimitive();
 
+    /**
+     * Determines if this {@code Class} object represents the wrapper of a
+     * primitive type.
+     *
+     * @return true iff this class is one of the primative wrapper types
+     */
     boolean isUnboxable();
 
+    /**
+     * Determines if this {@code Class} object is a primitive wrapper
+     * type, and the unwrapped type can be assigned from the parameter.
+     * Can the parameter be boxed into this type?
+     *
+     * @param from the type that maybe be assignable to this type
+     *
+     * @return true iff this class is a primitive wrapper type, and the
+     * unwrapped type can be assigned from the parameter
+     */
     boolean canBeBoxed(Class<?> from);
 
+    /**
+     * Determines if this {@code Class} object is a primitive
+     * type, and the wrapped type can be assigned from the parameter.
+     * Can the parameter be unboxed into this type?
+     *
+     * @param from the type that maybe be assignable to this type
+     *
+     * @return true iff this class is a primitive type, and the
+     * wrapped type can be assigned from the parameter
+     */
     boolean canBeUnboxed(Class<?> from);
 
+    /**
+     * If this class is a primitive type return the wrapped type
+     *
+     * @return the wrapped type or this
+     */
     FluentClass<T> boxedType();
 
+    /**
+     * If this class is a primitive wrapper type return the unwrapped type
+     *
+     * @return the unwrapped type or this
+     */
     FluentClass<T> unboxedType();
 
     /**
@@ -171,6 +223,13 @@ public interface FluentAccess<T> extends FluentAnnotated {
      */
     boolean assignableFromObject(Object value);
 
+    /**
+     * Is the parameter assignable from this class?
+     *
+     * @param klass the class that may be assignable to
+     *
+     * @return true iff the parameter is assignable from this class
+     */
     boolean assignableTo(Class<?> klass);
 
     FluentClass<?> typeArgument(int typeParameter);

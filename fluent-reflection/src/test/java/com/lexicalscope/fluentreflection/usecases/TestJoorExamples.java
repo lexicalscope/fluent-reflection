@@ -1,6 +1,7 @@
 package com.lexicalscope.fluentreflection.usecases;
 
 import static com.lexicalscope.fluentreflection.FluentReflection.*;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasName;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -68,5 +69,15 @@ public class TestJoorExamples {
                     object(employees[i]).call("getAddress").call("getStreet").as(String.class),
                     equalTo("street" + i));
         }
+    }
+
+    @Test public void joorStringExampleWithMatchers()
+    {
+        assertThat(type("java.lang.String").
+                        construct("Hello World").
+                        call(hasName("substring"), 6).
+                        call(hasName("toString")).
+                        as(String.class),
+                   equalTo("World"));
     }
 }

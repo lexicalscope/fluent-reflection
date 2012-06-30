@@ -30,6 +30,11 @@ import org.hamcrest.Matcher;
  * limitations under the License.
  */
 
+/**
+ * A whole bunch of matchers suitable for selecting program elements
+ *
+ * @author tim
+ */
 public final class ReflectionMatchers {
     private ReflectionMatchers() { }
 

@@ -1,6 +1,7 @@
 package com.lexicalscope.fluentreflection;
 
 import static ch.lambdaj.Lambda.*;
+import static com.lexicalscope.fluentreflection.ReflectionMatcher.allOf;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
 
 import java.lang.annotation.Annotation;
@@ -85,8 +86,13 @@ final class FluentObjectImpl<T> implements FluentObject<T> {
         return bind(reflect.declaredMethods());
     }
 
-    @SuppressWarnings("unchecked") @Override public FluentObject<T> call(final String name, final Object ... args) {
-        return (FluentObject<T>) method(hasName(name).and(canBeCalledWithArguments(args))).call(args);
+    @Override public FluentObject<?> call(final String name, final Object ... args) {
+        final ReflectionMatcher<FluentMember> methodMatcher = hasName(name);
+        return call(methodMatcher, args);
+    }
+
+    @Override public FluentObject<?> call(final Matcher<? super FluentMethod> methodMatcher, final Object... args) {
+        return method(allOf(methodMatcher, canBeCalledWithArguments(args))).call(args);
     }
 
     @Override public List<FluentField> fields(final ReflectionMatcher<? super FluentField> fieldMatcher) {
