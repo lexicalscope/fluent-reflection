@@ -2,6 +2,8 @@ package com.lexicalscope.fluentreflection;
 
 import java.lang.reflect.Method;
 
+import org.hamcrest.Matchers;
+
 import com.google.inject.TypeLiteral;
 
 /*
@@ -49,6 +51,17 @@ public final class FluentReflection {
 
     public static FluentMethod method(final Class<?> klass, final String method) {
         return type(klass).method(method);
+    }
+
+    /**
+     * Find any constructor for the given class
+     *
+     * @param klass the type to inspect
+     *
+     * @return a constructor for the given class
+     */
+    public static <T> FluentConstructor<T> constructor(final Class<T> klass) {
+        return type(klass).constructor(Matchers.any(FluentConstructor.class));
     }
 
     public static <T> FluentObject<T> object(final T object) {

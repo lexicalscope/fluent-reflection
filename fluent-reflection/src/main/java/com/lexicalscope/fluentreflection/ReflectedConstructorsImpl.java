@@ -18,7 +18,7 @@ final class ReflectedConstructorsImpl<T> implements ReflectedConstructors<T> {
 
     @Override public List<FluentConstructor<T>> constructors() {
         return unmodifiableList(convert(
-                typeLiteral.getRawType().getConstructors(),
+                typeLiteral.getRawType().getDeclaredConstructors(),
                 new ConvertConstructorToReflectedConstructor<T>(
                         reflectedTypeFactory, typeLiteral)));
     }
