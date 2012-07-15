@@ -58,7 +58,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
         private final Object proxy;
 
         public MethodInvokationContext(final Object proxy, final Method method, final Object[] args) {
-            this.method = FluentReflection.method(method, proxy);
+            this.method = FluentReflection.boundMethod(proxy, method);
             this.args = args == null ? new Object[] {} : args;
             this.proxy = proxy;
         }

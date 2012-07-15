@@ -105,7 +105,7 @@ abstract class BoundFluentMemberImpl implements FluentMember {
         return member.annotatedWith(annotationClass);
     }
 
-    @Override public boolean annotatedWith(final Matcher<? super FluentClass<?>> annotationMatcher) {
+    @Override public boolean annotatedWith(final Matcher<? super FluentAccess<?>> annotationMatcher) {
         return member.annotatedWith(annotationMatcher);
     }
 

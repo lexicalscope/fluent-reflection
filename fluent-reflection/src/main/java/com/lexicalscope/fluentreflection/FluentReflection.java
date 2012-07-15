@@ -42,15 +42,20 @@ public final class FluentReflection {
         return (FluentClass<T>) new ReflectedTypeFactoryImpl().reflect(TypeLiteral.get(token
                 .getSuperclassTypeParameter()));
     }
+
     public static FluentMethod method(final Method method) {
         return new ReflectedTypeFactoryImpl().method(method);
+    }
+
+    public static FluentMethod method(final Class<?> klass, final String method) {
+        return type(klass).method(method);
     }
 
     public static <T> FluentObject<T> object(final T object) {
         return new ReflectedTypeFactoryImpl().reflect((Class<T>) object.getClass(), object);
     }
 
-    public static FluentMethod method(final Method method, final Object instance) {
-        return new ReflectedTypeFactoryImpl().method(method, instance);
+    public static FluentMethod boundMethod(final Object instance, final Method method) {
+        return new ReflectedTypeFactoryImpl().boundMethod(instance, method);
     }
 }

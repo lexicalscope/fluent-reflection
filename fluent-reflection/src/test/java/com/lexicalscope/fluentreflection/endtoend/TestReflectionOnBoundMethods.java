@@ -16,7 +16,7 @@ package com.lexicalscope.fluentreflection.endtoend;
  * limitations under the License.
  */
 
-import static com.lexicalscope.fluentreflection.FluentReflection.method;
+import static com.lexicalscope.fluentreflection.FluentReflection.boundMethod;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -32,7 +32,7 @@ public class TestReflectionOnBoundMethods {
 	@Test
 	public void boundMethodCanBeCalled() throws SecurityException, NoSuchMethodException {
 		assertThat(
-				method(ExampleClass.class.getMethod("method"), new ExampleClass()).callRaw(),
+				boundMethod(new ExampleClass(), ExampleClass.class.getMethod("method")).callRaw(),
 				equalTo((Object) 42));
 	}
 }

@@ -44,7 +44,7 @@ public interface FluentClass<T> extends FluentAccess<T> {
      *
      * @return first matching the matcher
      */
-    FluentClass<?> asType(Matcher<FluentClass<?>> typeMatcher);
+    FluentClass<?> asType(Matcher<FluentAccess<?>> typeMatcher);
 
     /**
      * Construct an object of the type under reflection

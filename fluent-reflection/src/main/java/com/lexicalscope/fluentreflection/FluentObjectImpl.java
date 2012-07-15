@@ -44,7 +44,7 @@ final class FluentObjectImpl<T> implements FluentObject<T> {
         return reflect.annotatedWith(annotationClass);
     }
 
-    @Override public boolean annotatedWith(final Matcher<? super FluentClass<?>> annotationMatcher) {
+    @Override public boolean annotatedWith(final Matcher<? super FluentAccess<?>> annotationMatcher) {
         return reflect.annotatedWith(annotationMatcher);
     }
 

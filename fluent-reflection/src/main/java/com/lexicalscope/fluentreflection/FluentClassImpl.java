@@ -60,7 +60,7 @@ class FluentClassImpl<T> implements FluentClass<T> {
         return annotatedElement.annotatedWith(annotationClass);
     }
 
-    @Override public boolean annotatedWith(final Matcher<? super FluentClass<?>> annotationMatcher) {
+    @Override public boolean annotatedWith(final Matcher<? super FluentAccess<?>> annotationMatcher) {
         return annotatedElement.annotatedWith(annotationMatcher);
     }
 
@@ -87,7 +87,7 @@ class FluentClassImpl<T> implements FluentClass<T> {
         return otherKlass.isAssignableFrom(klass);
     }
 
-    @Override public FluentClass<?> asType(final Matcher<FluentClass<?>> typeMatcher) {
+    @Override public FluentClass<?> asType(final Matcher<FluentAccess<?>> typeMatcher) {
         if (typeMatcher.matches(this)) {
             return this;
         }
@@ -101,7 +101,7 @@ class FluentClassImpl<T> implements FluentClass<T> {
         return this;
     }
 
-    @SuppressWarnings("unchecked") @Override public FluentObject<?> call(
+    @Override public FluentObject<?> call(
             final Matcher<? super FluentMethod> methodMatcher,
             final Object ... args)
     {

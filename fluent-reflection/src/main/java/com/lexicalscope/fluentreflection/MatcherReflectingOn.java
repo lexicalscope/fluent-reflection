@@ -1,19 +1,19 @@
 /**
- * 
+ *
  */
 package com.lexicalscope.fluentreflection;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.hamcrest.Description;
 
-final class MatcherReflectingOn extends ReflectionMatcher<FluentClass<?>> {
+final class MatcherReflectingOn extends ReflectionMatcher<FluentAccess<?>> {
     private final Class<?> klass;
 
     MatcherReflectingOn(final Class<?> klass) {
         this.klass = klass;
     }
 
-    @Override public boolean matchesSafely(final FluentClass<?> arg) {
+    @Override public boolean matchesSafely(final FluentAccess<?> arg) {
         return arg.classUnderReflection().equals(klass);
     }
 

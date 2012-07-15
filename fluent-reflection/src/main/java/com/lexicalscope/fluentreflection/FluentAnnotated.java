@@ -30,5 +30,5 @@ public interface FluentAnnotated {
     <A extends Annotation> A annotation(Class<A> annotationClass);
 
     boolean annotatedWith(Class<? extends Annotation> annotationClass);
-    boolean annotatedWith(Matcher<? super FluentClass<?>> annotationMatcher);
+    boolean annotatedWith(Matcher<? super FluentAccess<?>> annotationMatcher);
 }

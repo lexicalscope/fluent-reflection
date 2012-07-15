@@ -38,7 +38,7 @@ abstract class AbstractFluentAnnotated implements FluentAnnotated {
         return annotatedElement.annotatedWith(annotationClass);
     }
 
-    @Override public boolean annotatedWith(final Matcher<? super FluentClass<?>> annotationMatcher) {
+    @Override public boolean annotatedWith(final Matcher<? super FluentAccess<?>> annotationMatcher) {
         return annotatedElement.annotatedWith(annotationMatcher);
     }
 

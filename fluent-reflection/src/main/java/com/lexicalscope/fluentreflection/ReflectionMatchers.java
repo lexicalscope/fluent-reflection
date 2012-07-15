@@ -318,7 +318,7 @@ public final class ReflectionMatchers {
         };
     }
 
-    public static ReflectionMatcher<FluentClass<?>> reflectingOn(final Class<?> klass) {
+    public static ReflectionMatcher<FluentAccess<?>> reflectingOn(final Class<?> klass) {
         return new MatcherReflectingOn(klass);
     }
 

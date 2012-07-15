@@ -44,7 +44,7 @@ final class FluentAnnotatedImpl implements FluentAnnotated {
         return annotatedElement.getAnnotation(annotationClass);
     }
 
-    @Override public boolean annotatedWith(final Matcher<? super FluentClass<?>> annotationMatcher) {
+    @Override public boolean annotatedWith(final Matcher<? super FluentAccess<?>> annotationMatcher) {
         return hasItem(annotationMatcher).matches(annotations());
     }
 
