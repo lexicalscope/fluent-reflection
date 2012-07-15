@@ -1,36 +1,35 @@
 package com.lexicalscope.fluentreflection;
 
+import static com.lexicalscope.fluentreflection.FluentReflection.type;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasInterface;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-import com.lexicalscope.fluentreflection.FluentClass;
-import com.lexicalscope.fluentreflection.ReflectionMatcher;
+public class TestMatcherTypeHasInterfaces extends AbstractTestReflectionMatcher<FluentAccess<?>> {
+    interface Interfa3c {
 
-public class TestMatcherTypeHasInterfaces extends AbstractTestReflectionMatcher<FluentClass<?>> {
-    @Override
-    protected FluentClass<?> target() {
-        return type;
+    }
+
+    interface Klass extends Interfa3c {
+
+    }
+
+    @Override protected FluentAccess<?> target() {
+        return type(Klass.class);
+    }
+
+    @Override protected FluentAccess<?> failingTarget() {
+        return type(Object.class);
     }
 
     @Override
-    protected ReflectionMatcher<FluentClass<?>> matcher() {
-        return hasInterface(Object.class);
-    }
-
-    @Override
-    protected void setupMatchingCase() {
-        whenTypeHasInterface(Object.class);
-    }
-
-    @Override
-    protected void setupFailingCase() {
-        whenTypeHasNoInterface();
+    protected ReflectionMatcher<FluentAccess<?>> matcher() {
+        return hasInterface(Interfa3c.class);
     }
 
     @Override
     protected Matcher<String> hasDescription() {
-        return equalTo("type that implements interface <class java.lang.Object>");
+        return equalTo("type that implements interface <interface com.lexicalscope.fluentreflection.TestMatcherTypeHasInterfaces$Interfa3c>");
     }
 }

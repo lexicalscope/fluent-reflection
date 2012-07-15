@@ -1,33 +1,29 @@
 package com.lexicalscope.fluentreflection;
 
+import static com.lexicalscope.fluentreflection.FluentReflection.type;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectingOn;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherReflectedTypeReflectingOn extends AbstractTestReflectionMatcher<FluentAccess<?>> {
-    @Override
-    protected FluentClass<?> target() {
-        return type;
+public class TestMatcherReflectedTypeReflectingOn extends AbstractTestReflectionMatcherNoMocks<FluentAccess<?>> {
+    interface Klass {
+
     }
 
-    @Override
-    protected ReflectionMatcher<FluentAccess<?>> matcher() {
+    @Override protected FluentAccess<?> target() {
+        return type(Object.class);
+    }
+
+    @Override protected FluentAccess<?> failingTarget() {
+        return type(String.class);
+    }
+
+    @Override protected ReflectionMatcher<FluentAccess<?>> matcher() {
         return reflectingOn(Object.class);
     }
 
-    @Override
-    protected void setupMatchingCase() {
-        whenType(Object.class);
-    }
-
-    @Override
-    protected void setupFailingCase() {
-        whenType(String.class);
-    }
-
-    @Override
-    protected Matcher<String> hasDescription() {
+    @Override protected Matcher<String> hasDescription() {
         return equalTo("type <class java.lang.Object>");
     }
 }

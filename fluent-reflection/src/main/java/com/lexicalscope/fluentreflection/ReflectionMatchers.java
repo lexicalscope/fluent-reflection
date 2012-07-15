@@ -107,7 +107,7 @@ public final class ReflectionMatchers {
         return hasArgumentListMatching(asList(argTypes));
     }
 
-    public static ReflectionMatcher<FluentClass<?>> hasInterface(final Class<?> interfac3) {
+    public static ReflectionMatcher<FluentAccess<?>> hasInterface(final Class<?> interfac3) {
         return new MatcherHasInterface(interfac3);
     }
 

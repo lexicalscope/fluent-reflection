@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.lexicalscope.fluentreflection;
 
@@ -9,7 +9,7 @@ import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectingOn;
 import org.hamcrest.Description;
 
 
-final class MatcherHasInterface extends ReflectionMatcher<FluentClass<?>> {
+final class MatcherHasInterface extends ReflectionMatcher<FluentAccess<?>> {
     private final Class<?> interfac3;
 
     MatcherHasInterface(final Class<?> interfac3) {
@@ -17,7 +17,7 @@ final class MatcherHasInterface extends ReflectionMatcher<FluentClass<?>> {
     }
 
     @Override
-    public boolean matchesSafely(final FluentClass<?> arg) {
+    public boolean matchesSafely(final FluentAccess<?> arg) {
         return !select(
                 arg.interfaces(),
                 reflectingOn(interfac3)).isEmpty();
