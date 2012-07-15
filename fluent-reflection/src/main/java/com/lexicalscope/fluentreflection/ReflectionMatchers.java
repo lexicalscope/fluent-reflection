@@ -177,7 +177,7 @@ public final class ReflectionMatchers {
         return hasArguments();
     }
 
-    public static ReflectionMatcher<FluentClass<?>> hasNoInterfaces() {
+    public static ReflectionMatcher<FluentAccess<?>> hasNoInterfaces() {
         return new MatcherHasNoInterfaces();
     }
 

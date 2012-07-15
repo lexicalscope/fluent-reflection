@@ -1,36 +1,33 @@
 package com.lexicalscope.fluentreflection;
 
+import static com.lexicalscope.fluentreflection.FluentReflection.type;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasNoInterfaces;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-import com.lexicalscope.fluentreflection.FluentClass;
-import com.lexicalscope.fluentreflection.ReflectionMatcher;
+public class TestMatcherTypeHasNoInterfaces extends AbstractTestReflectionMatcherNoMocks<FluentAccess<?>> {
+    interface Interfa3c {
 
-public class TestMatcherTypeHasNoInterfaces extends AbstractTestReflectionMatcher<FluentClass<?>> {
-    @Override
-    protected FluentClass<?> target() {
-        return type;
     }
 
-    @Override
-    protected ReflectionMatcher<FluentClass<?>> matcher() {
+    interface Klass extends Interfa3c {
+
+    }
+
+    @Override protected FluentAccess<?> target() {
+        return type(Object.class);
+    }
+
+    @Override protected FluentAccess<?> failingTarget() {
+        return type(Klass.class);
+    }
+
+    @Override protected ReflectionMatcher<FluentAccess<?>> matcher() {
         return hasNoInterfaces();
     }
 
-    @Override
-    protected void setupMatchingCase() {
-        whenTypeHasNoInterface();
-    }
-
-    @Override
-    protected void setupFailingCase() {
-        whenTypeHasInterface(Object.class);
-    }
-
-    @Override
-    protected Matcher<String> hasDescription() {
+    @Override protected Matcher<String> hasDescription() {
         return equalTo("type that implements no interfaces");
     }
 }

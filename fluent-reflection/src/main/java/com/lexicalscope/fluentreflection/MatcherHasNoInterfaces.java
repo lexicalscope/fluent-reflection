@@ -1,14 +1,14 @@
 /**
- * 
+ *
  */
 package com.lexicalscope.fluentreflection;
 
 import org.hamcrest.Description;
 
 
-final class MatcherHasNoInterfaces extends ReflectionMatcher<FluentClass<?>> {
+final class MatcherHasNoInterfaces extends ReflectionMatcher<FluentAccess<?>> {
     @Override
-    public boolean matchesSafely(final FluentClass<?> arg) {
+    public boolean matchesSafely(final FluentAccess<?> arg) {
         return arg.interfaces().isEmpty();
     }
 
