@@ -22,11 +22,20 @@ public abstract class AbstractTestReflectionMatcher<T> {
     protected final FluentMember callable = context.mock(FluentMember.class);
     private final Description description = new StringDescription();
 
-    @Test public final void matcherCanMatch() throws Throwable {
-        setupMatchingCase();
-
-        assertThat(target(), matcher());
+    protected final void assertHasDescription(
+            final ReflectionMatcher<?> matcherUnderTest,
+            final Matcher<String> descriptionMatcher) {
+        matcherUnderTest.describeTo(description);
+        assertThat(description, hasToString(descriptionMatcher));
     }
+
+    protected T failingTarget() {
+        return target();
+    }
+
+    protected abstract Matcher<String> hasDescription();
+
+    protected abstract ReflectionMatcher<? super T> matcher() throws Throwable;
 
     @Test public final void matcherCanFailToMatch() throws Throwable {
         setupFailingCase();
@@ -34,32 +43,21 @@ public abstract class AbstractTestReflectionMatcher<T> {
         assertThat(failingTarget(), not(matcher()));
     }
 
+    @Test public final void matcherCanMatch() throws Throwable {
+        setupMatchingCase();
+
+        assertThat(target(), matcher());
+    }
+
     @Test public final void matcherDescriptionMakesSense() throws Throwable {
         assertHasDescription(matcher(), hasDescription());
     }
 
-    protected abstract T target();
-
-    protected abstract Matcher<String> hasDescription();
+    protected void setupFailingCase() throws Throwable {}
 
     protected void setupMatchingCase() throws Throwable {}
 
-    protected void setupFailingCase() throws Throwable {}
-
-    protected abstract ReflectionMatcher<? super T> matcher() throws Throwable;
-
-    protected T failingTarget() {
-        return target();
-    }
-
-    protected final void whenMethodHasName(final String methodName) {
-        context.checking(new Expectations() {
-            {
-                oneOf(method).name();
-                will(returnValue(methodName));
-            }
-        });
-    }
+    protected abstract T target();
 
     protected final void whenMethodDeclaredBy(final Class<?> declaringClass) {
         final FluentClass<?> declaringType = context.mock(FluentClass.class, "declaringType");
@@ -90,12 +88,30 @@ public abstract class AbstractTestReflectionMatcher<T> {
                 will(returnValue(asList(argumentTypes)));
 
                 for (int i = 0; i < argumentTypes.length; i++) {
-                    allowing(argumentTypes[i]).classUnderReflection();
-                    will(returnValue(arguments[i]));
+                    allowing(argumentTypes[i]).assignableFrom(arguments[i]);
+                    will(returnValue(true));
                 }
             }
         });
 
+    }
+
+    protected final void whenMethodHasName(final String methodName) {
+        context.checking(new Expectations() {
+            {
+                oneOf(method).name();
+                will(returnValue(methodName));
+            }
+        });
+    }
+
+    protected final void whenType(final Class<?> klass) {
+        context.checking(new Expectations() {
+            {
+                oneOf(type).classUnderReflection();
+                will(returnValue(klass));
+            }
+        });
     }
 
     protected final void whenTypeHasInterface(final Class<?> interfac3) {
@@ -111,15 +127,11 @@ public abstract class AbstractTestReflectionMatcher<T> {
         });
     }
 
-    protected final void whenTypeHasSuperclass(final Class<?> klass) {
-        final FluentClass<?> superclassType = context.mock(FluentClass.class, "superclassType");
+    protected final void whenTypeHasNoInterface() {
         context.checking(new Expectations() {
             {
-                oneOf(type).superclasses();
-                will(returnValue(list(superclassType).$()));
-
-                allowing(superclassType).classUnderReflection();
-                will(returnValue(klass));
+                oneOf(type).interfaces();
+                will(returnValue(emptyList()));
             }
         });
     }
@@ -133,11 +145,15 @@ public abstract class AbstractTestReflectionMatcher<T> {
         });
     }
 
-    protected final void whenTypeHasNoInterface() {
+    protected final void whenTypeHasSuperclass(final Class<?> klass) {
+        final FluentClass<?> superclassType = context.mock(FluentClass.class, "superclassType");
         context.checking(new Expectations() {
             {
-                oneOf(type).interfaces();
-                will(returnValue(emptyList()));
+                oneOf(type).superclasses();
+                will(returnValue(list(superclassType).$()));
+
+                allowing(superclassType).classUnderReflection();
+                will(returnValue(klass));
             }
         });
     }
@@ -158,21 +174,5 @@ public abstract class AbstractTestReflectionMatcher<T> {
                 will(returnValue(false));
             }
         });
-    }
-
-    protected final void whenType(final Class<?> klass) {
-        context.checking(new Expectations() {
-            {
-                oneOf(type).classUnderReflection();
-                will(returnValue(klass));
-            }
-        });
-    }
-
-    protected final void assertHasDescription(
-            final ReflectionMatcher<?> matcherUnderTest,
-            final Matcher<String> descriptionMatcher) {
-        matcherUnderTest.describeTo(description);
-        assertThat(description, hasToString(descriptionMatcher));
     }
 }

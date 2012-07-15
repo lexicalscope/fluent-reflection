@@ -6,11 +6,11 @@ import org.hamcrest.Matcher;
 
 import ch.lambdaj.function.convert.Converter;
 
-class ConvertClassToReflectedTypeAssignableMatcher implements Converter<Class<?>, Matcher<FluentClass<?>>> {
+class ConvertClassToReflectedTypeAssignableMatcher implements Converter<Class<?>, Matcher<FluentAccess<?>>> {
     @Override
-    public Matcher<FluentClass<?>> convert(final Class<?> from) {
+    public Matcher<FluentAccess<?>> convert(final Class<?> from) {
         if (from == null) {
-            return anyReflectedType();
+            return anyFluentType();
         }
         return assignableFrom(from);
     }

@@ -39,11 +39,11 @@ import com.google.inject.TypeLiteral;
  * @param <T>
  */
 class FluentClassImpl<T> implements FluentClass<T> {
-    private final ReflectedTypeFactory reflectedTypeFactory;
+    private final FluentAnnotatedImpl annotatedElement;
     private final Class<T> klass;
     private final ReflectedMembers<T> members;
+    private final ReflectedTypeFactory reflectedTypeFactory;
     private final TypeLiteral<T> typeLiteral;
-    private final FluentAnnotatedImpl annotatedElement;
 
     FluentClassImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
@@ -56,112 +56,24 @@ class FluentClassImpl<T> implements FluentClass<T> {
         this.annotatedElement = new FluentAnnotatedImpl(reflectedTypeFactory, klass);
     }
 
-    @Override public Class<T> classUnderReflection() {
-        return klass;
+    @Override public boolean annotatedWith(final Class<? extends Annotation> annotationClass) {
+        return annotatedElement.annotatedWith(annotationClass);
     }
 
-    @Override public List<FluentMethod> methods(final Matcher<? super FluentMethod> methodMatcher) {
-        return members.methods(methodMatcher);
+    @Override public boolean annotatedWith(final Matcher<? super FluentClass<?>> annotationMatcher) {
+        return annotatedElement.annotatedWith(annotationMatcher);
     }
 
-    @Override public FluentMethod method(final Matcher<? super FluentMethod> methodMatcher) {
-        return members.method(methodMatcher);
+    @Override public <A extends Annotation> A annotation(final Class<A> annotationClass) {
+        return annotatedElement.annotation(annotationClass);
     }
 
-    @Override public FluentMethod method(final String name) {
-        return members.method(hasName(name));
+    @Override public FluentClass<?> annotation(final Matcher<? super FluentClass<?>> annotationMatcher) {
+        return annotatedElement.annotation(annotationMatcher);
     }
 
-    @Override public FluentMethod staticMethod(final Matcher<? super FluentMethod> methodMatcher) {
-        return method(allOf(isStatic(), methodMatcher));
-    }
-
-    @Override public List<FluentMethod> methods() {
-        return members.methods();
-    }
-
-    @Override public List<FluentMethod> declaredMethods() {
-        return members.declaredMethods();
-    }
-
-    @Override public FluentObject<?> call(final String name, final Object ... args)
-    {
-        return call(hasName(name), args);
-    }
-
-    @SuppressWarnings("unchecked") @Override public FluentObject<?> call(
-            final Matcher<? super FluentMethod> methodMatcher,
-            final Object ... args)
-    {
-        return method(allOf(methodMatcher, canBeCalledWithArguments(args))).call(args);
-    }
-
-    @Override public List<FluentField> fields() {
-        return members.fields();
-    }
-
-    @Override public List<FluentField> fields(final ReflectionMatcher<? super FluentField> fieldMatcher) {
-        return members.fields(fieldMatcher);
-    }
-
-    @Override public FluentField field(final ReflectionMatcher<FluentMember> fieldMatcher) {
-        return members.field(fieldMatcher);
-    }
-
-    @Override public List<FluentField> declaredFields() {
-        return members.declaredFields();
-    }
-
-    @Override public List<FluentClass<?>> interfaces() {
-        return members.superclassesAndInterfaces(isAnInterface());
-    }
-
-    @Override public List<FluentClass<?>> superclasses() {
-        return members.superclassesAndInterfaces(not(isAnInterface()));
-    }
-
-    @Override public FluentClass<?> asType(final Matcher<FluentClass<?>> typeMatcher) {
-        if (typeMatcher.matches(this)) {
-            return this;
-        }
-        return selectFirst(members.superclassesAndInterfaces(), typeMatcher);
-    }
-
-    @Override public boolean isType(final ReflectionMatcher<FluentClass<?>> typeMatcher) {
-        if (typeMatcher.matches(this)) {
-            return true;
-        }
-        return hasItem(typeMatcher).matches(members.superclassesAndInterfaces());
-    }
-
-    @Override public boolean isInterface() {
-        return typeLiteral.getRawType().isInterface();
-    }
-
-    @Override public T constructRaw(final Object... args) {
-        final FluentConstructor<T> constructor =
-                constructor(hasArgumentList(convert(args, new ConvertObjectToClass())));
-
-        if (constructor == null) {
-            throw new ConstructorNotFoundRuntimeException(typeLiteral.getRawType());
-        }
-
-        return constructor.callRaw(args);
-    }
-
-    @Override public FluentObject<T> construct(final Object... args) {
-        final T newInstance = constructRaw(args);
-        return reflectedTypeFactory.reflect(typeLiteral, newInstance);
-    }
-
-    @Override public List<FluentConstructor<T>> constructors(
-            final Matcher<? super FluentConstructor<?>> constructorMatcher) {
-        return members.constructors(constructorMatcher);
-    }
-
-    @Override public FluentConstructor<T> constructor(
-            final Matcher<? super FluentConstructor<?>> constructorMatcher) {
-        return members.constructor(constructorMatcher);
+    @Override public boolean assignableFrom(final Class<?> otherKlass) {
+        return klass.isAssignableFrom(otherKlass);
     }
 
     @Override public boolean assignableFromObject(final Object value) {
@@ -175,6 +87,32 @@ class FluentClassImpl<T> implements FluentClass<T> {
         return otherKlass.isAssignableFrom(klass);
     }
 
+    @Override public FluentClass<?> asType(final Matcher<FluentClass<?>> typeMatcher) {
+        if (typeMatcher.matches(this)) {
+            return this;
+        }
+        return selectFirst(members.superclassesAndInterfaces(), typeMatcher);
+    }
+
+    @Override public FluentClass<T> boxedType() {
+        if (isPrimitive()) {
+            return reflectedTypeFactory.reflect(Primitives.wrap(klass));
+        }
+        return this;
+    }
+
+    @SuppressWarnings("unchecked") @Override public FluentObject<?> call(
+            final Matcher<? super FluentMethod> methodMatcher,
+            final Object ... args)
+    {
+        return method(allOf(methodMatcher, canBeCalledWithArguments(args))).call(args);
+    }
+
+    @Override public FluentObject<?> call(final String name, final Object ... args)
+    {
+        return call(hasName(name), args);
+    }
+
     @Override public boolean canBeBoxed(final Class<?> from) {
         return Primitives.isWrapperType(klass)
                 && Primitives.unwrap(klass).isAssignableFrom(from);
@@ -185,31 +123,104 @@ class FluentClassImpl<T> implements FluentClass<T> {
                 && Primitives.wrap(klass).isAssignableFrom(from);
     }
 
-    @Override public FluentClass<T> boxedType() {
-        if (isPrimitive()) {
-            return reflectedTypeFactory.reflect(Primitives.wrap(klass));
-        }
-        return this;
+    @Override public Class<T> classUnderReflection() {
+        return klass;
     }
 
-    @Override public FluentClass<T> unboxedType() {
-        if (isUnboxable()) {
-            return reflectedTypeFactory.reflect(Primitives.unwrap(klass));
+    @Override public FluentObject<T> construct(final Object... args) {
+        final T newInstance = constructRaw(args);
+        return reflectedTypeFactory.reflect(typeLiteral, newInstance);
+    }
+
+    @Override public FluentConstructor<T> constructor(
+            final Matcher<? super FluentConstructor<?>> constructorMatcher) {
+        return members.constructor(constructorMatcher);
+    }
+
+    @Override public List<FluentConstructor<T>> constructors(
+            final Matcher<? super FluentConstructor<?>> constructorMatcher) {
+        return members.constructors(constructorMatcher);
+    }
+
+    @Override public T constructRaw(final Object... args) {
+        final FluentConstructor<T> constructor =
+                constructor(hasArgumentList(convert(args, new ConvertObjectToClass())));
+
+        if (constructor == null) {
+            throw new ConstructorNotFoundRuntimeException(typeLiteral.getRawType());
         }
-        return this;
+
+        return constructor.callRaw(args);
+    }
+
+    @Override public List<FluentField> declaredFields() {
+        return members.declaredFields();
+    }
+
+    @Override public List<FluentMethod> declaredMethods() {
+        return members.declaredMethods();
+    }
+
+    @Override public boolean equals(final Object that) {
+        if (that != null && that.getClass().equals(this.getClass())) {
+            return typeLiteral.equals(((FluentClassImpl<?>) that).typeLiteral);
+        }
+        return false;
+    }
+
+    @Override public FluentField field(final ReflectionMatcher<FluentMember> fieldMatcher) {
+        return members.field(fieldMatcher);
+    }
+
+    @Override public List<FluentField> fields() {
+        return members.fields();
+    }
+
+    @Override public List<FluentField> fields(final ReflectionMatcher<? super FluentField> fieldMatcher) {
+        return members.fields(fieldMatcher);
+    }
+
+    @Override public int hashCode() {
+        return typeLiteral.hashCode();
+    }
+
+    @Override public List<FluentClass<?>> interfaces() {
+        return members.superclassesAndInterfaces(isAnInterface());
+    }
+
+    @Override public boolean isInterface() {
+        return typeLiteral.getRawType().isInterface();
     }
 
     @Override public boolean isPrimitive() {
         return klass.isPrimitive();
     }
 
+    @Override public boolean isType(final ReflectionMatcher<FluentClass<?>> typeMatcher) {
+        if (typeMatcher.matches(this)) {
+            return true;
+        }
+        return hasItem(typeMatcher).matches(members.superclassesAndInterfaces());
+    }
+
     @Override public boolean isUnboxable() {
         return Primitives.isWrapperType(klass);
     }
 
-    @Override public FluentClass<?> typeArgument(final int typeParameter) {
-        return reflectedTypeFactory.reflect(TypeLiteral.get(((ParameterizedType) typeLiteral.getType())
-                .getActualTypeArguments()[typeParameter]));
+    @Override public FluentMethod method(final Matcher<? super FluentMethod> methodMatcher) {
+        return members.method(methodMatcher);
+    }
+
+    @Override public FluentMethod method(final String name) {
+        return members.method(hasName(name));
+    }
+
+    @Override public List<FluentMethod> methods() {
+        return members.methods();
+    }
+
+    @Override public List<FluentMethod> methods(final Matcher<? super FluentMethod> methodMatcher) {
+        return members.methods(methodMatcher);
     }
 
     @Override public String name() {
@@ -220,38 +231,31 @@ class FluentClassImpl<T> implements FluentClass<T> {
         return klass.getSimpleName();
     }
 
-    @Override public FluentClass<?> annotation(final Matcher<? super FluentClass<?>> annotationMatcher) {
-        return annotatedElement.annotation(annotationMatcher);
+    @Override public FluentMethod staticMethod(final Matcher<? super FluentMethod> methodMatcher) {
+        return method(allOf(isStatic(), methodMatcher));
     }
 
-    @Override public <A extends Annotation> A annotation(final Class<A> annotationClass) {
-        return annotatedElement.annotation(annotationClass);
+    @Override public List<FluentClass<?>> superclasses() {
+        return members.superclassesAndInterfaces(not(isAnInterface()));
     }
 
-    @Override public boolean annotatedWith(final Class<? extends Annotation> annotationClass) {
-        return annotatedElement.annotatedWith(annotationClass);
-    }
-
-    @Override public boolean annotatedWith(final Matcher<? super FluentClass<?>> annotationMatcher) {
-        return annotatedElement.annotatedWith(annotationMatcher);
+    @Override public String toString() {
+        return typeLiteral.toString();
     }
 
     @Override public Type type() {
         return typeLiteral.getType();
     }
 
-    @Override public boolean equals(final Object that) {
-        if (that != null && that.getClass().equals(this.getClass())) {
-            return typeLiteral.equals(((FluentClassImpl<?>) that).typeLiteral);
+    @Override public FluentClass<?> typeArgument(final int typeParameter) {
+        return reflectedTypeFactory.reflect(TypeLiteral.get(((ParameterizedType) typeLiteral.getType())
+                .getActualTypeArguments()[typeParameter]));
+    }
+
+    @Override public FluentClass<T> unboxedType() {
+        if (isUnboxable()) {
+            return reflectedTypeFactory.reflect(Primitives.unwrap(klass));
         }
-        return false;
-    }
-
-    @Override public int hashCode() {
-        return typeLiteral.hashCode();
-    }
-
-    @Override public String toString() {
-        return typeLiteral.toString();
+        return this;
     }
 }

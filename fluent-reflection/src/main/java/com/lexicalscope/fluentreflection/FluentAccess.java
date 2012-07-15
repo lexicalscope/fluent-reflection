@@ -30,89 +30,42 @@ import org.hamcrest.Matcher;
  */
 public interface FluentAccess<T> extends FluentAnnotated {
     /**
-     * Obtain the class being reflected
+     * True iff a variable of the type represented by this class is
+     * assignable from the given class?
      *
-     * @return the class being reflected
+     * @param klass the class that may be assignable from
+     *
+     * @return true iff a variable of the type represented by this class is
+     * assignable from a value with the type indicated by the parameter
      */
-    Class<T> classUnderReflection();
+    boolean assignableFrom(Class<?> klass);
 
     /**
-     * All interfaces implemented by this type
+     * True if the given object can be assigned to a variable of the type
+     * represented by this class
      *
-     * @return all the interfaces
+     * @param value
+     *            the value that might be assigned
+     *
+     * @return true iff the value can be assigned to variables of this type
      */
-    List<FluentClass<?>> interfaces();
+    boolean assignableFromObject(Object value);
 
     /**
-     * Return the list of all superclasses with the immediate parent first
+     * Is the parameter assignable from this class?
      *
-     * @return list of superclasses nearest first
+     * @param klass the class that may be assignable to
+     *
+     * @return true iff the parameter is assignable from this class
      */
-    List<FluentClass<?>> superclasses();
+    boolean assignableTo(Class<?> klass);
 
     /**
-     * Does this type or any of its implemented types match the given matcher?
+     * If this class is a primitive type return the wrapped type
      *
-     * @param typeMatcher
-     *            matcher on the required type
-     *
-     * @return does the type or any of its supertypes match the given matcher
+     * @return the wrapped type or this
      */
-    boolean isType(ReflectionMatcher<FluentClass<?>> typeMatcher);
-
-    /**
-     * All methods
-     *
-     * @return all the methods
-     */
-    List<FluentMethod> methods();
-
-    /**
-     * All methods declared by this type
-     *
-     * @return methods declared by this type
-     */
-    List<FluentMethod> declaredMethods();
-
-    /**
-     * Find all methods matching the supplied matcher
-     *
-     * @param methodMatcher
-     *            matches the methods
-     *
-     * @return The methods matching the supplied matcher
-     */
-    List<FluentMethod> methods(Matcher<? super FluentMethod> methodMatcher);
-
-    /**
-     * Find the first method matching the supplied matcher
-     *
-     * @param methodMatcher
-     *            matches the method
-     *
-     * @return The method matching the supplied matcher
-     */
-    FluentMethod method(Matcher<? super FluentMethod> methodMatcher);
-
-    /**
-     * Find the first method with the given name
-     *
-     * @param name
-     *            the name of the method
-     *
-     * @return The method matching the name
-     */
-    FluentMethod method(String name);
-
-    /**
-     * Call a method by name if one can be found that can be called with the given arguments
-     *
-     * @param name the name of the method
-     * @param args the arguments of the method
-     *
-     * @return the result of calling the method
-     */
-    FluentObject<?> call(String name, Object ... args);
+    FluentClass<T> boxedType();
 
     /**
      * Call a method using a matcher, if one can be found that can also be called with the given arguments
@@ -125,54 +78,14 @@ public interface FluentAccess<T> extends FluentAnnotated {
     FluentObject<?> call(Matcher<? super FluentMethod> methodMatcher, Object ... args);
 
     /**
-     * All fields
+     * Call a method by name if one can be found that can be called with the given arguments
      *
-     * @return all the fields
+     * @param name the name of the method
+     * @param args the arguments of the method
+     *
+     * @return the result of calling the method
      */
-    List<FluentField> fields();
-
-    /**
-     * Find all fields matching the supplied matcher
-     *
-     * @param fieldMatcher
-     *            matches the field
-     *
-     * @return The fields matching the supplied matcher
-     */
-    List<FluentField> fields(ReflectionMatcher<? super FluentField> fieldMatcher);
-
-    /**
-     * All fields declared by this type
-     *
-     * @return fields declared by this type
-     */
-    List<FluentField> declaredFields();
-
-    /**
-     * Find field matching the supplied matcher
-     *
-     * @param fieldMatcher
-     *            matches the field
-     *
-     * @return The first field matching the supplied matcher
-     */
-    FluentField field(ReflectionMatcher<FluentMember> fieldMatcher);
-
-    /**
-     * Determines if this {@code Class} object represents a
-     * primitive type.
-     *
-     * @return true if and only if this class represents a primitive type
-     */
-    boolean isPrimitive();
-
-    /**
-     * Determines if this {@code Class} object represents the wrapper of a
-     * primitive type.
-     *
-     * @return true iff this class is one of the primative wrapper types
-     */
-    boolean isUnboxable();
+    FluentObject<?> call(String name, Object ... args);
 
     /**
      * Determines if this {@code Class} object is a primitive wrapper
@@ -199,40 +112,122 @@ public interface FluentAccess<T> extends FluentAnnotated {
     boolean canBeUnboxed(Class<?> from);
 
     /**
-     * If this class is a primitive type return the wrapped type
+     * Obtain the class being reflected
      *
-     * @return the wrapped type or this
+     * @return the class being reflected
      */
-    FluentClass<T> boxedType();
+    Class<T> classUnderReflection();
 
     /**
-     * If this class is a primitive wrapper type return the unwrapped type
+     * All fields declared by this type
      *
-     * @return the unwrapped type or this
+     * @return fields declared by this type
      */
-    FluentClass<T> unboxedType();
+    List<FluentField> declaredFields();
 
     /**
-     * True if the given object can be assigned to a variable of the type
-     * represented by this class
+     * All methods declared by this type
      *
-     * @param value
-     *            the value that might be assigned
-     *
-     * @return true iff the value can be assigned to variables of this type
+     * @return methods declared by this type
      */
-    boolean assignableFromObject(Object value);
+    List<FluentMethod> declaredMethods();
 
     /**
-     * Is the parameter assignable from this class?
+     * Find field matching the supplied matcher
      *
-     * @param klass the class that may be assignable to
+     * @param fieldMatcher
+     *            matches the field
      *
-     * @return true iff the parameter is assignable from this class
+     * @return The first field matching the supplied matcher
      */
-    boolean assignableTo(Class<?> klass);
+    FluentField field(ReflectionMatcher<FluentMember> fieldMatcher);
 
-    FluentClass<?> typeArgument(int typeParameter);
+    /**
+     * All fields
+     *
+     * @return all the fields
+     */
+    List<FluentField> fields();
+
+    /**
+     * Find all fields matching the supplied matcher
+     *
+     * @param fieldMatcher
+     *            matches the field
+     *
+     * @return The fields matching the supplied matcher
+     */
+    List<FluentField> fields(ReflectionMatcher<? super FluentField> fieldMatcher);
+
+    /**
+     * All interfaces implemented by this type
+     *
+     * @return all the interfaces
+     */
+    List<FluentClass<?>> interfaces();
+
+    /**
+     * Determines if this {@code Class} object represents a
+     * primitive type.
+     *
+     * @return true if and only if this class represents a primitive type
+     */
+    boolean isPrimitive();
+
+    /**
+     * Does this type or any of its implemented types match the given matcher?
+     *
+     * @param typeMatcher
+     *            matcher on the required type
+     *
+     * @return does the type or any of its supertypes match the given matcher
+     */
+    boolean isType(ReflectionMatcher<FluentClass<?>> typeMatcher);
+
+    /**
+     * Determines if this {@code Class} object represents the wrapper of a
+     * primitive type.
+     *
+     * @return true iff this class is one of the primative wrapper types
+     */
+    boolean isUnboxable();
+
+    /**
+     * Find the first method matching the supplied matcher
+     *
+     * @param methodMatcher
+     *            matches the method
+     *
+     * @return The method matching the supplied matcher
+     */
+    FluentMethod method(Matcher<? super FluentMethod> methodMatcher);
+
+    /**
+     * Find the first method with the given name
+     *
+     * @param name
+     *            the name of the method
+     *
+     * @return The method matching the name
+     */
+    FluentMethod method(String name);
+
+    /**
+     * All methods
+     *
+     * @return all the methods
+     */
+    List<FluentMethod> methods();
+
+    /**
+     * Find all methods matching the supplied matcher
+     *
+     * @param methodMatcher
+     *            matches the methods
+     *
+     * @return The methods matching the supplied matcher
+     */
+    List<FluentMethod> methods(Matcher<? super FluentMethod> methodMatcher);
 
     /**
      * @return the name of the class under reflection
@@ -245,7 +240,23 @@ public interface FluentAccess<T> extends FluentAnnotated {
     String simpleName();
 
     /**
+     * Return the list of all superclasses with the immediate parent first
+     *
+     * @return list of superclasses nearest first
+     */
+    List<FluentClass<?>> superclasses();
+
+    /**
      * @return the underlying type instance
      */
     Type type();
+
+    FluentClass<?> typeArgument(int typeParameter);
+
+    /**
+     * If this class is a primitive wrapper type return the unwrapped type
+     *
+     * @return the unwrapped type or this
+     */
+    FluentClass<T> unboxedType();
 }
