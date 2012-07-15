@@ -20,12 +20,12 @@ import java.lang.reflect.Method;
 
 class BoundFluentMethodImpl extends BoundFluentMemberImpl implements FluentMethod {
     private final FluentMethod method;
-    private final Object instance;
+    private final FluentObject<?> instance;
 
     public BoundFluentMethodImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
             final FluentMethod method,
-            final Object instance) {
+            final FluentObject<?> instance) {
         super(reflectedTypeFactory, method, instance);
         this.method = method;
         this.instance = instance;

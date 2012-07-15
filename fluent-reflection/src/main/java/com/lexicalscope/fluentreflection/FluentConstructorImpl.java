@@ -38,7 +38,7 @@ final class FluentConstructorImpl<T> extends AbstractFluentAnnotated implements 
         return constructor;
     }
 
-    @Override public T callRaw(final Object... args) {
+    private T callRaw(final Object... args) {
         try {
             return constructor.newInstance(args);
         } catch (final InstantiationException e) {
@@ -50,7 +50,7 @@ final class FluentConstructorImpl<T> extends AbstractFluentAnnotated implements 
         }
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" }) @Override public FluentObject<?> call(final Object... args) {
+    @SuppressWarnings({ "unchecked", "rawtypes" }) @Override public FluentObject<T> call(final Object... args) {
         final Object object = callRaw(args);
         if(object == null) {
             return null;

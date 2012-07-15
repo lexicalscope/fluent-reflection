@@ -46,7 +46,7 @@ final class ReflectedTypeFactoryImpl implements ReflectedTypeFactory {
         return new FluentMethodImpl(this, reflect(klass), klass, method);
     }
 
-    public FluentMethod boundMethod(final Object instance, final Method method) {
+    public FluentMethod boundMethod(final FluentObject<?> instance, final Method method) {
         return new BoundFluentMethodImpl(this, method(method), instance);
     }
 

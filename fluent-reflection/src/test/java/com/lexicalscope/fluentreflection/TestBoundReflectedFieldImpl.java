@@ -1,5 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
+import static com.lexicalscope.fluentreflection.FluentReflection.object;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -32,7 +33,7 @@ public class TestBoundReflectedFieldImpl {
     @Rule public final JUnitRuleMockery context = new JUnitRuleMockery();
 
     @Mock private FluentField member;
-    private final Object instance = new Object();
+    private final FluentObject<?> instance = object(new Object());
 
     private Object field;
     private final Field fieldReference;

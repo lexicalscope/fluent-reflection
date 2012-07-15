@@ -20,9 +20,9 @@ import ch.lambdaj.function.convert.Converter;
 
 class ConvertReflectedFieldToBoundReflectedField implements Converter<FluentField, FluentField> {
     private final ReflectedTypeFactory reflectedTypeFactory;
-    private final Object instance;
+    private final FluentObject<?> instance;
 
-    public ConvertReflectedFieldToBoundReflectedField(final ReflectedTypeFactory reflectedTypeFactory, final Object instance) {
+    public ConvertReflectedFieldToBoundReflectedField(final ReflectedTypeFactory reflectedTypeFactory, final FluentObject<?> instance) {
         this.reflectedTypeFactory = reflectedTypeFactory;
         this.instance = instance;
     }

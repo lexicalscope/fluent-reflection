@@ -17,5 +17,5 @@ public interface FluentConstructor<T> extends FluentMember {
      */
     Constructor<T> member();
 
-    T callRaw(Object... args);
+    FluentObject<T> call(Object... args);
 }

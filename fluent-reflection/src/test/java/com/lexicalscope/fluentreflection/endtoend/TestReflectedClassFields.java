@@ -62,9 +62,9 @@ public class TestReflectedClassFields {
         final FluentObject<Fields> object = object(new Fields());
         final FluentField field = object.field(hasName("publicField"));
 
-        field.callRaw("value");
+        field.call("value");
         assertThat(
-                field.callRaw(),
+                field.call().value(),
                 equalTo((Object) "value"));
     }
 
@@ -86,10 +86,10 @@ public class TestReflectedClassFields {
                 hasName("publicField").and(hasPropertyName("publicField")));
     }
 
-    @Test public void fieldHasOneArgument() throws SecurityException, NoSuchFieldException {
+    @Test public void fieldHasZeroArgument() throws SecurityException, NoSuchFieldException {
         assertThat(
                 type(Fields.class).field(hasName("publicField")),
-                hasArgumentCount(1));
+                hasArgumentCount(0));
     }
 
     @Test public void publicFieldToStringIsUseful() throws SecurityException, NoSuchFieldException {
@@ -158,7 +158,7 @@ public class TestReflectedClassFields {
 
         exception.expect(ReflectionRuntimeException.class);
         exception.expectMessage("reading a field requires an instance argument");
-        field.callRaw();
+        field.call();
     }
 
     @Test public void cannotCallFieldWithTooManyArguments() throws SecurityException, NoSuchFieldException {
@@ -167,7 +167,7 @@ public class TestReflectedClassFields {
 
         exception.expect(ReflectionRuntimeException.class);
         exception.expectMessage("reading a field requires one argument, writing a field requires two arguments. Got 3 arguments");
-        field.callRaw(new Fields(), "value", "excess argument");
+        field.call(new Fields(), "value", "excess argument");
     }
 
     @Test public void missingFieldThrowsException() throws SecurityException, NoSuchFieldException {

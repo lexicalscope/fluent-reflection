@@ -17,12 +17,12 @@ import java.util.Map.Entry;
 import org.hamcrest.Matcher;
 
 import com.google.inject.TypeLiteral;
+import com.lexicalscope.fluentreflection.FluentClass;
+import com.lexicalscope.fluentreflection.FluentMember;
+import com.lexicalscope.fluentreflection.FluentMethod;
 import com.lexicalscope.fluentreflection.FluentReflection;
 import com.lexicalscope.fluentreflection.IllegalAccessRuntimeException;
 import com.lexicalscope.fluentreflection.InvocationTargetRuntimeException;
-import com.lexicalscope.fluentreflection.FluentMember;
-import com.lexicalscope.fluentreflection.FluentClass;
-import com.lexicalscope.fluentreflection.FluentMethod;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
 import com.lexicalscope.fluentreflection.SecurityException;
 
@@ -116,7 +116,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
                         new MethodBody() {
                             @Override public void body() throws Throwable {
                                 try {
-                                    reflectedMethod.callRaw();
+                                    reflectedMethod.call();
                                 } catch (final InvocationTargetRuntimeException e) {
                                     throw e.getExceptionThrownByInvocationTarget();
                                 }

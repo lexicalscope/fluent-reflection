@@ -45,11 +45,15 @@ final class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
     }
 
     @Override public FluentMethod method(final Matcher<? super FluentMethod> methodMatcher) {
-        final FluentMethod selectedMethod = selectFirst(methods(), methodMatcher);
+        final FluentMethod selectedMethod = selectFirstMethod(methodMatcher);
         if (selectedMethod == null) {
             throw new MethodNotFoundException(klass, methodMatcher);
         }
         return selectedMethod;
+    }
+
+    private FluentMethod selectFirstMethod(final Matcher<? super FluentMethod> methodMatcher) {
+        return selectFirst(methods(), methodMatcher);
     }
 
     @Override public List<FluentConstructor<T>> constructors(
@@ -75,15 +79,31 @@ final class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
         return fields.fields();
     }
 
-    @Override public List<FluentField> fields(final ReflectionMatcher<? super FluentField> fieldMatcher) {
+    @Override public List<FluentField> fields(final Matcher<? super FluentField> fieldMatcher) {
         return select(fields(), fieldMatcher);
     }
 
     @Override public FluentField field(final Matcher<? super FluentField> fieldMatcher) {
-        final FluentField selectedMethod = selectFirst(fields(), fieldMatcher);
+        final FluentField selectedMethod = selectFirstField(fieldMatcher);
         if (selectedMethod == null) {
             throw new FieldNotFoundException(klass, fieldMatcher);
         }
         return selectedMethod;
+    }
+
+    private FluentField selectFirstField(final Matcher<? super FluentField> fieldMatcher) {
+        return selectFirst(fields(), fieldMatcher);
+    }
+
+    @Override public FluentMember member(final Matcher<? super FluentMember> memberMatcher) {
+        final FluentMethod method = selectFirstMethod(memberMatcher);
+        if(method == null) {
+            final FluentField field = selectFirstField(memberMatcher);
+            if(field == null) {
+                throw new MemberNotFoundException(klass, memberMatcher);
+            }
+            return field;
+        }
+        return method;
     }
 }

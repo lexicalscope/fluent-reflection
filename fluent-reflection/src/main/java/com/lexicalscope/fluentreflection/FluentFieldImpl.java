@@ -134,7 +134,7 @@ final class FluentFieldImpl extends AbstractFluentAnnotated implements FluentFie
     }
 
     @Override public int argCount() {
-        return 1;
+        return 0;
     }
 
     @Override public List<FluentClass<?>> args() {
@@ -149,11 +149,13 @@ final class FluentFieldImpl extends AbstractFluentAnnotated implements FluentFie
         return reflectedTypeFactory.reflect(returnType);
     }
 
-    @Override public Object callRaw(final Object... args) {
-        if(args == null || args.length == 0 || args[0] == null) {
+    private Object callRaw(final Object... args) {
+        if(args == null || args.length == 0) {
             throw new ReflectionRuntimeException("reading a field requires an instance argument");
         } else if (args.length > 2) {
             throw new ReflectionRuntimeException("reading a field requires one argument, writing a field requires two arguments. Got " + args.length + " arguments");
+        } else if (args[0] == null) {
+            return null;
         }
 
         try {
@@ -173,7 +175,7 @@ final class FluentFieldImpl extends AbstractFluentAnnotated implements FluentFie
     @SuppressWarnings({ "unchecked", "rawtypes" }) @Override public FluentObject<?> call(final Object... args) {
         final Object object = callRaw(args);
         if(object == null) {
-            return null;
+            return reflectedTypeFactory.reflect(typeLiteral.getFieldType(field), null);
         }
         return reflectedTypeFactory.reflect((Class) object.getClass(), object);
     }

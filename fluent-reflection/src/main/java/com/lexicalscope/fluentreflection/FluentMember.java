@@ -63,15 +63,6 @@ public interface FluentMember extends FluentAnnotated {
      *
      * @param args the arguments to use in the call
      *
-     * @return the value returned by the call
-     */
-    Object callRaw(Object... args);
-
-    /**
-     * Call the member using the given arguments
-     *
-     * @param args the arguments to use in the call
-     *
      * @return the value returned by the call wrapped in a fluent reflection wrapper
      */
     FluentObject<?> call(Object... args);
@@ -83,6 +74,7 @@ public interface FluentMember extends FluentAnnotated {
      *
      * @return object that can offers the call with the result cast to the given type
      */
+    @Deprecated
     <T> FluentCall<T> as(Class<T> returnType);
 
     /**

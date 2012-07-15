@@ -45,15 +45,15 @@ public class TestReflectedObject {
     private final FluentObject<ExampleObject> reflectedInstance = object(new ExampleObject());
 
     @Test public void instanceMethodsCanBeCalled() throws Exception {
-        assertThat((Integer) reflectedInstance.method("method").callRaw(), equalTo(42));
+        assertThat((Integer) reflectedInstance.method("method").call().value(), equalTo(42));
     }
 
     @Test public void instanceMethodsCanHaveReturnTypeBoundAndBeCalled() throws Exception {
-        assertThat(reflectedInstance.method("method").as(Integer.class).callRaw(), equalTo(42));
+        assertThat(reflectedInstance.method("method").as(Integer.class).call().value(), equalTo(42));
     }
 
     @Test public void instanceMethodsWithArgumentsCanBeCalled() throws Exception {
-        assertThat((Integer) reflectedInstance.method("doubleIt").callRaw(42), equalTo(84));
+        assertThat((Integer) reflectedInstance.method("doubleIt").call(42).value(), equalTo(84));
     }
 
     @Test public void instanceMethodArgumentsCountIsCorrect() throws Exception {

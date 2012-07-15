@@ -65,11 +65,7 @@ final class FluentMethodImpl extends AbstractFluentAnnotated implements FluentMe
     }
 
     @Override public int argCount() {
-        final int parameterCount = method.getParameterTypes().length;
-        if (isStatic()) {
-            return parameterCount;
-        }
-        return parameterCount;
+        return method.getParameterTypes().length;
     }
 
     @Override public FluentClass<?> declarer() {
@@ -78,19 +74,21 @@ final class FluentMethodImpl extends AbstractFluentAnnotated implements FluentMe
 
     @SuppressWarnings({ "unchecked", "rawtypes" }) @Override public FluentObject<?> call(final Object... args) {
         final Object object = callRaw(args);
-        if(object == null) {
-            return null;
+        if(object == null && typeLiteral.getReturnType(method) != null) {
+            return reflectedTypeFactory.reflect(typeLiteral.getReturnType(method), null);
         }
         return reflectedTypeFactory.reflect((Class) object.getClass(), object);
     }
 
-    @Override public Object callRaw(final Object... args) {
+    private Object callRaw(final Object... args) {
         if (isStatic()) {
             return invokeMethod(null, args);
         } else {
             if (args.length < 1) {
                 throw new IllegalArgumentException("target instance must be specified as first argument when calling "
                         + method);
+            } else if (args[0] == null) {
+                return null;
             }
 
             final Object[] remainingArguments = new Object[args.length - 1];

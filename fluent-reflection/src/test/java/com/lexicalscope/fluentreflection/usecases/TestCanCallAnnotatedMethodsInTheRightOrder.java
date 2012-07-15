@@ -30,7 +30,7 @@ import com.lexicalscope.fluentreflection.FluentMethod;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 public class TestCanCallAnnotatedMethodsInTheRightOrder {
@@ -74,7 +74,7 @@ public class TestCanCallAnnotatedMethodsInTheRightOrder {
 
         forEach(
                 object(subject).methods(annotatedWith(PostConstruct.class)),
-                FluentMethod.class).callRaw();
+                FluentMethod.class).call().value();
 
         assertThat(subject.result, contains("afterConstruction", "afterConstructionExtension"));
     }
@@ -85,7 +85,7 @@ public class TestCanCallAnnotatedMethodsInTheRightOrder {
 
         forEach(
                 reverse(object(subject).methods(annotatedWith(PreDestroy.class))),
-                FluentMethod.class).callRaw();
+                FluentMethod.class).call().value();
 
         assertThat(subject.result, contains("beforeDestructionExtension", "beforeDestruction"));
     }

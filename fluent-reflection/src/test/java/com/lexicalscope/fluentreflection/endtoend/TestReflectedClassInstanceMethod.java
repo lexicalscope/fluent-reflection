@@ -44,7 +44,7 @@ public class TestReflectedClassInstanceMethod {
     private final ClassWithInstanceMethods instance = new ClassWithInstanceMethods();
 
     @Test public void simpleMethodCanBeCalled() {
-        type(ClassWithInstanceMethods.class).method(hasName("simpleMethod")).callRaw(instance);
+        type(ClassWithInstanceMethods.class).method(hasName("simpleMethod")).call(instance);
 
         assertThat(instance.called, equalTo(true));
     }
@@ -53,19 +53,19 @@ public class TestReflectedClassInstanceMethod {
         final Integer result =
                 (Integer) type(ClassWithInstanceMethods.class)
                         .method(hasName("methodWithReturnValue"))
-                        .callRaw(instance);
+                        .call(instance).value();
 
         assertThat(result, equalTo(42));
     }
 
     @Test public void canCallMethodWithOneArgumentIfMultipleMatches() {
-        type(ClassWithInstanceMethods.class).method(hasName("methodWithOneArgument")).callRaw(instance, "string");
+        type(ClassWithInstanceMethods.class).method(hasName("methodWithOneArgument")).call(instance, "string");
 
         assertThat(instance.stringCalled || instance.objectCalled, equalTo(true));
     }
 
     @Test public void methodWithTwoArgumentsCanBeCalled() {
-        type(ClassWithInstanceMethods.class).method(hasName("methodWithTwoArguments")).callRaw(
+        type(ClassWithInstanceMethods.class).method(hasName("methodWithTwoArguments")).call(
                 instance,
                 "string",
                 42);
@@ -91,13 +91,13 @@ public class TestReflectedClassInstanceMethod {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("target instance must be specified");
 
-        type(ClassWithInstanceMethods.class).method(hasName("simpleMethod")).callRaw();
+        type(ClassWithInstanceMethods.class).method(hasName("simpleMethod")).call();
     }
 
     @Test public void callingInstanceMethodWithWrongInstanceType() {
         exception.expect(IllegalArgumentRuntimeException.class);
         exception.expectMessage(containsString("not an instance of declaring class"));
 
-        type(ClassWithInstanceMethods.class).method(hasName("simpleMethod")).callRaw(new Object());
+        type(ClassWithInstanceMethods.class).method(hasName("simpleMethod")).call(new Object());
     }
 }

@@ -1,5 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
+import static com.lexicalscope.fluentreflection.FluentReflection.object;
 import static com.lexicalscope.fluentreflection.Visibility.PUBLIC;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -33,7 +34,7 @@ public class TestBoundReflectedMemberImpl {
     @Rule public final JUnitRuleMockery context = new JUnitRuleMockery();
 
     @Mock private FluentMember member;
-    private final Object instance = new Object();
+    private final FluentObject<?> instance = object(new Object());
 
     private BoundFluentMemberImpl boundReflectedMemberImpl;
 

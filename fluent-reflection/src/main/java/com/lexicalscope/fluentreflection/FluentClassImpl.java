@@ -102,10 +102,10 @@ class FluentClassImpl<T> implements FluentClass<T> {
     }
 
     @Override public FluentObject<?> call(
-            final Matcher<? super FluentMethod> methodMatcher,
+            final Matcher<? super FluentMember> methodMatcher,
             final Object ... args)
     {
-        return method(allOf(methodMatcher, canBeCalledWithArguments(args))).call(args);
+        return member(allOf(methodMatcher, canBeCalledWithArguments(args))).call(args);
     }
 
     @Override public FluentObject<?> call(final String name, final Object ... args)
@@ -127,11 +127,6 @@ class FluentClassImpl<T> implements FluentClass<T> {
         return klass;
     }
 
-    @Override public FluentObject<T> construct(final Object... args) {
-        final T newInstance = constructRaw(args);
-        return reflectedTypeFactory.reflect(typeLiteral, newInstance);
-    }
-
     @Override public FluentConstructor<T> constructor(
             final Matcher<? super FluentConstructor<?>> constructorMatcher) {
         return members.constructor(constructorMatcher);
@@ -142,7 +137,7 @@ class FluentClassImpl<T> implements FluentClass<T> {
         return members.constructors(constructorMatcher);
     }
 
-    @Override public T constructRaw(final Object... args) {
+    @Override public FluentObject<T> construct(final Object... args) {
         final FluentConstructor<T> constructor =
                 constructor(hasArgumentList(convert(args, new ConvertObjectToClass())));
 
@@ -150,7 +145,7 @@ class FluentClassImpl<T> implements FluentClass<T> {
             throw new ConstructorNotFoundRuntimeException(typeLiteral.getRawType());
         }
 
-        return constructor.callRaw(args);
+        return constructor.call(args);
     }
 
     @Override public List<FluentField> declaredFields() {
@@ -168,7 +163,7 @@ class FluentClassImpl<T> implements FluentClass<T> {
         return false;
     }
 
-    @Override public FluentField field(final ReflectionMatcher<FluentMember> fieldMatcher) {
+    @Override public FluentField field(final Matcher<FluentMember> fieldMatcher) {
         return members.field(fieldMatcher);
     }
 
@@ -180,7 +175,7 @@ class FluentClassImpl<T> implements FluentClass<T> {
         return members.fields();
     }
 
-    @Override public List<FluentField> fields(final ReflectionMatcher<? super FluentField> fieldMatcher) {
+    @Override public List<FluentField> fields(final Matcher<? super FluentField> fieldMatcher) {
         return members.fields(fieldMatcher);
     }
 
@@ -200,7 +195,7 @@ class FluentClassImpl<T> implements FluentClass<T> {
         return klass.isPrimitive();
     }
 
-    @Override public boolean isType(final ReflectionMatcher<FluentClass<?>> typeMatcher) {
+    @Override public boolean isType(final Matcher<FluentClass<?>> typeMatcher) {
         if (typeMatcher.matches(this)) {
             return true;
         }
@@ -261,5 +256,9 @@ class FluentClassImpl<T> implements FluentClass<T> {
             return reflectedTypeFactory.reflect(Primitives.unwrap(klass));
         }
         return this;
+    }
+
+    @Override public FluentMember member(final Matcher<? super FluentMember> memberMatcher) {
+        return members.member(memberMatcher);
     }
 }

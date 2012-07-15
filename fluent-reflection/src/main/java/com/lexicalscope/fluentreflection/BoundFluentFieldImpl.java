@@ -25,7 +25,7 @@ class BoundFluentFieldImpl extends BoundFluentMemberImpl implements FluentField 
     public BoundFluentFieldImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
             final FluentField field,
-            final Object instance) {
+            final FluentObject<?> instance) {
         super(reflectedTypeFactory, field, instance);
         this.field = field;
         this.instance = instance;

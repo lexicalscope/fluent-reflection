@@ -28,12 +28,12 @@ import org.hamcrest.Matcher;
 abstract class BoundFluentMemberImpl implements FluentMember {
     private final ReflectedTypeFactory reflectedTypeFactory;
     private final FluentMember member;
-    private final Object instance;
+    private final FluentObject<?> instance;
 
     public BoundFluentMemberImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
             final FluentMember member,
-            final Object instance) {
+            final FluentObject<?> instance) {
         this.reflectedTypeFactory = reflectedTypeFactory;
         if (member.isStatic()) {
             throw new IllegalArgumentException("cannot bind static member " + member);
@@ -50,19 +50,15 @@ abstract class BoundFluentMemberImpl implements FluentMember {
         return new ArrayList<FluentClass<?>>(member.args());
     }
 
-    @SuppressWarnings("unchecked") @Override public FluentObject<?> call(final Object... args) {
-        final Object object = callRaw(args);
-        if(object == null) {
-            return null;
-        }
-        return reflectedTypeFactory.reflect((Class) object.getClass(), object);
+    @Override public FluentObject<?> call(final Object... args) {
+        return member.call(addInstanceToArgsArray(args));
     }
 
-    @Override public final Object callRaw(final Object... args) {
+    private Object[] addInstanceToArgsArray(final Object... args) {
         final Object[] argsWithInstance = new Object[args.length + 1];
-        argsWithInstance[0] = instance;
+        argsWithInstance[0] = instance.value();
         arraycopy(args, 0, argsWithInstance, 1, args.length);
-        return member.callRaw(argsWithInstance);
+        return argsWithInstance;
     }
 
     @Override public final FluentClass<?> declarer() {
@@ -116,7 +112,7 @@ abstract class BoundFluentMemberImpl implements FluentMember {
     @Override public final <T> FluentCall<T> as(final Class<T> returnType) {
         return new AbstractCall<T>(reflectedTypeFactory) {
             @Override public T callRaw(final Object... args) {
-                return returnType.cast(BoundFluentMemberImpl.this.callRaw(args));
+                return returnType.cast(BoundFluentMemberImpl.this.call(args).value());
             }
         };
     }

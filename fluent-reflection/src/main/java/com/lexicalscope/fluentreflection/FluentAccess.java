@@ -30,13 +30,6 @@ import org.hamcrest.Matcher;
  */
 public interface FluentAccess<T> extends FluentAnnotated {
     /**
-     * True iff the type is an interface
-     *
-     * @return True iff the type is an interface
-     */
-    boolean isInterface();
-
-    /**
      * True iff a variable of the type represented by this class is
      * assignable from the given class?
      *
@@ -75,14 +68,14 @@ public interface FluentAccess<T> extends FluentAnnotated {
     FluentClass<T> boxedType();
 
     /**
-     * Call a method using a matcher, if one can be found that can also be called with the given arguments
+     * Call a member using a matcher, if one can be found that can also be called with the given arguments
      *
-     * @param methodMatcher matches the method
-     * @param args the arguments of the method
+     * @param memberMatcher matches the member
+     * @param args the arguments of the member
      *
-     * @return the result of calling the method
+     * @return the result of calling the member
      */
-    FluentObject<?> call(Matcher<? super FluentMethod> methodMatcher, Object ... args);
+    FluentObject<?> call(Matcher<? super FluentMember> memberMatcher, Object ... args);
 
     /**
      * Call a method by name if one can be found that can be called with the given arguments
@@ -147,7 +140,7 @@ public interface FluentAccess<T> extends FluentAnnotated {
      *
      * @return The first field matching the supplied matcher
      */
-    FluentField field(ReflectionMatcher<FluentMember> fieldMatcher);
+    FluentField field(Matcher<FluentMember> fieldMatcher);
 
     /**
      * Find field by name
@@ -174,7 +167,7 @@ public interface FluentAccess<T> extends FluentAnnotated {
      *
      * @return The fields matching the supplied matcher
      */
-    List<FluentField> fields(ReflectionMatcher<? super FluentField> fieldMatcher);
+    List<FluentField> fields(Matcher<? super FluentField> fieldMatcher);
 
     /**
      * All interfaces implemented by this type
@@ -182,6 +175,13 @@ public interface FluentAccess<T> extends FluentAnnotated {
      * @return all the interfaces
      */
     List<FluentClass<?>> interfaces();
+
+    /**
+     * True iff the type is an interface
+     *
+     * @return True iff the type is an interface
+     */
+    boolean isInterface();
 
     /**
      * Determines if this {@code Class} object represents a
@@ -199,7 +199,7 @@ public interface FluentAccess<T> extends FluentAnnotated {
      *
      * @return does the type or any of its supertypes match the given matcher
      */
-    boolean isType(ReflectionMatcher<FluentClass<?>> typeMatcher);
+    boolean isType(Matcher<FluentClass<?>> typeMatcher);
 
     /**
      * Determines if this {@code Class} object represents the wrapper of a
@@ -208,6 +208,8 @@ public interface FluentAccess<T> extends FluentAnnotated {
      * @return true iff this class is one of the primative wrapper types
      */
     boolean isUnboxable();
+
+    FluentMember member(Matcher<? super FluentMember> memberMatcher);
 
     /**
      * Find the first method matching the supplied matcher

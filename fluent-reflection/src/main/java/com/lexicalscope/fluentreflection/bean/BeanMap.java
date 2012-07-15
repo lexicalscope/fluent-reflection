@@ -33,15 +33,15 @@ import com.lexicalscope.fluentreflection.FluentObject;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 /**
  * Create a map by reflecting on bean properties
- * 
+ *
  * If you do not need the configurability of this class, consider using
  * {@link net.sf.cglib.beans.BeanMap} instead for performance reasons.
- * 
+ *
  * @author Tim Wood
  */
 public class BeanMap {
@@ -103,7 +103,7 @@ public class BeanMap {
             if (getter == null) {
                 return null;
             }
-            return getter.callRaw();
+            return getter.call().value();
         }
 
         @Override public boolean isEmpty() {
@@ -122,7 +122,7 @@ public class BeanMap {
             final Object oldValue = get(key);
             final FluentMethod setter = setters.get(key);
             if (setter != null) {
-                setter.callRaw(value);
+                setter.call(value);
             }
             return oldValue;
         }
@@ -222,13 +222,13 @@ public class BeanMap {
      * A map of the properties in the bean. Putting values into the map will
      * update the underlying bean. Getting write only properties will return
      * null. Setting read only properties is ignored.
-     * 
+     *
      * Removing keys from the map (or any operation that implies removing one or
      * more keys) is not supported.
-     * 
+     *
      * @param bean
      *            the bean to expose as a map
-     * 
+     *
      * @return the bean wrapped in a map
      */
     public static Map<String, Object> map(final Object bean) {

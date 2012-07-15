@@ -22,6 +22,8 @@ interface ReflectedMembers<T> {
     List<FluentField> declaredFields();
 
     List<FluentField> fields();
-    List<FluentField> fields(ReflectionMatcher<? super FluentField> fieldMatcher);
+    List<FluentField> fields(Matcher<? super FluentField> fieldMatcher);
     FluentField field(Matcher<? super FluentField> fieldMatcher);
+
+    FluentMember member(Matcher<? super FluentMember> memberMatcher);
 }

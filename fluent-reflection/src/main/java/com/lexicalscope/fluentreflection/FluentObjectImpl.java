@@ -8,7 +8,11 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hamcrest.Matcher;
+
+import ch.lambdaj.Lambda;
 
 /*
  * Copyright 2011 Tim Wood
@@ -75,13 +79,13 @@ final class FluentObjectImpl<T> implements FluentObject<T> {
     private List<FluentMethod> bind(final List<FluentMethod> methods) {
         return convert(
                 select(methods, isNotStatic()),
-                new ConvertReflectedMethodToBoundReflectedMethod(reflectedTypeFactory, instance));
+                new ConvertReflectedMethodToBoundReflectedMethod(reflectedTypeFactory, this));
     }
 
     private List<FluentField> bindFields(final List<FluentField> fields) {
         return convert(
                 select(fields, isNotStatic()),
-                new ConvertReflectedFieldToBoundReflectedField(reflectedTypeFactory, instance));
+                new ConvertReflectedFieldToBoundReflectedField(reflectedTypeFactory, this));
     }
 
     private List<FluentField> boundDeclaredFields() {
@@ -104,13 +108,12 @@ final class FluentObjectImpl<T> implements FluentObject<T> {
         return reflect.boxedType();
     }
 
-    @Override public FluentObject<?> call(final Matcher<? super FluentMethod> methodMatcher, final Object... args) {
-        return method(allOf(methodMatcher, canBeCalledWithArguments(args))).call(args);
+    @Override public FluentObject<?> call(final Matcher<? super FluentMember> methodMatcher, final Object... args) {
+        return member(allOf(methodMatcher, canBeCalledWithArguments(args))).call(args);
     }
 
     @Override public FluentObject<?> call(final String name, final Object ... args) {
-        final ReflectionMatcher<FluentMember> methodMatcher = hasName(name);
-        return call(methodMatcher, args);
+        return call(hasName(name), args);
     }
 
     @Override public boolean canBeBoxed(final Class<?> from) {
@@ -133,8 +136,17 @@ final class FluentObjectImpl<T> implements FluentObject<T> {
         return boundDeclaredMethods();
     }
 
-    @Override public FluentField field(final ReflectionMatcher<FluentMember> fieldMatcher) {
-        final FluentField selectedField = selectFirst(fields(), fieldMatcher);
+    @Override public boolean equals(final Object that) {
+        if(that != null && that.getClass().equals(getClass()))
+        {
+            final FluentObjectImpl<?> castedThat = (FluentObjectImpl<?>) that;
+            return new EqualsBuilder().append(reflect, castedThat.reflect).append(instance, castedThat.instance).isEquals();
+        }
+        return false;
+    }
+
+    @Override public FluentField field(final Matcher<FluentMember> fieldMatcher) {
+        final FluentField selectedField = selectFirstField(fieldMatcher);
         if (selectedField == null) {
             throw new FieldNotFoundException(instance.getClass(), fieldMatcher);
         }
@@ -149,19 +161,27 @@ final class FluentObjectImpl<T> implements FluentObject<T> {
         return boundFields();
     }
 
-    @Override public List<FluentField> fields(final ReflectionMatcher<? super FluentField> fieldMatcher) {
+    @Override public List<FluentField> fields(final Matcher<? super FluentField> fieldMatcher) {
         return select(boundFields(), fieldMatcher);
+    }
+
+    @Override public int hashCode() {
+        return new HashCodeBuilder().append(reflect).append(instance).toHashCode();
     }
 
     @Override public List<FluentClass<?>> interfaces() {
         return reflect.interfaces();
     }
 
+    @Override public boolean isInterface() {
+        return reflect.isInterface();
+    }
+
     @Override public boolean isPrimitive() {
         return reflect.isPrimitive();
     }
 
-    @Override public boolean isType(final ReflectionMatcher<FluentClass<?>> typeMatcher) {
+    @Override public boolean isType(final Matcher<FluentClass<?>> typeMatcher) {
         return reflect.isType(typeMatcher);
     }
 
@@ -169,8 +189,20 @@ final class FluentObjectImpl<T> implements FluentObject<T> {
         return reflect.isUnboxable();
     }
 
+    @Override public FluentMember member(final Matcher<? super FluentMember> memberMatcher) {
+        final FluentMethod method = selectFirstMethod(memberMatcher);
+        if(method == null) {
+            final FluentField field = selectFirstField(memberMatcher);
+            if(field == null) {
+                throw new MemberNotFoundException(reflect.classUnderReflection(), memberMatcher);
+            }
+            return field;
+        }
+        return method;
+    }
+
     @Override public FluentMethod method(final Matcher<? super FluentMethod> methodMatcher) {
-        final FluentMethod method = selectFirst(boundMethods(), methodMatcher);
+        final FluentMethod method = selectFirstMethod(methodMatcher);
         if(method == null) {
             throw new MethodNotFoundException(reflect.classUnderReflection(), methodMatcher);
         }
@@ -197,12 +229,24 @@ final class FluentObjectImpl<T> implements FluentObject<T> {
         return reflect;
     }
 
+    private FluentField selectFirstField(final Matcher<? super FluentMember> fieldMatcher) {
+        return Lambda.<FluentField>selectFirst(boundFields(), fieldMatcher);
+    }
+
+    private FluentMethod selectFirstMethod(final Matcher<? super FluentMethod> methodMatcher) {
+        return selectFirst(boundMethods(), methodMatcher);
+    }
+
     @Override public String simpleName() {
         return reflect.simpleName();
     }
 
     @Override public List<FluentClass<?>> superclasses() {
         return reflect.superclasses();
+    }
+
+    @Override public String toString() {
+        return instance != null ? instance.toString() : "" + null;
     }
 
     @Override public Type type() {
@@ -219,9 +263,5 @@ final class FluentObjectImpl<T> implements FluentObject<T> {
 
     @Override public T value() {
         return instance;
-    }
-
-    @Override public boolean isInterface() {
-        return reflect.isInterface();
     }
 }

@@ -23,7 +23,7 @@ import com.google.inject.TypeLiteral;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 public class TestReflectedClassImpl {
@@ -48,18 +48,13 @@ public class TestReflectedClassImpl {
         }
     }
 
-    private final ExampleClass instance = new ExampleClass();
-
     @Test public void constructFindsConstructorAndBindsReflectedResult() throws Exception {
         context.checking(new Expectations() {
             {
                 oneOf(members).constructor(hasArguments());
                 will(returnValue(reflectedConstructor));
 
-                oneOf(reflectedConstructor).callRaw();
-                will(returnValue(instance));
-
-                oneOf(reflectedTypeFactory).reflect(TypeLiteral.get(ExampleClass.class), instance);
+                oneOf(reflectedConstructor).call();
                 will(returnValue(reflectedInstance));
             }
         });
@@ -67,6 +62,6 @@ public class TestReflectedClassImpl {
         final FluentClassImpl<ExampleClass> reflectedTypeImpl =
                 new FluentClassImpl<ExampleClass>(reflectedTypeFactory, TypeLiteral.get(ExampleClass.class), members);
 
-        assertThat(reflectedTypeImpl.construct(), equalTo(reflectedInstance));
+        assertThat(reflectedTypeImpl.construct(), equalTo((Object) reflectedInstance));
     }
 }

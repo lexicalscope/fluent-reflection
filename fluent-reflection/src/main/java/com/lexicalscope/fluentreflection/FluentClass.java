@@ -42,13 +42,6 @@ public interface FluentClass<T> extends FluentAccess<T> {
     /**
      * Construct an object of the type under reflection
      *
-     * @return the constructed object
-     */
-    T constructRaw(Object... args);
-
-    /**
-     * Construct an object of the type under reflection
-     *
      * @return a reflection wrapper around the constructed object
      */
     FluentObject<T> construct(Object... args);

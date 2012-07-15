@@ -1,6 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static com.lexicalscope.fluentreflection.FluentReflection.method;
+import static com.lexicalscope.fluentreflection.FluentReflection.*;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.reflectingOn;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -51,7 +51,7 @@ public class TestBoundReflectedMethodImpl {
         methodWithReturnType = new BoundFluentMethodImpl(
                 null,
                 method(ClassWithMethod.class.getDeclaredMethod("method")),
-                new ClassWithMethod());
+                object(new ClassWithMethod()));
     }
 
     @Test
@@ -61,7 +61,7 @@ public class TestBoundReflectedMethodImpl {
         new BoundFluentMethodImpl(
                 null,
                 method(ClassWithStaticMethod.class.getDeclaredMethods()[0]),
-                new ClassWithStaticMethod());
+                object(new ClassWithStaticMethod()));
     }
 
     @Test
