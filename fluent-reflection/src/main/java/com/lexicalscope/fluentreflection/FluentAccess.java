@@ -30,6 +30,13 @@ import org.hamcrest.Matcher;
  */
 public interface FluentAccess<T> extends FluentAnnotated {
     /**
+     * True iff the type is an interface
+     *
+     * @return True iff the type is an interface
+     */
+    boolean isInterface();
+
+    /**
      * True iff a variable of the type represented by this class is
      * assignable from the given class?
      *

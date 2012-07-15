@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherTypeHasNoInterfaces extends AbstractTestReflectionMatcherNoMocks<FluentAccess<?>> {
+public class TestMatcherTypeHasNoInterfaces extends AbstractTestReflectionMatcher<FluentAccess<?>> {
     interface Interfa3c {
 
     }

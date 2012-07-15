@@ -1,36 +1,31 @@
 package com.lexicalscope.fluentreflection;
 
+import static com.lexicalscope.fluentreflection.FluentReflection.type;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasNoSuperclasses;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-import com.lexicalscope.fluentreflection.FluentClass;
-import com.lexicalscope.fluentreflection.ReflectionMatcher;
-
-public class TestMatcherTypeHasNoSuperclasses extends AbstractTestReflectionMatcher<FluentClass<?>> {
-    class Superclass {
+public class TestMatcherTypeHasNoSuperclasses extends AbstractTestReflectionMatcher<FluentAccess<?>> {
+    class Base {
 
     }
 
-    @Override
-    protected FluentClass<?> target() {
-        return type;
+    class Klass extends Base {
+
+    }
+
+    @Override protected FluentAccess<?> target() {
+        return type(Base.class);
+    }
+
+    @Override protected FluentAccess<?> failingTarget() {
+        return type(Klass.class);
     }
 
     @Override
-    protected ReflectionMatcher<FluentClass<?>> matcher() {
+    protected ReflectionMatcher<FluentAccess<?>> matcher() {
         return hasNoSuperclasses();
-    }
-
-    @Override
-    protected void setupMatchingCase() {
-        whenTypeHasNoSuperclass();
-    }
-
-    @Override
-    protected void setupFailingCase() {
-        whenTypeHasSuperclass(Superclass.class);
     }
 
     @Override

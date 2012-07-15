@@ -21,7 +21,7 @@ import org.hamcrest.Matcher;
  * limitations under the License.
  */
 
-public class TestMatcherConstructorReflectingOn extends AbstractTestReflectionMatcherNoMocks<FluentConstructor<?>> {
+public class TestMatcherConstructorReflectingOn extends AbstractTestReflectionMatcher<FluentConstructor<?>> {
     static class ClassWithAConstructor {
         ClassWithAConstructor() {}
     }

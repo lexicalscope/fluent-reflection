@@ -216,4 +216,8 @@ final class FluentObjectImpl<T> implements FluentObject<T> {
     @Override public T value() {
         return instance;
     }
+
+    @Override public boolean isInterface() {
+        return reflect.isInterface();
+    }
 }

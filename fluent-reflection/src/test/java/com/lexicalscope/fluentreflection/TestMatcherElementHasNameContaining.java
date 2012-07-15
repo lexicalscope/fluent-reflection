@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherElementHasNameContaining extends AbstractTestReflectionMatcherNoMocks<FluentMember> {
+public class TestMatcherElementHasNameContaining extends AbstractTestReflectionMatcher<FluentMember> {
     interface Klass {
         void defabc();
         void pqrxyz();

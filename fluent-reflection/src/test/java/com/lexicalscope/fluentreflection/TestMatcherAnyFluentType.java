@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherAnyFluentType extends AbstractTestReflectionMatcherNoMocks<FluentAccess<?>> {
+public class TestMatcherAnyFluentType extends AbstractTestReflectionMatcher<FluentAccess<?>> {
     interface Klass {}
 
     @Override

@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherElementWithArguments extends AbstractTestReflectionMatcherNoMocks<FluentMember> {
+public class TestMatcherElementWithArguments extends AbstractTestReflectionMatcher<FluentMember> {
     interface Klass {
         void matchingMethod(String argument);
         void failingMethod(String argument0, String argument1);

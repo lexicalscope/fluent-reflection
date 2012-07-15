@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherArgumentCount extends AbstractTestReflectionMatcherNoMocks<FluentMember> {
+public class TestMatcherArgumentCount extends AbstractTestReflectionMatcher<FluentMember> {
     interface Klass {
         void threeArgs(Object one, Object two, Object three);
         void fiveArgs(Object one, Object two, Object three, Object four, Object five);

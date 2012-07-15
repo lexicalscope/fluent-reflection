@@ -185,7 +185,7 @@ public final class ReflectionMatchers {
         return not(hasVoidType());
     }
 
-    public static ReflectionMatcher<FluentClass<?>> hasNoSuperclasses() {
+    public static ReflectionMatcher<FluentAccess<?>> hasNoSuperclasses() {
         return new MatcherHasNoSuperclasses();
     }
 
@@ -233,7 +233,7 @@ public final class ReflectionMatchers {
         return new MatcherReturnType(reflectingOn(void.class));
     }
 
-    public static ReflectionMatcher<FluentClass<?>> isAnInterface() {
+    public static ReflectionMatcher<FluentAccess<?>> isAnInterface() {
         return new MatcherIsInterface();
     }
 

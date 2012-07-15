@@ -29,13 +29,6 @@ import org.hamcrest.Matcher;
  */
 public interface FluentClass<T> extends FluentAccess<T> {
     /**
-     * True iff the type is an interface
-     *
-     * @return True iff the type is an interface
-     */
-    boolean isInterface();
-
-    /**
      * Get this type as the first matching the supplied matcher. This type and
      * then the supertypes are searched
      *

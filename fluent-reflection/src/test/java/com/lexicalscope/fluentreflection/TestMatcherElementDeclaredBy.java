@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherElementDeclaredBy extends AbstractTestReflectionMatcherNoMocks<FluentMember> {
+public class TestMatcherElementDeclaredBy extends AbstractTestReflectionMatcher<FluentMember> {
     interface NonDeclaringInterface {
         void basemethod();
     }
