@@ -109,14 +109,6 @@ abstract class BoundFluentMemberImpl implements FluentMember {
         return member.property();
     }
 
-    @Override public final <T> FluentCall<T> as(final Class<T> returnType) {
-        return new AbstractCall<T>(reflectedTypeFactory) {
-            @Override public T callRaw(final Object... args) {
-                return returnType.cast(BoundFluentMemberImpl.this.call(args).value());
-            }
-        };
-    }
-
     @Override public final boolean equals(final Object that) {
         if(this == that) {
             return true;

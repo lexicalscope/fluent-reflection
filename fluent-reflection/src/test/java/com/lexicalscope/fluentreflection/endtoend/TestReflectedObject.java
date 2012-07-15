@@ -49,7 +49,7 @@ public class TestReflectedObject {
     }
 
     @Test public void instanceMethodsCanHaveReturnTypeBoundAndBeCalled() throws Exception {
-        assertThat(reflectedInstance.method("method").as(Integer.class).call().value(), equalTo(42));
+        assertThat(reflectedInstance.method("method").call().as(Integer.class), equalTo(42));
     }
 
     @Test public void instanceMethodsWithArgumentsCanBeCalled() throws Exception {

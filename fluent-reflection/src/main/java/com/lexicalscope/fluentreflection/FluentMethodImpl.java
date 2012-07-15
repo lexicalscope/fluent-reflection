@@ -120,14 +120,6 @@ final class FluentMethodImpl extends AbstractFluentAnnotated implements FluentMe
         return Modifier.isFinal(method.getModifiers());
     }
 
-    @Override public <T> FluentCall<T> as(final Class<T> returnType) {
-        return new AbstractCall<T>(reflectedTypeFactory) {
-            @Override public T callRaw(final Object... args) {
-                return returnType.cast(FluentMethodImpl.this.callRaw(args));
-            }
-        };
-    }
-
     @Override public FluentClass<?> type() {
         final TypeLiteral<?> returnType = typeLiteral.getReturnType(method);
         if (returnType == null) {

@@ -78,14 +78,6 @@ final class FluentConstructorImpl<T> extends AbstractFluentAnnotated implements 
         return visibilityFromModifiers(constructor.getModifiers());
     }
 
-    @Override public <S> FluentCall<S> as(final Class<S> returnType) {
-        return new AbstractCall<S>(reflectedTypeFactory) {
-            @Override public S callRaw(final Object... args) {
-                return returnType.cast(FluentConstructorImpl.this.callRaw(args));
-            }
-        };
-    }
-
     @Override public boolean isStatic() {
         return true;
     }

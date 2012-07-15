@@ -68,16 +68,6 @@ public interface FluentMember extends FluentAnnotated {
     FluentObject<?> call(Object... args);
 
     /**
-     * Used to cast the result of a call on this member
-     *
-     * @param returnType the type expected as the result of the call
-     *
-     * @return object that can offers the call with the result cast to the given type
-     */
-    @Deprecated
-    <T> FluentCall<T> as(Class<T> returnType);
-
-    /**
      * true iff the member is static
      *
      * @return true iff the member is static

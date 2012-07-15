@@ -179,12 +179,4 @@ final class FluentFieldImpl extends AbstractFluentAnnotated implements FluentFie
         }
         return reflectedTypeFactory.reflect((Class) object.getClass(), object);
     }
-
-    @Override public <T> FluentCall<T> as(final Class<T> returnType) {
-        return new AbstractCall<T>(reflectedTypeFactory) {
-            @Override public T callRaw(final Object... args) {
-                return returnType.cast(FluentFieldImpl.this.callRaw(args));
-            }
-        };
-    }
 }
