@@ -18,33 +18,23 @@ public abstract class AbstractTestReflectionMatcherNoMocks<T> {
         assertThat(description, hasToString(descriptionMatcher));
     }
 
-    protected T failingTarget() {
-        return target();
-    }
+    protected abstract T failingTarget();
 
     protected abstract Matcher<String> hasDescription();
 
     protected abstract ReflectionMatcher<? super T> matcher() throws Throwable;
 
     @Test public final void matcherCanFailToMatch() throws Throwable {
-        setupFailingCase();
-
         assertThat(failingTarget(), not(matcher()));
     }
 
     @Test public final void matcherCanMatch() throws Throwable {
-        setupMatchingCase();
-
         assertThat(target(), matcher());
     }
 
     @Test public final void matcherDescriptionMakesSense() throws Throwable {
         assertHasDescription(matcher(), hasDescription());
     }
-
-    protected void setupFailingCase() throws Throwable {}
-
-    protected void setupMatchingCase() throws Throwable {}
 
     protected abstract T target();
 }

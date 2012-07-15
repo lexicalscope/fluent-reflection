@@ -1,11 +1,14 @@
 package com.lexicalscope.fluentreflection;
 
+import static com.lexicalscope.fluentreflection.FluentReflection.type;
 import static com.lexicalscope.fluentreflection.ReflectionMatchers.anyFluentType;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.hamcrest.Matcher;
 
-public class TestMatcherAnyFluentType extends AbstractTestReflectionMatcher<FluentAccess<?>> {
+public class TestMatcherAnyFluentType extends AbstractTestReflectionMatcherNoMocks<FluentAccess<?>> {
+    interface Klass {}
+
     @Override
     protected FluentClass<?> failingTarget() {
         return null;
@@ -23,6 +26,6 @@ public class TestMatcherAnyFluentType extends AbstractTestReflectionMatcher<Flue
 
     @Override
     protected FluentClass<?> target() {
-        return type;
+        return type(Klass.class);
     }
 }
