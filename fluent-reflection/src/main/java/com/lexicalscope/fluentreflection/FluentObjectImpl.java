@@ -141,6 +141,10 @@ final class FluentObjectImpl<T> implements FluentObject<T> {
         return selectedField;
     }
 
+    @Override public FluentField field(final String fieldName) {
+        return field(hasName(fieldName));
+    }
+
     @Override public List<FluentField> fields() {
         return boundFields();
     }

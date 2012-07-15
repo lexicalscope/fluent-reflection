@@ -35,7 +35,7 @@ public class TestCanFindAllAnnotatedFields {
         @Inject public String annotatedField0;
         @Inject String annotatedField1;
         @Inject protected String annotatedField2;
-        @SuppressWarnings("unused") @Inject private String annotatedField3;
+        @Inject private String annotatedField3;
     }
 
     private final AnnotatedFields subject = new AnnotatedFields();

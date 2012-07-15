@@ -172,6 +172,10 @@ class FluentClassImpl<T> implements FluentClass<T> {
         return members.field(fieldMatcher);
     }
 
+    @Override public FluentField field(final String fieldName) {
+        return field(hasName(fieldName));
+    }
+
     @Override public List<FluentField> fields() {
         return members.fields();
     }

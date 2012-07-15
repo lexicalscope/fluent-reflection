@@ -1,7 +1,6 @@
 package com.lexicalscope.fluentreflection.usecases;
 
 import static com.lexicalscope.fluentreflection.FluentReflection.object;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasName;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -34,7 +33,7 @@ public class TestCanReadAndSetFields {
     private final AnnotatedFields subject = new AnnotatedFields();
 
     @Test public void canSetPublicField() throws Exception {
-        object(subject).field(hasName("fieldPublic")).callRaw("value");
+        object(subject).field("fieldPublic").callRaw("value");
 
         assertThat(subject.fieldPublic, equalTo("value"));
     }
@@ -42,13 +41,13 @@ public class TestCanReadAndSetFields {
     @Test public void canReadPublicField() throws Exception {
         subject.fieldPublic = "value";
 
-        final String value = object(subject).field(hasName("fieldPublic")).as(String.class).callRaw();
+        final String value = object(subject).field("fieldPublic").as(String.class).callRaw();
 
         assertThat(value, equalTo("value"));
     }
 
     @Test public void canSetPackageField() throws Exception {
-        object(subject).field(hasName("fieldPackage")).callRaw("value");
+        object(subject).field("fieldPackage").callRaw("value");
 
         assertThat(subject.fieldPackage, equalTo("value"));
     }
@@ -56,13 +55,13 @@ public class TestCanReadAndSetFields {
     @Test public void canReadPackageField() throws Exception {
         subject.fieldPackage = "value";
 
-        final String value = object(subject).field(hasName("fieldPackage")).as(String.class).callRaw();
+        final String value = object(subject).field("fieldPackage").as(String.class).callRaw();
 
         assertThat(value, equalTo("value"));
     }
 
     @Test public void canSetProtectedField() throws Exception {
-        object(subject).field(hasName("fieldProtected")).callRaw("value");
+        object(subject).field("fieldProtected").callRaw("value");
 
         assertThat(subject.fieldProtected, equalTo("value"));
     }
@@ -70,13 +69,13 @@ public class TestCanReadAndSetFields {
     @Test public void canReadProtectedField() throws Exception {
         subject.fieldProtected = "value";
 
-        final String value = object(subject).field(hasName("fieldProtected")).as(String.class).callRaw();
+        final String value = object(subject).field("fieldProtected").as(String.class).callRaw();
 
         assertThat(value, equalTo("value"));
     }
 
     @Test public void canSetPrivateField() throws Exception {
-        object(subject).field(hasName("fieldPrivate")).callRaw("value");
+        object(subject).field("fieldPrivate").callRaw("value");
 
         assertThat(subject.fieldPrivate, equalTo("value"));
     }
@@ -84,7 +83,7 @@ public class TestCanReadAndSetFields {
     @Test public void canReadPrivateField() throws Exception {
         subject.fieldPrivate = "value";
 
-        final String value = object(subject).field(hasName("fieldPrivate")).as(String.class).callRaw();
+        final String value = object(subject).field("fieldPrivate").as(String.class).callRaw();
 
         assertThat(value, equalTo("value"));
     }

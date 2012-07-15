@@ -150,6 +150,16 @@ public interface FluentAccess<T> extends FluentAnnotated {
     FluentField field(ReflectionMatcher<FluentMember> fieldMatcher);
 
     /**
+     * Find field by name
+     *
+     * @param fieldName
+     *            matches the field
+     *
+     * @return The field with the given name
+     */
+    FluentField field(String fieldName);
+
+    /**
      * All fields
      *
      * @return all the fields
