@@ -74,12 +74,12 @@ public final class ReflectionMatchers {
     }
 
     /**
-     * Matches the declaring class of a callable
+     * Matches the declaring class of a member
      *
      * @param declaringClass
      *            the declaring class
      *
-     * @return true iff the callable is declared by the argument
+     * @return true iff the member is declared by the argument
      */
     public static ReflectionMatcher<FluentMember> declaredBy(final Class<?> declaringClass) {
         return new MatcherDeclaredBy(reflectingOn(declaringClass));
