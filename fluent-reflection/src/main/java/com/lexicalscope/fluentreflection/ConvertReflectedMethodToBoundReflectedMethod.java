@@ -19,9 +19,9 @@ import ch.lambdaj.function.convert.Converter;
  */
 
 class ConvertReflectedMethodToBoundReflectedMethod implements Converter<FluentMethod, FluentMethod> {
-    private final FluentObject<?> instance;
+    private final Object instance;
 
-    public ConvertReflectedMethodToBoundReflectedMethod(final FluentObject<?> instance) {
+    public ConvertReflectedMethodToBoundReflectedMethod(final Object instance) {
         this.instance = instance;
     }
 

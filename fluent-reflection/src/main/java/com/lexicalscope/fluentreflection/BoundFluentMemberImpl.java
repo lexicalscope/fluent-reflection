@@ -27,11 +27,11 @@ import org.hamcrest.Matcher;
 
 abstract class BoundFluentMemberImpl implements FluentMember {
     private final FluentMember member;
-    private final FluentObject<?> instance;
+    private final Object instance;
 
     public BoundFluentMemberImpl(
             final FluentMember member,
-            final FluentObject<?> instance) {
+            final Object instance) {
         if (member.isStatic()) {
             throw new IllegalArgumentException("cannot bind static member " + member);
         }
@@ -53,7 +53,7 @@ abstract class BoundFluentMemberImpl implements FluentMember {
 
     private Object[] addInstanceToArgsArray(final Object... args) {
         final Object[] argsWithInstance = new Object[args.length + 1];
-        argsWithInstance[0] = instance.value();
+        argsWithInstance[0] = instance;
         arraycopy(args, 0, argsWithInstance, 1, args.length);
         return argsWithInstance;
     }

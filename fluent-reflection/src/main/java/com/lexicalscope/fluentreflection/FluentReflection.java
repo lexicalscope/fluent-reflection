@@ -69,6 +69,6 @@ public final class FluentReflection {
     }
 
     public static FluentMethod boundMethod(final Object instance, final Method method) {
-        return new ReflectedTypeFactoryImpl().boundMethod(object(instance), method);
+        return new ReflectedTypeFactoryImpl().boundMethod(instance, method);
     }
 }

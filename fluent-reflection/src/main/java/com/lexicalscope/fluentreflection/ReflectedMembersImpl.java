@@ -128,7 +128,7 @@ final class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
     @SuppressWarnings("unchecked") public static <T> ReflectedMembersImpl<T> createBoundReflectedMembers(
             final ReflectedTypeFactory reflectedTypeFactory,
             final TypeLiteral<T> typeLiteral,
-            final FluentObject<T> instance) {
+            final T instance) {
         final ReflectedSuperclassesAndInterfacesImpl<T> superclassesAndInterfaces
             = new ReflectedSuperclassesAndInterfacesImpl<T>(reflectedTypeFactory, typeLiteral);
 
@@ -136,7 +136,7 @@ final class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
               superclassesAndInterfaces,
               new ReflectedMethodsBinder<T>(new ReflectedMethodsImpl<T>(reflectedTypeFactory, typeLiteral, superclassesAndInterfaces), instance),
               new ReflectedConstructorsImpl<T>(reflectedTypeFactory, typeLiteral),
-              new ReflectedFieldsImpl<T>(reflectedTypeFactory, typeLiteral, superclassesAndInterfaces),
+              new ReflectedFieldsBinder<T>(new ReflectedFieldsImpl<T>(reflectedTypeFactory, typeLiteral, superclassesAndInterfaces), instance),
               (Class<T>) typeLiteral.getRawType());
     }
 }
