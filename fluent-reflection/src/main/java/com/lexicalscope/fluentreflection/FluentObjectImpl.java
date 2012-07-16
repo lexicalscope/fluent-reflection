@@ -23,7 +23,7 @@ import com.google.inject.TypeLiteral;
  * limitations under the License.
  */
 
-final class FluentObjectImpl<T> extends FluentClassImpl<T> implements FluentObject<T> {
+final class FluentObjectImpl<T> extends AbstractFluentAccess<T> implements FluentObject<T> {
     private final T instance;
 
     FluentObjectImpl(
@@ -65,6 +65,14 @@ final class FluentObjectImpl<T> extends FluentClassImpl<T> implements FluentObje
     }
 
     @Override public FluentClass<T> reflectedClass() {
-        return this;
+        return reflectedTypeFactory.reflect(typeLiteral);
+    }
+
+    @Override public FluentClass<T> boxedType() {
+        return reflectedClass().boxedType();
+    }
+
+    @Override public FluentClass<T> unboxedType() {
+        return reflectedClass().unboxedType();
     }
 }
