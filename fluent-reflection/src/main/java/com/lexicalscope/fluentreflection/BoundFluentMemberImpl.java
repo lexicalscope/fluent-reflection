@@ -26,15 +26,12 @@ import org.hamcrest.Matcher;
  */
 
 abstract class BoundFluentMemberImpl implements FluentMember {
-    private final ReflectedTypeFactory reflectedTypeFactory;
     private final FluentMember member;
     private final FluentObject<?> instance;
 
     public BoundFluentMemberImpl(
-            final ReflectedTypeFactory reflectedTypeFactory,
             final FluentMember member,
             final FluentObject<?> instance) {
-        this.reflectedTypeFactory = reflectedTypeFactory;
         if (member.isStatic()) {
             throw new IllegalArgumentException("cannot bind static member " + member);
         }

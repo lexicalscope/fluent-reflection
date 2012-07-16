@@ -15,13 +15,17 @@ final class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
     private final ReflectedFields<T> fields;
     private final Class<T> klass;
 
-    public ReflectedMembersImpl(final ReflectedTypeFactory reflectedTypeFactory, final TypeLiteral<T> typeLiteral) {
-        this.klass = (Class<T>) typeLiteral.getRawType();
-        this.superclassesAndInterfaces =
-                new ReflectedSuperclassesAndInterfacesImpl<T>(reflectedTypeFactory, typeLiteral);
-        this.methods = new ReflectedMethodsImpl<T>(reflectedTypeFactory, typeLiteral, superclassesAndInterfaces);
-        this.constructors = new ReflectedConstructorsImpl<T>(reflectedTypeFactory, typeLiteral);
-        this.fields = new ReflectedFieldsImpl<T>(reflectedTypeFactory, typeLiteral, superclassesAndInterfaces);
+    private ReflectedMembersImpl(
+            final ReflectedSuperclassesAndInterfaces<T> superclassesAndInterfaces,
+            final ReflectedMethods<T> methods,
+            final ReflectedConstructors<T> constructors,
+            final ReflectedFields<T> fields,
+            final Class<T> klass) {
+        this.superclassesAndInterfaces = superclassesAndInterfaces;
+        this.methods = methods;
+        this.constructors = constructors;
+        this.fields = fields;
+        this.klass = klass;
     }
 
     @Override public List<FluentConstructor<T>> constructors() {
@@ -105,5 +109,34 @@ final class ReflectedMembersImpl<T> implements ReflectedMembers<T> {
             return field;
         }
         return method;
+    }
+
+    @SuppressWarnings("unchecked") public static <T> ReflectedMembersImpl<T> createReflectedMembers(
+            final ReflectedTypeFactory reflectedTypeFactory,
+            final TypeLiteral<T> typeLiteral) {
+        final ReflectedSuperclassesAndInterfacesImpl<T> superclassesAndInterfaces
+            = new ReflectedSuperclassesAndInterfacesImpl<T>(reflectedTypeFactory, typeLiteral);
+
+        return new ReflectedMembersImpl<T>(
+              superclassesAndInterfaces,
+              new ReflectedMethodsImpl<T>(reflectedTypeFactory, typeLiteral, superclassesAndInterfaces),
+              new ReflectedConstructorsImpl<T>(reflectedTypeFactory, typeLiteral),
+              new ReflectedFieldsImpl<T>(reflectedTypeFactory, typeLiteral, superclassesAndInterfaces),
+              (Class<T>) typeLiteral.getRawType());
+    }
+
+    @SuppressWarnings("unchecked") public static <T> ReflectedMembersImpl<T> createBoundReflectedMembers(
+            final ReflectedTypeFactory reflectedTypeFactory,
+            final TypeLiteral<T> typeLiteral,
+            final FluentObject<T> instance) {
+        final ReflectedSuperclassesAndInterfacesImpl<T> superclassesAndInterfaces
+            = new ReflectedSuperclassesAndInterfacesImpl<T>(reflectedTypeFactory, typeLiteral);
+
+        return new ReflectedMembersImpl<T>(
+              superclassesAndInterfaces,
+              new ReflectedMethodsBinder<T>(new ReflectedMethodsImpl<T>(reflectedTypeFactory, typeLiteral, superclassesAndInterfaces), instance),
+              new ReflectedConstructorsImpl<T>(reflectedTypeFactory, typeLiteral),
+              new ReflectedFieldsImpl<T>(reflectedTypeFactory, typeLiteral, superclassesAndInterfaces),
+              (Class<T>) typeLiteral.getRawType());
     }
 }

@@ -23,10 +23,9 @@ class BoundFluentMethodImpl extends BoundFluentMemberImpl implements FluentMetho
     private final FluentObject<?> instance;
 
     public BoundFluentMethodImpl(
-            final ReflectedTypeFactory reflectedTypeFactory,
             final FluentMethod method,
             final FluentObject<?> instance) {
-        super(reflectedTypeFactory, method, instance);
+        super(method, instance);
         this.method = method;
         this.instance = instance;
     }

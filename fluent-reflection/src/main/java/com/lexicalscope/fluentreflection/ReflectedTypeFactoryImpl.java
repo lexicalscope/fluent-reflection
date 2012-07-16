@@ -27,7 +27,7 @@ final class ReflectedTypeFactoryImpl implements ReflectedTypeFactory {
     }
 
     @Override public <T> FluentClass<T> reflect(final TypeLiteral<T> typeLiteral) {
-        return new FluentClassImpl<T>(this, typeLiteral, new ReflectedMembersImpl<T>(this, typeLiteral));
+        return new FluentClassImpl<T>(this, typeLiteral, ReflectedMembersImpl.createReflectedMembers(this, typeLiteral));
     }
 
     @Override public <T> FluentObject<T> reflect(final Class<T> klass, final T instance) {
@@ -47,7 +47,7 @@ final class ReflectedTypeFactoryImpl implements ReflectedTypeFactory {
     }
 
     public FluentMethod boundMethod(final FluentObject<?> instance, final Method method) {
-        return new BoundFluentMethodImpl(this, method(method), instance);
+        return new BoundFluentMethodImpl(method(method), instance);
     }
 
     @Override public FluentField field(final TypeLiteral<?> klass, final Field field) {

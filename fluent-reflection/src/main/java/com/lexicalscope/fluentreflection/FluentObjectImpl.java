@@ -79,13 +79,13 @@ final class FluentObjectImpl<T> implements FluentObject<T> {
     private List<FluentMethod> bind(final List<FluentMethod> methods) {
         return convert(
                 select(methods, isNotStatic()),
-                new ConvertReflectedMethodToBoundReflectedMethod(reflectedTypeFactory, this));
+                new ConvertReflectedMethodToBoundReflectedMethod(this));
     }
 
     private List<FluentField> bindFields(final List<FluentField> fields) {
         return convert(
                 select(fields, isNotStatic()),
-                new ConvertReflectedFieldToBoundReflectedField(reflectedTypeFactory, this));
+                new ConvertReflectedFieldToBoundReflectedField(this));
     }
 
     private List<FluentField> boundDeclaredFields() {

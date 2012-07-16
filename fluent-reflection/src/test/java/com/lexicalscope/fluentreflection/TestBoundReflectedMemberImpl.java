@@ -45,7 +45,7 @@ public class TestBoundReflectedMemberImpl {
             }
         });
 
-        boundReflectedMemberImpl = new BoundFluentMemberImpl(null, member, instance) {
+        boundReflectedMemberImpl = new BoundFluentMemberImpl(member, instance) {
             @Override public Member member() {
                 return null;
             }

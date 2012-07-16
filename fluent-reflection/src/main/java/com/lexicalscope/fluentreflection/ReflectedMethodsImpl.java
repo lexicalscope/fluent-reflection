@@ -39,6 +39,13 @@ final class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
         return reflectedMethods;
     }
 
+    @Override public List<FluentMethod> declaredMethods() {
+        if (declaredMethods == null) {
+            declaredMethods = unmodifiableList(getDeclaredMethodsOfClass(typeLiteral));
+        }
+        return declaredMethods;
+    }
+
     private List<FluentMethod> getDeclaredMethodsOfClass(final TypeLiteral<?> typeLiteralToReflect) {
         final List<FluentMethod> result = new ArrayList<FluentMethod>();
         final Method[] declaredMethods = typeLiteralToReflect.getRawType().getDeclaredMethods();
@@ -46,12 +53,5 @@ final class ReflectedMethodsImpl<T> implements ReflectedMethods<T> {
             result.add(reflectedTypeFactory.method(typeLiteralToReflect, method));
         }
         return result;
-    }
-
-    @Override public List<FluentMethod> declaredMethods() {
-        if (declaredMethods == null) {
-            declaredMethods = unmodifiableList(getDeclaredMethodsOfClass(typeLiteral));
-        }
-        return declaredMethods;
     }
 }

@@ -51,7 +51,7 @@ public class TestBoundReflectedFieldImpl {
             }
         });
 
-        boundReflectedFieldImpl = new BoundFluentFieldImpl(null, member, instance);
+        boundReflectedFieldImpl = new BoundFluentFieldImpl(member, instance);
     }
 
     @Test public void memberUnderReflectionIsDelegated() {
