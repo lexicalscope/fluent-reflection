@@ -36,18 +36,15 @@ import com.google.inject.TypeLiteral;
 
 final class FluentMethodImpl extends AbstractFluentAnnotated implements FluentMethod {
     private final ReflectedTypeFactory reflectedTypeFactory;
-    private final FluentClass<?> reflectedClass;
     private final TypeLiteral<?> typeLiteral;
     private final Method method;
 
     public FluentMethodImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
-            final FluentClass<?> reflectedClass,
             final TypeLiteral<?> typeLiteral,
             final Method method) {
         super(reflectedTypeFactory, method);
         this.reflectedTypeFactory = reflectedTypeFactory;
-        this.reflectedClass = reflectedClass;
         this.typeLiteral = typeLiteral;
         this.method = method;
     }

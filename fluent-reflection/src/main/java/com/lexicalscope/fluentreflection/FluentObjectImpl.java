@@ -1,9 +1,6 @@
 package com.lexicalscope.fluentreflection;
 
-import static ch.lambdaj.Lambda.*;
-import static com.lexicalscope.fluentreflection.ReflectionMatchers.*;
-
-import java.util.List;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.hasName;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -40,18 +37,6 @@ final class FluentObjectImpl<T> extends FluentClassImpl<T> implements FluentObje
 
     @Override public <V> V as(final Class<V> asType) {
         return asType.cast(value());
-    }
-
-    private List<FluentMethod> bind(final List<FluentMethod> methods) {
-        return convert(
-                select(methods, isNotStatic()),
-                new ConvertReflectedMethodToBoundReflectedMethod(this));
-    }
-
-    private List<FluentField> bindFields(final List<FluentField> fields) {
-        return convert(
-                select(fields, isNotStatic()),
-                new ConvertReflectedFieldToBoundReflectedField(this));
     }
 
     @Override public boolean equals(final Object that) {

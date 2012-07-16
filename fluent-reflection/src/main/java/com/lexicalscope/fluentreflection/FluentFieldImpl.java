@@ -31,18 +31,15 @@ import com.google.inject.TypeLiteral;
 
 final class FluentFieldImpl extends AbstractFluentAnnotated implements FluentField {
     private final ReflectedTypeFactory reflectedTypeFactory;
-    private final FluentClass<?> reflectedClass;
     private final TypeLiteral<?> typeLiteral;
     private final Field field;
 
     public FluentFieldImpl(
             final ReflectedTypeFactory reflectedTypeFactory,
-            final FluentClass<?> reflectedClass,
             final TypeLiteral<?> typeLiteral,
             final Field field) {
         super(reflectedTypeFactory, field);
         this.reflectedTypeFactory = reflectedTypeFactory;
-        this.reflectedClass = reflectedClass;
         this.typeLiteral = typeLiteral;
         this.field = field;
 
