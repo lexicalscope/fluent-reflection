@@ -141,7 +141,7 @@ public abstract class AbstractFluentAccess<T> implements FluentAccess<T> {
         return klass.isPrimitive();
     }
 
-    @Override public boolean isType(final Matcher<FluentClass<?>> typeMatcher) {
+    @Override public boolean isType(final Matcher<? super FluentClass<?>> typeMatcher) {
         if (typeMatcher.matches(this)) {
             return true;
         }

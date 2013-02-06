@@ -199,7 +199,7 @@ public interface FluentAccess<T> extends FluentAnnotated {
      *
      * @return does the type or any of its supertypes match the given matcher
      */
-    boolean isType(Matcher<FluentClass<?>> typeMatcher);
+    boolean isType(Matcher<? super FluentClass<?>> typeMatcher);
 
     /**
      * Determines if this {@code Class} object represents the wrapper of a
