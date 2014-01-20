@@ -59,15 +59,9 @@ public class MapBean {
                 });
 
                 whenProxying(
-                        isGetter().and(
+                		isQuery().and(
                                 hasType(boolean.class).or(
                                         hasType(Boolean.class)))).execute(new MethodBody() {
-                    @Override public void body() {
-                        returnValue(map.containsKey(method().property()));
-                    }
-                });
-
-                whenProxying(isExistence()).execute(new MethodBody() {
                     @Override public void body() {
                         returnValue(map.containsKey(method().property()));
                     }

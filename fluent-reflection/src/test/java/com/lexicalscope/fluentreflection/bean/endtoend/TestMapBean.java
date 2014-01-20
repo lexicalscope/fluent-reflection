@@ -60,6 +60,8 @@ public class TestMapBean {
         List<Integer> getOptionalList();
         void setOptionalList(List<Integer> integer);
         boolean isOptionalList();
+
+        boolean f();
     }
 
     private final Map<String, Object> map = new HashMap<String, Object>();
@@ -76,6 +78,10 @@ public class TestMapBean {
     @Test public void mapCanBeReadViaInterface() throws Exception {
         map.put("property", "my value");
         assertThat(bean.getProperty(), equalTo("my value"));
+    }
+
+    @Test public void mapCanBeReadViaInterfaceWhenNotAGetter() throws Exception {
+        assertThat(bean.f(), equalTo(false));
     }
 
     @Test public void mapCanBeSetViaInterface() throws Exception {
