@@ -140,7 +140,7 @@ public interface FluentAccess<T> extends FluentAnnotated {
      *
      * @return The first field matching the supplied matcher
      */
-    FluentField field(Matcher<FluentMember> fieldMatcher);
+    FluentField field(Matcher<? super FluentMember> fieldMatcher);
 
     /**
      * Find field by name

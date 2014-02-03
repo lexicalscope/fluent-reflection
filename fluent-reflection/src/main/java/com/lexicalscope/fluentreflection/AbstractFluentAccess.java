@@ -113,7 +113,7 @@ public abstract class AbstractFluentAccess<T> implements FluentAccess<T> {
         return members.declaredMethods();
     }
 
-    @Override public FluentField field(final Matcher<FluentMember> fieldMatcher) {
+    @Override public FluentField field(final Matcher<? super FluentMember> fieldMatcher) {
         return members.field(fieldMatcher);
     }
 
