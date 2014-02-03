@@ -17,6 +17,8 @@ package com.lexicalscope.fluentreflection;
  */
 
 import static ch.lambdaj.Lambda.*;
+import static com.lexicalscope.fluentreflection.FluentReflection.object;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.compatibleWith;
 import static com.lexicalscope.fluentreflection.Visibility.visibilityFromModifiers;
 import static java.lang.String.format;
 import static java.lang.System.arraycopy;
@@ -31,6 +33,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.hamcrest.Matcher;
 
 import com.google.inject.TypeLiteral;
 
@@ -59,6 +62,16 @@ final class FluentMethodImpl extends AbstractFluentAnnotated implements FluentMe
                 typeLiteral.getParameterTypes(method),
                 new ConvertTypeLiteralToReflectedType(reflectedTypeFactory)));
         return result;
+    }
+
+    @Override public int indexOfArg(final Matcher<? super FluentClass<?>> matcher) {
+       final List<FluentClass<?>> args = args();
+       for (int i = 0; i < args.size(); i++) {
+          if(matcher.matches(args.get(i))) {
+            return i;
+         }
+       }
+       throw new IndexOutOfBoundsException("No argment matching " + matcher);
     }
 
     @Override public int argCount() {
@@ -231,4 +244,8 @@ final class FluentMethodImpl extends AbstractFluentAnnotated implements FluentMe
     @Override public int hashCode() {
         return new HashCodeBuilder().append(method).append(typeLiteral).toHashCode();
     }
+
+   @Override public FluentMethod rebind(final Object receiver) {
+      return object(receiver).method(compatibleWith(this));
+   }
 }

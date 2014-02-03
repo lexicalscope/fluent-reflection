@@ -23,16 +23,41 @@ import static org.hamcrest.Matchers.equalTo;
 import org.junit.Test;
 
 public class TestReflectionOnBoundMethods {
-    public static class ExampleClass {
-        public int method() {
-            return 42;
-        }
-    }
+   public interface ExampleInterface {
+      int method();
 
-	@Test
-	public void boundMethodCanBeCalled() throws SecurityException, NoSuchMethodException {
-		assertThat(
-				boundMethod(new ExampleClass(), ExampleClass.class.getMethod("method")).call().value(),
-				equalTo((Object) 42));
-	}
+   }
+
+   public static class ExampleImpl1 implements ExampleInterface {
+      @Override public int method() {
+         return 42;
+      }
+   }
+
+   public static class ExampleImpl2 implements ExampleInterface {
+      @Override public int method() {
+         return 36;
+      }
+   }
+
+   @Test public void boundMethodCanBeCalled() throws SecurityException, NoSuchMethodException {
+      assertThat(boundMethod(new ExampleImpl1(),
+                             ExampleImpl1.class.getMethod("method"))
+                    .call().value(),
+                 equalTo((Object) 42));
+   }
+
+   @Test public void boundMethodCanBeRebound() throws SecurityException, NoSuchMethodException {
+      assertThat(boundMethod(new ExampleImpl1(),
+                             ExampleInterface.class.getMethod("method"))
+                    .rebind(new ExampleImpl2()).call().value(),
+                 equalTo((Object) 36));
+   }
+
+   @Test public void boundMethodCanBeReboundToParentType() throws SecurityException, NoSuchMethodException {
+      assertThat(boundMethod(new ExampleImpl1(),
+                             ExampleImpl1.class.getMethod("method"))
+                    .rebind(new ExampleImpl2()).call().value(),
+                 equalTo((Object) 36));
+   }
 }

@@ -93,6 +93,10 @@ public final class ReflectionMatchers {
         return new MatcherArgumentTypes(convert(argTypes, new ConvertClassToReflectedTypeAssignableMatcher()));
     }
 
+    public static ReflectionMatcher<FluentMember> hasArgumentListx(final List<? extends FluentAccess<?>> argTypes) {
+        return new MatcherArgumentTypes(convert(argTypes, new ConvertFluentTypeToFluentTypeAssignableMatcher()));
+    }
+
     public static ReflectionMatcher<FluentMember> hasArgumentListMatching(
             final List<Matcher<? super FluentClass<?>>> argTypes) {
         return new MatcherArgumentTypes(argTypes);
@@ -245,6 +249,12 @@ public final class ReflectionMatchers {
         return hasArguments(Object.class).
                 and(hasType(boolean.class)).
                 and(hasName("equals"));
+    }
+
+    public static Matcher<? super FluentMethod> compatibleWith(final FluentMethod method) {
+       return hasArgumentListx(method.args()).
+             and(hasType(method.type())).
+             and(hasName(method.name()));
     }
 
     public static ReflectionMatcher<FluentMember> isExistence() {

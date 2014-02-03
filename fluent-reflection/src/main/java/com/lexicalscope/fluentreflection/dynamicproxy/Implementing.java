@@ -24,6 +24,7 @@ import com.lexicalscope.fluentreflection.FluentReflection;
 import com.lexicalscope.fluentreflection.IllegalAccessRuntimeException;
 import com.lexicalscope.fluentreflection.InvocationTargetRuntimeException;
 import com.lexicalscope.fluentreflection.ReflectionMatcher;
+import com.lexicalscope.fluentreflection.ReflectionMatchers;
 import com.lexicalscope.fluentreflection.SecurityException;
 
 public abstract class Implementing<T> implements ProxyImplementation<T> {
@@ -240,6 +241,11 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
     public final Object[] args() {
         return methodInvokationContext.get().args;
     }
+
+    public final <T> T arg(final Class<T> type) {
+        return type.cast(args()[methodInvokationContext.get().method.indexOfArg(ReflectionMatchers.assignableFrom(type))]);
+    }
+
 
     public final Object proxy() {
         return methodInvokationContext.get().proxy;

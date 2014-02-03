@@ -1,6 +1,11 @@
 package com.lexicalscope.fluentreflection;
 
+import static com.lexicalscope.fluentreflection.FluentReflection.object;
+import static com.lexicalscope.fluentreflection.ReflectionMatchers.compatibleWith;
+
 import java.lang.reflect.Method;
+
+import org.hamcrest.Matcher;
 
 /*
  * Copyright 2011 Tim Wood
@@ -32,6 +37,14 @@ class BoundFluentMethodImpl extends BoundFluentMemberImpl implements FluentMetho
 
     @Override public Method member() {
         return method.member();
+    }
+
+    @Override public FluentMethod rebind(final Object receiver) {
+       return object(receiver).method(compatibleWith(this));
+    }
+
+    @Override public int indexOfArg(final Matcher<? super FluentClass<?>> matcher) {
+       return method.indexOfArg(matcher);
     }
 
     @Override public String toString() {

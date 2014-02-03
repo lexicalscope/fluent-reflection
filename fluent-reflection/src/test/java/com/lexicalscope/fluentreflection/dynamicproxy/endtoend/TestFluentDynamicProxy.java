@@ -170,4 +170,22 @@ public class TestFluentDynamicProxy {
 
         assertThat(dynamicProxy.method(42), equalTo(42));
     }
+
+    interface MethodWithMultipleArguments {
+       Object method(Integer argument0, String argument1);
+   }
+
+    @Test public void canGetMethodArgumentByType() throws Exception {
+       final MethodWithMultipleArguments dynamicProxy = dynamicProxy(new Implementing<MethodWithMultipleArguments>() {
+           {
+               whenProxying(anything()).execute(new MethodBody() {
+                   @Override public void body() {
+                       returnValue(arg(Integer.class));
+                   }
+               });
+           }
+       });
+
+       assertThat(dynamicProxy.method(42, "foo"), equalTo((Object) 42));
+   }
 }

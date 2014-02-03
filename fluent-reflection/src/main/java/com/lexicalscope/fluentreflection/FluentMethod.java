@@ -2,6 +2,8 @@ package com.lexicalscope.fluentreflection;
 
 import java.lang.reflect.Method;
 
+import org.hamcrest.Matcher;
+
 // Copyright 2011 Tim Wood
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +31,11 @@ public interface FluentMethod extends FluentMember {
      * @return The name of the method with any prefix of "get", "set" or "is"
      *         removed and the first subsequent character changed to lower case
      */
-    String property();
+    @Override String property();
 
-    Method member();
+    @Override Method member();
+
+    FluentMethod rebind(Object reciever);
+
+    int indexOfArg(Matcher<? super FluentClass<?>> matcher);
 }
