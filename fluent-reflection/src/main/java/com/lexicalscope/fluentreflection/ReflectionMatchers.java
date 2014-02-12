@@ -50,6 +50,10 @@ public final class ReflectionMatchers {
         return new MatcherAssignableFrom(klass);
     }
 
+    public static ReflectionMatcher<FluentAccess<?>> assignableTo(final Class<?> klass) {
+        return new MatcherAssignableTo(klass);
+    }
+
     public static ReflectionMatcher<FluentAccess<?>> assignableFrom(final FluentAccess<?> klass) {
         return new MatcherAssignableFrom(klass);
     }

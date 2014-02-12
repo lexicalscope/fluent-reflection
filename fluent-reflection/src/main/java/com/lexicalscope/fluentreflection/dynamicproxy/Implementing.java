@@ -160,15 +160,15 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
                         defaultHandler.body();
                         return methodInvokationContext.get().result;
                     } finally {
-                        callingDefaultHandler.set(Boolean.FALSE);
+                        callingDefaultHandler.remove();
                     }
                 }
                 throw new UnsupportedOperationException("no implemention found for method " + method);
             } finally {
-                methodInvokationContext.set(null);
+                methodInvokationContext.remove();
             }
         } finally {
-            proxyingMethod.set(Boolean.FALSE);
+            proxyingMethod.remove();
         }
     }
 
@@ -243,7 +243,7 @@ public abstract class Implementing<T> implements ProxyImplementation<T> {
     }
 
     public final <T> T arg(final Class<T> type) {
-        return type.cast(args()[methodInvokationContext.get().method.indexOfArg(ReflectionMatchers.assignableFrom(type))]);
+        return type.cast(args()[methodInvokationContext.get().method.indexOfArg(ReflectionMatchers.assignableTo(type))]);
     }
 
 

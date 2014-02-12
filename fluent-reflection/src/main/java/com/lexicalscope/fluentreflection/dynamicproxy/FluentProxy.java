@@ -15,13 +15,13 @@ import java.lang.reflect.Proxy;
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 
 public class FluentProxy {
     public static <T> T dynamicProxy(final ProxyImplementation<T> proxyImplementation) {
         return (T) Proxy.newProxyInstance(
-                Thread.currentThread().getContextClassLoader(),
+                proxyImplementation.proxiedInterface().getClassLoader(),
                 new Class[] { proxyImplementation.proxiedInterface() },
                 proxyImplementation);
     }
